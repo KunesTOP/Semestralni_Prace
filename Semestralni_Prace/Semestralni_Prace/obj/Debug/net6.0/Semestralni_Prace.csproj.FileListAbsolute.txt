@@ -1,0 +1,5 @@
+C:\Users\jindra\Desktop\Semestrální práce C@\SemPrace\SemPrace\Semestralni_Prace\Semestralni_Prace\obj\Debug\net6.0\Semestralni_Prace.csproj.AssemblyReference.cache
+C:\Users\jindra\Desktop\Semestrální práce C@\SemPrace\SemPrace\Semestralni_Prace\Semestralni_Prace\obj\Debug\net6.0\Semestralni_Prace.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jindra\Desktop\Semestrální práce C@\SemPrace\SemPrace\Semestralni_Prace\Semestralni_Prace\obj\Debug\net6.0\Semestralni_Prace.AssemblyInfoInputs.cache
+C:\Users\jindra\Desktop\Semestrální práce C@\SemPrace\SemPrace\Semestralni_Prace\Semestralni_Prace\obj\Debug\net6.0\Semestralni_Prace.AssemblyInfo.cs
+C:\Users\jindra\Desktop\Semestrální práce C@\SemPrace\SemPrace\Semestralni_Prace\Semestralni_Prace\obj\Debug\net6.0\Semestralni_Prace.csproj.CoreCompileInputs.cache
