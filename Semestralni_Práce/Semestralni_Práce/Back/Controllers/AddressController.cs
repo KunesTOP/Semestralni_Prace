@@ -1,11 +1,14 @@
-using Back.databaze;
-
+using Newtonsoft.Json.Linq;
 using Oracle.ManagedDataAccess.Client;
-using System.Net;
-using Back.Auth;
-using Semestralni_Prace.Back.TISModelLibrary;
+using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Runtime.InteropServices;
+using System.Net;
+using System.Runtime.Caching;
+using System.Web.Http;
+using TISBackend.Auth;
+using TISBackend.Db;
+using TISModelLibrary;
 
 namespace Back.Controllers
 {
@@ -29,10 +32,10 @@ namespace Back.Controllers
                 HouseNumber = (dr["cislo_popisne"].ToString() == "") ? null : (int?)int.Parse(dr["cislo_popisne"].ToString()),
             };
         }
-       
+
         public IEnumerable<int> GetIds()
         {
-            return GetIds(TABLE_NAME, ID_NAME);// TODO
+            return GetIds(TABLE_NAME, ID_NAME);
         }
 
         // GET: api/Address
@@ -43,8 +46,8 @@ namespace Back.Controllers
                 DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
                 foreach (DataRow dr in query.Rows)
                 {
-                    list.Add(New(dr, GetAuthLevel()));//TODO
-            }
+                    list.Add(New(dr, GetAuthLevel()));
+                }
             
 
             return list;
@@ -53,61 +56,61 @@ namespace Back.Controllers
         // GET: api/Address/5
         public Address Get(int id)
         {
+                return null;
+            
 
-
-
-
+           
 
             DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME} WHERE {ID_NAME} = :id", new OracleParameter("id", id));
 
-        if (query.Rows.Count != 1)
-        {
-            return null;
+            if (query.Rows.Count != 1)
+            {
+                return null;
+            }
+
+            Address address = New(query.Rows[0], GetAuthLevel());
+            cachedAddresses.Add(id.ToString(), address, DateTimeOffset.Now.AddMinutes(15));
+            return address;
         }
 
-        Address address = New(query.Rows[0], GetAuthLevel());// TODO
-        cachedAddresses.Add(id.ToString(), address, DateTimeOffset.Now.AddMinutes(15));//TODO
-        return address;
-          }
-
-    protected override bool CheckObject(JObject value, AuthLevel authLevel) //TODO
-    {
-        return ValidJSON(value, "Id") && int.TryParse(value["Id"].ToString(), out _);//TODO
-    }
-
-
-    protected override int SetObjectInternal(JObject value, AuthLevel authLevel, OracleTransaction transaction)//TODO
-    {
-        Address n = value.ToObject<Address>();
-        OracleParameter p_id = new OracleParameter("p_id", n.Id);
-        DatabaseController.Execute("PKG_MODEL_DML.UPSERT_ADRESA", transaction,
-
-            p_id,
-            new OracleParameter("p_mesto", n.City),
-            new OracleParameter("p_ulice", n.Street),
-            new OracleParameter("p_cp", n.HouseNumber)
-
-
-        );
-        int id = int.Parse(p_id.Value.ToString());
-
-
-
-        return id;
-    }
-
-
-    public static bool CheckObjectStatic(JObject value, AuthLevel authLevel)//TODO
-    {
-        return instance.CheckObject(value, authLevel);
-    }
-
-
-    public static int SetObjectStatic(JObject value, AuthLevel authLevel, OracleTransaction transaction = null)//TODO
+        protected override bool CheckObject(JObject value, AuthLevel authLevel)
         {
-        return instance.SetObject(value, authLevel, transaction);//TODO
+            return ValidJSON(value, "Id") && int.TryParse(value["Id"].ToString(), out _);
         }
 
+       
+        protected override int SetObjectInternal(JObject value, AuthLevel authLevel, OracleTransaction transaction)
+        {
+            Address n = value.ToObject<Address>();
+            OracleParameter p_id = new OracleParameter("p_id", n.Id);
+            DatabaseController.Execute("PKG_MODEL_DML.UPSERT_ADRESA", transaction,
 
-}
+                p_id,
+                new OracleParameter("p_mesto", n.City),
+                new OracleParameter("p_ulice", n.Street),
+                new OracleParameter("p_cp", n.HouseNumber)
+              
+               
+            );
+            int id = int.Parse(p_id.Value.ToString());
+
+          
+
+            return id;
+        }
+
+    
+        public static bool CheckObjectStatic(JObject value, AuthLevel authLevel)
+        {
+            return instance.CheckObject(value, authLevel);
+        }
+
+  
+        public static int SetObjectStatic(JObject value, AuthLevel authLevel, OracleTransaction transaction = null)
+        {
+            return instance.SetObject(value, authLevel, transaction);
+        }
+
+       
+    }
 }

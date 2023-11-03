@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Semestralni_Práce.Classes
 {
-    internal class Title
+    public class Title
     {
+        public int Id { get; set; }
+        public int Abbreviation { get; set; }
+        public int Name { get; set; }
     }
 }

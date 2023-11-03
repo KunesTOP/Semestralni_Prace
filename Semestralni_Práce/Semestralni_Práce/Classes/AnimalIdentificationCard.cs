@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Semestralni_Práce.Classes
 {
-    internal class AnimalIdentificationCard
+    public class AnimalIdentificationCard
     {
+        public int Id { get; set; }
+        public int NumberOfCard { get; set; }
+        public int NumberOfChip { get; set; }      
     }
 }

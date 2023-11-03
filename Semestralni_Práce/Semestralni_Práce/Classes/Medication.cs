@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Semestralni_Práce.Classes
 {
-    internal class Medication
+    public class Medication
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public DateTime Prescribed { get; set; }
     }
 }

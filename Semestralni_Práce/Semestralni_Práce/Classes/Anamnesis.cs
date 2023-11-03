@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Semestralni_Práce.Classes
 {
-    internal class Anamnesis
+    public class Anamnesis
     {
+        public int Id { get; set; }
+        public DateTime Date_of_Anamnesis { get; set; }
+        public int? ResultsId { get; set; }
+        public int? MedicationId { get; set; }
+        public int? VeterinarianId { get; set; }
+
     }
 }

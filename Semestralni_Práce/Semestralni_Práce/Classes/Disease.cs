@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Semestralni_Práce.Classes
 {
-    internal class Disease
+    public class Disease
     {
+        //TODO rozhodnout, jak vyřešit tudle tabulku
     }
 }

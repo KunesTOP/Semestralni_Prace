@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Semestralni_Práce.Classes
 {
-    internal class BloodResults
+    public class BloodResults
     {
+        public int Id { get; set; }
+        public int AmountOfAntibodies { get; set; }
+        public int AmountOfRedBloodCells { get; set; }
     }
 }

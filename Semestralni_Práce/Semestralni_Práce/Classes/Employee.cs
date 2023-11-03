@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Semestralni_Práce.Classes
 {
-    internal class Employee
+    public class Employee
     {
+        public int Id { get; set; }
+        public string Forename { get; set; }
+        public string Lastname { get; set; }
+        public int? TitleId { get; set; }
+
     }
 }
