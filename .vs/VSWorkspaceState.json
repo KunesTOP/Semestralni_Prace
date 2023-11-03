@@ -5,8 +5,9 @@
     "\\Semestralni_Práce\\Semestralni_Práce",
     "\\Semestralni_Práce\\Semestralni_Práce\\Back",
     "\\Semestralni_Práce\\Semestralni_Práce\\Back\\Controllers",
-    "\\Semestralni_Práce\\Semestralni_Práce\\Back\\databaze"
+    "\\Semestralni_Práce\\Semestralni_Práce\\Back\\databaze",
+    "\\Semestralni_Práce\\Semestralni_Práce\\Classes"
   ],
-  "SelectedNode": "\\Semestralni_Práce\\Semestralni_Práce\\Back\\databaze\\DatabaseController.cs",
+  "SelectedNode": "\\Semestralni_Práce\\Semestralni_Práce\\Back\\Controllers\\Zamestnanci.cs",
   "PreviewInSolutionExplorer": false
 }
