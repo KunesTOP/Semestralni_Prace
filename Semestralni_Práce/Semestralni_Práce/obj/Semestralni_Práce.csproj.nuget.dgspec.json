@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jindra\\Desktop\\Modelovani semestralni Prace A\\Mod_SEM_A_Csharp\\Semestralni_Práce\\Semestralni_Práce\\Semestralni_Práce.csproj": {}
+    "C:\\Users\\Ondra\\Source\\Repos\\Semestralni_Prace\\Semestralni_Práce\\Semestralni_Práce\\Semestralni_Práce.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jindra\\Desktop\\Modelovani semestralni Prace A\\Mod_SEM_A_Csharp\\Semestralni_Práce\\Semestralni_Práce\\Semestralni_Práce.csproj": {
+    "C:\\Users\\Ondra\\Source\\Repos\\Semestralni_Prace\\Semestralni_Práce\\Semestralni_Práce\\Semestralni_Práce.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jindra\\Desktop\\Modelovani semestralni Prace A\\Mod_SEM_A_Csharp\\Semestralni_Práce\\Semestralni_Práce\\Semestralni_Práce.csproj",
+        "projectUniqueName": "C:\\Users\\Ondra\\Source\\Repos\\Semestralni_Prace\\Semestralni_Práce\\Semestralni_Práce\\Semestralni_Práce.csproj",
         "projectName": "Semestralni_Práce",
-        "projectPath": "C:\\Users\\jindra\\Desktop\\Modelovani semestralni Prace A\\Mod_SEM_A_Csharp\\Semestralni_Práce\\Semestralni_Práce\\Semestralni_Práce.csproj",
-        "packagesPath": "C:\\Users\\jindra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jindra\\Desktop\\Modelovani semestralni Prace A\\Mod_SEM_A_Csharp\\Semestralni_Práce\\Semestralni_Práce\\obj\\",
+        "projectPath": "C:\\Users\\Ondra\\Source\\Repos\\Semestralni_Prace\\Semestralni_Práce\\Semestralni_Práce\\Semestralni_Práce.csproj",
+        "packagesPath": "C:\\Users\\Ondra\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ondra\\Source\\Repos\\Semestralni_Prace\\Semestralni_Práce\\Semestralni_Práce\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\jindra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Ondra\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -60,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
