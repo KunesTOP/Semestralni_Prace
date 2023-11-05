@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\SemPrace.Client.props" />
+</Project>
