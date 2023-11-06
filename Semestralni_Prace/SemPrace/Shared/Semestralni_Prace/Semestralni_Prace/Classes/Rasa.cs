@@ -9,8 +9,6 @@ namespace Semestralni_Práce.Classes
 {
     public class Rasa
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
         public string JmenoRasa { get; internal set; }
         public int IdRasa { get; internal set; }
     }

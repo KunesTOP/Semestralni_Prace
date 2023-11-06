@@ -21,31 +21,31 @@
                         <StackPanel Orientation="Vertical" Height="407" Width="239">
                             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                                 <Label>Jméno:</Label>
-                                <TextBox VerticalAlignment="Center" x:Name="jmeno">Rex</TextBox>
+                                <TextBlock VerticalAlignment="Center" x:Name="jmeno">Rex</TextBlock>
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                                 <Label Content="Datum narození:"/>
-                                <TextBox IsReadOnly="True" VerticalAlignment="Center" x:Name="date" Text="13.05.2018"/>
+                                <TextBlock VerticalAlignment="Center" x:Name="date" Text="13.05.2018"/>
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                                 <Label>Pohlaví:</Label>
-                                <TextBox VerticalAlignment="Center" x:Name="pohlavi" Width="38">Fenka</TextBox>
+                                <TextBlock VerticalAlignment="Center" x:Name="pohlavi" Width="38">Fenka</TextBlock>
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                                 <Label>Rasa:</Label>
-                                <TextBox VerticalAlignment="Center" x:Name="rasa" Width="110">Border Kolie</TextBox>
+                                <TextBlock VerticalAlignment="Center" x:Name="rasa" Width="110">Border Kolie</TextBlock>
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                                 <Label>Vlastník:</Label>
-                                <TextBox VerticalAlignment="Center" x:Name="vlastnik">Ondřej Neustadt</TextBox>
+                                <TextBlock VerticalAlignment="Center" x:Name="vlastnik">Ondřej Neustadt</TextBlock>
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                                 <Label>Adresa:</Label>
-                                <TextBox VerticalAlignment="Center" x:Name="adresa">Regis 420, Insomnia III</TextBox>
+                                <TextBlock VerticalAlignment="Center" x:Name="adresa">Regis 420, Insomnia III</TextBlock>
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                                 <Label>Číslo průkazu:</Label>
-                                <TextBox VerticalAlignment="Center" x:Name="cisloPrukaz">000001</TextBox>
+                                <TextBlock VerticalAlignment="Center" x:Name="cisloPrukaz">000001</TextBlock>
                             </StackPanel>
                             <Button Content="Uložit změny" Margin="0 20 0 0" x:Name="saveChange" IsEnabled="False"></Button>
                         </StackPanel>

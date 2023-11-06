@@ -8,9 +8,8 @@ namespace Semestralni_Práce.Classes
 {
     public class Zamestnanec
     {
+        //TODO: Dohodnout se na tom Id tady
         public int Id { get; set; }
-        public string Forename { get; set; }
-        public string Lastname { get; set; }
         public int? TitleId { get; set; }
         public int IdZamestnanec { get; internal set; }
         public string? Jmeno { get; internal set; }

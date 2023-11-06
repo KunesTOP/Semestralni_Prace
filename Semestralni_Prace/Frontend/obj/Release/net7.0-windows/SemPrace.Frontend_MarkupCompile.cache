@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Ondra\Source\Repos\Semestralni_Prace3\Semestralni_Prace\Frontend\obj\Release\net7.0-windows\
+C:\Users\Ondra\source\repos\Semestralni_Prace3\Semestralni_Prace\Frontend\obj\Release\net7.0-windows\
 SemPrace.Frontend
 none
 false
 TRACE;RELEASE;NET;NET7_0;NETCOREAPP
-C:\Users\Ondra\Source\Repos\Semestralni_Prace3\Semestralni_Prace\Frontend\App.xaml
-3923388285
+C:\Users\Ondra\source\repos\Semestralni_Prace3\Semestralni_Prace\Frontend\App.xaml
+4743820254
 
-51383572708
+6467476391
 198-1175457984
-Login.xaml;PacientProfile.xaml;Profile.xaml;
+Login.xaml;PacientAdd.xaml;PacientProfile.xaml;Profile.xaml;
 
 True
 

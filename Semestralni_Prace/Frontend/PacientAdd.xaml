@@ -47,7 +47,7 @@
                                 <Label>Číslo průkazu:</Label>
                                 <TextBox VerticalAlignment="Center" x:Name="cisloPrukaz">000001</TextBox>
                             </StackPanel>
-                            <Button Content="Uložit změny" Margin="0 20 0 0" x:Name="saveChange" IsEnabled="False"></Button>
+                            <Button Content="Přidat záznam" Margin="0 20 0 0" x:Name="add" IsEnabled="False"></Button>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>

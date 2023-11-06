@@ -16,6 +16,8 @@ namespace SemPrace.Frontend
 {
     /// <summary>
     /// Interaction logic for Profile.xaml
+    /// TODO: Zakomponovat Edit záznamu a jak to udělat 1. možnost, jít do záznamů, vybrat záznam,
+    ///       RMB a vybrat edit, ale to nevím jestli bude tady fungovat, jako v JaveFX 
     /// </summary>
     public partial class Profile : Window
     {

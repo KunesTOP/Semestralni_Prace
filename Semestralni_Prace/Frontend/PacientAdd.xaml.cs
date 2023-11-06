@@ -16,6 +16,7 @@ namespace SemPrace.Frontend
 {
     /// <summary>
     /// Interaction logic for PacientAdd.xaml
+    /// TODO: Zakomponovat řádek pro smrt...
     /// </summary>
     public partial class PacientAdd : Window
     {

@@ -12,7 +12,7 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\ondre\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Ondra\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\ondre\\.nuget\\packages",
       "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
     ],
