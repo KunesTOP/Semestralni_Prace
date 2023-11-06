@@ -60,9 +60,6 @@ namespace Back.Controllers
             );
         }
 
-        // Další metody podle potřeby...
-
-        // Tato metoda získá seznam ID podle zadaných podmínek
         private static IEnumerable<int> GetIds(string tableName, string idColumnName, string conditionColumnName, int conditionValue)
         {
             List<int> ids = new List<int>();

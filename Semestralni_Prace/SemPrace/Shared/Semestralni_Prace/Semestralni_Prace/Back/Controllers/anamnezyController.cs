@@ -3,7 +3,7 @@ using Oracle.ManagedDataAccess.Client;
 using Semestralni_Práce.Classes;
 using System.Data;
 
-public static class AnamnezyController //TODO knihovny budu psat dolu jakoby 
+public static class AnamnezyController 
 {
     public const string TABLE_NAME = "ANAMNEZY";
     public const string ID_NAME = "id_anamneza";

@@ -14,6 +14,6 @@ namespace Semestralni_Práce.Classes
         public int? ResultsId { get; set; }
         public int? MedicationId { get; set; }
         public int? VeterinarianId { get; set; }
-        public OracleDbType Datum { get; internal set; }
+        public DateTime Datum { get; internal set; }
     }
 }

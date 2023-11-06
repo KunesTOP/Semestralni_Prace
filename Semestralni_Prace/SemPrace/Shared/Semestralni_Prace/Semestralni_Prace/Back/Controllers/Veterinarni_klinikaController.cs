@@ -39,7 +39,7 @@ namespace Back.Controllers//TODO KNIHOVNY
             };
         }
 
-        public static void InsertKlinika(VeterinarniKlinika klinika)
+        public static void InsertKlinika(VeterinarniKlinika klinika)//TODO
         {
             DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({JMENO_MAJITEL_NAME}, {PRIJMENI_MAJITEL_NAME}, {VETER_KLIN_ID_NAME}, {ADRESY_ID_ADRESA_NAME}) " +
                 $"VALUES (:jmenoMajitel, :prijmeniMajitel, :veterKlinId, :adresyIdAdresa)",
@@ -50,9 +50,7 @@ namespace Back.Controllers//TODO KNIHOVNY
             );
         }
 
-        // Další metody podle potřeby...
-
-        // Tato metoda získá seznam ID podle zadaných podmínek
+        
         private static IEnumerable<int> GetIds(string tableName, string idColumnName, string conditionColumnName, int conditionValue)
         {
             List<int> ids = new List<int>();
