@@ -12,6 +12,7 @@ namespace Semestralni_Práce.Classes
         //To je lepší...
         public int AmountOfExperience { get; set; }
         public int Praxe { get; internal set; }
-        public int Id { get; internal set; }
+        //TODO Proč by potřeboval Asistent Id, když ho dědí ze zaměstnance?
+        //public int Id { get; internal set; }
     }
 }

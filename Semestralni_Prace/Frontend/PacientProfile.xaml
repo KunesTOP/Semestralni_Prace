@@ -1,0 +1,58 @@
+﻿<Window x:Class="SemPrace.Frontend.PacientProfile"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SemPrace.Frontend"
+        mc:Ignorable="d"
+        Title="PacientProfile" Height="450" Width="800">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="profile" Background="Azure">
+            <StackPanel Orientation="Horizontal" Height="408" Margin="15,15,0,0">
+                <DockPanel Width="126">
+                    <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Width="150" Margin="5,5,5,0">
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                            <Button VerticalAlignment="Center" x:Name="back">Vrátit se</Button>
+                        </StackPanel>
+                    </StackPanel>
+                </DockPanel>
+                <StackPanel>
+                    <StackPanel x:Name="Profile" Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" Height="407" Width="239">
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Label>Jméno:</Label>
+                                <TextBox VerticalAlignment="Center" x:Name="jmeno">Rex</TextBox>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Label Content="Datum narození:"/>
+                                <TextBox IsReadOnly="True" VerticalAlignment="Center" x:Name="date" Text="13.05.2018"/>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Label>Pohlaví:</Label>
+                                <ComboBox VerticalAlignment="Center" x:Name="pohlavi" Width="38">Fenka</ComboBox>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Label>Rasa:</Label>
+                                <ComboBox VerticalAlignment="Center" x:Name="rasa" Width="110"></ComboBox>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Label>Vlastník:</Label>
+                                <TextBox VerticalAlignment="Center" x:Name="vlastnik">Ondřej Neustadt</TextBox>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Label>Adresa:</Label>
+                                <TextBox VerticalAlignment="Center" x:Name="adresa">Regis 420, Insomnia III</TextBox>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Label>Číslo průkazu:</Label>
+                                <TextBox VerticalAlignment="Center" x:Name="cisloPrukaz">000001</TextBox>
+                            </StackPanel>
+                            <Button Content="Uložit změny" Margin="0 20 0 0" x:Name="saveChange" IsEnabled="False"></Button>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
+

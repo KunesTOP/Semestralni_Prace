@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace3\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj": {}
+    "C:\\Users\\Ondra\\Source\\Repos\\Semestralni_Prace3\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace3\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj": {
+    "C:\\Users\\Ondra\\Source\\Repos\\Semestralni_Prace3\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace3\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj",
+        "projectUniqueName": "C:\\Users\\Ondra\\Source\\Repos\\Semestralni_Prace3\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj",
         "projectName": "SemPrace.Frontend",
-        "projectPath": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace3\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj",
+        "projectPath": "C:\\Users\\Ondra\\Source\\Repos\\Semestralni_Prace3\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj",
         "packagesPath": "C:\\Users\\Ondra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace3\\Semestralni_Prace\\Frontend\\obj\\",
+        "outputPath": "C:\\Users\\Ondra\\Source\\Repos\\Semestralni_Prace3\\Semestralni_Prace\\Frontend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

@@ -13,7 +13,7 @@ namespace Semestralni_Práce.Classes
         public int Accreditation { get; set; }
         public string? JmenoMajitel { get; internal set; }
         public string? PrijmeniMajitel { get; internal set; }
-        public int VeterKlinId { get; internal set; }
+        public int? VeterKlinId { get; internal set; }
         public int AdresyIdAdresa { get; internal set; }
     }
 }

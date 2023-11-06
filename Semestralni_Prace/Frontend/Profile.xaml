@@ -1,18 +1,20 @@
-﻿<Window x:Class="FrontEnd.Profile"
+﻿<Window x:Class="SemPrace.Frontend.Profile"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FrontEnd"
+        xmlns:local="clr-namespace:SemPrace.Frontend"
         mc:Ignorable="d"
-        Title="UserProfile" Height="450" Width="800">
+        Title="Profile" Height="450" Width="800">
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="profile" Background="Azure">
             <StackPanel Orientation="Horizontal" Height="408" Margin="15,15,0,0">
                 <DockPanel>
                     <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Width="150" Margin="5,5,5,0">
-                        <Button x:Name="animalList" Margin="5,5,5,10">Podívat se na zvířata</Button>
-                        <Button x:Name="keepers" Margin="5,5,5,10">Ošetřovatelé</Button>
+                        <Button x:Name="pacientList" Margin="5,5,5,10">List pacientů</Button>
+                        <Button x:Name="Anamnesis" Margin="5,5,5,10">Anamnézy</Button>
+                        <Button x:Name="Vacination" Margin="5,5,5,10">Vakcíny</Button>
+                        <Button x:Name="Loggout" Margin="5,5,5,10">Odhlásit</Button>
                         <ComboBox x:Name="users" Visibility="Hidden" Margin="5,5,5,10"></ComboBox>
                         <Button x:Name="emulator" Margin="5,5,5,10" Content="Spustit emulátor" Visibility="Hidden"></Button>
                     </StackPanel>
@@ -36,14 +38,10 @@
                                 <Label>email:</Label>
                                 <TextBox VerticalAlignment="Center" x:Name="email">ondrej1303@hupsikdupsik.com</TextBox>
                             </StackPanel>
-                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                                <Label>Telefonní číslo:</Label>
-                                <TextBox VerticalAlignment="Center" x:Name="phone">123456789</TextBox>
-                            </StackPanel>
                             <Button Content="Uložit změny" Margin="0 20 0 0" x:Name="saveChange" IsEnabled="False"></Button>
                         </StackPanel>
                         <StackPanel>
-                            <Image x:Name="picture"
+                            <Image x:Name="picture" Source="https://www.stargate-project.de/storage/app/media/charakterguide/stargate-atlantis-charakterguide-rodney-mckay-david-hewlett.jpg"
                                Width="200" VerticalAlignment="Top" Height="100"></Image>
                             <Button Content="Změnit obrázek" x:Name="pictureChange" Margin="0 10 0 0" Width="115"></Button>
                         </StackPanel>

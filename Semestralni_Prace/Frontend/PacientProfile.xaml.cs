@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Frontend
+namespace SemPrace.Frontend
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for PacientProfile.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PacientProfile : Window
     {
-        public MainWindow()
+        public PacientProfile()
         {
             InitializeComponent();
         }
