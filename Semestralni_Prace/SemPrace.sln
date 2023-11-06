@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemPrace.Client", "SemPrace
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemPrace.Shared", "SemPrace\Shared\SemPrace.Shared.csproj", "{D621E2E1-7B1C-48DB-BE26-F133648E5A6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemPrace.Frontend", "Frontend\SemPrace.Frontend.csproj", "{804383C0-2CE6-464C-8A0B-15F9CE6F21AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemPrace.Frontend", "Frontend\SemPrace.Frontend.csproj", "{804383C0-2CE6-464C-8A0B-15F9CE6F21AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServerBack", "ServerBack", "{9D458689-9669-410B-BEEB-757CB719DD9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +38,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3EFDBDBC-760D-4337-A828-5EBA50FA61BB} = {9D458689-9669-410B-BEEB-757CB719DD9B}
+		{DCB4AB5D-758A-4BE4-BE0F-81F5F9F212B5} = {9D458689-9669-410B-BEEB-757CB719DD9B}
+		{D621E2E1-7B1C-48DB-BE26-F133648E5A6D} = {9D458689-9669-410B-BEEB-757CB719DD9B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E0432C92-EBF3-40A3-8C9E-ACBEA1156C85}

@@ -1,27 +1,34 @@
 using Back.databaze;
-
 using Oracle.ManagedDataAccess.Client;
 using System.Net;
 using Back.Auth;
-
+using System.Web.Http;
+using System.Web.Http.Results;
 using System.Data;
 using System.Runtime.InteropServices;
+using Semestralni_Práce.Classes;
+using Newtonsoft.Json.Linq;
+using System.Runtime.Caching;
+using SemPrace.Shared.Semestralni_Prace.Semestralni_Prace.Back.Controllers;
+using System.Security.Cryptography;
+//using static SemPrace.Shared.Semestralni_Prace.Semestralni_Prace.Back.Controllers.Controller<TId>;
 
 namespace Back.Controllers
 {
-    public class AddressController 
+    public class AddressController //: ControllerWithInt todo
     {
         public const string TABLE_NAME = "ADRESY";
         public const string ID_NAME = "id_adresa";
 
-       
+        protected static readonly ObjectCache cachedAddresses = MemoryCache.Default;
+
 
         private static readonly AddressController instance = new AddressController();
 
        
-        public static Address New(DataRow dr, AuthLevel authLevel, string idName = AddressController.ID_NAME)
+        public static Adress New(DataRow dr, AuthLevel authLevel, string idName = AddressController.ID_NAME)
         {
-            return new Address()
+            return new Adress()
             {
                 Id = int.Parse(dr[idName].ToString()),
                 City = (dr["mesto"].ToString() == "") ? null : dr["mesto"].ToString(),
@@ -35,10 +42,10 @@ namespace Back.Controllers
             return GetIds(TABLE_NAME, ID_NAME);// TODO
         }
 
-        // GET: api/Address
-        public IEnumerable<Address> Get()
+       
+        public IEnumerable<Adress> Get()
         {
-            List<Address> list = new List<Address>();
+            List<Adress> list = new List<Adress>();
 
                 DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
                 foreach (DataRow dr in query.Rows)
@@ -50,8 +57,8 @@ namespace Back.Controllers
             return list;
         }
 
-        // GET: api/Address/5
-        public Address Get(int id)
+       
+        public Adress Get(int id)
         {
 
 
@@ -65,7 +72,7 @@ namespace Back.Controllers
             return null;
         }
 
-        Address address = New(query.Rows[0], GetAuthLevel());// TODO
+        Adress address = New(query.Rows[0], GetAuthLevel());// TODO
         cachedAddresses.Add(id.ToString(), address, DateTimeOffset.Now.AddMinutes(15));//TODO
         return address;
           }
@@ -78,7 +85,7 @@ namespace Back.Controllers
 
     protected override int SetObjectInternal(JObject value, AuthLevel authLevel, OracleTransaction transaction)//TODO
     {
-        Address n = value.ToObject<Address>();
+        Adress n = value.ToObject<Adress>();
         OracleParameter p_id = new OracleParameter("p_id", n.Id);
         DatabaseController.Execute("PKG_MODEL_DML.UPSERT_ADRESA", transaction,
 

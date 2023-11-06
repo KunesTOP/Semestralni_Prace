@@ -13,6 +13,7 @@ namespace Semestralni_Práce.Classes
         public int AmountOfExperience { get; set; }
         public int Praxe { get; internal set; }
         //TODO Proč by potřeboval Asistent Id, když ho dědí ze zaměstnance?
+        //protozě jsem prejmenoval employee driv jen bez rafraktorizace asi to byl prebytek 
         //public int Id { get; internal set; }
     }
 }

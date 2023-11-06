@@ -1,8 +1,24 @@
 {
   "version": 2,
-  "dgSpecHash": "ptdOU07GQnakMGVP7L5ep7WHZcJ8TmiDV5X0CbRL0aDJ/Yf7m3W3ca3uzKRLNdxweMiIqRHMtWQAqRhjY5DooQ==",
+  "dgSpecHash": "o6z431hScFwEa68aYSKOH4sdN92oLneJnbm36i/FZtay4Dg2EV4R6VY41FI2X+JChMwW0eYr00vJYV82Lw0I9Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ondra\\Source\\Repos\\Semestralni_Prace3\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj",
-  "expectedPackageFiles": [],
-  "logs": []
+  "projectFilePath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jindra\\.nuget\\packages\\oracle.manageddataaccess\\21.12.0\\oracle.manageddataaccess.21.12.0.nupkg.sha512",
+    "C:\\Users\\jindra\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\jindra\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
+    "C:\\Users\\jindra\\.nuget\\packages\\system.text.json\\6.0.1\\system.text.json.6.0.1.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Balíček Oracle.ManagedDataAccess 21.12.0 se místo cílové verze rozhraní .NET Framework projektu net7.0-windows7.0 obnovil pomocí .NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1. Balíček nemusí být plně kompatibilní s vaším projektem.",
+      "libraryId": "Oracle.ManagedDataAccess",
+      "targetGraphs": [
+        "net7.0-windows7.0"
+      ]
+    }
+  ]
 }

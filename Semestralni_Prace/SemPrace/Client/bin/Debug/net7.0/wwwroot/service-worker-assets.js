@@ -785,7 +785,7 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-DxGvmbtUa6hGJpk3VyMEbkPZ653qWbQkh8X4ZVM9TWM=",
+      "hash": "sha256-A0ONd0RbqWXo47mHbRWwI3zwlK+e0AkNvfSPDV4UwkQ=",
       "url": "_framework\/dotnet.7.0.3.ll2w10gqr7.js"
     },
     {
@@ -835,7 +835,11 @@
     {
       "hash": "sha256-7GG8W0F78V7x+hgYW1uo5jGsvtfsc5fM1autGf8r05U=",
       "url": "_framework\/blazor.boot.json"
+    },
+    {
+      "hash": "sha256-tx\/+tZ5m+mocrG3roMKZ1EAW7NflIqiYwoHXRi6i6+Y=",
+      "url": "_framework\/Oracle.ManagedDataAccess.dll"
     }
   ],
-  "version": "L0FQOJpn"
+  "version": "TuLlP21C"
 };

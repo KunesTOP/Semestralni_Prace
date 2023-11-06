@@ -9,25 +9,25 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = browser
 build_property.RootNamespace = SemPrace.Client
 build_property.RootNamespace = SemPrace.Client
-build_property.ProjectDir = C:\Users\Ondra\Source\Repos\Semestralni_Prace3\Semestralni_Prace\SemPrace\Client\
+build_property.ProjectDir = C:\Users\jindra\Desktop\Git\Semestralni_Prace\SemPrace\Client\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Ondra\Source\Repos\Semestralni_Prace3\Semestralni_Prace\SemPrace\Client
+build_property.MSBuildProjectDirectory = C:\Users\jindra\Desktop\Git\Semestralni_Prace\SemPrace\Client
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Ondra/Source/Repos/Semestralni_Prace3/Semestralni_Prace/SemPrace/Client/App.razor]
+[C:/Users/jindra/Desktop/Git/Semestralni_Prace/SemPrace/Client/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ondra/Source/Repos/Semestralni_Prace3/Semestralni_Prace/SemPrace/Client/MainLayout.razor]
+[C:/Users/jindra/Desktop/Git/Semestralni_Prace/SemPrace/Client/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = TWFpbkxheW91dC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ondra/Source/Repos/Semestralni_Prace3/Semestralni_Prace/SemPrace/Client/Pages/Index.razor]
+[C:/Users/jindra/Desktop/Git/Semestralni_Prace/SemPrace/Client/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ondra/Source/Repos/Semestralni_Prace3/Semestralni_Prace/SemPrace/Client/_Imports.razor]
+[C:/Users/jindra/Desktop/Git/Semestralni_Prace/SemPrace/Client/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

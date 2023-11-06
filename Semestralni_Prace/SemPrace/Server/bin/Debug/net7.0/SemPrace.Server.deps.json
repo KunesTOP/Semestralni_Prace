@@ -9,6 +9,7 @@
       "SemPrace.Server/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Components.WebAssembly.Server": "7.0.3",
+          "Oracle.ManagedDataAccess": "21.12.0",
           "SemPrace.Client": "1.0.0",
           "SemPrace.Shared": "1.0.0"
         },
@@ -207,6 +208,17 @@
           }
         }
       },
+      "Oracle.ManagedDataAccess/21.12.0": {
+        "dependencies": {
+          "System.Text.Json": "7.0.0"
+        },
+        "runtime": {
+          "lib/net462/Oracle.ManagedDataAccess.dll": {
+            "assemblyVersion": "4.122.21.1",
+            "fileVersion": "4.122.21.1"
+          }
+        }
+      },
       "System.IO.Pipelines/7.0.0": {},
       "System.Text.Encodings.Web/7.0.0": {},
       "System.Text.Json/7.0.0": {
@@ -218,6 +230,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Components.WebAssembly": "7.0.3",
           "Microsoft.Extensions.Http": "7.0.0",
+          "Oracle.ManagedDataAccess": "21.12.0",
           "SemPrace.Shared": "1.0.0"
         },
         "runtime": {
@@ -225,6 +238,9 @@
         }
       },
       "SemPrace.Shared/1.0.0": {
+        "dependencies": {
+          "Oracle.ManagedDataAccess": "21.12.0"
+        },
         "runtime": {
           "SemPrace.Shared.dll": {}
         }
@@ -411,6 +427,13 @@
       "sha512": "sha512-101kdOGDsgY85yDVqi4/V6Tby+GjBOgfH2iHgHEhXoaYnQuSIjoX7edegbd0mCFB9LvmBUm/JehkZoSfh4/vtg==",
       "path": "microsoft.jsinterop.webassembly/7.0.3",
       "hashPath": "microsoft.jsinterop.webassembly.7.0.3.nupkg.sha512"
+    },
+    "Oracle.ManagedDataAccess/21.12.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jx7bI5iYTpR3lhXK/k4w4xSaBQC83V4aUJmmvRF3e950h7FL64wJ0qljoSAdHkYCWltP7MVK9/6wFRGwtGh4Wg==",
+      "path": "oracle.manageddataaccess/21.12.0",
+      "hashPath": "oracle.manageddataaccess.21.12.0.nupkg.sha512"
     },
     "System.IO.Pipelines/7.0.0": {
       "type": "package",

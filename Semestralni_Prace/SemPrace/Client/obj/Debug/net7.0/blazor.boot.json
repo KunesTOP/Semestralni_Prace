@@ -30,6 +30,7 @@
       "Microsoft.Extensions.Primitives.dll": "sha256-q4ruoDSCjV\/QJY9ZkzV6uxvEvZUVrDbyUjU3SSh5SlE=",
       "Microsoft.JSInterop.dll": "sha256-AtPkiYei2QNoRI\/hu+\/mEjfiA5MLUCSQzJJyCVNRDAA=",
       "Microsoft.JSInterop.WebAssembly.dll": "sha256-p3HL4vRJ5TXVidM4+BlxP4rPXArTEzaLu21D9Ra4kYo=",
+      "Oracle.ManagedDataAccess.dll": "sha256-tx\/+tZ5m+mocrG3roMKZ1EAW7NflIqiYwoHXRi6i6+Y=",
       "System.IO.Pipelines.dll": "sha256-P\/MqD0fCBd5bgTM16JC1QC\/Zz7s+CwViyzmDFkBG4\/c=",
       "Microsoft.CSharp.dll": "sha256-OXA75L9dgx9LXJxiaIDGLfp0\/Sql7gQVlaMuI285Oq4=",
       "Microsoft.VisualBasic.Core.dll": "sha256-BVcAygeM8zz1DG96XDgbqpCdgTQpnlmukUmHZH0y5Ng=",
@@ -199,15 +200,15 @@
       "mscorlib.dll": "sha256-kgowZLZGyceaJo4bHvVY1kmm1GJuawa5rPO1RCfNYWc=",
       "netstandard.dll": "sha256-2\/SuexPFW8hizUgbgPcchYHfG\/zmGzzMN6ESSyefPRQ=",
       "System.Private.CoreLib.dll": "sha256-mcywrbK0VZXiOvZ4dxU1ocaPZFplCRSIPQ\/wFikcrus=",
-      "SemPrace.Shared.dll": "sha256-Dy8G0G0LEPIXaWAxWwl+eBqchYAUjlVhYfVAWOAhNQE=",
-      "SemPrace.Client.dll": "sha256-jYj1eNSJnmeHW2gJLQA\/WH9bBn0DYUAr\/Po4BxR18\/Y="
+      "SemPrace.Shared.dll": "sha256-7YoGriS2tw\/GUG8v6gk8SBwwgWHkPqDYTxjp8HH96jw=",
+      "SemPrace.Client.dll": "sha256-EqVa1MEO0zVGVuQoYPrAQVlnFvmOHzbRIXucGVYC9UU="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "SemPrace.Shared.pdb": "sha256-vCcL55pmCEBV6tyg5CapCcqxF3UpfNAX1+xMlIT6nfE=",
-      "SemPrace.Client.pdb": "sha256-ZkdG76wqTML38enlm2LXJfJ4Yh37rtxWp5CYMpQsXZo="
+      "SemPrace.Shared.pdb": "sha256-C9iYQGmwzPFMoTDdW+\/f5MACQhYXLYFSRBNDx7qrC8g=",
+      "SemPrace.Client.pdb": "sha256-Ex720N+QICLkSlm+Ikz62AnHGyyekIXcWEWUQPjHwaM="
     },
     "runtime": {
       "dotnet.7.0.3.ll2w10gqr7.js": "sha256-DxGvmbtUa6hGJpk3VyMEbkPZ653qWbQkh8X4ZVM9TWM=",

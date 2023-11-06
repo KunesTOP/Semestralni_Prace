@@ -1,0 +1,7 @@
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\SemPrace.Frontend.csproj.AssemblyReference.cache
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\Login.g.cs
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\PacientProfile.g.cs
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\Profile.g.cs
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\App.g.cs
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\SemPrace.Frontend_MarkupCompile.cache
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\SemPrace.Frontend_MarkupCompile.lref
