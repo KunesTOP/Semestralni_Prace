@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj": {}
+    "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj": {
+    "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj",
+        "projectUniqueName": "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj",
         "projectName": "SemPrace.Frontend",
-        "projectPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj",
-        "packagesPath": "C:\\Users\\jindra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Frontend\\obj\\",
+        "projectPath": "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj",
+        "packagesPath": "C:\\Users\\ondre\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\Frontend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\jindra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ondre\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

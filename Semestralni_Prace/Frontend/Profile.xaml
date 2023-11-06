@@ -11,10 +11,11 @@
             <StackPanel Orientation="Horizontal" Height="408" Margin="15,15,0,0">
                 <DockPanel>
                     <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Width="150" Margin="5,5,5,0">
+                        <Button x:Name="addPacient" Margin="5,5,5,10">Přidat záznam</Button>
                         <Button x:Name="pacientList" Margin="5,5,5,10">List pacientů</Button>
-                        <Button x:Name="Anamnesis" Margin="5,5,5,10">Anamnézy</Button>
-                        <Button x:Name="Vacination" Margin="5,5,5,10">Vakcíny</Button>
-                        <Button x:Name="Loggout" Margin="5,5,5,10">Odhlásit</Button>
+                        <Button x:Name="anamnesis" Margin="5,5,5,10">Anamnézy</Button>
+                        <Button x:Name="vacination" Margin="5,5,5,10">Vakcíny</Button>
+                        <Button x:Name="loggout" Margin="5,5,5,10">Odhlásit</Button>
                         <ComboBox x:Name="users" Visibility="Hidden" Margin="5,5,5,10"></ComboBox>
                         <Button x:Name="emulator" Margin="5,5,5,10" Content="Spustit emulátor" Visibility="Hidden"></Button>
                     </StackPanel>

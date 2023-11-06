@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\SemPrace\\Server\\SemPrace.Server.csproj": {}
+    "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\SemPrace\\Server\\SemPrace.Server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\SemPrace\\Client\\SemPrace.Client.csproj": {
+    "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\SemPrace\\Client\\SemPrace.Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\SemPrace\\Client\\SemPrace.Client.csproj",
+        "projectUniqueName": "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\SemPrace\\Client\\SemPrace.Client.csproj",
         "projectName": "SemPrace.Client",
-        "projectPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\SemPrace\\Client\\SemPrace.Client.csproj",
-        "packagesPath": "C:\\Users\\jindra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\SemPrace\\Client\\obj\\",
+        "projectPath": "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\SemPrace\\Client\\SemPrace.Client.csproj",
+        "packagesPath": "C:\\Users\\ondre\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\SemPrace\\Client\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\jindra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ondre\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,15 +26,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\SemPrace\\Shared\\SemPrace.Shared.csproj": {
-                "projectPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\SemPrace\\Shared\\SemPrace.Shared.csproj"
+              "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\SemPrace\\Shared\\SemPrace.Shared.csproj": {
+                "projectPath": "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\SemPrace\\Shared\\SemPrace.Shared.csproj"
               }
             }
           }
@@ -98,20 +97,20 @@
         }
       }
     },
-    "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\SemPrace\\Server\\SemPrace.Server.csproj": {
+    "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\SemPrace\\Server\\SemPrace.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\SemPrace\\Server\\SemPrace.Server.csproj",
+        "projectUniqueName": "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\SemPrace\\Server\\SemPrace.Server.csproj",
         "projectName": "SemPrace.Server",
-        "projectPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\SemPrace\\Server\\SemPrace.Server.csproj",
-        "packagesPath": "C:\\Users\\jindra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\SemPrace\\Server\\obj\\",
+        "projectPath": "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\SemPrace\\Server\\SemPrace.Server.csproj",
+        "packagesPath": "C:\\Users\\ondre\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\SemPrace\\Server\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\jindra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ondre\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -120,18 +119,17 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\SemPrace\\Client\\SemPrace.Client.csproj": {
-                "projectPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\SemPrace\\Client\\SemPrace.Client.csproj"
+              "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\SemPrace\\Client\\SemPrace.Client.csproj": {
+                "projectPath": "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\SemPrace\\Client\\SemPrace.Client.csproj"
               },
-              "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\SemPrace\\Shared\\SemPrace.Shared.csproj": {
-                "projectPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\SemPrace\\Shared\\SemPrace.Shared.csproj"
+              "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\SemPrace\\Shared\\SemPrace.Shared.csproj": {
+                "projectPath": "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\SemPrace\\Shared\\SemPrace.Shared.csproj"
               }
             }
           }
@@ -178,20 +176,20 @@
         }
       }
     },
-    "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\SemPrace\\Shared\\SemPrace.Shared.csproj": {
+    "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\SemPrace\\Shared\\SemPrace.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\SemPrace\\Shared\\SemPrace.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\SemPrace\\Shared\\SemPrace.Shared.csproj",
         "projectName": "SemPrace.Shared",
-        "projectPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\SemPrace\\Shared\\SemPrace.Shared.csproj",
-        "packagesPath": "C:\\Users\\jindra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\SemPrace\\Shared\\obj\\",
+        "projectPath": "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\SemPrace\\Shared\\SemPrace.Shared.csproj",
+        "packagesPath": "C:\\Users\\ondre\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\SemPrace\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\jindra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ondre\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -200,7 +198,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
