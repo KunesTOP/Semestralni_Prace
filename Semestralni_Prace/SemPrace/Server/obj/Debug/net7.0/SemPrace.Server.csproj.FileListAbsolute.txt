@@ -103,3 +103,12 @@ C:\Users\jindra\Desktop\Git\Semestralni_Prace\SemPrace\Server\obj\Debug\net7.0\s
 C:\Users\jindra\Desktop\Git\Semestralni_Prace\SemPrace\Server\obj\Debug\net7.0\SemPrace.Server.csproj.CopyComplete
 C:\Users\jindra\Desktop\Git\Semestralni_Prace\SemPrace\Server\obj\Debug\net7.0\SemPrace.Server.genruntimeconfig.cache
 C:\Users\jindra\Desktop\Git\Semestralni_Prace\SemPrace\Server\obj\Debug\net7.0\ref\SemPrace.Server.dll
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\SemPrace\Server\obj\Debug\net7.0\SemPrace.Server.csproj.AssemblyReference.cache
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\SemPrace\Server\obj\Debug\net7.0\SemPrace.Server.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\SemPrace\Server\obj\Debug\net7.0\SemPrace.Server.AssemblyInfoInputs.cache
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\SemPrace\Server\obj\Debug\net7.0\SemPrace.Server.AssemblyInfo.cs
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\SemPrace\Server\obj\Debug\net7.0\SemPrace.Server.csproj.CoreCompileInputs.cache
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\SemPrace\Server\obj\Debug\net7.0\SemPrace.Server.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\SemPrace\Server\obj\Debug\net7.0\SemPrace.Server.dll
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\SemPrace\Server\obj\Debug\net7.0\refint\SemPrace.Server.dll
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\SemPrace\Server\obj\Debug\net7.0\SemPrace.Server.pdb

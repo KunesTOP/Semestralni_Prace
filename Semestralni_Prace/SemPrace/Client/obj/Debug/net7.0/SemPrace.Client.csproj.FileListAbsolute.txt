@@ -1684,3 +1684,12 @@ C:\Users\jindra\Desktop\Git\Semestralni_Prace\SemPrace\Client\obj\Debug\net7.0\s
 C:\Users\jindra\Desktop\Git\Semestralni_Prace\SemPrace\Client\obj\Debug\net7.0\service-worker-assets.js.build
 C:\Users\jindra\Desktop\Git\Semestralni_Prace\SemPrace\Client\obj\Debug\net7.0\SemPrace.Client.csproj.CopyComplete
 C:\Users\jindra\Desktop\Git\Semestralni_Prace\SemPrace\Client\obj\Debug\net7.0\ref\SemPrace.Client.dll
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\SemPrace\Client\obj\Debug\net7.0\SemPrace.Client.csproj.AssemblyReference.cache
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\SemPrace\Client\obj\Debug\net7.0\SemPrace.Client.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\SemPrace\Client\obj\Debug\net7.0\SemPrace.Client.AssemblyInfoInputs.cache
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\SemPrace\Client\obj\Debug\net7.0\SemPrace.Client.AssemblyInfo.cs
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\SemPrace\Client\obj\Debug\net7.0\SemPrace.Client.csproj.CoreCompileInputs.cache
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\SemPrace\Client\obj\Debug\net7.0\SemPrace.Client.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\SemPrace\Client\obj\Debug\net7.0\SemPrace.Client.dll
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\SemPrace\Client\obj\Debug\net7.0\refint\SemPrace.Client.dll
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\SemPrace\Client\obj\Debug\net7.0\SemPrace.Client.pdb

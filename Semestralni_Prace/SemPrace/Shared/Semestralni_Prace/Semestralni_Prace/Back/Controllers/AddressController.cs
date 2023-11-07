@@ -20,100 +20,100 @@ namespace Back.Controllers
         public const string TABLE_NAME = "ADRESY";
         public const string ID_NAME = "id_adresa";
 
-        protected static readonly ObjectCache cachedAddresses = MemoryCache.Default;
+    //    protected static readonly ObjectCache cachedAddresses = MemoryCache.Default;
 
 
-        private static readonly AddressController instance = new AddressController();
-
-       
-        public static Adress New(DataRow dr, AuthLevel authLevel, string idName = AddressController.ID_NAME)
-        {
-            return new Adress()
-            {
-                Id = int.Parse(dr[idName].ToString()),
-                City = (dr["mesto"].ToString() == "") ? null : dr["mesto"].ToString(),
-                Street = (dr["ulice"].ToString() == "") ? null : dr["ulice"].ToString(),
-                HouseNumber = (dr["cislo_popisne"].ToString() == "") ? null : (int?)int.Parse(dr["cislo_popisne"].ToString()),
-            };
-        }
-       
-        public IEnumerable<int> GetIds()
-        {
-            return GetIds(TABLE_NAME, ID_NAME);// TODO
-        }
+    //    private static readonly AddressController instance = new AddressController();
 
        
-        public IEnumerable<Adress> Get()
-        {
-            List<Adress> list = new List<Adress>();
+    //    public static Adress New(DataRow dr, AuthLevel authLevel, string idName = AddressController.ID_NAME)
+    //    {
+    //        return new Adress()
+    //        {
+    //            Id = int.Parse(dr[idName].ToString()),
+    //            City = (dr["mesto"].ToString() == "") ? null : dr["mesto"].ToString(),
+    //            Street = (dr["ulice"].ToString() == "") ? null : dr["ulice"].ToString(),
+    //            HouseNumber = (dr["cislo_popisne"].ToString() == "") ? null : (int?)int.Parse(dr["cislo_popisne"].ToString()),
+    //        };
+    //    }
+       
+    //    public IEnumerable<int> GetIds()
+    //    {
+    //        return GetIds(TABLE_NAME, ID_NAME);// TODO
+    //    }
 
-                DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
-                foreach (DataRow dr in query.Rows)
-                {
-                    list.Add(New(dr, GetAuthLevel()));//TODO
-            }
+       
+    //    public IEnumerable<Adress> Get()
+    //    {
+    //        List<Adress> list = new List<Adress>();
+
+    //            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
+    //            foreach (DataRow dr in query.Rows)
+    //            {
+    //                list.Add(New(dr, GetAuthLevel()));//TODO
+    //        }
             
 
-            return list;
-        }
+    //        return list;
+    //    }
 
        
-        public Adress Get(int id)
-        {
+    //    public Adress Get(int id)
+    //    {
 
 
 
 
 
-            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME} WHERE {ID_NAME} = :id", new OracleParameter("id", id));
+    //        DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME} WHERE {ID_NAME} = :id", new OracleParameter("id", id));
 
-        if (query.Rows.Count != 1)
-        {
-            return null;
-        }
+    //    if (query.Rows.Count != 1)
+    //    {
+    //        return null;
+    //    }
 
-        Adress address = New(query.Rows[0], GetAuthLevel());// TODO
-        cachedAddresses.Add(id.ToString(), address, DateTimeOffset.Now.AddMinutes(15));//TODO
-        return address;
-          }
+    //    Adress address = New(query.Rows[0], GetAuthLevel());// TODO
+    //    cachedAddresses.Add(id.ToString(), address, DateTimeOffset.Now.AddMinutes(15));//TODO
+    //    return address;
+    //      }
 
-    protected override bool CheckObject(JObject value, AuthLevel authLevel) //TODO
-    {
-        return ValidJSON(value, "Id") && int.TryParse(value["Id"].ToString(), out _);//TODO
-    }
-
-
-    protected override int SetObjectInternal(JObject value, AuthLevel authLevel, OracleTransaction transaction)//TODO
-    {
-        Adress n = value.ToObject<Adress>();
-        OracleParameter p_id = new OracleParameter("p_id", n.Id);
-        DatabaseController.Execute("PKG_MODEL_DML.UPSERT_ADRESA", transaction,
-
-            p_id,
-            new OracleParameter("p_mesto", n.City),
-            new OracleParameter("p_ulice", n.Street),
-            new OracleParameter("p_cp", n.HouseNumber)
+    //protected override bool CheckObject(JObject value, AuthLevel authLevel) //TODO
+    //{
+    //    return ValidJSON(value, "Id") && int.TryParse(value["Id"].ToString(), out _);//TODO
+    //}
 
 
-        );
-        int id = int.Parse(p_id.Value.ToString());
+    //protected override int SetObjectInternal(JObject value, AuthLevel authLevel, OracleTransaction transaction)//TODO
+    //{
+    //    Adress n = value.ToObject<Adress>();
+    //    OracleParameter p_id = new OracleParameter("p_id", n.Id);
+    //    DatabaseController.Execute("PKG_MODEL_DML.UPSERT_ADRESA", transaction,
+
+    //        p_id,
+    //        new OracleParameter("p_mesto", n.City),
+    //        new OracleParameter("p_ulice", n.Street),
+    //        new OracleParameter("p_cp", n.HouseNumber)
+
+
+    //    );
+    //    int id = int.Parse(p_id.Value.ToString());
 
 
 
-        return id;
-    }
+    //    return id;
+    //}
 
 
-    public static bool CheckObjectStatic(JObject value, AuthLevel authLevel)//TODO
-    {
-        return instance.CheckObject(value, authLevel);
-    }
+    //public static bool CheckObjectStatic(JObject value, AuthLevel authLevel)//TODO
+    //{
+    //    return instance.CheckObject(value, authLevel);
+    //}
 
 
-    public static int SetObjectStatic(JObject value, AuthLevel authLevel, OracleTransaction transaction = null)//TODO
-        {
-        return instance.SetObject(value, authLevel, transaction);//TODO
-        }
+    //public static int SetObjectStatic(JObject value, AuthLevel authLevel, OracleTransaction transaction = null)//TODO
+    //    {
+    //    return instance.SetObject(value, authLevel, transaction);//TODO
+    //    }
 
 
 }
