@@ -23,5 +23,12 @@ namespace SemPrace.Frontend
         {
             InitializeComponent();
         }
+        private void OnClickLogIn(object sender, RoutedEventArgs e)
+        {
+            Profile profile = new Profile();
+            profile.Show();
+            this.Close();
+        }
+
     }
 }

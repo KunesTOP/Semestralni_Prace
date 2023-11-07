@@ -25,5 +25,18 @@ namespace SemPrace.Frontend
         {
             InitializeComponent();
         }
+
+        private void Odhlaseni(object sender, RoutedEventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            this.Close();
+        }
+        private void Pridani(object sender, RoutedEventArgs e)
+        {
+            PacientAdd pridani = new PacientAdd();
+            pridani.Show();
+            this.Close();
+        }
     }
 }

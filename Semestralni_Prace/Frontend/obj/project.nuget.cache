@@ -1,21 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "EtGOKyJT7k3UorPO5KC2mhdDhDX1nEJD1e6udQE15yFUBBhIm3l3rU7Lsaxzed4gROk25n4cdOkW7jz1MRvuYw==",
+  "dgSpecHash": "NI+dEjwAvw5CZfZXLFkyMMONtPuu/Rz4JE5l2dTtfBoPgu5lxlO/q6fJ50qQk8tqk1APQoAnJSMX1yU9na8NBg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj",
+  "projectFilePath": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace3\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\ondre\\.nuget\\packages\\oracle.manageddataaccess\\21.12.0\\oracle.manageddataaccess.21.12.0.nupkg.sha512",
-    "C:\\Users\\ondre\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
-    "C:\\Users\\ondre\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
-    "C:\\Users\\ondre\\.nuget\\packages\\system.text.json\\6.0.1\\system.text.json.6.0.1.nupkg.sha512"
+    "C:\\Users\\Ondra\\.nuget\\packages\\oracle.manageddataaccess\\21.12.0\\oracle.manageddataaccess.21.12.0.nupkg.sha512",
+    "C:\\Users\\Ondra\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\Ondra\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
+    "C:\\Users\\Ondra\\.nuget\\packages\\system.text.json\\6.0.1\\system.text.json.6.0.1.nupkg.sha512"
   ],
   "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\ondre\\source\\repos\\Semestralni_Prace\\Semestralni_Prace\\Frontend\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    },
     {
       "code": "NU1701",
       "level": "Warning",

@@ -12,7 +12,7 @@
                 <DockPanel Width="126">
                     <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Width="150" Margin="5,5,5,0">
                         <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                            <Button VerticalAlignment="Center" x:Name="back">Vrátit se</Button>
+                            <Button VerticalAlignment="Center" Click="Zpet" x:Name="back">Vrátit se</Button>
                         </StackPanel>
                     </StackPanel>
                 </DockPanel>
