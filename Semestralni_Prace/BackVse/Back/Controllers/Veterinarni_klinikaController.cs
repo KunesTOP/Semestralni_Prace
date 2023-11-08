@@ -19,38 +19,38 @@ namespace Back.Controllers//TODO KNIHOVNY
             return GetIds(TABLE_NAME, ADRESY_ID_ADRESA_NAME, VETER_KLIN_ID_NAME, veterKlinId);
         }
 
-        //public static VeterinarniKlinika Get(int veterKlinId)//TODO ??
+       private static VeterinarniKlinika Get(int veterKlinId)//TODO ??
 
-        //{
-        //    DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME} WHERE {VETER_KLIN_ID_NAME} = :veterKlinId",
-        //        new OracleParameter("veterKlinId", veterKlinId));
+        {
+            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME} WHERE {VETER_KLIN_ID_NAME} = :veterKlinId",
+                new OracleParameter("veterKlinId", veterKlinId));
 
-        //    if (query.Rows.Count != 1)
-        //    {
-        //        return null;
-        //    }
+            if (query.Rows.Count != 1)
+            {
+                return null;
+            }
 
-        //    return new VeterinarniKlinika()
-        //    {
-        //        JmenoMajitel = query.Rows[0][JMENO_MAJITEL_NAME].ToString(),
-        //        PrijmeniMajitel = query.Rows[0][PRIJMENI_MAJITEL_NAME].ToString(),
-        //        VeterKlinId = int.Parse(query.Rows[0][VETER_KLIN_ID_NAME].ToString()),
-        //        AdresyIdAdresa = int.Parse(query.Rows[0][ADRESY_ID_ADRESA_NAME].ToString())
-        //    };
-        //}
+            return new VeterinarniKlinika()
+            {
+                JmenoMajitel = query.Rows[0][JMENO_MAJITEL_NAME].ToString(),
+                PrijmeniMajitel = query.Rows[0][PRIJMENI_MAJITEL_NAME].ToString(),
+                VeterKlinId = int.Parse(query.Rows[0][VETER_KLIN_ID_NAME].ToString()),
+                AdresyIdAdresa = int.Parse(query.Rows[0][ADRESY_ID_ADRESA_NAME].ToString())
+            };
+        }
 
-        //public static void InsertKlinika(VeterinarniKlinika klinika)//TODO
-        //{
-        //    DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({JMENO_MAJITEL_NAME}, {PRIJMENI_MAJITEL_NAME}, {VETER_KLIN_ID_NAME}, {ADRESY_ID_ADRESA_NAME}) " +
-        //        $"VALUES (:jmenoMajitel, :prijmeniMajitel, :veterKlinId, :adresyIdAdresa)",
-        //        new OracleParameter("jmenoMajitel", klinika.JmenoMajitel),
-        //        new OracleParameter("prijmeniMajitel", klinika.PrijmeniMajitel),
-        //        new OracleParameter("veterKlinId", klinika.VeterKlinId),
-        //        new OracleParameter("adresyIdAdresa", klinika.AdresyIdAdresa)
-        //    );
-        //}
+        public static void InsertKlinika(VeterinarniKlinika klinika)//TODO
+        {
+            DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({JMENO_MAJITEL_NAME}, {PRIJMENI_MAJITEL_NAME}, {VETER_KLIN_ID_NAME}, {ADRESY_ID_ADRESA_NAME}) " +
+                $"VALUES (:jmenoMajitel, :prijmeniMajitel, :veterKlinId, :adresyIdAdresa)",
+                new OracleParameter("jmenoMajitel", klinika.JmenoMajitel),
+                new OracleParameter("prijmeniMajitel", klinika.PrijmeniMajitel),
+                new OracleParameter("veterKlinId", klinika.VeterKlinId),
+                new OracleParameter("adresyIdAdresa", klinika.AdresyIdAdresa)
+            );
+        }
 
-        
+
         private static IEnumerable<int> GetIds(string tableName, string idColumnName, string conditionColumnName, int conditionValue)
         {
             List<int> ids = new List<int>();

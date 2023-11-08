@@ -1,6 +1,7 @@
 ﻿using Back.Auth;
 using Back.databaze;
 using Newtonsoft.Json.Linq;
+using Ninject.Activation;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
@@ -19,32 +20,32 @@ namespace SemPrace.Shared.Semestralni_Prace.Semestralni_Prace.Back.Controllers
     {
         protected abstract TId ErrId { get; }
 
-      
+
         //protected AuthLevel GetAuthLevel()
         //{
-        //  //  return AuthController.Check(AuthToken.From(Request.Headers));
+        //      return AuthController.Check(AuthToken.From(Request.Headers));
         //}
 
-     
+
         //protected bool IsAdmin()
         //{
         //    return GetAuthLevel() == AuthLevel.ADMIN;
         //}
 
-        
+
         //protected bool IsAuthorized()
         //{
         //    return GetAuthLevel() != AuthLevel.NONE;
         //}
 
-    
+
         //protected bool HasHigherAuth()
         //{
         //    AuthLevel authLevel = GetAuthLevel();
         //    return authLevel == AuthLevel.ADMIN || authLevel == AuthLevel.INNER;
         //}
 
-      
+
         protected bool ValidJSON(JObject value, params string[] keys)
         {
             if (value == null)

@@ -67,3 +67,36 @@ C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\Frontend\bin\Debug\net7.0-wi
 C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\Frontend\bin\Debug\net7.0-windows\runtimes\linux\lib\net6.0\System.DirectoryServices.Protocols.dll
 C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\Frontend\bin\Debug\net7.0-windows\runtimes\osx\lib\net6.0\System.DirectoryServices.Protocols.dll
 C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\Frontend\bin\Debug\net7.0-windows\runtimes\win\lib\net6.0\System.DirectoryServices.Protocols.dll
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\bin\Debug\net7.0-windows\SemPrace.Frontend.exe
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\bin\Debug\net7.0-windows\SemPrace.Frontend.deps.json
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\bin\Debug\net7.0-windows\SemPrace.Frontend.runtimeconfig.json
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\bin\Debug\net7.0-windows\SemPrace.Frontend.dll
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\bin\Debug\net7.0-windows\SemPrace.Frontend.pdb
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\bin\Debug\net7.0-windows\Oracle.ManagedDataAccess.dll
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\bin\Debug\net7.0-windows\System.DirectoryServices.Protocols.dll
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\bin\Debug\net7.0-windows\runtimes\linux\lib\net6.0\System.DirectoryServices.Protocols.dll
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\bin\Debug\net7.0-windows\runtimes\osx\lib\net6.0\System.DirectoryServices.Protocols.dll
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\bin\Debug\net7.0-windows\runtimes\win\lib\net6.0\System.DirectoryServices.Protocols.dll
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\SemPrace.Frontend.csproj.AssemblyReference.cache
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\Login.g.cs
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\PacientAdd.g.cs
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\PacientProfile.g.cs
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\Profile.g.cs
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\App.g.cs
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\SemPrace.Frontend_MarkupCompile.cache
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\SemPrace.Frontend_MarkupCompile.lref
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\Login.baml
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\PacientAdd.baml
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\PacientProfile.baml
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\Profile.baml
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\SemPrace.Frontend.g.resources
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\SemPrace.Frontend.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\SemPrace.Frontend.AssemblyInfoInputs.cache
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\SemPrace.Frontend.AssemblyInfo.cs
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\SemPrace.Frontend.csproj.CoreCompileInputs.cache
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\SemPrace.Frontend.csproj.CopyComplete
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\SemPrace.Frontend.dll
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\refint\SemPrace.Frontend.dll
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\SemPrace.Frontend.pdb
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\SemPrace.Frontend.genruntimeconfig.cache
+C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\ref\SemPrace.Frontend.dll

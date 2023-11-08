@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "J2+eh08pgFCbnGMg0ierMvzXQf4kxi8DYoNHkZgS6xjb4eKXYhDeRNJa0mN4jmEoB3J2FjbzyOv+tQjzvTzn7w==",
+  "dgSpecHash": "zWsikbbc06R1n+llwmdj0waNd3j7vLntEhJPtzN1b0SV3oM+cLu0Jzwom5cE0dfosWdac1n930GPUFTQV9hEAg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jindra\\Desktop\\ondra git\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj",
+  "projectFilePath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jindra\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\jindra\\.nuget\\packages\\oracle.manageddataaccess.core\\3.21.120\\oracle.manageddataaccess.core.3.21.120.nupkg.sha512",
