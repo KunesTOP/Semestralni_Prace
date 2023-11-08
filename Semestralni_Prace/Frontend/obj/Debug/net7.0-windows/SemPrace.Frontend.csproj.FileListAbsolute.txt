@@ -63,3 +63,7 @@ C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\Frontend\obj\Debug\net7.0-wi
 C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\SemPrace.Frontend.pdb
 C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\SemPrace.Frontend.genruntimeconfig.cache
 C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\Frontend\obj\Debug\net7.0-windows\ref\SemPrace.Frontend.dll
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\Frontend\bin\Debug\net7.0-windows\System.DirectoryServices.Protocols.dll
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\Frontend\bin\Debug\net7.0-windows\runtimes\linux\lib\net6.0\System.DirectoryServices.Protocols.dll
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\Frontend\bin\Debug\net7.0-windows\runtimes\osx\lib\net6.0\System.DirectoryServices.Protocols.dll
+C:\Users\jindra\Desktop\ondra git\Semestralni_Prace\Frontend\bin\Debug\net7.0-windows\runtimes\win\lib\net6.0\System.DirectoryServices.Protocols.dll

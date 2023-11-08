@@ -1,24 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "FNcoN4qTUzja15X4dLBq1kLiYbEauRrAeU1+/MeXODZk6hJPKXDGasdiPYmiJ8y6+px+uqHJB2VsC1Yzv81fPw==",
+  "dgSpecHash": "J2+eh08pgFCbnGMg0ierMvzXQf4kxi8DYoNHkZgS6xjb4eKXYhDeRNJa0mN4jmEoB3J2FjbzyOv+tQjzvTzn7w==",
   "success": true,
   "projectFilePath": "C:\\Users\\jindra\\Desktop\\ondra git\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\jindra\\.nuget\\packages\\oracle.manageddataaccess\\21.12.0\\oracle.manageddataaccess.21.12.0.nupkg.sha512",
-    "C:\\Users\\jindra\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
-    "C:\\Users\\jindra\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
-    "C:\\Users\\jindra\\.nuget\\packages\\system.text.json\\6.0.1\\system.text.json.6.0.1.nupkg.sha512"
+    "C:\\Users\\jindra\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\jindra\\.nuget\\packages\\oracle.manageddataaccess.core\\3.21.120\\oracle.manageddataaccess.core.3.21.120.nupkg.sha512",
+    "C:\\Users\\jindra\\.nuget\\packages\\system.configuration.configurationmanager\\6.0.0\\system.configuration.configurationmanager.6.0.0.nupkg.sha512",
+    "C:\\Users\\jindra\\.nuget\\packages\\system.diagnostics.performancecounter\\6.0.1\\system.diagnostics.performancecounter.6.0.1.nupkg.sha512",
+    "C:\\Users\\jindra\\.nuget\\packages\\system.directoryservices\\6.0.1\\system.directoryservices.6.0.1.nupkg.sha512",
+    "C:\\Users\\jindra\\.nuget\\packages\\system.directoryservices.protocols\\6.0.2\\system.directoryservices.protocols.6.0.2.nupkg.sha512",
+    "C:\\Users\\jindra\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
+    "C:\\Users\\jindra\\.nuget\\packages\\system.security.accesscontrol\\6.0.0\\system.security.accesscontrol.6.0.0.nupkg.sha512",
+    "C:\\Users\\jindra\\.nuget\\packages\\system.security.cryptography.protecteddata\\6.0.0\\system.security.cryptography.protecteddata.6.0.0.nupkg.sha512",
+    "C:\\Users\\jindra\\.nuget\\packages\\system.security.permissions\\6.0.0\\system.security.permissions.6.0.0.nupkg.sha512",
+    "C:\\Users\\jindra\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Balíček Oracle.ManagedDataAccess 21.12.0 se místo cílové verze rozhraní .NET Framework projektu net7.0-windows7.0 obnovil pomocí .NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1. Balíček nemusí být plně kompatibilní s vaším projektem.",
-      "libraryId": "Oracle.ManagedDataAccess",
-      "targetGraphs": [
-        "net7.0-windows7.0"
-      ]
-    }
-  ]
+  "logs": []
 }

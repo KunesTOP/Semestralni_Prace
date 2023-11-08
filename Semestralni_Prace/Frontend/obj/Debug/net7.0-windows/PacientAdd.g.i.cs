@@ -141,7 +141,7 @@ namespace SemPrace.Frontend {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SemPrace.Frontend;V1.0.0.0;component/pacientadd.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SemPrace.Frontend;component/pacientadd.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\PacientAdd.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
