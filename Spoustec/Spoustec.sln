@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spoustec", "Spoustec\Spoust
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemPrace.Frontend", "..\Semestralni_Prace\Frontend\SemPrace.Frontend.csproj", "{43A4FBBD-0F8F-4F52-AD51-C9291EA3CC80}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Semestralni_prace", "..\Semestralni_Prace\BackVse\Semestralni_prace.csproj", "{6ADEA93D-3C17-42A5-B336-CDDFE940186E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Semestralni_prace", "..\Semestralni_Prace\BackVse\Semestralni_Prace\Semestralni_prace.csproj", "{6ADEA93D-3C17-42A5-B336-CDDFE940186E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
