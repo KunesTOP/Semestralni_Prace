@@ -1,0 +1,57 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PacientAdd</title>
+</head>
+<body style="background-color: Azure;">
+    <div style="width: 800px; height: 450px; margin: 0 auto;">
+        <div style="background-color: Azure; vertical-align: middle; text-align: center;">
+            <div style="margin: 15px;">
+                <div style="display: flex; flex-direction: row; height: 408px; margin: 15px 15px 0 0;">
+                    <div>
+                        <div style="display: flex; flex-direction: column; height: 407px; width: 297px;">
+                            <div style="display: flex; flex-direction: row; align-items: center;">
+                                <label style="margin-right: 5px;">Jméno:</label>
+                                <input type="text" name="jmeno" style="vertical-align: middle;" value="Rex" />
+                            </div>
+                            <div style="display: flex; flex-direction: row; align-items: center;">
+                                <label style="margin-right: 5px;">Datum narození:</label>
+                                <input type="text" name="date" readonly="readonly" style="vertical-align: middle;" value="13.05.2018" />
+                            </div>
+                            <div style="display: flex; flex-direction: row; align-items: center;">
+                                <label style="margin-right: 5px;">Pohlaví:</label>
+                                <select name="pohlavi" style="vertical-align: middle; width: 38px;">
+                                    <option>Fenka</option>
+                                </select>
+                            </div>
+                            <div style="display: flex; flex-direction: row; align-items: center;">
+                                <label style="margin-right: 5px;">Rasa:</label>
+                                <select name="rasa" style="vertical-align: middle; width: 110px;">
+                                    <option>Border Kolie</option>
+                                </select>
+                            </div>
+                            <div style="display: flex; flex-direction: row; align-items: center;">
+                                <label style="margin-right: 5px;">Vlastník:</label>
+                                <input type="text" name="vlastnik" style="vertical-align: middle;" value="Ondřej Neustadt" />
+                            </div>
+                            <div style="display: flex; flex-direction: row; align-items: center;">
+                                <label style="margin-right: 5px;">Adresa:</label>
+                                <input type="text" name="adresa" style="vertical-align: middle;" value="Regis 420, Insomnia III" />
+                            </div>
+                            <div style="display: flex; flex-direction: row; align-items: center;">
+                                <label style="margin-right: 5px;">Číslo průkazu:</label>
+                                <input type="text" name="cisloPrukaz" style="vertical-align: middle;" value="000001" />
+                            </div>
+                            <button name="add" style="margin-top: 20px;" disabled="disabled">Přidat záznam</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

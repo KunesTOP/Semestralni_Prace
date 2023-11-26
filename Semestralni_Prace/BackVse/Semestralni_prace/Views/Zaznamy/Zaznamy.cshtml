@@ -1,0 +1,68 @@
+﻿@page
+@model Semestralni_prace.Controllers.ZaznamyController
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaznamy</title>
+    <style>
+        body {
+            background-color: Azure;
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Záznamy</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Jméno</th>
+                <th>Pohlaví</th>
+                <th>Datum Narození</th>
+                <th>Datum Umrtí</th>
+                <th>Jméno vlastníka</th>
+                <th>Rasa</th>
+                <th>Množství bílých krvinek</th>
+                <th>Množství červených krvinek</th>
+                <th>Lék</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var record in Model.ZaznamyList)
+            {
+                <tr>
+                    <td>@record.Jmeno</td>
+                    <td>@record.Pohlavi</td>
+                    <td>@record.Narozeni.ToString("dd/MM/yyyy")</td>
+                    <td>@(record.Umrti.HasValue ? record.Umrti.Value.ToString("dd/MM/yyyy") : "")</td>
+                    <td>@record.JmenoVlastnika</td>
+                    <td>@record.NazevPlemene</td>
+                    <td>@record.MnozstviBilychKrvinek</td>
+                    <td>@record.MnozstviCervenychKrvinek</td>
+                    <td>@record.NazevLeku</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

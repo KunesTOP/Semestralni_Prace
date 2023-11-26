@@ -1,0 +1,70 @@
+﻿@model List<Semestralni_prace.Models.Classes.Pacient>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Záznam Pacientů</title>
+    <style>
+        body {
+            background-color: Azure;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Záznam Pacientů</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Jméno zvířete</th>
+                <th>Pohlaví</th>
+                <th>Datum narození</th>
+                <th>Datum umrtí</th>
+                <th>Rasa</th>
+                <th>Jméno vlastníka</th>
+                <th>E-mail</th>
+                <th>Telefon</th>
+                <th>Číslo průkazu zvířete</th>
+                <th>Číslo chipu zvířete</th>
+            </tr>
+        </thead>
+        <tbody>
+          @foreach (var record in Model)
+            {
+                <tr>
+                    <td>@record.Jmeno</td>
+                    <td>@record.Pohlavi</td>
+                    <td>@record.Narozeni</td>
+                    <td>@(record.Umrti.HasValue ? record.Umrti.ToString() : "")</td>
+                    <td>@record.Rasa</td>
+                    <td>@record.JmenoVlastnik</td>
+                    <td>@record.Email</td>
+                    <td>@record.Telefon</td>
+                    <td>@record.CisloPrukazu</td>
+                    <td>@record.CisloChipu</td>
+                </tr>
+            } 
+        </tbody>
+    </table>
+</body>
+</html>

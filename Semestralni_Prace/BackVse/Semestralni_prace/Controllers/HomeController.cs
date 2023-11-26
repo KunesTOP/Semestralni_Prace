@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Semestralni_prace.Models;
+using Semestralni_prace.Models.Classes;
+using Semestralni_prace.Controllers;
 using System.Diagnostics;
 
 namespace Semestralni_Prace.Controllers
@@ -19,6 +21,14 @@ namespace Semestralni_Prace.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+        public IActionResult Login()
+        {
+            return View();
+        }
+        public IActionResult Tabulky()
         {
             return View();
         }

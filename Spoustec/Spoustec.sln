@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spoustec", "Spoustec\Spoustec.csproj", "{853B2DFA-8E42-4B82-AF0B-D09C8086B250}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6ADEA93D-3C17-42A5-B336-CDDFE940186E} = {6ADEA93D-3C17-42A5-B336-CDDFE940186E}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemPrace.Frontend", "..\Semestralni_Prace\Frontend\SemPrace.Frontend.csproj", "{43A4FBBD-0F8F-4F52-AD51-C9291EA3CC80}"
 EndProject
@@ -54,7 +57,6 @@ Global
 		{853B2DFA-8E42-4B82-AF0B-D09C8086B250}.Release|x86.Build.0 = Release|x86
 		{853B2DFA-8E42-4B82-AF0B-D09C8086B250}.Release|x86.Deploy.0 = Release|x86
 		{43A4FBBD-0F8F-4F52-AD51-C9291EA3CC80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43A4FBBD-0F8F-4F52-AD51-C9291EA3CC80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43A4FBBD-0F8F-4F52-AD51-C9291EA3CC80}.Debug|ARM.ActiveCfg = Debug|Any CPU
 		{43A4FBBD-0F8F-4F52-AD51-C9291EA3CC80}.Debug|ARM.Build.0 = Debug|Any CPU
 		{43A4FBBD-0F8F-4F52-AD51-C9291EA3CC80}.Debug|ARM64.ActiveCfg = Debug|Any CPU

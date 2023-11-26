@@ -9,15 +9,6 @@
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="profile" Background="Azure">
             <StackPanel Orientation="Horizontal" Height="408" Margin="15,15,0,0">
-                <DockPanel>
-                    <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Width="150" Margin="5,5,5,0">
-                        <Button x:Name="pridatZaznam" Click="Pridani" Margin="5,5,5,10">Přidat záznam</Button>
-                        <Button x:Name="listPacientu" Margin="5,5,5,10">List pacientů</Button>
-                        <Button x:Name="anamneza" Margin="5,5,5,10">Anamnézy</Button>
-                        <Button x:Name="vakcinace" Margin="5,5,5,10">Vakcíny</Button>
-                        <Button x:Name="odhlaseni" Click="Odhlaseni" Margin="5,230,5,10" >Odhlásit</Button>
-                    </StackPanel>
-                </DockPanel>
                 <StackPanel>
                     <StackPanel x:Name="userProfile" Orientation="Horizontal">
                         <StackPanel Orientation="Vertical" Height="407" Width="249">

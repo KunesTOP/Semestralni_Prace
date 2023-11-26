@@ -1,0 +1,79 @@
+﻿@page
+@model Semestralni_prace.Controllers.ZaznamyController;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nový Záznam</title>
+    <style>
+        body {
+            background-color: Azure;
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            width: 50%;
+            margin: 20px auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Nový Záznam</h2>
+
+    <form method="post">
+        <label for="Jmeno">Jméno:</label>
+        <input type="text" id="Name" name="Name" required>
+
+        <label for="Pohlavi">Pohlaví:</label>
+        <select id="Sex" name="Sex" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+
+        <label for="Narozeni">Datum narození:</label>
+        <input type="date" id="DateOfBirth" name="DateOfBirth" required>
+
+        <label for="Umrti">Datum umrtí (volitelné):</label>
+        <input type="date" id="DateOfDeath" name="DateOfDeath">
+
+        <label for="JmenoVlastnika">Jméno vlastníka:</label>
+        <input type="text" id="Owner" name="Owner" required>
+
+        <label for="NazevPlemene">Plemeno:</label>
+        <input type="text" id="Breed" name="Breed" required>
+
+        <label for="MnozstviBilychKrvinek">Amount of Antibodies:</label>
+        <input type="text" id="Antibodies" name="Antibodies" required>
+
+        <label for="MnozstviCervenychKrvinek">Amount of Blood Cells:</label>
+        <input type="text" id="BloodCells" name="BloodCells" required>
+
+        <label for="NazevLeku">Name of Medications:</label>
+        <input type="text" id="Medications" name="Medications" required>
+
+        <button type="submit">Přidat Záznam</button>
+    </form>
+</body>
+</html>

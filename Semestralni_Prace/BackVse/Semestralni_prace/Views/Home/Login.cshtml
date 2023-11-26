@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<body style="background-color: Azure;">
+    <div style="width: 1124px; height: 763px; margin: 0 auto;">
+        <div style="background-color: LightGreen; height: 556px; width: 492px; margin: 0 auto; padding: 10px;">
+            <h1 style="text-align: center; font-size: 50px;">Přihlášení</h1>
+            <div style="margin-top: 10px; display: flex; flex-direction: row; align-items: center;">
+                <label style="font-size: 24px;">Přihlašovací jméno:</label>
+                <input type="text" name="loginName" style="max-width: 201px; margin: 6px 0 0 0; padding: 3px -1px 0 0; height: 25px; font-size: 16px;" value="Jméno" />
+            </div>
+            <div style="text-align: center; margin-top: 10px;">
+                <label style="font-size: 24px; width: 210px;">Heslo:</label>
+                <input type="text" name="loginPassword" style="width: 202px; margin: 6px 0 0 0; padding: 3px -1px 0 0; height: 25px; font-size: 16px;" value="heslo" />
+            </div>
+            <label style="text-align: center; margin-top: 15px; font-style: italic;" id="errMsg"></label>
+            <button name="pokus" style="width: 96px; margin: 15px auto 0 auto; font-size: 16px; display: block;" onclick="OnClickLogIn">Přihlásit se</button>
+        </div>
+    </div>
+</body>
