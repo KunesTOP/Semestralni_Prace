@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\Semestralni_prace.props" />
-</Project>

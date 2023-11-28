@@ -30,7 +30,7 @@ namespace Models.DatabaseControllers
 
             return new Asistent()
             {
-                Id = int.Parse(query.Rows[0][ID_NAME].ToString()),
+                IdZamestnanec = int.Parse(query.Rows[0][ID_NAME].ToString()),
                 Praxe = int.Parse(query.Rows[0][PRAXE_NAME].ToString())
             };
         }
@@ -38,12 +38,12 @@ namespace Models.DatabaseControllers
         public static void InsertAsistent(Asistent asistent)
         {
             DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({ID_NAME}, {PRAXE_NAME}) VALUES (:id, :praxe)",
-                new OracleParameter("id", asistent.Id),
+                new OracleParameter("id", asistent.IdZamestnanec),
                 new OracleParameter("praxe", asistent.Praxe)
             );
         }
 
-       
+
         private static IEnumerable<int> GetIds(string tableName, string idColumnName)
         {
             List<int> ids = new List<int>();
@@ -56,6 +56,33 @@ namespace Models.DatabaseControllers
             }
 
             return ids;
+        }
+
+        public static List<Asistent> GetAll()
+        {
+            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
+            List<Asistent> asistent = new List<Asistent>();
+
+            if (query.Rows.Count == 0)
+            {
+                return null;
+            }
+            try
+            {
+                foreach (DataRow dr in query.Rows)
+                {
+                    asistent.Add(new Asistent()
+                    {
+                        IdZamestnanec = int.Parse(dr[ID_NAME].ToString()),
+                        Praxe = int.Parse(dr[PRAXE_NAME].ToString())
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return asistent;
         }
     }
 }

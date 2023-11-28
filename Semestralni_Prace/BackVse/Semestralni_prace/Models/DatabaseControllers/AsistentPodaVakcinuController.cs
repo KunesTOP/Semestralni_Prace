@@ -45,5 +45,11 @@ namespace Models.DatabaseControllers
 
             return ids;
         }
+        private static DataTable AsistentPodavaVakcinuTable()
+        {
+            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
+            return query;
+        }
+
     }
 }

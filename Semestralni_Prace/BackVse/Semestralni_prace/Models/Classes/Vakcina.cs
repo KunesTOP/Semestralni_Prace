@@ -8,8 +8,6 @@ namespace Semestralni_prace.Models.Classes
 {
     public class Vakcina
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
         public int IdVakcina { get; internal set; }
         public string? NazevVakcina { get; internal set; }
         //TODO: tady mám asi chybu v modelu, že je prodává Asistent... takže to bych s tebou probral ještě.

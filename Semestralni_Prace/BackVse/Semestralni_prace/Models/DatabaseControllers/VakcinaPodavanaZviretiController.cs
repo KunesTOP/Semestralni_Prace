@@ -30,7 +30,7 @@ namespace Models.DatabaseControllers
             );
         }
 
-      
+
         private static IEnumerable<int> GetIds(string tableName, string idColumnName, string conditionColumnName, int conditionValue)
         {
             List<int> ids = new List<int>();
@@ -45,5 +45,13 @@ namespace Models.DatabaseControllers
 
             return ids;
         }
+
+        public static DataTable VakcinaPodavanaZviretiTable()
+        {
+            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
+            return query;
+        }
+
+
     }
 }

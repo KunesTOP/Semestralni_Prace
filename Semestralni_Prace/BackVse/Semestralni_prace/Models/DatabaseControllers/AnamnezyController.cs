@@ -12,7 +12,7 @@ namespace Models.DatabaseControllers
         public const string TABLE_NAME = "ANAMNEZY";
         public const string ID_NAME = "id_anamneza";
         public const string DATUM_NAME = "datum_anamneza";
-        private static List<Zaznam> zaznamy; //TODO: Upravit todle ve View, aby to odkazovalo na tudle tridu a ne na Class Zaznam
+        private static List<ZaznamAnamnez> zaznamy; //TODO: Upravit todle ve View, aby to odkazovalo na tudle tridu a ne na Class Zaznam
 
         public static IEnumerable<int> GetIds()
         {
@@ -36,17 +36,17 @@ namespace Models.DatabaseControllers
                 Datum = DateTime.Parse(query.Rows[0][DATUM_NAME].ToString())//todo ??
             };
         }
-        public static List<Zaznam> GetAll(int id)
+        public static List<ZaznamAnamnez> GetAll(int id)
         {
             DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
-            zaznamy = new List<Zaznam>();
+            zaznamy = new List<ZaznamAnamnez>();
 
             if (query.Rows.Count != 1)
             {
                 return null;
             }
 
-            foreach (Zaznam dr in query.Rows)
+            foreach (ZaznamAnamnez dr in query.Rows)
             {
                 zaznamy.Add(dr);
             }

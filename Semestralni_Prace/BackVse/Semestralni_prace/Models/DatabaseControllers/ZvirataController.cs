@@ -90,7 +90,7 @@ namespace Models.DatabaseControllers
                 Zvire zvire = new Zvire {
                 JmenoZvire = row[JMENO_ZVIRE_NAME].ToString(),
                 Pohlavi = row[POHLAVI_NAME].ToString(),
-                DatumNarozeni = DateTime.Parse(query.Rows[0][DATUM_NAROZENI_NAME].ToString()),
+                DatumNarozeni = DateTime.Parse(row[DATUM_NAROZENI_NAME].ToString()),
                 DatumUmrti = row[DATUM_UMRTI_NAME] == DBNull.Value ? null : (DateTime?)DateTime.Parse(row[DATUM_UMRTI_NAME].ToString()),
                 MajitelZvireIdPacient = int.Parse(row[MAJITEL_ZVIRE_ID_PACIENT_NAME].ToString()),
                 IdZvire = int.Parse(row[ID_ZVIRE_NAME].ToString()),
