@@ -9,15 +9,7 @@ namespace Semestralni_prace.Controllers
     {
         public IActionResult ListVakcin()
         {
-            List<Zvire> listZvirat = ZvirataController.GetAll();
-            List<Asistent> listAsistentu = AsistentiController.GetAll();
-            List<Vakcina> listVakcin = VakcinyTableController.GetAll();
-
-
-
-
-
-            return View();
+            return View(VakcinyTableController.GetAsistentPodaVakcinuZviretiView());
         }
     }
 }

@@ -12,7 +12,6 @@ namespace Models.DatabaseControllers
         public const string TABLE_NAME = "ANAMNEZY";
         public const string ID_NAME = "id_anamneza";
         public const string DATUM_NAME = "datum_anamneza";
-        private static List<ZaznamAnamnez> zaznamy; //TODO: Upravit todle ve View, aby to odkazovalo na tudle tridu a ne na Class Zaznam
 
         public static IEnumerable<int> GetIds()
         {
@@ -36,10 +35,11 @@ namespace Models.DatabaseControllers
                 Datum = DateTime.Parse(query.Rows[0][DATUM_NAME].ToString())//todo ??
             };
         }
-        public static List<ZaznamAnamnez> GetAll(int id)
+        public static List<ZaznamAnamnez> GetAll()
         {
+            //TODO na todle udělat View, pokud bude čas....
             DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
-            zaznamy = new List<ZaznamAnamnez>();
+            List<ZaznamAnamnez> zaznamy = new List<ZaznamAnamnez>();
 
             if (query.Rows.Count != 1)
             {
@@ -78,6 +78,28 @@ namespace Models.DatabaseControllers
             }
 
             return ids;
+        }
+        public static List<Anamneza> GetAll2()
+        {
+            //TODO na todle udělat View, pokud bude čas....
+            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
+            List<Anamneza> zaznamy = new List<Anamneza>();
+
+            if (query.Rows.Count == 0)
+            {
+                return null;
+            }
+
+            foreach (DataRow dr in query.Rows)
+            {
+                zaznamy.Add(new Anamneza
+                {
+                    Id = int.Parse(dr[ID_NAME].ToString()),
+                    Datum = DateTime.Parse(dr[DATUM_NAME].ToString())
+                });
+            }
+
+            return zaznamy;
         }
     }
 }

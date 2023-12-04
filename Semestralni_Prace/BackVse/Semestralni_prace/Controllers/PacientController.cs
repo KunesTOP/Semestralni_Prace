@@ -7,10 +7,15 @@ namespace Semestralni_prace.Controllers
 {
     public class PacientController : Controller
     {
-        public List<Pacient> PacientList = new List<Pacient>();
 
         public IActionResult ListPacientu()
         {
+            List<Pacient> PacientList = GetListPacientu();
+            return View(PacientList);
+        }
+        private List<Pacient> GetListPacientu()
+        {
+            List<Pacient> PacientList = new List<Pacient>();
             List<Zvire> zvireList = ZvirataController.GetAll();
             List<Majitel> majiteleList = MajiteleZviratController.GetAll();
             List<Prukaz> prukazyList = PrukazyController.GetAll();
@@ -21,15 +26,31 @@ namespace Semestralni_prace.Controllers
                 {
                     Zvire zvire = zvireList.FirstOrDefault(item => item.IdZvire == prukaz.ZvireId);
                     Majitel majitel = majiteleList.FirstOrDefault(item => item.PacientId == zvire.MajitelZvireIdPacient);
-                    PacientList.Add(new Pacient(
-                        zvire.JmenoZvire, zvire.Pohlavi, zvire.DatumNarozeni, zvire.DatumUmrti, RasaZviratController.GetById(zvire.RasaZviratIdRasa).JmenoRasa,
-                        majitel.CeleJmeno(), majitel.Mail, Int64.Parse(majitel.Telefon), prukaz.CisloPrukaz, prukaz.CisloChip));
-             }
-             catch (Exception ex)
-             {                    
-             }
-         }
-            return View(PacientList);
+                    PacientList.Add(new Pacient
+                    {
+
+                        Jmeno = zvire.JmenoZvire,
+                        Pohlavi = zvire.Pohlavi,
+                        Narozeni = zvire.DatumNarozeni,
+                        Umrti = zvire.DatumUmrti,
+                        Rasa = RasaZviratController.GetById(zvire.RasaZviratIdRasa).JmenoRasa,
+                        JmenoVlastnik = majitel.CeleJmeno(),
+                        Email = majitel.Mail,
+                        Telefon = Int64.Parse(majitel.Telefon),
+                        CisloPrukazu = prukaz.CisloPrukaz,
+                        CisloChipu = prukaz.CisloChip
+                    });
+                }
+                catch (Exception ex)
+                {
+                   
+                }
+            }
+            return PacientList;
+        }
+        public IActionResult PacientAdd()
+        {
+            return View();
         }
     }
 }

@@ -58,6 +58,28 @@ namespace Models.DatabaseControllers
 
             return ids;
         }
+        public static List<Lek> GetAll()
+        {
+            List<Lek> listLeky = new List<Lek>();
+            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
+
+            if (query.Rows.Count == 0)
+            {
+                return null;
+            }
+
+            foreach (DataRow row in query.Rows)
+            {
+                listLeky.Add(new Lek
+                {
+                    Id = int.Parse(row[ID_NAME].ToString()),
+                    Nazev = row[NAZEV_NAME].ToString()
+                });
+            };
+            return listLeky;
+        }
+
+
     }
 }
 

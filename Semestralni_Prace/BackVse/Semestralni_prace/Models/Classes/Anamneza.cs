@@ -10,10 +10,6 @@ namespace Semestralni_prace.Models.Classes
     public class Anamneza
     {
         public int Id { get; set; }
-        public DateTime Date_of_Anamnesis { get; set; }
-        public int? ResultsId { get; set; }
-        public int? MedicationId { get; set; }
-        public int? VeterinarianId { get; set; }
         public DateTime Datum { get; internal set; }
     }
 }

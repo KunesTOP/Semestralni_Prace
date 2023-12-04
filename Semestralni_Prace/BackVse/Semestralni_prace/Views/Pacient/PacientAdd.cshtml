@@ -6,8 +6,57 @@
 <html>
 <head>
     <title>PacientAdd</title>
+    <style>
+        body {
+            background-color: Azure;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        div {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+        input[type="text"], select {
+            vertical-align: middle;
+            font-size: 16px;
+            padding: 5px;
+            width: 150px; /* Adjust the width as needed */
+        }
+
+        select {
+            width: 200px; /* Adjust the width as needed */
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        /* Additional styling for dividing Adresa into Město, Ulice, and Číslo popisné */
+        .divided-row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+            .divided-row label {
+                margin-right: 5px;
+            }
+
+            .divided-row input[type="text"] {
+                width: 150px; /* Adjust the width as needed */
+            }
+    </style>
 </head>
-<body style="background-color: Azure;">
+<body>
     <div style="width: 800px; height: 450px; margin: 0 auto;">
         <div style="background-color: Azure; vertical-align: middle; text-align: center;">
             <div style="margin: 15px;">
@@ -24,13 +73,13 @@
                             </div>
                             <div style="display: flex; flex-direction: row; align-items: center;">
                                 <label style="margin-right: 5px;">Pohlaví:</label>
-                                <select name="pohlavi" style="vertical-align: middle; width: 38px;">
+                                <select name="pohlavi" style="vertical-align: middle; width: 100px;">
                                     <option>Fenka</option>
                                 </select>
                             </div>
                             <div style="display: flex; flex-direction: row; align-items: center;">
                                 <label style="margin-right: 5px;">Rasa:</label>
-                                <select name="rasa" style="vertical-align: middle; width: 110px;">
+                                <select name="rasa" style="vertical-align: middle; width: 150px;">
                                     <option>Border Kolie</option>
                                 </select>
                             </div>
@@ -39,14 +88,22 @@
                                 <input type="text" name="vlastnik" style="vertical-align: middle;" value="Ondřej Neustadt" />
                             </div>
                             <div style="display: flex; flex-direction: row; align-items: center;">
-                                <label style="margin-right: 5px;">Adresa:</label>
-                                <input type="text" name="adresa" style="vertical-align: middle;" value="Regis 420, Insomnia III" />
+                                <label style="margin-right: 5px;">Město:</label>
+                                <input type="text" name="adresa" style="vertical-align: middle;" value="Insomnia" />
+                            </div>
+                            <div style="display: flex; flex-direction: row; align-items: center;">
+                                <label style="margin-right: 5px;">Ulice:</label>
+                                <input type="text" name="adresa" style="vertical-align: middle;" value="Regis" />
+                            </div>
+                            <div style="display: flex; flex-direction: row; align-items: center;">
+                                <label style="margin-right: 5px;">Číslo popisné:</label>
+                                <input type="text" name="adresa" style="vertical-align: middle;" value="420" />
                             </div>
                             <div style="display: flex; flex-direction: row; align-items: center;">
                                 <label style="margin-right: 5px;">Číslo průkazu:</label>
                                 <input type="text" name="cisloPrukaz" style="vertical-align: middle;" value="000001" />
                             </div>
-                            <button name="add" style="margin-top: 20px;" disabled="disabled">Přidat záznam</button>
+                            <button name="add" style="margin-top: 20px;">Přidat záznam</button>
                         </div>
                     </div>
                 </div>

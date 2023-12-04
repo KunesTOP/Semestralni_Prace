@@ -7,11 +7,12 @@ using System.Data;
 
 namespace Models.DatabaseControllers
 {
-    public class VakcinyController : Controller//todo KNIHOVNY
+    public class VakcinyTableController : Controller//todo KNIHOVNY
     {
         public const string TABLE_NAME = "VAKCINY";
         public const string ID_VAKCINA = "id_vakcina";
         public const string NAZEV_VAKCINA_NAME = "nazev_vakcina";
+        public const string VIEW_NAME = "ASISTENT_PODA_VAKCINU_ZVIRETI";
 
         public static IEnumerable<int> GetVakcinaIds()
         {
@@ -88,6 +89,32 @@ namespace Models.DatabaseControllers
 
             }
             return listVakcin;
+        }
+        public static List<VakcinaceZvirat> GetAsistentPodaVakcinuZviretiView() {
+            DataTable query = DatabaseController.Query($"SELECT * FROM {VIEW_NAME}");
+            if(query.Rows.Count == 0)
+            {
+                return null;
+            }
+            List<VakcinaceZvirat> listVakcinaci = new List<VakcinaceZvirat>();
+            foreach(DataRow dr in query.Rows)
+            {
+                listVakcinaci.Add(new VakcinaceZvirat
+                {
+                    Krestni = dr["ZAMESTNANEC_KRESTNI"].ToString(),
+                    Prijmeni = dr["ZAMESTNANEC_PRIJMENI"].ToString(),
+                    Profese = dr["ZAMESTNANEC_PROFESE"].ToString(),
+                    VakcinaNazev = dr["VAKCINA_NAZEV"].ToString(),
+                    ZvireJmeno = dr["ZVIRE_JMENO"].ToString(),
+                    ZvirePohlavi = dr["ZVIRE_POHLAVI"].ToString(),
+                    ZvireDatumNarozeni = DateTime.Parse(dr["ZVIRE_DATUM_NAROZENI"].ToString()),
+                    ZvireDatumUmrti = dr["ZVIRE_DATUM_UMRTI"] == DBNull.Value ? null : (DateTime?)DateTime.Parse(dr["ZVIRE_DATUM_UMRTI"].ToString()),
+                }) ;
+
+
+            }
+
+            return listVakcinaci;
         }
     }
 }

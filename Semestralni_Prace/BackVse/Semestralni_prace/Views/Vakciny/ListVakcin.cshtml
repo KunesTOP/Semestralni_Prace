@@ -1,7 +1,67 @@
-﻿
-@{
-    ViewData["Title"] = "ListVakcin";
-}
+﻿@model List<Semestralni_prace.Models.Classes.VakcinaceZvirat>
 
-<h1>ListVakcin</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Záznam Vakcinací</title>
+    <style>
+        body {
+            background-color: Azure;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Záznam Vakcinací</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Křestní jméno zaměstnance</th>
+                <th>Příjmení zaměstnance</th>
+                <th>Profese zaměstnance</th>
+                <th>Nazev vakciny</th>
+                <th>Jméno zvířete</th>
+                <th>Pohlaví zvířete</th>
+                <th>Datum narození zvířete</th>
+                <th>Datum umrtí zvířete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var record in Model)
+            {
+                <tr>
+                    <td>@record.Krestni</td>
+                    <td>@record.Prijmeni</td>
+                    <td>@record.Profese</td>
+                    <td>@record.VakcinaNazev</td>
+                    <td>@record.ZvireJmeno</td>
+                    <td>@record.ZvirePohlavi</td>
+                    <td>@record.ZvireDatumNarozeni</td>
+                    <td>@(record.ZvireDatumUmrti.HasValue ? record.ZvireDatumUmrti.ToString() : "")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
 

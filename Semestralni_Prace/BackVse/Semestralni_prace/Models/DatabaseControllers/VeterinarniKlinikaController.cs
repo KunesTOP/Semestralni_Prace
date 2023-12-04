@@ -20,7 +20,7 @@ namespace Models.DatabaseControllers//TODO KNIHOVNY
             return GetIds(TABLE_NAME, ADRESY_ID_ADRESA_NAME, VETER_KLIN_ID_NAME, veterKlinId);
         }
 
-       private static VeterinarniKlinika Get(int veterKlinId)//TODO ??
+        private static VeterinarniKlinika Get(int veterKlinId)//TODO ??
 
         {
             DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME} WHERE {VETER_KLIN_ID_NAME} = :veterKlinId",
@@ -65,6 +65,29 @@ namespace Models.DatabaseControllers//TODO KNIHOVNY
             }
 
             return ids;
+        }
+
+        public static IEnumerable<VeterinarniKlinika> GetAll()
+
+        {
+            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
+
+            if (query.Rows.Count == 0)
+            {
+                return null;
+            }
+            List<VeterinarniKlinika> listKlinik = new List<VeterinarniKlinika>();
+            foreach (DataRow dr in query.Rows)
+            {
+                listKlinik.Add(new VeterinarniKlinika()
+                {
+                    JmenoMajitel = dr[JMENO_MAJITEL_NAME].ToString(),
+                    PrijmeniMajitel = dr[PRIJMENI_MAJITEL_NAME].ToString(),
+                    VeterKlinId = int.Parse(dr[VETER_KLIN_ID_NAME].ToString()),
+                    AdresyIdAdresa = int.Parse(dr[ADRESY_ID_ADRESA_NAME].ToString())
+                });
+            }
+            return listKlinik;
         }
     }
 }

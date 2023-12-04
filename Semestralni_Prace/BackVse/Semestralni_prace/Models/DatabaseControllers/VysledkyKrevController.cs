@@ -50,7 +50,7 @@ namespace Models.DatabaseControllers
             );
         }
 
-      
+
         private static IEnumerable<int> GetIds(string tableName, string idColumnName)
         {
             List<int> ids = new List<int>();
@@ -63,6 +63,27 @@ namespace Models.DatabaseControllers
             }
 
             return ids;
+        }
+        public static IEnumerable<VysledekKrev> GetAll()
+        {
+            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
+
+            if (query.Rows.Count == 0)
+            {
+                return null;
+            }
+            List<VysledekKrev> listVysledku = new List<VysledekKrev>();
+            foreach (DataRow dr in query.Rows)
+            {
+                listVysledku.Add(new VysledekKrev()
+                {
+                    IdVysledek = int.Parse(dr[ID_VYSLEDEK_NAME].ToString()),
+                    MnozstviProtilatky = int.Parse(dr[MNOZSTVI_PROTILATKY_NAME].ToString()),
+                    MnozstviCervKrv = int.Parse(dr[MNOZSTVI_CERV_KRV_NAME].ToString()),
+                    AnamnezaId = dr[ANAMNEZA_ID_NAME] == DBNull.Value ? null : (int?)int.Parse(dr[ANAMNEZA_ID_NAME].ToString())
+                });
+            }
+            return listVysledku;
         }
     }
 }

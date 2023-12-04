@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Semestralni_prace.Models.Classes.Logger>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>View</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TabulkaNazev)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Udalost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Zprava)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TabulkaNazev)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Udalost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Zprava)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Udalost }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

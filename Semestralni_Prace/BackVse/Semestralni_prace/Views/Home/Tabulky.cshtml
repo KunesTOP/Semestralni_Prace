@@ -58,11 +58,12 @@
 <body>
     <h2>@ViewData["Title"]</h2>
 
-    <label for="tableName">Select Table:</label>
+    <label for="tableName">Vyberte výpis:</label>
     <select id="tableName">
-        <!-- TODO: Přidat názvy tabulek -->
-        <option value="Table1">Table1</option>
-        <option value="Table2">Table2</option>
+        @foreach (var tableName in ViewBag.TableNames)
+        {
+            <option value="@tableName">@tableName</option>
+        }
     </select>
 
     <button id="btnLoadTable">Load Table</button>
@@ -98,16 +99,37 @@
         });
 
         function loadTable() {
+            console.log('HEJ FUNGUJU');
             var tableName = $('#tableName').val();
-            // Make an AJAX request to fetch data for the selected table
-            // Populate the table dynamically based on the response
-            // Example:
-            // fetch(`/api/getdata?tableName=${tableName}`)
-            //     .then(response => response.json())
-            //     .then(data => {
-            //         // Generate table rows and cells dynamically based on data
-            //         // Update the innerHTML of the 'data-table' element
-            //     });
+
+            // Make an AJAX request to the LoadTable action in HomeController
+            $.ajax({
+                url: `/Home/LoadTable?tableName=${tableName}`,
+                type: 'GET',
+                success: function (data) {
+                    //TODO tady je někde chyba a musím to vyřešit
+                    // Handle the data returned from the server
+                    // For demonstration purposes, updating the table body with the data
+                    var tableBody = $('#data-table');
+                    console.log(tableBody)
+                    tableBody.empty();
+                    data.data[0].forEach((row) => {
+                        var newRow = "<tr id='" + row.Id + "'>";
+                        for (const [key, value] of Object.entries(row)) {
+                            const keyLower = key.toLowerCase();
+                            if (!keyLower.startsWith("id") && !keyLower.endsWith("id") && !keyLower.includes("id")) {
+                                const val = value || "";
+                                newRow += "<td data-name='" + key + "'>" + val + "</td>";
+                            }
+                        }
+                        newRow += "</tr>";
+                        tableBody.append(newRow);
+                    });
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
         }
 
         function showContextMenu(x, y) {
@@ -127,10 +149,48 @@
             hideContextMenu();
         }
 
-        function deleteRow() {
-            // Logic to delete the selected row
+        function editRow() {
+            // Výběr označeného řádku
+            var selectedRow = $('#data-table tr.context-selected');
+
+            if (selectedRow.length > 0) {
+                // Umožnění editace
+                var newRow = "<tr id='" + row.id + "'>";
+                for (const [key, value] of Object.entries(row)) {
+                    if (!key.toLowerCase().includes("id")) {
+                        newRow += "<td data-name='" + key + "' ondblclick='replaceCell(this)'>" + (value || "") + "</td>";
+                    }
+                }
+                newRow += "<td><button onclick='saveEditedRow(" + row.id + ")'>Uložit změny</button><button class='btn-delete' onclick='deleteRow(" + row.id + ")'>Smazat</button></td></tr>";
+                tableBody.append(newRow);
+            }
+
             hideContextMenu();
         }
+        function deleteRow(rowId) {
+            /* smaž záznam z databáze, něco jako DELETE FROM tabulka WHERE id = $(rowId) */
+            document.getElementById(rowId).remove();
+        }
+
+        function saveEditedRow(rowId) {
+            const row = document.getElementById(rowId);
+            const entries = new Array();
+            row.forEach((child) => {
+                if (child.dataset.name) {
+                    entries.push([child.dataset.name, child.innerText || null]);
+                }
+            })
+          /* update záznamu v databázi, něco ve stylu UPDATE tabulka SET $(entries[i][0]) = $(entries[i][1]) WHERE id = $(rowId) */
+        }
+        function replaceCell(cell) {
+            cell.innerHtml = "<input type='text' value='" + cell.innerText + "' onfocusout='turnBack(this)'>";
+        }
+
+        function turnBack(input) {
+            input.replaceWith(input.value);
+        }
+
+
     </script>
 </body>
 </html>

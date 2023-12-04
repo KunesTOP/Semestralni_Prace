@@ -48,14 +48,15 @@ namespace Models.DatabaseControllers
 
             return new Titul()
             {
-                IdTitul = int.Parse(query.Rows[0][ID_TITUL_NAME].ToString() ),
+                IdTitul = int.Parse(query.Rows[0][ID_TITUL_NAME].ToString()),
                 ZkratkaTitul = query.Rows[0][ZKRATKA_TITUL_NAME].ToString(),
                 NazevTitul = query.Rows[0][NAZEV_TITUL_NAME].ToString()
             };
         }
 
         public static void InsertTitul(Titul titul)
-        {Titul existingTitul = GetByTitulId(titul.IdTitul);
+        {
+            Titul existingTitul = GetByTitulId(titul.IdTitul);
 
             if (existingTitul == null)
             {
@@ -68,12 +69,12 @@ namespace Models.DatabaseControllers
                 );
             }
             else
-               
+
             {
                 RemoveTitul(titul.IdTitul);
                 DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({ID_TITUL_NAME}, {NAZEV_TITUL_NAME}, {ZKRATKA_TITUL_NAME}) " +
             $"VALUES (:idTitul, :nazevTitul, :zkratkaTitul)",
-            new OracleParameter("idTitul", titul.IdTitul ),
+            new OracleParameter("idTitul", titul.IdTitul),
             new OracleParameter("nazevTitul", titul.NazevTitul),
             new OracleParameter("zkratkaTitul", titul.ZkratkaTitul));
             }
@@ -97,6 +98,27 @@ namespace Models.DatabaseControllers
             }
 
             return ids;
+        }
+        public static IEnumerable<Titul> GetAll()
+        {
+            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
+            List<Titul> listTituly = new List<Titul>();
+
+            if (query.Rows.Count == 0)
+            {
+                return null;
+            }
+            foreach (DataRow dr in query.Rows)
+            {
+                listTituly.Add(new Titul()
+                {
+                    IdTitul = int.Parse(dr[ID_TITUL_NAME].ToString()),
+                    ZkratkaTitul = dr[ZKRATKA_TITUL_NAME].ToString(),
+                    NazevTitul = dr[NAZEV_TITUL_NAME].ToString()
+                });
+
+            }
+            return listTituly;
         }
     }
 }

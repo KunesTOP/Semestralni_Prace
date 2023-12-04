@@ -79,5 +79,10 @@ namespace Semestralni_prace.Controllers
                 return View();
             }
         }
+        public ActionResult Profil()
+        {
+            return View();
+        }
+
     }
 }

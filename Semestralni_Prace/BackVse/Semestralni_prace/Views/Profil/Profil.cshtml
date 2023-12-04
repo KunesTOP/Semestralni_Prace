@@ -6,39 +6,80 @@
 <html>
 <head>
     <title>Profil</title>
+    <style>
+        body {
+            background-color: Azure;
+            font-family: Arial, sans-serif;
+            font-size: 20px; /* Adjust the font size as needed */
+        }
+
+        div {
+            width: 800px;
+            height: 450px;
+            margin: 0 auto;
+        }
+
+        .container {
+            padding-top: 50px;
+            background-color: aquamarine;
+            display: flex;
+            text-align: left;
+        }
+
+        .left-container {
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 45%; /* Adjust the width as needed */
+            margin-right: 70px; /* Adjust the space between left and right containers */
+        }
+
+        .right-container {
+            margin: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: flex-end;
+            width: 30%; /* Adjust the width as needed */
+        }
+
+        button {
+            width: 150px; /* Adjust the width as needed */
+            font-size: 15px; /* Adjust the font size as needed */
+        }
+
+        img {
+            width: 300px;
+            height: 195px;
+        }
+    </style>
 </head>
-<body style="background-color: Azure;">
-    <div style="width: 800px; height: 450px; margin: 0 auto;">
-        <div style="background-color: Azure; vertical-align: middle; text-align: center;">
-            <div style="margin: 15px;">
-                <div style="display: flex; flex-direction: row; height: 408px; margin: 15px 15px 0 0;">
-                    <div>
-                        <div style="display: flex; flex-direction: column; height: 407px; width: 249px;">
-                            <div style="display: flex; flex-direction: row; align-items: center;">
-                                <label style="margin-right: 5px;">Jméno:</label>
-                                <span name="name" style="vertical-align: middle;">Ondřej Neustadt</span>
-                            </div>
-                            <div style="display: flex; flex-direction: row; align-items: center;">
-                                <label style="margin-right: 5px;">Datum narození:</label>
-                                <span name="age" style="vertical-align: middle;">45</span>
-                            </div>
-                            <div style="display: flex; flex-direction: row; align-items: center;">
-                                <label style="margin-right: 5px;">Adresa:</label>
-                                <span name="address" style="vertical-align: middle;">Kbýlkova 420 Bolín</span>
-                            </div>
-                            <div style="display: flex; flex-direction: row; align-items: center;">
-                                <label style="margin-right: 5px;">Email:</label>
-                                <span name="email" style="vertical-align: middle;">ondrej1303@hupsikdupsik.com</span>
-                            </div>
-                            <button name="saveChange" style="margin-top: 20px;" disabled="disabled">Uložit změny</button>
-                        </div>
-                        <div>
-                            <img name="picture" src="https://www.stargate-project.de/storage/app/media/charakterguide/stargate-atlantis-charakterguide-rodney-mckay-david-hewlett.jpg"
-                                 style="width: 200px; vertical-align: top; height: 100px;" />
-                            <button name="pictureChange" style="margin-top: 10px; width: 115px;">Změnit obrázek</button>
-                        </div>
-                    </div>
+<body>
+    <div>
+        <div class="container">
+            <div class="left-container">
+                <div>
+                    <label style="margin-right: 5px;">Jméno:</label>
+                    <span name="name" style="vertical-align: middle;">Ondřej Neustadt</span>
                 </div>
+                <div>
+                    <label style="margin-right: 5px;">Datum narození:</label>
+                    <span name="age" style="vertical-align: middle;">45</span>
+                </div>
+                <div>
+                    <label style="margin-right: 5px;">Adresa:</label>
+                    <span name="address" style="vertical-align: middle;">Kbýlkova 420 Bolín</span>
+                </div>
+                <div>
+                    <label style="margin-right: 5px;">Email:</label>
+                    <span name="email" style="vertical-align: middle;">ondrej1303@hupsikdupsik.com</span>
+                </div>
+                <button name="edit">Editovat</button>
+            </div>
+            <div class="right-container">
+                <img name="picture" src="https://www.stargate-project.de/storage/app/media/charakterguide/stargate-atlantis-charakterguide-rodney-mckay-david-hewlett.jpg" />
+                <button name="pictureChange">Změnit obrázek</button>
             </div>
         </div>
     </div>

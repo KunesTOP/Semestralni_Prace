@@ -75,6 +75,23 @@ namespace Models.DatabaseControllers
                 IdRasa = int.Parse(query.Rows[0][ID_RASA_NAME].ToString())
             };
         }
+        public static IEnumerable<Rasa> GetAll()
+        {
+            List<Rasa> listRas = new List<Rasa>();
+
+            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
+
+            foreach (DataRow dr in query.Rows)
+            {
+                listRas.Add(new Rasa
+                {
+                    IdRasa = int.Parse(dr[ID_RASA_NAME].ToString()),
+                    JmenoRasa = dr[JMENO_RASA_NAME].ToString()
+                });
+            }
+
+            return listRas;
+        }
     }
 }
 

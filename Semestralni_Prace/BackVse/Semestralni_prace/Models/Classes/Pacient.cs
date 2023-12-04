@@ -13,22 +13,6 @@
         public int CisloPrukazu { get; set; }
         public int CisloChipu { get; set; }
 
-        public Pacient(string jmeno, string pohlavi, DateTime narozeni, DateTime? umrti,
-            string rasa, string jmenoVlastnik, string email, long telefon, int cisloPrukazu,
-            int cisloChipu)
-        {
-            Jmeno = jmeno;
-            Pohlavi = pohlavi;
-            Narozeni = narozeni;
-            Umrti = umrti;
-            Rasa = rasa;
-            JmenoVlastnik = jmenoVlastnik;
-            Email = email;
-            Telefon = telefon;
-            CisloPrukazu = cisloPrukazu;
-            CisloChipu = cisloChipu;
-        }
-
 
     }
 }
