@@ -1,6 +1,7 @@
 ﻿using Back.databaze;
 using Microsoft.Extensions.Caching.Memory;
 using Oracle.ManagedDataAccess.Client;
+using Semestralni_prace.Models.Classes;
 using System.Data;
 using System.Net.Http.Headers;
 using System.Runtime.Caching;
@@ -21,20 +22,21 @@ namespace Back.Auth
     internal class AuthController
 
     {
+        //Na todle nešahej, funguje to! Pokud si todle čte někdo jiný, než Jindra... o> jak je?
         private static readonly ObjectCache cachedTokens = System.Runtime.Caching.MemoryCache.Default;
         private static AuthLevel CheckInDatabase(AuthToken authToken)
         {
             DataTable query = DatabaseController.Query(
-                $"SELECT PKG_HESLA.ZJISTI_UROVEN(:jmeno, :hash) AS uroven FROM DUAL",
+                $"SELECT PKG_HESLA.ZJISTI_UROVEN(:jmeno, :hash) \"level\" FROM DUAL",
                 new OracleParameter("jmeno", authToken.PrihlasovaciJmeno),
                 new OracleParameter("hash", authToken.Hash)
             );
-            return query.Rows.Count > 0 && Enum.TryParse((query.Rows[0])["uroven"].ToString(), out AuthLevel result) ? result : AuthLevel.NONE;
+            return query.Rows.Count > 0 && Enum.TryParse((query.Rows[0])["level"].ToString(), out AuthLevel result) ? result : AuthLevel.NONE;
         }
 
         public static AuthLevel Check(AuthToken? authToken)
         {
-            if (authToken == null)
+            if (authToken.HasValue)
             {
                 return AuthLevel.NONE;
             }
@@ -49,7 +51,7 @@ namespace Back.Auth
 
             AuthLevel level = CheckInDatabase(token);
             cachedTokens.Add(token.PrihlasovaciJmeno + token.Hash, level, DateTimeOffset.Now.AddMinutes(15));
-            return  level;
+            return level;
         }
 
         public static void InvalidateCache(AuthToken? authToken)
@@ -59,5 +61,17 @@ namespace Back.Auth
                 cachedTokens.Remove(authToken.Value.PrihlasovaciJmeno + authToken.Value.Hash);
             }
         }
+        public static AuthLevel GetLevel(string jmeno)
+        {
+            DataTable query = DatabaseController.Query($"SELECT uroven FROM {"UCTY"} WHERE {{JMENO}} = :jmeno",
+                new OracleParameter("jmeno", jmeno));
+
+            if (query.Rows.Count != 1)
+            {
+                return AuthLevel.NONE;
+            }
+            return Enum.TryParse((query.Rows[0])["UROVEN"].ToString(), out AuthLevel result) ? result : AuthLevel.NONE;
+        }
+
     }
 }

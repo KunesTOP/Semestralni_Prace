@@ -32,8 +32,14 @@ namespace Semestralni_Prace.Controllers
         }
         public IActionResult Tabulky()
         {
-            List<string> tableNames = GetNazvyTabulek();
-
+            var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno") });
+            if (level == AuthLevel.NONE) { return RedirectToAction("AutorizaceFailed", "Home"); }
+            bool isAdmin = level == AuthLevel.ADMIN;
+            var ktereJmenoPouzivat = (isAdmin) ? HttpContext.Session.GetString("emulovaneJmeno") : HttpContext.Session.GetString("jmeno");
+            if (isAdmin && ktereJmenoPouzivat != HttpContext.Session.GetString("jmeno")) level = AuthController.GetLevel(ktereJmenoPouzivat);
+            if (level == AuthLevel.OUTER) { return RedirectToAction("AutorizaceFailed", "Home"); }
+            List<string> tableNames;
+            tableNames = (level == AuthLevel.ADMIN) ? GetNazvyTabulekAdmin() :  GetNazvyTabulekLekar();
             ViewBag.TableNames = tableNames;
 
             return View();
@@ -45,10 +51,14 @@ namespace Semestralni_Prace.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        private List<string> GetNazvyTabulek()
+        private List<string> GetNazvyTabulekAdmin()
         {
             return new List<string> {"ADRESY", "ANAMNEZA", "ASISTENT", "LEKY", "MAJITEL","PRUKAZ", "RASA", "TITUL", "VAKCINA", "VETERINARNI_KLINIKA",
                 "VYSLEDEK_KREV","ZAMESTNANCI","ZVIRE"};
+        }
+        private List<string> GetNazvyTabulekLekar()
+        {
+            return new List<string> {"LEKY", "MAJITEL","PRUKAZ", "RASA", "VAKCINA","VYSLEDEK_KREV","ZVIRE"};
         }
         public IActionResult LoadTable(string tableName)
         {
@@ -102,8 +112,8 @@ namespace Semestralni_Prace.Controllers
         {
             if (AuthController.Check(new AuthToken { PrihlasovaciJmeno = loginName, Hash = loginPassword }) == AuthLevel.NONE)
             {
-                ModelState.AddModelError("", "Invalid login attempt.");
-                ViewData["ErrorMessage"] = "Invalid login attempt.";
+                ModelState.AddModelError("", "Invalid login attempt." );
+                ViewData["ErrorMessage"] = "Invalid login attempt. ";
                 return View();
             }
             HttpContext.Session.SetString("jmeno",loginName);
@@ -112,6 +122,17 @@ namespace Semestralni_Prace.Controllers
 
 
             return RedirectToAction("Profil", "Profil");
+        }
+
+        public IActionResult AutorizaceFailed()
+        {
+            return View();
+        }
+
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Home", "Login");
         }
 
     }

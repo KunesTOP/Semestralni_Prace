@@ -2,6 +2,7 @@
 using Semestralni_prace.Models.Classes;
 using Semestralni_prace.Models;
 using Models.DatabaseControllers;
+using Back.Auth;
 
 namespace Semestralni_prace.Controllers
 {
@@ -10,6 +11,11 @@ namespace Semestralni_prace.Controllers
 
         public IActionResult ListPacientu()
         {
+            var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno") });
+            if (level == AuthLevel.NONE) { return RedirectToAction("AutorizaceFailed", "Home"); }
+            bool isAdmin = level == AuthLevel.ADMIN;
+            var ktereJmenoPouzivat = (isAdmin) ? HttpContext.Session.GetString("emulovaneJmeno") : HttpContext.Session.GetString("jmeno");
+            if (isAdmin && ktereJmenoPouzivat != HttpContext.Session.GetString("jmeno")) level = AuthController.GetLevel(ktereJmenoPouzivat);
             List<Pacient> PacientList = GetListPacientu();
             return View(PacientList);
         }
@@ -48,6 +54,7 @@ namespace Semestralni_prace.Controllers
             }
             return PacientList;
         }
+        //TODO: Udělat tlačítko na přidání a následně to tady vyřešit
         public IActionResult PacientAdd()
         {
             return View();
