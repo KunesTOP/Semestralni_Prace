@@ -25,11 +25,11 @@ namespace Back.Auth
         private static AuthLevel CheckInDatabase(AuthToken authToken)
         {
             DataTable query = DatabaseController.Query(
-                $"SELECT PKG_HESLA.ZJISTI_UROVEN(:jmeno, :hash) \"level\" FROM DUAL",
+                $"SELECT PKG_HESLA.ZJISTI_UROVEN(:jmeno, :hash) AS uroven FROM DUAL",
                 new OracleParameter("jmeno", authToken.PrihlasovaciJmeno),
                 new OracleParameter("hash", authToken.Hash)
             );
-            return query.Rows.Count > 0 && Enum.TryParse((query.Rows[0])["level"].ToString(), out AuthLevel result) ? result : AuthLevel.NONE;
+            return query.Rows.Count > 0 && Enum.TryParse((query.Rows[0])["uroven"].ToString(), out AuthLevel result) ? result : AuthLevel.NONE;
         }
 
         public static AuthLevel Check(AuthToken? authToken)
