@@ -7,7 +7,7 @@ using System.Data;
 
 namespace Models.DatabaseControllers//TODO KNIHOVNY
 {
-    public class VeterinarniKlinikaController : Controller
+    public class VeterinarniKlinikaController 
     {
         public const string TABLE_NAME = "VETERINARNI_KLINIKA";
         public const string JMENO_MAJITEL_NAME = "jmeno_majitel";
@@ -40,14 +40,29 @@ namespace Models.DatabaseControllers//TODO KNIHOVNY
             };
         }
 
-        public static void InsertKlinika(VeterinarniKlinika klinika)//TODO
+     
+        public static void UpsertKlinika(VeterinarniKlinika klinika)
         {
-            DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({JMENO_MAJITEL_NAME}, {PRIJMENI_MAJITEL_NAME}, {VETER_KLIN_ID_NAME}, {ADRESY_ID_ADRESA_NAME}) " +
-                $"VALUES (:jmenoMajitel, :prijmeniMajitel, :veterKlinId, :adresyIdAdresa)",
-                new OracleParameter("jmenoMajitel", klinika.JmenoMajitel),
-                new OracleParameter("prijmeniMajitel", klinika.PrijmeniMajitel),
-                new OracleParameter("veterKlinId", klinika.VeterKlinId),
-                new OracleParameter("adresyIdAdresa", klinika.AdresyIdAdresa)
+            OracleParameter jmenoMajitelParam = new OracleParameter("jmenoMajitel", OracleDbType.Varchar2, klinika.JmenoMajitel, ParameterDirection.Input);
+            OracleParameter prijmeniMajitelParam = new OracleParameter("prijmeniMajitel", OracleDbType.Varchar2, klinika.PrijmeniMajitel, ParameterDirection.Input);
+            OracleParameter veterKlinIdParam = new OracleParameter("veterKlinId", OracleDbType.Int32, klinika.VeterKlinId, ParameterDirection.Input);
+            OracleParameter adresyIdAdresaParam = new OracleParameter("adresyIdAdresa", OracleDbType.Int32, klinika.AdresyIdAdresa, ParameterDirection.Input);
+
+            DatabaseController.Execute(
+                $"pkg_ostatni.upsert_veterinarni_klinika(:{JMENO_MAJITEL_NAME}, :{PRIJMENI_MAJITEL_NAME}, :{VETER_KLIN_ID_NAME}, :{ADRESY_ID_ADRESA_NAME})",
+                jmenoMajitelParam,
+                prijmeniMajitelParam,
+                veterKlinIdParam,
+                adresyIdAdresaParam
+            );
+        }
+        public static void DeleteKlinika(int veterKlinId)
+        {
+            OracleParameter veterKlinIdParam = new OracleParameter("veterKlinId", OracleDbType.Int32, veterKlinId, ParameterDirection.Input);
+
+            DatabaseController.Execute(
+                $"pkg_delete.upsert_veterinarni_klinika(:{VETER_KLIN_ID_NAME})",
+                veterKlinIdParam
             );
         }
 

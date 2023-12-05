@@ -7,7 +7,7 @@ using System.Data;
 
 namespace Models.DatabaseControllers
 {
-    public class MajiteleZviratController : Controller //TODo knihovna
+    public class MajiteleZviratController 
     {
         public const string TABLE_NAME = "MAJITELE_ZVIRAT";
         public const string PACIENT_ID_NAME = "id_pacient";
@@ -45,20 +45,39 @@ namespace Models.DatabaseControllers
             };
         }
 
-        public static void InsertMajitel(Majitel majitel)
+       
+        public static void DeleteMajitel(int id)
         {
-            DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({PACIENT_ID_NAME}, {MAIL_NAME}, {TELEFON_NAME}, {JMENO_NAME}, {PRIJMENI_NAME}, {VET_KLIN_ID_NAME}, {MAJITEL_ID_NAME}) " +
-                $"VALUES (:pacientId, :mail, :telefon, :jmeno, :prijmeni, :vetKlinId, :idMajitel)",
-                new OracleParameter("pacientId", majitel.PacientId),
-                new OracleParameter("mail", majitel.Mail),
-                new OracleParameter("telefon", majitel.Telefon),
-                new OracleParameter("jmeno", majitel.Jmeno),
-                new OracleParameter("prijmeni", majitel.Prijmeni),
-                new OracleParameter("vetKlinId", majitel.VetKlinId),
-                new OracleParameter("idMajitel", majitel.IdMajitel)
+            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {MAJITEL_ID_NAME} = :id",
+                new OracleParameter("id", id)
             );
         }
 
+        public static void UpsertMajitel(Majitel majitel)
+        {
+            OracleParameter pacientIdParam = new OracleParameter("p_pacient_id", OracleDbType.Int32, ParameterDirection.InputOutput);
+            pacientIdParam.Value = majitel.PacientId;
+
+            OracleParameter mailParam = new OracleParameter("p_mail", OracleDbType.Varchar2, ParameterDirection.Input);
+            mailParam.Value = majitel.Mail;
+
+            OracleParameter telefonParam = new OracleParameter("p_telefon", OracleDbType.Varchar2, ParameterDirection.Input);
+            telefonParam.Value = majitel.Telefon;
+
+            OracleParameter jmenoParam = new OracleParameter("p_jmeno", OracleDbType.Varchar2, ParameterDirection.Input);
+            jmenoParam.Value = majitel.Jmeno;
+
+            OracleParameter prijmeniParam = new OracleParameter("p_prijmeni", OracleDbType.Varchar2, ParameterDirection.Input);
+            prijmeniParam.Value = majitel.Prijmeni;
+
+            OracleParameter vetKlinIdParam = new OracleParameter("p_vet_klin_id", OracleDbType.Int32, ParameterDirection.Input);
+            vetKlinIdParam.Value = majitel.VetKlinId;
+
+            OracleParameter idMajitelParam = new OracleParameter("p_id_majitel", OracleDbType.Int32, ParameterDirection.Input);
+            idMajitelParam.Value = majitel.IdMajitel;
+
+            DatabaseController.Execute("pkg_ostatni.upsert_majitel", pacientIdParam, mailParam, telefonParam, jmenoParam, prijmeniParam, vetKlinIdParam, idMajitelParam);
+        }
         private static IEnumerable<int> GetIds(string tableName, string idColumnName, string conditionColumnName, int conditionValue)
         {
             List<int> ids = new List<int>();

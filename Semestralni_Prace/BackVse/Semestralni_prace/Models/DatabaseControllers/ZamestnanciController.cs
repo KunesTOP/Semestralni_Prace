@@ -7,7 +7,7 @@ using System.Data;
 
 namespace Models.DatabaseControllers
 {
-    public class ZamestnanciController : Controller//TODO KNIHOVNA
+    public class ZamestnanciController 
     {
         public const string TABLE_NAME = "ZAMESTNANCI";
         public const string ID_ZAMESTNANEC_NAME = "id_zamestnanec";
@@ -41,17 +41,7 @@ namespace Models.DatabaseControllers
             };
         }
 
-        public static void InsertZamestnanec(Zamestnanec zamestnanec)
-        {
-            DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({ID_ZAMESTNANEC_NAME}, {JMENO_NAME}, {PRIJMENI_NAME}, {VETER_KLIN_ID_NAME}, {PROFES_NAME}) " +
-                $"VALUES (:idZamestnanec, :jmeno, :prijmeni, :veterKlinId, :profese)",
-                new OracleParameter("idZamestnanec", zamestnanec.IdZamestnanec),
-                new OracleParameter("jmeno", zamestnanec.Jmeno),
-                new OracleParameter("prijmeni", zamestnanec.Prijmeni),
-                new OracleParameter("veterKlinId", zamestnanec.VeterKlinId),
-                new OracleParameter("profese", zamestnanec.Profese)
-            );
-        }
+    
 
 
         private static IEnumerable<int> GetIds(string tableName, string idColumnName)
@@ -66,6 +56,32 @@ namespace Models.DatabaseControllers
             }
 
             return ids;
+        }
+        public static void UpsertZamestnanec(Zamestnanec zamestnanec)
+        {
+            OracleParameter idZamestnanecParam = new OracleParameter("idZamestnanec", OracleDbType.Int32, zamestnanec.IdZamestnanec, ParameterDirection.Input);
+            OracleParameter jmenoParam = new OracleParameter("jmeno", OracleDbType.Varchar2, zamestnanec.Jmeno, ParameterDirection.Input);
+            OracleParameter prijmeniParam = new OracleParameter("prijmeni", OracleDbType.Varchar2, zamestnanec.Prijmeni, ParameterDirection.Input);
+            OracleParameter veterKlinIdParam = new OracleParameter("veterKlinId", OracleDbType.Int32, zamestnanec.VeterKlinId, ParameterDirection.Input);
+            OracleParameter profeseParam = new OracleParameter("profese", OracleDbType.Varchar2, zamestnanec.Profese, ParameterDirection.Input);
+
+            DatabaseController.Execute(
+                $"pkg_ostatni.upsert_zamestnanec(:{ID_ZAMESTNANEC_NAME}, :{JMENO_NAME}, :{PRIJMENI_NAME}, :{VETER_KLIN_ID_NAME}, :{PROFES_NAME})",
+                idZamestnanecParam,
+                jmenoParam,
+                prijmeniParam,
+                veterKlinIdParam,
+                profeseParam
+            );
+        }
+        public static void DeleteZamestnanec(int idZamestnanec)
+        {
+            OracleParameter idZamestnanecParam = new OracleParameter("idZamestnanec", OracleDbType.Int32, idZamestnanec, ParameterDirection.Input);
+
+            DatabaseController.Execute(
+                $"pkg_delete.delete_zamestnanec(:{ID_ZAMESTNANEC_NAME})",
+                idZamestnanecParam
+            );
         }
 
         public static List<Zamestnanec> GetAll()

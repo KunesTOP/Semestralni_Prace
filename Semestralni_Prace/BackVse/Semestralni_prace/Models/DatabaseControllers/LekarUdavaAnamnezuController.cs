@@ -22,15 +22,26 @@ namespace Models.DatabaseControllers
             return GetIds(TABLE_NAME, ANAMNEZA_ID_NAME, LEKAR_ID_NAME, lekarId);
         }
 
-        public static void InsertMapping(int lekarId, int anamnezaId)
+       
+        public static void DeleteMapping(int lekarId, int anamnezaId)
         {
-            DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({LEKAR_ID_NAME}, {ANAMNEZA_ID_NAME}) VALUES (:lekarId, :anamnezaId)",
+            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {LEKAR_ID_NAME} = :lekarId AND {ANAMNEZA_ID_NAME} = :anamnezaId",
                 new OracleParameter("lekarId", lekarId),
                 new OracleParameter("anamnezaId", anamnezaId)
             );
         }
 
-        
+        public static void UpsertMapping(int lekarId, int anamnezaId)
+        {
+            OracleParameter lekarIdParam = new OracleParameter("p_lekar_id_zamestnanec", OracleDbType.Int32, ParameterDirection.InputOutput);
+            lekarIdParam.Value = lekarId;
+
+            OracleParameter anamnezaIdParam = new OracleParameter("p_anamneza_id_anamneza", OracleDbType.Int32, ParameterDirection.InputOutput);
+            anamnezaIdParam.Value = anamnezaId;
+
+            DatabaseController.Execute("pkg_ostatni.upsert_lekar_udava_anamnezu", lekarIdParam, anamnezaIdParam);
+        }
+
         private static IEnumerable<int> GetIds(string tableName, string idColumnName, string conditionColumnName, int conditionValue)
         {
             List<int> ids = new List<int>();

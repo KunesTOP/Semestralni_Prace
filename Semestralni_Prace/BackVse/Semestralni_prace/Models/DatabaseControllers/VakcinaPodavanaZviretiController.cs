@@ -22,14 +22,30 @@ namespace Models.DatabaseControllers
             return GetIds(TABLE_NAME, VAKCINA_ID_NAME, ZVIRE_ID_NAME, zvireId);
         }
 
-        public static void InsertMapping(int vakcinaId, int zvireId)
+       
+        public static void UpsertVakcinaPodavanaZvireti(int vakcinaId, int zvireId)
         {
-            DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({VAKCINA_ID_NAME}, {ZVIRE_ID_NAME}) VALUES (:vakcinaId, :zvireId)",
-                new OracleParameter("vakcinaId", vakcinaId),
-                new OracleParameter("zvireId", zvireId)
+            OracleParameter vakcinaIdParam = new OracleParameter("vakcinaId", OracleDbType.Int32, vakcinaId, ParameterDirection.InputOutput);
+            OracleParameter zvireIdParam = new OracleParameter("zvireId", OracleDbType.Int32, zvireId, ParameterDirection.InputOutput);
+
+            DatabaseController.Execute(
+                "pkg_ostatni.upsert_vakcina_podavana_zvireti",
+                vakcinaIdParam,
+                zvireIdParam
             );
         }
 
+        public static void DeleteVakcinaPodavanaZvireti(int vakcinaId, int zvireId)
+        {
+            OracleParameter vakcinaIdParam = new OracleParameter("vakcinaId", OracleDbType.Int32, vakcinaId, ParameterDirection.Input);
+            OracleParameter zvireIdParam = new OracleParameter("zvireId", OracleDbType.Int32, zvireId, ParameterDirection.Input);
+
+            DatabaseController.Execute(
+                $"DELETE FROM {TABLE_NAME} WHERE {VAKCINA_ID_NAME} = :vakcinaId AND {ZVIRE_ID_NAME} = :zvireId",
+                vakcinaIdParam,
+                zvireIdParam
+            );
+        }
 
         private static IEnumerable<int> GetIds(string tableName, string idColumnName, string conditionColumnName, int conditionValue)
         {

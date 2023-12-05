@@ -29,8 +29,25 @@ namespace Models.DatabaseControllers
                 new OracleParameter("vakcinaId", vakcinaId)
             );
         }
+        public static void DeleteAsistentPodaVakcinu(int asistentId, int vakcinaId)
+        {
+            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {ASISTENT_ID_NAME} = :asistentId AND {VAKCINA_ID_NAME} = :vakcinaId",
+                new OracleParameter("asistentId", asistentId),
+                new OracleParameter("vakcinaId", vakcinaId)
+            );
+        }
 
-       
+        public static void UpsertAsistentPodaVakcinu(int asistentId, int vakcinaId)
+        {
+            OracleParameter asistentIdParam = new OracleParameter("p_asistent_id_zamestnanec", OracleDbType.Int32, ParameterDirection.InputOutput);
+            asistentIdParam.Value = asistentId;
+
+            OracleParameter vakcinaIdParam = new OracleParameter("p_vakcina_id_vakcina", OracleDbType.Int32, ParameterDirection.InputOutput);
+            vakcinaIdParam.Value = vakcinaId;
+
+            DatabaseController.Execute("pkg_ostatni.upsert_asistent_poda_vakcinu", asistentIdParam, vakcinaIdParam);
+        }
+
         private static IEnumerable<int> GetIds(string tableName, string idColumnName, string conditionColumnName, int conditionValue)
         {
             List<int> ids = new List<int>();

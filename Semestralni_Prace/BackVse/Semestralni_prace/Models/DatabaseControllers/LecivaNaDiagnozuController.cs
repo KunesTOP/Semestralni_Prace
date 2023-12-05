@@ -6,7 +6,7 @@ using System.Data;
 
 namespace Models.DatabaseControllers
 {
-    public class LecivaNaDiagnozuController : Controller
+    public class LecivaNaDiagnozuController 
     {
         public const string TABLE_NAME = "LECIVA_NA_DIAGNOZU";
         public const string LEKY_ID_NAME = "leky_id_leky";
@@ -22,15 +22,27 @@ namespace Models.DatabaseControllers
             return GetIds(TABLE_NAME, ANAMN_ID_NAME, LEKY_ID_NAME, lekyId);
         }
 
-        public static void InsertMapping(int lekyId, int anamnId)
+      
+        public static void DeleteLecivaNaDiagnozu(int lekyId, int anamnId)
         {
-            DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({LEKY_ID_NAME}, {ANAMN_ID_NAME}) VALUES (:lekyId, :anamnId)",
+            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {LEKY_ID_NAME} = :lekyId AND {ANAMN_ID_NAME} = :anamnId",
                 new OracleParameter("lekyId", lekyId),
                 new OracleParameter("anamnId", anamnId)
             );
         }
 
-        
+        public static void UpsertLecivaNaDiagnozu(int lekyId, int anamnId)
+        {
+            OracleParameter lekyIdParam = new OracleParameter("p_leky_id_leky", OracleDbType.Int32, ParameterDirection.InputOutput);
+            lekyIdParam.Value = lekyId;
+
+            OracleParameter anamnIdParam = new OracleParameter("p_anamn_id_anamn", OracleDbType.Int32, ParameterDirection.InputOutput);
+            anamnIdParam.Value = anamnId;
+
+            DatabaseController.Execute("pkg_ostatni.upsert_leciva_na_diagnozu", lekyIdParam, anamnIdParam);
+        }
+
+
         private static IEnumerable<int> GetIds(string tableName, string idColumnName, string conditionColumnName, int conditionValue)
         {
             List<int> ids = new List<int>();

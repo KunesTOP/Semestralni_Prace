@@ -7,7 +7,7 @@ using System.Data;
 
 namespace Models.DatabaseControllers
 {
-    public class VakcinyTableController : Controller//todo KNIHOVNY
+    public class VakcinyTableController 
     {
         public const string TABLE_NAME = "VAKCINY";
         public const string ID_VAKCINA = "id_vakcina";
@@ -36,20 +36,29 @@ namespace Models.DatabaseControllers
             };
         }
 
-        public static void InsertVakcina(Vakcina vakcina)
+        
+        public static void UpsertVakcina(Vakcina vakcina)
         {
-            DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({ID_VAKCINA}, {NAZEV_VAKCINA_NAME}) " +
-                $"VALUES (:idVakcina, :nazevVakcina)",
-                new OracleParameter("idVakcina", vakcina.IdVakcina),
-                new OracleParameter("nazevVakcina", vakcina.NazevVakcina)
+            OracleParameter idVakcinaParam = new OracleParameter("idVakcina", OracleDbType.Int32, vakcina.IdVakcina, ParameterDirection.Input);
+            OracleParameter nazevVakcinaParam = new OracleParameter("nazevVakcina", OracleDbType.Varchar2, vakcina.NazevVakcina, ParameterDirection.Input);
+
+            DatabaseController.Execute(
+               "pkg_ostatni.upsert_vakciny",
+                idVakcinaParam,
+                nazevVakcinaParam
             );
         }
-        public static void RemoveVakcina(int idVakcina)
+        public static void DeleteVakcina(int idVakcina)
         {
-            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {ID_VAKCINA} = :idVakcina",
-                new OracleParameter("idVakcina", idVakcina)
+            OracleParameter idVakcinaParam = new OracleParameter("idVakcina", OracleDbType.Int32, idVakcina, ParameterDirection.Input);
+
+            DatabaseController.Execute(
+               "pkg_ostatni.delete_vakcina",
+                idVakcinaParam
             );
         }
+
+
 
         private static IEnumerable<int> GetIds(string tableName, string idColumnName)
         {

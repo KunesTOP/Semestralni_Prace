@@ -39,17 +39,31 @@ namespace Models.DatabaseControllers
             };
         }
 
-        public static void InsertVysledekKrev(VysledekKrev vysledekKrev)
+     
+        public static void UpsertVysledekKrev(VysledekKrev vysledekKrev)
         {
-            DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({ID_VYSLEDEK_NAME}, {MNOZSTVI_PROTILATKY_NAME}, {MNOZSTVI_CERV_KRV_NAME}, {ANAMNEZA_ID_NAME}) " +
-                $"VALUES (:idVysledek, :mnozstviProtilatky, :mnozstviCervKrv, :anamnezaId)",
-                new OracleParameter("idVysledek", vysledekKrev.IdVysledek),
-                new OracleParameter("mnozstviProtilatky", vysledekKrev.MnozstviProtilatky),
-                new OracleParameter("mnozstviCervKrv", vysledekKrev.MnozstviCervKrv),
-                new OracleParameter("anamnezaId", vysledekKrev.AnamnezaId ?? (object)DBNull.Value)
+            OracleParameter idVysledekParam = new OracleParameter("idVysledek", OracleDbType.Int32, vysledekKrev.IdVysledek, ParameterDirection.Input);
+            OracleParameter mnozstviProtilatkyParam = new OracleParameter("mnozstviProtilatky", OracleDbType.Int32, vysledekKrev.MnozstviProtilatky, ParameterDirection.Input);
+            OracleParameter mnozstviCervKrvParam = new OracleParameter("mnozstviCervKrv", OracleDbType.Int32, vysledekKrev.MnozstviCervKrv, ParameterDirection.Input);
+            OracleParameter anamnezaIdParam = new OracleParameter("anamnezaId", OracleDbType.Int32, vysledekKrev.AnamnezaId ?? (object)DBNull.Value, ParameterDirection.Input);
+
+            DatabaseController.Execute(
+                $"pkg_ostatni.upsert_vysledek_krev(:{ID_VYSLEDEK_NAME}, :{MNOZSTVI_PROTILATKY_NAME}, :{MNOZSTVI_CERV_KRV_NAME}, :{ANAMNEZA_ID_NAME})",
+                idVysledekParam,
+                mnozstviProtilatkyParam,
+                mnozstviCervKrvParam,
+                anamnezaIdParam
             );
         }
+        public static void DeleteVysledekKrev(int idVysledek)
+        {
+            OracleParameter idVysledekParam = new OracleParameter("idVysledek", OracleDbType.Int32, idVysledek, ParameterDirection.Input);
 
+            DatabaseController.Execute(
+                $"pkg_delete.delete_vysledek_krev(:{ID_VYSLEDEK_NAME})",
+                idVysledekParam
+            );
+        }
 
         private static IEnumerable<int> GetIds(string tableName, string idColumnName)
         {

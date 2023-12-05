@@ -7,7 +7,7 @@ using System.Data;
 
 namespace Models.DatabaseControllers
 {
-    public class LekyController : Controller//TODO knihovna
+    public class LekyController 
     {
         public const string TABLE_NAME = "LEKY";
         public const string ID_NAME = "id_leky";
@@ -35,15 +35,25 @@ namespace Models.DatabaseControllers
             };
         }
 
-        public static void InsertLek(Lek lek)
+       
+
+        public static void DeleteLek(int id)
         {
-            DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({ID_NAME}, {NAZEV_NAME}) VALUES (:id, :nazev)",
-                new OracleParameter("id", lek.Id),
-                new OracleParameter("nazev", lek.Nazev)
+            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {ID_NAME} = :id",
+                new OracleParameter("id", id)
             );
         }
 
+        public static void UpsertLek(Lek lek)
+        {
+            OracleParameter idParam = new OracleParameter("p_id_leky", OracleDbType.Int32, ParameterDirection.InputOutput);
+            idParam.Value = lek.Id;
 
+            OracleParameter nazevParam = new OracleParameter("p_nazev", OracleDbType.Varchar2, ParameterDirection.Input);
+            nazevParam.Value = lek.Nazev;
+
+            DatabaseController.Execute("pkg_ostatni.upsert_lek", idParam, nazevParam);
+        }
 
         private static IEnumerable<int> GetIds(string tableName, string idColumnName)
         {
