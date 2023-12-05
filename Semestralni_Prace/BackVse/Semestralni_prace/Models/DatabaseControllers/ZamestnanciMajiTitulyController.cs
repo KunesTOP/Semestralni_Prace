@@ -22,15 +22,30 @@ namespace Models.DatabaseControllers
             return GetIds(TABLE_NAME, ZAMES_ID_ZAMES_NAME, TITUL_ID_TITUL_NAME, titulId);
         }
 
-        public static void InsertMapping(int zamesId, int titulId)
+       
+        public static void DeleteMapping(int zamesId, int titulId)
         {
-            DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({ZAMES_ID_ZAMES_NAME}, {TITUL_ID_TITUL_NAME}) VALUES (:zamesId, :titulId)",
-                new OracleParameter("zamesId", zamesId),
-                new OracleParameter("titulId", titulId)
+            OracleParameter zamesIdParam = new OracleParameter("zamesId", OracleDbType.Int32, zamesId, ParameterDirection.Input);
+            OracleParameter titulIdParam = new OracleParameter("titulId", OracleDbType.Int32, titulId, ParameterDirection.Input);
+
+            DatabaseController.Execute(
+                $"DELETE FROM {TABLE_NAME} WHERE {ZAMES_ID_ZAMES_NAME} = :zamesId AND {TITUL_ID_TITUL_NAME} = :titulId",
+                zamesIdParam,
+                titulIdParam
             );
         }
 
-        
+        public static void InsertMapping(int zamesId, int titulId)
+        {
+            OracleParameter zamesIdParam = new OracleParameter("zamesId", OracleDbType.Int32, zamesId, ParameterDirection.Input);
+            OracleParameter titulIdParam = new OracleParameter("titulId", OracleDbType.Int32, titulId, ParameterDirection.Input);
+
+            DatabaseController.Execute(
+                $"pkg_ostatni.upsert_zamestnanec_titul(:{ZAMES_ID_ZAMES_NAME}, :{TITUL_ID_TITUL_NAME})",
+                zamesIdParam,
+                titulIdParam
+            );
+        }
         private static IEnumerable<int> GetIds(string tableName, string idColumnName, string conditionColumnName, int conditionValue)
         {
             List<int> ids = new List<int>();

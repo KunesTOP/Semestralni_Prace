@@ -7,7 +7,7 @@ using System.Data;
 
 namespace Models.DatabaseControllers
 {
-    public class PrukazyController : Controller//TODO knihovna
+    public class PrukazyController 
     {
         public const string TABLE_NAME = "PRUKAZY";
         public const string CISLO_PRUKAZ_NAME = "cislo_prukaz";
@@ -49,8 +49,30 @@ namespace Models.DatabaseControllers
                 new OracleParameter("zvireId", prukaz.ZvireId ?? (object)DBNull.Value)
             );
         }
+        public static void DeletePrukaz(int cisloPrukaz)
+        {
+            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {CISLO_PRUKAZ_NAME} = :cisloPrukaz",
+                new OracleParameter("cisloPrukaz", cisloPrukaz)
+            );
+        }
 
-      
+        public static void UpsertPrukaz(int cisloPrukaz, int cisloChip, int idPrukaz, int? zvireId)
+        {
+            OracleParameter cisloPrukazParam = new OracleParameter("p_cislo_prukaz", OracleDbType.Int32, ParameterDirection.InputOutput);
+            cisloPrukazParam.Value = cisloPrukaz;
+
+            OracleParameter cisloChipParam = new OracleParameter("p_cislo_chip", OracleDbType.Int32, ParameterDirection.Input);
+            cisloChipParam.Value = cisloChip;
+
+            OracleParameter idPrukazParam = new OracleParameter("p_id_prukaz", OracleDbType.Int32, ParameterDirection.Input);
+            idPrukazParam.Value = idPrukaz;
+
+            OracleParameter zvireIdParam = new OracleParameter("p_zvire_id", OracleDbType.Int32, ParameterDirection.Input);
+            zvireIdParam.Value = zvireId ?? (object)DBNull.Value;
+
+            DatabaseController.Execute("pkg_ostatni.upsert_prukazy", cisloPrukazParam, cisloChipParam, idPrukazParam, zvireIdParam);
+        }
+
         private static IEnumerable<int> GetIds(string tableName, string idColumnName)
         {
             List<int> ids = new List<int>();

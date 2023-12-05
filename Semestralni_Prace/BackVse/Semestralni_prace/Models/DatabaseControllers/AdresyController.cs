@@ -13,7 +13,7 @@ using Semestralni_prace.Models.Classes;
 
 namespace Models.DatabaseControllers
 {
-    public class AdresyController : Controller
+    public class AdresyController 
     {
         public const string TABLE_NAME = "ADRESY";
         public const string ID_NAME = "id_adresa";
@@ -75,48 +75,36 @@ namespace Models.DatabaseControllers
             return address;
         }
 
-        //protected override bool CheckObject(JObject value, AuthLevel authLevel) //TODO
-        //{
-        //    return ValidJSON(value, "Id") && int.TryParse(value["Id"].ToString(), out _);//TODO
-        //}
+        public static void Upsert(Adresy adresy)
+        {
+            OracleParameter idParam = new OracleParameter("p_id_adresa", OracleDbType.Int32, ParameterDirection.InputOutput);
+            idParam.Value = adresy.Id;
+
+            OracleParameter mestoParam = new OracleParameter("p_mesto", OracleDbType.Varchar2, ParameterDirection.InputOutput);
+            mestoParam.Value = adresy.City;
+
+            OracleParameter uliceParam = new OracleParameter("p_ulice", OracleDbType.Varchar2, ParameterDirection.InputOutput);
+            uliceParam.Value = adresy.Street;
+
+            OracleParameter cisloPopisneParam = new OracleParameter("p_cislo_popisne", OracleDbType.Int32, ParameterDirection.InputOutput);
+            cisloPopisneParam.Value = adresy.HouseNumber;
+
+            DatabaseController.Execute("pkg_model_dml1.insert_adresa", idParam, mestoParam, uliceParam, cisloPopisneParam);
+        }
+
+        public static void Delete(int id)
+        {
+            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {ID_NAME} = :id",
+                new OracleParameter("id", id)
+            );
+        }
 
         private bool ValidJSON(JObject value, string v)
         {
             throw new NotImplementedException();
         }
 
-        //protected override int SetObjectInternal(JObject value, AuthLevel authLevel, OracleTransaction transaction)//TODO
-        //{
-        //    Adress n = value.ToObject<Adress>();
-        //    OracleParameter p_id = new OracleParameter("p_id", n.Id);
-        //    DatabaseController.Execute("PKG_MODEL_DML.UPSERT_ADRESA", transaction,
-
-        //        p_id,
-        //        new OracleParameter("p_mesto", n.City),
-        //        new OracleParameter("p_ulice", n.Street),
-        //        new OracleParameter("p_cp", n.HouseNumber)
-
-
-        //    );
-        //    int id = int.Parse(p_id.Value.ToString());
-
-
-
-        //    return id;
-        //}
-
-
-        //public static bool CheckObjectStatic(JObject value, AuthLevel authLevel)//TODO
-        //{
-        //    return instance.CheckObject(value, authLevel);
-        //}
-
-
-        //public static int SetObjectStatic(JObject value, AuthLevel authLevel, OracleTransaction transaction = null)//TODO
-        //{
-        //    return instance.SetObject(value, authLevel, transaction);//TODO
-        //}
-
+        
         public static IEnumerable<Adresy> GetAll()
         {
             List<Adresy> list = new List<Adresy>();

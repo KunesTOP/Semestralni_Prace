@@ -7,7 +7,7 @@ using System.Data;
 
 namespace Models.DatabaseControllers
 {
-    public class RasaZviratController : Controller//TODO knihovna
+    public class RasaZviratController 
     {
         public const string TABLE_NAME = "RASA_ZVIRAT";
         public const string JMENO_RASA_NAME = "jmeno_rasa";
@@ -43,7 +43,23 @@ namespace Models.DatabaseControllers
                 new OracleParameter("idRasa", rasa.IdRasa)
             );
         }
+        public static void DeleteRasa(int idRasa)
+        {
+            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {ID_RASA_NAME} = :idRasa",
+                new OracleParameter("idRasa", idRasa)
+            );
+        }
 
+        public static void UpsertRasa(int idRasa, string jmenoRasa)
+        {
+            OracleParameter idRasaParam = new OracleParameter("p_id_rasa", OracleDbType.Int32, ParameterDirection.InputOutput);
+            idRasaParam.Value = idRasa;
+
+            OracleParameter jmenoRasaParam = new OracleParameter("p_jmeno_rasa", OracleDbType.Varchar2, ParameterDirection.Input);
+            jmenoRasaParam.Value = jmenoRasa;
+
+            DatabaseController.Execute("pkg_model_dml1.insert_rasa_zvirat", idRasaParam, jmenoRasaParam);
+        }
 
         private static IEnumerable<int> GetIds(string tableName, string idColumnName)
         {

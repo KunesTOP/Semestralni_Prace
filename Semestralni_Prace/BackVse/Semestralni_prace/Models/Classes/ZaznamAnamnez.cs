@@ -1,4 +1,6 @@
-﻿namespace Semestralni_prace.Models.Classes
+﻿using Oracle.ManagedDataAccess.Client;
+
+namespace Semestralni_prace.Models.Classes
 {
     public class ZaznamAnamnez
     {
@@ -11,5 +13,6 @@
         public int MnozstviBilychKrvinek { get; set; }
         public int MnozstviCervenychKrvinek { get; set; }
         public string NazevLeku { get; set; }
+        public OracleDbType Datum { get; internal set; }
     }
 }

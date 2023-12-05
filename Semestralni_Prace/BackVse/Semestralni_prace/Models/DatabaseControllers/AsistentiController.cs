@@ -7,7 +7,7 @@ using System.Data;
 
 namespace Models.DatabaseControllers
 {
-    public class AsistentiController : Controller//TODO knihovna dole 
+    public class AsistentiController 
     {
         public const string TABLE_NAME = "ASISTENTI";
         public const string ID_NAME = "id_zamestnanec";
@@ -35,14 +35,30 @@ namespace Models.DatabaseControllers
             };
         }
 
-        public static void InsertAsistent(Asistent asistent)
+        //public static void InsertAsistent(Asistent asistent)
+        //{
+        //    DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({ID_NAME}, {PRAXE_NAME}) VALUES (:id, :praxe)",
+        //        new OracleParameter("id", asistent.IdZamestnanec),
+        //        new OracleParameter("praxe", asistent.Praxe)
+        //    );
+        //}
+        public static void DeleteAsistent(int id)
         {
-            DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({ID_NAME}, {PRAXE_NAME}) VALUES (:id, :praxe)",
-                new OracleParameter("id", asistent.IdZamestnanec),
-                new OracleParameter("praxe", asistent.Praxe)
+            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {ID_NAME} = :id",
+                new OracleParameter("id", id)
             );
         }
 
+        public static void UpsertAsistent(Asistent asistent)
+        {
+            OracleParameter idParam = new OracleParameter("p_id_zamestnanec", OracleDbType.Int32, ParameterDirection.InputOutput);
+            idParam.Value = asistent.IdZamestnanec;
+
+            OracleParameter praxeParam = new OracleParameter("p_praxe", OracleDbType.Int32, ParameterDirection.InputOutput);
+            praxeParam.Value = asistent.Praxe;
+
+            DatabaseController.Execute("pkg_ostatni.upsert_asistent", idParam, praxeParam);
+        }
 
         private static IEnumerable<int> GetIds(string tableName, string idColumnName)
         {

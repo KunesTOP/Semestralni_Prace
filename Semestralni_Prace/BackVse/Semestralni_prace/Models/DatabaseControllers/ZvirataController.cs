@@ -8,7 +8,7 @@ using System.Data;
 
 namespace Models.DatabaseControllers
 {
-    public class ZvirataController : Controller//TODO KNIHOVNA
+    public class ZvirataController 
     {
         public const string TABLE_NAME = "ZVIRATA";
         public const string JMENO_ZVIRE_NAME = "jmeno_zvire";
@@ -46,21 +46,45 @@ namespace Models.DatabaseControllers
             };
         }
 
-        public static void InsertZvire(Zvire zvire)
+        public static int InsertZvire(
+     string jmeno,
+     string pohlavi,
+     DateTime datumNarozeni,
+     DateTime? datumUmrti,
+     int majitelId,
+     int idZvire,
+     int rasaId)
         {
-            DatabaseController.Execute($"INSERT INTO {TABLE_NAME} " +
-                $"({JMENO_ZVIRE_NAME}, {POHLAVI_NAME}, {DATUM_NAROZENI_NAME}, {DATUM_UMRTI_NAME}, {MAJITEL_ZVIRE_ID_PACIENT_NAME}, {ID_ZVIRE_NAME}, {RASA_ZVIRAT_ID_RASA_NAME}) " +
-                $"VALUES (:jmenoZvire, :pohlavi, :datumNarozeni, :datumUmrti, :majitelZvireIdPacient, :idZvire, :rasaZviratIdRasa)",
-                new OracleParameter("jmenoZvire", zvire.JmenoZvire),
-                new OracleParameter("pohlavi", zvire.Pohlavi),
-                new OracleParameter("datumNarozeni", zvire.DatumNarozeni),
-                new OracleParameter("datumUmrti", zvire.DatumUmrti ?? (object)DBNull.Value),
-                new OracleParameter("majitelZvireIdPacient", zvire.MajitelZvireIdPacient),
-                new OracleParameter("idZvire", zvire.IdZvire),
-                new OracleParameter("rasaZviratIdRasa", zvire.RasaZviratIdRasa)
+            OracleParameter jmenoParam = new OracleParameter("p_jmeno", OracleDbType.Varchar2, jmeno, ParameterDirection.Input);
+            OracleParameter pohlaviParam = new OracleParameter("p_pohlavi", OracleDbType.Varchar2, pohlavi, ParameterDirection.Input);
+            OracleParameter datumNarozeniParam = new OracleParameter("p_datum_narozeni", OracleDbType.Date, datumNarozeni, ParameterDirection.Input);
+            OracleParameter datumUmrtiParam = new OracleParameter("p_datum_umrti", OracleDbType.Date, datumUmrti ?? (object)DBNull.Value, ParameterDirection.Input);
+            OracleParameter majitelIdParam = new OracleParameter("p_majitel_zvire_id_pacient", OracleDbType.Int32, majitelId, ParameterDirection.Input);
+            OracleParameter idZvireParam = new OracleParameter("p_id_zvire", OracleDbType.Int32, idZvire, ParameterDirection.Input);
+            OracleParameter rasaIdParam = new OracleParameter("p_rasa_zvirat_id_rasa", OracleDbType.Int32, rasaId, ParameterDirection.Input);
+
+            OracleParameter resultParam = new OracleParameter("result", OracleDbType.Int32, ParameterDirection.ReturnValue);
+
+            DatabaseController.Execute(
+                "pkg_model_dml1.insert_zvire",
+                resultParam,
+                jmenoParam,
+                pohlaviParam,
+                datumNarozeniParam,
+                datumUmrtiParam,
+                majitelIdParam,
+                idZvireParam,
+                rasaIdParam
+            );
+
+            return int.Parse(resultParam.Value.ToString());
+        }
+        public static void DeleteMapping(int zvireId)
+        {
+            DatabaseController.Execute("pkg_delete.delete_zvire_ma_nemoc_by_animal_name",
+                new OracleParameter("p_jmeno_zvire", zvireId)
             );
         }
-
         private static IEnumerable<int> GetIds(string tableName, string idColumnName, string conditionColumnName, int conditionValue)
         {
             List<int> ids = new List<int>();
