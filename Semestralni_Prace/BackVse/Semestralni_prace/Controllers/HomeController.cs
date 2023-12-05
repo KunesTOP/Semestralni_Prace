@@ -4,6 +4,7 @@ using Semestralni_prace.Models.Classes;
 using Semestralni_prace.Controllers;
 using System.Diagnostics;
 using Models.DatabaseControllers;
+using Back.Auth;
 
 namespace Semestralni_Prace.Controllers
 {
@@ -96,15 +97,22 @@ namespace Semestralni_Prace.Controllers
             }
             return null;
         }
+        [HttpPost]
+        public IActionResult Login(string loginName, string loginPassword)
+        {
+            if (AuthController.Check(new AuthToken { PrihlasovaciJmeno = loginName, Hash = loginPassword }) == AuthLevel.NONE)
+            {
+                ModelState.AddModelError("", "Invalid login attempt.");
+                ViewData["ErrorMessage"] = "Invalid login attempt.";
+                return View();
+            }
+            HttpContext.Session.SetString("jmeno",loginName);
+            HttpContext.Session.SetString("heslo",loginPassword);
+            HttpContext.Session.SetString("emulovaneJmeno", loginName);
+
+
+            return RedirectToAction("Profil", "Profil");
+        }
 
     }
-    /*[HttpPost]
-    public IActionResult UpdateRow(int id, string columnName1, string columnName2)
-    {
-        // Logic to update the row in the database based on the provided values
-        // You'll need to implement this logic
-
-        // Assuming the update was successful
-        return Json(new { success = true });
-    }*/
 }

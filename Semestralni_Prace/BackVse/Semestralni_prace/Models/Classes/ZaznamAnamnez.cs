@@ -11,19 +11,5 @@
         public int MnozstviBilychKrvinek { get; set; }
         public int MnozstviCervenychKrvinek { get; set; }
         public string NazevLeku { get; set; }
-        public List<ZaznamAnamnez> Zaznamy { get; set; }//TODO todle nějak upravit, protože to je blbost
-
-        public ZaznamAnamnez(string jmeno, string pohlavi, DateOnly narozeni, DateOnly umrti, string vlastnik, Rasa plemeno, int cerveny, int bily, string lek)
-        {
-            Jmeno = jmeno;
-            Pohlavi = pohlavi;
-            Narozeni= narozeni;
-            Umrti = umrti;
-            JmenoVlastnika= vlastnik;
-            NazevPlemene = plemeno.JmenoRasa;
-            MnozstviCervenychKrvinek = cerveny;
-            MnozstviBilychKrvinek = bily;
-            NazevLeku = lek;
-        }   
     }
 }

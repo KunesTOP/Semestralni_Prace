@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = null;
+    ViewData["Title"] = "Database Viewer";
 }
 
 <!DOCTYPE html>
@@ -15,12 +15,10 @@
 
         div {
             width: 800px;
-            height: 450px;
             margin: 0 auto;
         }
 
         .container {
-            padding-top: 50px;
             background-color: aquamarine;
             display: flex;
             text-align: left;
@@ -30,9 +28,14 @@
             margin-left: 20px;
             display: flex;
             flex-direction: column;
+            padding-top: 12px;
+            gap: 30px;
             align-items: flex-start;
             width: 45%; /* Adjust the width as needed */
             margin-right: 70px; /* Adjust the space between left and right containers */
+        }
+        form{
+            display:flex;
         }
 
         .right-container {
@@ -58,29 +61,27 @@
 <body>
     <div>
         <div class="container">
-            <div class="left-container">
-                <div>
-                    <label style="margin-right: 5px;">Jméno:</label>
-                    <span name="name" style="vertical-align: middle;">Ondřej Neustadt</span>
+            <form method="post" action="/Profil/UpdateProfile">
+                <div class="left-container">
+                    <div>
+                        <label style="margin-right: 5px;">Jméno:</label>
+                        <span name="name" style="vertical-align: middle;">Ondřej</span>
+                    </div>
+                    <div>
+                        <label style="margin-right: 5px;">Příjmení:</label>
+                        <span name="surname" style="vertical-align: middle;">Neustadt</span>
+                    </div>
+                    <div>
+                        <label style="margin-right: 5px;">Email:</label>
+                        <span name="profesion" style="vertical-align: middle;">Lekar</span>
+                    </div>
                 </div>
-                <div>
-                    <label style="margin-right: 5px;">Datum narození:</label>
-                    <span name="age" style="vertical-align: middle;">45</span>
+                <div class="right-container">
+                    <img name="picture" src="https://www.stargate-project.de/storage/app/media/charakterguide/stargate-atlantis-charakterguide-rodney-mckay-david-hewlett.jpg" />
+                    <button name="pictureChange">Změnit obrázek</button>
+                    <input type="submit" value="Uložit změny" style="display:none;" name="saveChanges" />
                 </div>
-                <div>
-                    <label style="margin-right: 5px;">Adresa:</label>
-                    <span name="address" style="vertical-align: middle;">Kbýlkova 420 Bolín</span>
-                </div>
-                <div>
-                    <label style="margin-right: 5px;">Email:</label>
-                    <span name="email" style="vertical-align: middle;">ondrej1303@hupsikdupsik.com</span>
-                </div>
-                <button name="edit">Editovat</button>
-            </div>
-            <div class="right-container">
-                <img name="picture" src="https://www.stargate-project.de/storage/app/media/charakterguide/stargate-atlantis-charakterguide-rodney-mckay-david-hewlett.jpg" />
-                <button name="pictureChange">Změnit obrázek</button>
-            </div>
+            </form>
         </div>
     </div>
 </body>

@@ -10,27 +10,9 @@ namespace Back.Auth
 {
     public struct AuthToken
     {
-        public string Username { get; set; }
+        public string PrihlasovaciJmeno { get; set; }
         public string Hash { get; set; }
 
-        public AuthLevel? As { get; set; }
-
-        public static AuthToken? From(HttpRequestHeaders headers)
-        {
-            if (!headers.TryGetValues("Tis-User", out var userValues) || !headers.TryGetValues("Tis-Hash", out var hashValues))
-            {
-                return null;
-            }
-
-            return new AuthToken()
-            {
-                Username = userValues.First(),
-                Hash = hashValues.First(),
-                As = (headers.TryGetValues("Tis-As", out var asValues) && Enum.TryParse(asValues.First(), out AuthLevel result)) ? result : (AuthLevel?)null
-            };
-        }
-
-        
     }
     public enum AuthLevel
     {
@@ -39,13 +21,12 @@ namespace Back.Auth
     internal class AuthController
 
     {
-
-        private static readonly ObjectCache cachedTokens = System.Runtime.Caching.MemoryCache.Default;//TODO
+        private static readonly ObjectCache cachedTokens = System.Runtime.Caching.MemoryCache.Default;
         private static AuthLevel CheckInDatabase(AuthToken authToken)
         {
             DataTable query = DatabaseController.Query(
                 $"SELECT PKG_HESLA.ZJISTI_UROVEN(:jmeno, :hash) \"level\" FROM DUAL",
-                new OracleParameter("jmeno", authToken.Username),
+                new OracleParameter("jmeno", authToken.PrihlasovaciJmeno),
                 new OracleParameter("hash", authToken.Hash)
             );
             return query.Rows.Count > 0 && Enum.TryParse((query.Rows[0])["level"].ToString(), out AuthLevel result) ? result : AuthLevel.NONE;
@@ -53,25 +34,29 @@ namespace Back.Auth
 
         public static AuthLevel Check(AuthToken? authToken)
         {
-          
+            if (authToken == null)
+            {
+                return AuthLevel.NONE;
+            }
+
             AuthToken token = authToken.Value;
 
-             AuthLevel ? cachedLevel = cachedTokens[token.Username] as AuthLevel?;
+            AuthLevel? cachedLevel = cachedTokens[token.PrihlasovaciJmeno] as AuthLevel?;
             if (cachedLevel != null)
             {
-                return (token.As is null || cachedLevel != AuthLevel.ADMIN) ? cachedLevel.Value : token.As.Value;
+                return cachedLevel.Value;
             }
 
             AuthLevel level = CheckInDatabase(token);
-            cachedTokens.Add(token.Username + token.Hash, level, DateTimeOffset.Now.AddMinutes(15));
-            return (token.As is null || level != AuthLevel.ADMIN) ? level : token.As.Value;
+            cachedTokens.Add(token.PrihlasovaciJmeno + token.Hash, level, DateTimeOffset.Now.AddMinutes(15));
+            return  level;
         }
 
         public static void InvalidateCache(AuthToken? authToken)
         {
             if (authToken != null)
             {
-                cachedTokens.Remove(authToken.Value.Username + authToken.Value.Hash);
+                cachedTokens.Remove(authToken.Value.PrihlasovaciJmeno + authToken.Value.Hash);
             }
         }
     }

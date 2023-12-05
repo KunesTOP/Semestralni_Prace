@@ -5,83 +5,20 @@ namespace Semestralni_prace.Controllers
 {
     public class ProfilController : Controller
     {
-        // GET: Profile
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: Profile/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Profile/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Profile/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Profile/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Profile/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Profile/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Profile/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
         public ActionResult Profil()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult UpdateProfile(string name, int age, string address, string email, IFormFile picture)
+        {
+            // Update the user profile with the provided data
+            // You can save the updated information to a database or perform any necessary logic here
+
+            // Redirect back to the profile page or wherever you want after the update
+            return RedirectToAction("Profil");
         }
 
     }
