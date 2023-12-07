@@ -8,7 +8,7 @@ namespace Semestralni_prace.Models.Classes
 {
     public class Asistent : Zamestnanec
     {
-        public int Praxe { get; internal set; }
+        public int Praxe { get; set; }
 
     }
 }

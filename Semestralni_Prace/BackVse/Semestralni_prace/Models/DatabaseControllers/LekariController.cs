@@ -27,7 +27,7 @@ namespace Models.DatabaseControllers
         public static void UpsertLekar(Lekar lekar)
         {
             OracleParameter idParam = new OracleParameter("p_id_zamestnanec", OracleDbType.Int32, ParameterDirection.InputOutput);
-            idParam.Value = lekar.Id;
+            idParam.Value = lekar.IdZamestnanec;
 
             OracleParameter akreditaceParam = new OracleParameter("p_akreditace", OracleDbType.Varchar2, ParameterDirection.Input);
             akreditaceParam.Value = lekar.Akreditace;
@@ -46,7 +46,7 @@ namespace Models.DatabaseControllers
 
             return new Lekar()
             {
-                Id = int.Parse(query.Rows[0][ID_NAME].ToString()),
+                IdZamestnanec = int.Parse(query.Rows[0][ID_NAME].ToString()),
                 Akreditace = query.Rows[0][AKREDITACE_NAME].ToString()
             };
         }

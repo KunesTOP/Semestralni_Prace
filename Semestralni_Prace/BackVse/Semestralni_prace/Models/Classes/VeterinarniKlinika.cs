@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Semestralni_prace.Models.Classes
 {
-    public class VeterinarniKlinika : Zamestnanec
+    public class VeterinarniKlinika
     {
         public string? JmenoMajitel { get; internal set; }
         public string? PrijmeniMajitel { get; internal set; }

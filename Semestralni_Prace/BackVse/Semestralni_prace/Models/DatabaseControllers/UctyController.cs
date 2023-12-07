@@ -60,31 +60,47 @@ namespace Semestralni_prace.Models.DatabaseControllers
             }
         }
 
-        public static void InsertUcty(Ucty ucty)
+        public static void UpsertUcty(Ucty ucty)
         {
-            DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({JMENO_NAME}, {SALT_NAME}, {HASH_NAME}, {UROVEN_NAME}) VALUES (:jmeno, :salt, :hash, :uroven)",
-                new OracleParameter("jmeno", ucty.Jmeno),
-                new OracleParameter("salt", ucty.Salt),
-                new OracleParameter("hash", ucty.Hash),
-                new OracleParameter("uroven", ucty.Uroven)
-            );
-        }
+            OracleParameter jmeno = new OracleParameter("jmeno", OracleDbType.Varchar2, ParameterDirection.InputOutput);
+            jmeno.Value = ucty.Jmeno;
 
-        public static void UpdateUcty(Ucty ucty)
-        {
-            DatabaseController.Execute($"UPDATE {TABLE_NAME} SET {JMENO_NAME} = :jmeno, {SALT_NAME} = :salt, {HASH_NAME} = :hash, {UROVEN_NAME} = :uroven WHERE {ID_NAME} = :id",
-                new OracleParameter("id", ucty.IdClovek),
-                new OracleParameter("jmeno", ucty.Jmeno),
-                new OracleParameter("salt", ucty.Salt),
-                new OracleParameter("hash", ucty.Hash),
-                new OracleParameter("uroven", ucty.Uroven)
-            );
+            OracleParameter hash = new OracleParameter("hash", OracleDbType.Varchar2, ParameterDirection.InputOutput);
+            hash.Value = ucty.Hash;
+
+            OracleParameter uroven = new OracleParameter("uroven", OracleDbType.Int32, ParameterDirection.InputOutput);
+            uroven.Value = ucty.Uroven;
+
+            DatabaseController.Execute("pkg_hesla.nastav_ucet", jmeno, hash, uroven);
         }
 
         public static void DeleteUcty(int id)
         {
             DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {ID_NAME} = :id",
                 new OracleParameter("id", id));
+        }
+        public static IEnumerable<Ucty> GetAll()
+        {
+            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
+            if(query.Rows.Count== 0)
+            {
+                return null;
+            }
+            List<Ucty> listUctu = new List<Ucty>();
+
+            foreach(DataRow dr in query.Rows)
+            {
+                listUctu.Add(new Ucty
+                {
+                    IdClovek = int.Parse(dr[ID_NAME].ToString()),
+                    Jmeno = dr[JMENO_NAME].ToString(),
+                    Salt = dr[SALT_NAME].ToString(),
+                    Hash = dr[HASH_NAME].ToString(),
+                    Uroven = int.Parse(dr[UROVEN_NAME].ToString())
+                });
+            }
+            return listUctu;
+          
         }
     }
 }

@@ -5,6 +5,8 @@ using Semestralni_prace.Controllers;
 using System.Diagnostics;
 using Models.DatabaseControllers;
 using Back.Auth;
+using Semestralni_prace.Models.DatabaseControllers;
+using Microsoft.CodeAnalysis;
 
 namespace Semestralni_Prace.Controllers
 {
@@ -32,14 +34,17 @@ namespace Semestralni_Prace.Controllers
         }
         public IActionResult Tabulky()
         {
-            var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno") });
-            if (level == AuthLevel.NONE) { return RedirectToAction("AutorizaceFailed", "Home"); }
-            bool isAdmin = level == AuthLevel.ADMIN;
-            var ktereJmenoPouzivat = (isAdmin) ? HttpContext.Session.GetString("emulovaneJmeno") : HttpContext.Session.GetString("jmeno");
-            if (isAdmin && ktereJmenoPouzivat != HttpContext.Session.GetString("jmeno")) level = AuthController.GetLevel(ktereJmenoPouzivat);
-            if (level == AuthLevel.OUTER) { return RedirectToAction("AutorizaceFailed", "Home"); }
-            List<string> tableNames;
-            tableNames = (level == AuthLevel.ADMIN) ? GetNazvyTabulekAdmin() :  GetNazvyTabulekLekar();
+            /* var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno") });
+             if (level == AuthLevel.NONE) { return RedirectToAction("AutorizaceFailed", "Home"); }
+             bool isAdmin = level == AuthLevel.ADMIN;
+             var ktereJmenoPouzivat = (isAdmin) ? HttpContext.Session.GetString("emulovaneJmeno") : HttpContext.Session.GetString("jmeno");
+             if (isAdmin && ktereJmenoPouzivat != HttpContext.Session.GetString("jmeno")) level = AuthController.GetLevel(ktereJmenoPouzivat);
+             if (level == AuthLevel.OUTER) { return RedirectToAction("AutorizaceFailed", "Home"); }
+             List<string> tableNames;
+             tableNames = (level == AuthLevel.ADMIN) ? GetNazvyTabulekAdmin() :  GetNazvyTabulekLekar();*/
+            List<string> tableNames = GetNazvyTabulekAdmin();
+            
+
             ViewBag.TableNames = tableNames;
 
             return View();
@@ -53,12 +58,12 @@ namespace Semestralni_Prace.Controllers
 
         private List<string> GetNazvyTabulekAdmin()
         {
-            return new List<string> {"ADRESY", "ANAMNEZA", "ASISTENT", "LEKY", "MAJITEL","PRUKAZ", "RASA", "TITUL", "VAKCINA", "VETERINARNI_KLINIKA",
+            return new List<string> {"ADRESY", "ANAMNEZA", "ASISTENT","DOKUMENTY", "LEKY", "MAJITEL","PRUKAZ", "RASA", "TITUL","UCTY", "VAKCINA", "VETERINARNI_KLINIKA",
                 "VYSLEDEK_KREV","ZAMESTNANCI","ZVIRE"};
         }
         private List<string> GetNazvyTabulekLekar()
         {
-            return new List<string> {"LEKY", "MAJITEL","PRUKAZ", "RASA", "VAKCINA","VYSLEDEK_KREV","ZVIRE"};
+            return new List<string> { "LEKY", "MAJITEL", "PRUKAZ", "RASA", "VAKCINA", "VYSLEDEK_KREV", "ZVIRE" };
         }
         public IActionResult LoadTable(string tableName)
         {
@@ -81,9 +86,11 @@ namespace Semestralni_Prace.Controllers
                 case "ADRESY":
                     return new List<object> { AdresyController.GetAll() };
                 case "ANAMNEZA":
-                    return new List<object> { AnamnezyController.GetAll2() };
+                    return new List<object> { /*AnamnezyController.GetAll2()*/ };
                 case "ASISTENT":
                     return new List<object> { AsistentiController.GetAll() };
+                case "DOKUMENTY":
+                    return new List<object> { DokumentController.GetAll() };
                 case "LEKY":
                     return new List<object> { LekyController.GetAll() };
                 case "MAJITEL":
@@ -94,6 +101,8 @@ namespace Semestralni_Prace.Controllers
                     return new List<object> { RasaZviratController.GetAll() };
                 case "TITUL":
                     return new List<object> { TitulyController.GetAll() };
+                case "UCTY":
+                    return new List<object> { UctyController.GetAll() };
                 case "VAKCINA":
                     return new List<object> { VakcinyTableController.GetAll() };
                 case "VETERINARNI_KLINIKA":
@@ -112,12 +121,12 @@ namespace Semestralni_Prace.Controllers
         {
             if (AuthController.Check(new AuthToken { PrihlasovaciJmeno = loginName, Hash = loginPassword }) == AuthLevel.NONE)
             {
-                ModelState.AddModelError("", "Invalid login attempt." );
+                ModelState.AddModelError("", "Invalid login attempt.");
                 ViewData["ErrorMessage"] = "Invalid login attempt. ";
                 return View();
             }
-            HttpContext.Session.SetString("jmeno",loginName);
-            HttpContext.Session.SetString("heslo",loginPassword);
+            HttpContext.Session.SetString("jmeno", loginName);
+            HttpContext.Session.SetString("heslo", loginPassword);
             HttpContext.Session.SetString("emulovaneJmeno", loginName);
 
 

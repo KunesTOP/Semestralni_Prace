@@ -98,12 +98,6 @@ namespace Models.DatabaseControllers
                 new OracleParameter("id", id)
             );
         }
-
-        private bool ValidJSON(JObject value, string v)
-        {
-            throw new NotImplementedException();
-        }
-
         
         public static IEnumerable<Adresy> GetAll()
         {

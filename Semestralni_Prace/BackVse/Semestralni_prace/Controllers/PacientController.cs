@@ -8,7 +8,6 @@ namespace Semestralni_prace.Controllers
 {
     public class PacientController : Controller
     {
-
         public IActionResult ListPacientu()
         {
             var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno") });
@@ -17,6 +16,7 @@ namespace Semestralni_prace.Controllers
             var ktereJmenoPouzivat = (isAdmin) ? HttpContext.Session.GetString("emulovaneJmeno") : HttpContext.Session.GetString("jmeno");
             if (isAdmin && ktereJmenoPouzivat != HttpContext.Session.GetString("jmeno")) level = AuthController.GetLevel(ktereJmenoPouzivat);
             List<Pacient> PacientList = GetListPacientu();
+
             return View(PacientList);
         }
         private List<Pacient> GetListPacientu()

@@ -64,6 +64,7 @@
         {
             <option value="@tableName">@tableName</option>
         }
+
     </select>
 
     <button id="btnLoadTable">Load Table</button>
@@ -80,6 +81,19 @@
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
+        const select = document.getElementById("tableName");
+        const urlParams = new URLSearchParams(window.location.search);
+
+        if (urlParams.get("selected")) {
+            select.value = urlParams.get("selected");
+            loadTable();
+        }
+
+        select.addEventListener("change", function () {
+            urlParams.set("selected", select.value);
+            history.pushState({}, null, "?" + urlParams.toString());
+        })
+
         $(document).ready(function () {
             // Attach context menu to the data table
             $('#data-table').on('contextmenu', 'tr', function (e) {
@@ -114,22 +128,33 @@
                     console.log(tableBody)
                     tableBody.empty();
                     data.data[0].forEach((row) => {
-                        var newRow = "<tr id='" + row.Id + "'>";
+                        var newRow = "<tr id='" + row.id + "'>";
                         for (const [key, value] of Object.entries(row)) {
-                            const keyLower = key.toLowerCase();
-                            if (!keyLower.startsWith("id") && !keyLower.endsWith("id") && !keyLower.includes("id")) {
-                                const val = value || "";
-                                newRow += "<td data-name='" + key + "'>" + val + "</td>";
+                            if (!key.toLowerCase().includes("id")) {
+                                newRow += "<td data-name='" + key + "' ondblclick='replaceCell(this)'>" + (value || "") + "</td>";
                             }
                         }
-                        newRow += "</tr>";
+                        newRow += "<td><button onclick='saveEditedRow(" + row.id + ")'>Uložit změny</button><button class='btn-delete' onclick='deleteRow(" + row.id + ")'>Smazat</button></td></tr>";
                         tableBody.append(newRow);
                     });
+                    var newRow = "<tr id='new'>";
+                    var row = data.data[0][0]; 
+                    for (const [key, value] of Object.entries(row)) {
+                        if (!key.toLowerCase().includes("id")) {
+                            newRow += "<td data-name='" + key + "' ondblclick='replaceCell(this)'></td>";
+                        }
+                    }
+                    newRow += "<td><button class='btn-add' onclick='addRow()'>Přidat</button></td></tr>";
+                    tableBody.append(newRow);
                 },
                 error: function (error) {
                     console.error(error);
                 }
             });
+        }
+        function addRow(){
+            saveEditedRow("new");
+            window.location.reload();
         }
 
         function showContextMenu(x, y) {
@@ -146,19 +171,12 @@
 
         function editRow() {
             // Výběr označeného řádku
-            var selectedRow = $('#data-table tr.context-selected');
+            //var selectedRow = $('#data-table tr.context-selected');
 
-            if (selectedRow.length > 0) {
-                // Umožnění editace
-                var newRow = "<tr id='" + row.id + "'>";
-                for (const [key, value] of Object.entries(row)) {
-                    if (!key.toLowerCase().includes("id")) {
-                        newRow += "<td data-name='" + key + "' ondblclick='replaceCell(this)'>" + (value || "") + "</td>";
-                    }
-                }
-                newRow += "<td><button onclick='saveEditedRow(" + row.id + ")'>Uložit změny</button><button class='btn-delete' onclick='deleteRow(" + row.id + ")'>Smazat</button></td></tr>";
-                tableBody.append(newRow);
-            }
+            //if (selectedRow.length > 0) {
+            // Umožnění editace
+
+            //}
 
             hideContextMenu();
         }
@@ -170,15 +188,17 @@
         function saveEditedRow(rowId) {
             const row = document.getElementById(rowId);
             const entries = new Array();
-            row.forEach((child) => {
+            [...row.children].forEach((child) => {
                 if (child.dataset.name) {
                     entries.push([child.dataset.name, child.innerText || null]);
                 }
             })
-          /* update záznamu v databázi, něco ve stylu UPDATE tabulka SET $(entries[i][0]) = $(entries[i][1]) WHERE id = $(rowId) */
+            /* update záznamu v databázi, něco ve stylu UPDATE tabulka SET $(entries[i][0]) = $(entries[i][1]) WHERE id = $(rowId) */
         }
         function replaceCell(cell) {
-            cell.innerHtml = "<input type='text' value='" + cell.innerText + "' onfocusout='turnBack(this)'>";
+            console.log("JSEM V REPLACECELL")
+            cell.innerHTML = "<input type='text' value='" + cell.innerText + "' onfocusout='turnBack(this)'>";
+            console.log(cell.innerHTML)
         }
 
         function turnBack(input) {

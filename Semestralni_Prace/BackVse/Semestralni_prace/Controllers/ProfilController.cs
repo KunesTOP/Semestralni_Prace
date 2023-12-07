@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Back.Auth;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Semestralni_prace.Controllers
@@ -8,6 +9,11 @@ namespace Semestralni_prace.Controllers
        
         public ActionResult Profil()
         {
+            var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno") });
+            if (level == AuthLevel.NONE) { return RedirectToAction("AutorizaceFailed", "Home"); }
+            bool isAdmin = level == AuthLevel.ADMIN;
+            var ktereJmenoPouzivat = (isAdmin) ? HttpContext.Session.GetString("emulovaneJmeno") : HttpContext.Session.GetString("jmeno");
+            if (isAdmin && ktereJmenoPouzivat != HttpContext.Session.GetString("jmeno")) level = AuthController.GetLevel(ktereJmenoPouzivat);
             return View();
         }
 
