@@ -32,6 +32,28 @@ namespace Semestralni_prace.Models.DatabaseControllers
                 DokumentNazev = query.Rows[0][DOKUMENT_NAME].ToString()
             };
         }
+        public static void Upsert(Dokument dokument)
+        {
+            OracleParameter idParam = new OracleParameter("p_id_dokument", OracleDbType.Int32, ParameterDirection.InputOutput);
+            idParam.Value = dokument.IdDokument;
+
+            OracleParameter priponaParam = new OracleParameter("p_pripoma_dokumenty", OracleDbType.Varchar2, ParameterDirection.InputOutput);
+            priponaParam.Value = dokument.Pripona;
+
+            OracleParameter dataParam = new OracleParameter("p_data_dokument", OracleDbType.Blob, ParameterDirection.InputOutput);
+            dataParam.Value = dokument.DokumentData;
+
+            OracleParameter nazevParam = new OracleParameter("p_dokument_nazev", OracleDbType.Varchar2, ParameterDirection.InputOutput);
+            nazevParam.Value = dokument.DokumentNazev;
+
+            DatabaseController.Execute("pkg_dokumenty.upsert_dokumenty", idParam, priponaParam, dataParam, nazevParam);
+        }
+        public static void Delete(int id)
+        {
+            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {ID_DOKUMENTY_NAME} = :id",
+                new OracleParameter("id", id)
+            );
+        }
         public static IEnumerable<Dokument> GetAll()
         {
             DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
