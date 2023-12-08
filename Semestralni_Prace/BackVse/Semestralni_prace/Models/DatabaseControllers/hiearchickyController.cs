@@ -103,6 +103,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
             DatabaseController.Execute("pkg_zbytek.create_new_owner_with_card", nameParam, surnameParam, emailParam, phoneParam, addressIdParam, cardNumberParam, chipNumberParam);
         }
 
+      
         public static void UpdateOwnerAddress(int ownerId, int newAddressId)
         {
             OracleParameter ownerIdParam = new OracleParameter("p_owner_id", OracleDbType.Int32, ParameterDirection.InputOutput);
@@ -113,7 +114,58 @@ namespace Semestralni_prace.Models.DatabaseControllers
 
             DatabaseController.Execute("pkg_zbytek.update_owner_address", ownerIdParam, newAddressIdParam);
         }
+        public static void GetTableColumns()
+        {
+            DatabaseController.Execute("pck_zbytekinfo.get_table_columns");
+        }
+        static void GetTables()
+        {
+            DatabaseController.Execute("pck_zbytekinfo.get_tables");
+        }
+        public static void GetViews()
+        {
+            DatabaseController.Execute("pck_zbytekinfo.get_views");
+        }
 
+        public static void GetProcedures()
+        {
+            DatabaseController.Execute("pck_zbytekinfo.get_procedures");
+        }
+
+        public static void GetFunctions()
+        {
+            DatabaseController.Execute("pck_zbytekinfo.get_functions");
+        }
+
+        public static void GetTriggers()
+        {
+            DatabaseController.Execute("pck_zbytekinfo.get_triggers");
+        }
+
+        public static void GetIndexes()
+        {
+            DatabaseController.Execute("pck_zbytekinfo.get_indexes");
+        }
+
+        public static void GetSequences()
+        {
+            DatabaseController.Execute("pck_zbytekinfo.get_sequences");
+        }
+
+        public static void GetConstraints()
+        {
+            DatabaseController.Execute("pck_zbytekinfo.get_constraints");
+        }
+
+        public static void GetSynonyms()
+        {
+            DatabaseController.Execute("pck_zbytekinfo.get_synonyms");
+        }
+
+        public static void GetCreated()
+        {
+            DatabaseController.Execute("pck_zbytekinfo.get_created");
+        }
         public static void HierarchicalQueryProcedure()
         {
             DatabaseController.Execute("pkg_zbytek.HierarchicalQueryProcedure");
