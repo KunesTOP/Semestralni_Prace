@@ -5,6 +5,7 @@ using Semestralni_prace.Models.Classes;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Text.Json;
 
 namespace Models.DatabaseControllers
 {
@@ -79,6 +80,34 @@ namespace Models.DatabaseControllers
 
             return int.Parse(resultParam.Value.ToString());
         }
+        //TODO: Dořešit ID vlastnika a rasy
+        public static void UpsertZvire(int id, JsonElement data)
+        {
+            OracleParameter zvireIdParam = new OracleParameter("p_id", OracleDbType.Int32, ParameterDirection.InputOutput);
+            zvireIdParam.Value = id;
+
+            OracleParameter jmenoParam = new OracleParameter("p_jmeno", OracleDbType.Varchar2, ParameterDirection.Input);
+            jmenoParam.Value = data.GetProperty("jmenoZvire").GetString();
+
+            OracleParameter pohlaviParam = new OracleParameter("p_pohlavi", OracleDbType.Varchar2, ParameterDirection.Input);
+            pohlaviParam.Value = data.GetProperty("pohlavi").GetString();
+
+            OracleParameter narozeniParam = new OracleParameter("p_datum_narozeni", OracleDbType.Date, ParameterDirection.Input);
+            narozeniParam.Value = data.GetProperty("datumNarozeni").GetString();
+
+            //TODO: Tady asi kontrolovat jestli je to null nebo ne :/
+            OracleParameter umrtiParam = new OracleParameter("p_datum_umrti", OracleDbType.Date, ParameterDirection.Input);
+            umrtiParam.Value = data.GetProperty("datumUmrti").GetString();
+            
+            OracleParameter majitelZvireteIdParam = new OracleParameter("p_majitel_zvire_id_pacient", OracleDbType.Int32, ParameterDirection.Input);
+            majitelZvireteIdParam.Value = data.GetProperty("").GetInt32();
+
+            OracleParameter rasaIdParam = new OracleParameter("p_rasa_zvirat_id_rasa", OracleDbType.Int32, ParameterDirection.Input);
+            rasaIdParam.Value = data.GetProperty("").GetInt32();
+
+            DatabaseController.Execute("pkg_ostatni.upsert_majitel", zvireIdParam, jmenoParam, pohlaviParam, narozeniParam, umrtiParam, majitelZvireteIdParam, rasaIdParam);
+        }
+
         public static void DeleteMapping(int zvireId)
         {
             DatabaseController.Execute("pkg_delete.delete_zvire_ma_nemoc_by_animal_name",

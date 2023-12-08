@@ -4,6 +4,7 @@ using Oracle.ManagedDataAccess.Client;
 using Semestralni_prace.Models.Classes;
 using System.Collections.Generic;
 using System.Data;
+using System.Text.Json;
 
 namespace Models.DatabaseControllers//TODO KNIHOVNY
 {
@@ -40,13 +41,13 @@ namespace Models.DatabaseControllers//TODO KNIHOVNY
             };
         }
 
-     
-        public static void UpsertKlinika(VeterinarniKlinika klinika)
+        //TODO upravit aby to fungovalo - problém id adresy
+        public static void UpsertKlinika(int id, JsonElement data)
         {
-            OracleParameter jmenoMajitelParam = new OracleParameter("jmenoMajitel", OracleDbType.Varchar2, klinika.JmenoMajitel, ParameterDirection.Input);
-            OracleParameter prijmeniMajitelParam = new OracleParameter("prijmeniMajitel", OracleDbType.Varchar2, klinika.PrijmeniMajitel, ParameterDirection.Input);
-            OracleParameter veterKlinIdParam = new OracleParameter("veterKlinId", OracleDbType.Int32, klinika.VeterKlinId, ParameterDirection.Input);
-            OracleParameter adresyIdAdresaParam = new OracleParameter("adresyIdAdresa", OracleDbType.Int32, klinika.AdresyIdAdresa, ParameterDirection.Input);
+            OracleParameter jmenoMajitelParam = new OracleParameter("jmenoMajitel", OracleDbType.Varchar2, data.GetProperty("jmenoMajitel").GetString(), ParameterDirection.Input);
+            OracleParameter prijmeniMajitelParam = new OracleParameter("prijmeniMajitel", OracleDbType.Varchar2, data.GetProperty("prijmeniMajitel").GetString(), ParameterDirection.Input);
+            OracleParameter veterKlinIdParam = new OracleParameter("veterKlinId", OracleDbType.Int32, id, ParameterDirection.Input);
+            OracleParameter adresyIdAdresaParam = new OracleParameter("adresyIdAdresa", OracleDbType.Int32, -1, ParameterDirection.Input);
 
             DatabaseController.Execute(
                 $"pkg_ostatni.upsert_veterinarni_klinika(:{JMENO_MAJITEL_NAME}, :{PRIJMENI_MAJITEL_NAME}, :{VETER_KLIN_ID_NAME}, :{ADRESY_ID_ADRESA_NAME})",

@@ -10,6 +10,7 @@ using System.Runtime.Caching;
 using Newtonsoft.Json.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Semestralni_prace.Models.Classes;
+using System.Text.Json;
 
 namespace Models.DatabaseControllers
 {
@@ -75,19 +76,19 @@ namespace Models.DatabaseControllers
             return address;
         }
 
-        public static void Upsert(Adresy adresy)
+        public static void Upsert(int id, JsonElement data)
         {
             OracleParameter idParam = new OracleParameter("p_id_adresa", OracleDbType.Int32, ParameterDirection.InputOutput);
-            idParam.Value = adresy.Id;
+            idParam.Value = id;
 
             OracleParameter mestoParam = new OracleParameter("p_mesto", OracleDbType.Varchar2, ParameterDirection.InputOutput);
-            mestoParam.Value = adresy.City;
+            mestoParam.Value = data.GetProperty("city").GetString();
 
             OracleParameter uliceParam = new OracleParameter("p_ulice", OracleDbType.Varchar2, ParameterDirection.InputOutput);
-            uliceParam.Value = adresy.Street;
+            uliceParam.Value = data.GetProperty("street").GetString();
 
             OracleParameter cisloPopisneParam = new OracleParameter("p_cislo_popisne", OracleDbType.Int32, ParameterDirection.InputOutput);
-            cisloPopisneParam.Value = adresy.HouseNumber;
+            cisloPopisneParam.Value = data.GetProperty("houseNumber").GetInt32();
 
             DatabaseController.Execute("pkg_model_dml1.insert_adresa", idParam, mestoParam, uliceParam, cisloPopisneParam);
         }

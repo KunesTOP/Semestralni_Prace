@@ -36,15 +36,15 @@ namespace Semestralni_Prace.Controllers
         }
         public IActionResult Tabulky()
         {
-            /* var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno") });
+             var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno") });
              if (level == AuthLevel.NONE) { return RedirectToAction("AutorizaceFailed", "Home"); }
              bool isAdmin = level == AuthLevel.ADMIN;
              var ktereJmenoPouzivat = (isAdmin) ? HttpContext.Session.GetString("emulovaneJmeno") : HttpContext.Session.GetString("jmeno");
              if (isAdmin && ktereJmenoPouzivat != HttpContext.Session.GetString("jmeno")) level = AuthController.GetLevel(ktereJmenoPouzivat);
              if (level == AuthLevel.OUTER) { return RedirectToAction("AutorizaceFailed", "Home"); }
              List<string> tableNames;
-             tableNames = (level == AuthLevel.ADMIN) ? GetNazvyTabulekAdmin() :  GetNazvyTabulekLekar();*/
-            List<string> tableNames = GetNazvyTabulekAdmin();
+             tableNames = (level == AuthLevel.ADMIN) ? GetNazvyTabulekAdmin() :  GetNazvyTabulekLekar();
+            /* List<string> tableNames = GetNazvyTabulekAdmin();*/
             
 
             ViewBag.TableNames = tableNames;
@@ -165,60 +165,76 @@ namespace Semestralni_Prace.Controllers
             var id = input.GetProperty("rowId").GetInt32();
             GetSpravnyRemove(tabulka, id);
         }
-        //Jak tady ty udaje dostaaaaaat AAAAAAAAAAAAAAAAAAAAAAAAA
+
         private void GetSpravnyUpsert(string selectedValue, int id, JsonElement data)
         {
             switch (selectedValue)
             {
                 case "ADRESY":
-                    //Adresy nova = new Adresy { City = prvek., }
-                    //AdresyController.Upsert(prvek) ;
+                    AdresyController.Upsert(id,data) ;
                     break;
                 case "ANAMNEZA":
-                     // nezapomenout, jsou tam i vysledkyKrev!
-                     /*AnamnezyController.GetAll2()*/
+                    //AnamnezyController.UpdateZaznamAnamnezy(id, data);
                     break;
                 case "ASISTENT":
-                     //AsistentiController.UpsertAsistent(prvek);
+                    //TODO rozbije zamestnance
+                     AsistentiController.UpsertAsistent(id,data);
                     break;
                 case "DOKUMENTY":
-                    //DokumentController.Upsert(prvek) ;
+                    var nazev = data.GetProperty("nazev").GetString();
+                    var properTities = data.GetProperty("typ").GetString();
+                    var obsah = data.GetProperty("data").GetString();
+                    Dokument doc = new Dokument
+                    {
+                        DokumentNazev = nazev,
+                        Pripona = Path.GetExtension(nazev),
+                        Data = obsah,
+                        IdDokument = id
+                    };
+                    DokumentController.UpsertDokument(doc);
                     break;
                 case "LEKARI":
-                    //TODO DODELAT
+                    //TODO Rozbije to tabulku zaměstnanci, přesněji upsert nejde
+                    LekariController.UpsertLekar(id, data);
                     break;
                 case "LEKY":
                     LekyController.UpsertLek(id,data);
                     break;
                 case "MAJITEL":
-                    //MajiteleZviratController.UpsertMajitel(prvek);
+                    //TODO vyřešit chybějící ID
+                    MajiteleZviratController.UpsertMajitel(id, data);
                     break;
                 case "PRUKAZ":
-                    //PrukazyController.UpsertPrukaz(prvek);
+                    //TODO opravit IdZvire
+                    PrukazyController.UpsertPrukaz(id, data);
                     break;
                 case "RASA":
-                    //RasaZviratController.UpsertRasa(prvek);
+                    RasaZviratController.UpsertRasa(id,data);
                     break;
                 case "TITUL":
-                    //TitulyController.InsertTitul(prvek);
+                    TitulyController.UpsertTitul(id, data);
                     break;
                 case "UCTY":
-                    //UctyController.UpsertUcty(prvek);
+                    UctyController.UpsertUcty(id, data);
                     break;
                 case "VAKCINA":
-                    //VakcinyTableController.UpsertVakcina(prvek);
+                    VakcinyTableController.UpsertVakcina(id, data);
                     break;
                 case "VETERINARNI_KLINIKA":
-                    //VeterinarniKlinikaController.UpsertKlinika(prvek);
+                    //TODO opravit id adresy!
+                    VeterinarniKlinikaController.UpsertKlinika(id, data);
                     break;
                 case "VYSLEDEK_KREV":
-                    //VysledkyKrevController.UpsertVysledekKrev(prvek);
+                    //TODO upravit upsert, je tam chyba
+                    VysledkyKrevController.UpsertVysledekKrev(id, data);
                     break;
                 case "ZAMESTNANCI":
-                    //ZamestnanciController.UpsertZamestnanec(prvek);
+                    //TODO: Opravit tudle metodu!
+                    ZamestnanciController.UpsertZamestnanec(id,data);
                     break;
                 case "ZVIRE":
-                    //ZvirataController.InsertZvire(prvek);
+                    //TODO opravit idčka
+                    ZvirataController.UpsertZvire(id, data);
                     break;
             }
         }

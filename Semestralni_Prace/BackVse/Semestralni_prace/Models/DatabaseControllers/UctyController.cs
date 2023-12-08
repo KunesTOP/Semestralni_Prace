@@ -2,6 +2,7 @@
 using Oracle.ManagedDataAccess.Client;
 using Semestralni_prace.Models.Classes;
 using System.Data;
+using System.Text.Json;
 
 namespace Semestralni_prace.Models.DatabaseControllers
 {
@@ -60,16 +61,16 @@ namespace Semestralni_prace.Models.DatabaseControllers
             }
         }
 
-        public static void UpsertUcty(Ucty ucty)
+        public static void UpsertUcty(int id, JsonElement data)
         {
             OracleParameter jmeno = new OracleParameter("jmeno", OracleDbType.Varchar2, ParameterDirection.InputOutput);
-            jmeno.Value = ucty.Jmeno;
+            jmeno.Value = data.GetProperty("jmeno").GetString();
 
             OracleParameter hash = new OracleParameter("hash", OracleDbType.Varchar2, ParameterDirection.InputOutput);
-            hash.Value = ucty.Hash;
+            hash.Value = data.GetProperty("hash").GetString();
 
             OracleParameter uroven = new OracleParameter("uroven", OracleDbType.Int32, ParameterDirection.InputOutput);
-            uroven.Value = ucty.Uroven;
+            uroven.Value = data.GetProperty("uroven").GetString();
 
             DatabaseController.Execute("pkg_hesla.nastav_ucet", jmeno, hash, uroven);
         }

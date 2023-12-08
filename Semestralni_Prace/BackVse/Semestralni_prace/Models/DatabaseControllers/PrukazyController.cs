@@ -4,6 +4,7 @@ using Oracle.ManagedDataAccess.Client;
 using Semestralni_prace.Models.Classes;
 using System.Collections.Generic;
 using System.Data;
+using System.Text.Json;
 
 namespace Models.DatabaseControllers
 {
@@ -56,19 +57,19 @@ namespace Models.DatabaseControllers
             );
         }
 
-        public static void UpsertPrukaz(int cisloPrukaz, int cisloChip, int idPrukaz, int? zvireId)
+        public static void UpsertPrukaz(int id, JsonElement data)
         {
             OracleParameter cisloPrukazParam = new OracleParameter("p_cislo_prukaz", OracleDbType.Int32, ParameterDirection.InputOutput);
-            cisloPrukazParam.Value = cisloPrukaz;
+            cisloPrukazParam.Value = data.GetProperty("cisloPrukaz").GetInt32();
 
             OracleParameter cisloChipParam = new OracleParameter("p_cislo_chip", OracleDbType.Int32, ParameterDirection.Input);
-            cisloChipParam.Value = cisloChip;
+            cisloChipParam.Value = data.GetProperty("cisloChip").GetInt32();
 
             OracleParameter idPrukazParam = new OracleParameter("p_id_prukaz", OracleDbType.Int32, ParameterDirection.Input);
-            idPrukazParam.Value = idPrukaz;
+            idPrukazParam.Value = id;
 
             OracleParameter zvireIdParam = new OracleParameter("p_zvire_id", OracleDbType.Int32, ParameterDirection.Input);
-            zvireIdParam.Value = zvireId ?? (object)DBNull.Value;
+            zvireIdParam.Value = -1;/*?? (object)DBNull.Value;*/
 
             DatabaseController.Execute("pkg_ostatni.upsert_prukazy", cisloPrukazParam, cisloChipParam, idPrukazParam, zvireIdParam);
         }

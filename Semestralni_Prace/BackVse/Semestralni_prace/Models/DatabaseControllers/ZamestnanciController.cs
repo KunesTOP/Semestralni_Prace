@@ -4,6 +4,7 @@ using Oracle.ManagedDataAccess.Client;
 using Semestralni_prace.Models.Classes;
 using System.Collections.Generic;
 using System.Data;
+using System.Text.Json;
 
 namespace Models.DatabaseControllers
 {
@@ -57,13 +58,14 @@ namespace Models.DatabaseControllers
 
             return ids;
         }
-        public static void UpsertZamestnanec(Zamestnanec zamestnanec)
+        //TODO Upravit veterKlinId, protože  já ho nikde nemám :/ tak bude přidáván vždy do první kliniky... což NENÍ DOBRÝ
+        public static void UpsertZamestnanec(int id, JsonElement data)
         {
-            OracleParameter idZamestnanecParam = new OracleParameter("idZamestnanec", OracleDbType.Int32, zamestnanec.IdZamestnanec, ParameterDirection.Input);
-            OracleParameter jmenoParam = new OracleParameter("jmeno", OracleDbType.Varchar2, zamestnanec.Jmeno, ParameterDirection.Input);
-            OracleParameter prijmeniParam = new OracleParameter("prijmeni", OracleDbType.Varchar2, zamestnanec.Prijmeni, ParameterDirection.Input);
-            OracleParameter veterKlinIdParam = new OracleParameter("veterKlinId", OracleDbType.Int32, zamestnanec.VeterKlinId, ParameterDirection.Input);
-            OracleParameter profeseParam = new OracleParameter("profese", OracleDbType.Varchar2, zamestnanec.Profese, ParameterDirection.Input);
+            OracleParameter idZamestnanecParam = new OracleParameter("idZamestnanec", OracleDbType.Int32, id, ParameterDirection.Input);
+            OracleParameter jmenoParam = new OracleParameter("jmeno", OracleDbType.Varchar2, data.GetProperty("jmeno").GetString(), ParameterDirection.Input);
+            OracleParameter prijmeniParam = new OracleParameter("prijmeni", OracleDbType.Varchar2, data.GetProperty("prijmeni").GetString(), ParameterDirection.Input);
+            OracleParameter veterKlinIdParam = new OracleParameter("veterKlinId", OracleDbType.Int32, 1, ParameterDirection.Input);
+            OracleParameter profeseParam = new OracleParameter("profese", OracleDbType.Varchar2, data.GetProperty("profese").GetString(), ParameterDirection.Input);
 
             DatabaseController.Execute(
                 $"pkg_ostatni.upsert_zamestnanec(:{ID_ZAMESTNANEC_NAME}, :{JMENO_NAME}, :{PRIJMENI_NAME}, :{VETER_KLIN_ID_NAME}, :{PROFES_NAME})",

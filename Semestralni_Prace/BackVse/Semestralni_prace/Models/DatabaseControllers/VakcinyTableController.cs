@@ -4,6 +4,7 @@ using Oracle.ManagedDataAccess.Client;
 using Semestralni_prace.Models.Classes;
 using System.Collections.Generic;
 using System.Data;
+using System.Text.Json;
 
 namespace Models.DatabaseControllers
 {
@@ -37,10 +38,10 @@ namespace Models.DatabaseControllers
         }
 
         
-        public static void UpsertVakcina(Vakcina vakcina)
+        public static void UpsertVakcina(int id, JsonElement data)
         {
-            OracleParameter idVakcinaParam = new OracleParameter("idVakcina", OracleDbType.Int32, vakcina.IdVakcina, ParameterDirection.Input);
-            OracleParameter nazevVakcinaParam = new OracleParameter("nazevVakcina", OracleDbType.Varchar2, vakcina.NazevVakcina, ParameterDirection.Input);
+            OracleParameter idVakcinaParam = new OracleParameter("idVakcina", OracleDbType.Int32, id, ParameterDirection.Input);
+            OracleParameter nazevVakcinaParam = new OracleParameter("nazevVakcina", OracleDbType.Varchar2, data.GetProperty("nazevVakcina").GetString(), ParameterDirection.Input);
 
             DatabaseController.Execute(
                "pkg_ostatni.upsert_vakciny",

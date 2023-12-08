@@ -4,6 +4,7 @@ using Oracle.ManagedDataAccess.Client;
 using Semestralni_prace.Models.Classes;
 using System.Collections.Generic;
 using System.Data;
+using System.Text.Json;
 
 namespace Models.DatabaseControllers
 {
@@ -49,14 +50,14 @@ namespace Models.DatabaseControllers
             );
         }
 
-        public static void UpsertAsistent(Asistent asistent)
+        public static void UpsertAsistent(int id, JsonElement data)
         {
             OracleParameter idParam = new OracleParameter("p_id_zamestnanec", OracleDbType.Int32, ParameterDirection.InputOutput);
-            idParam.Value = asistent.IdZamestnanec;
+            idParam.Value = id;
 
             OracleParameter praxeParam = new OracleParameter("p_praxe", OracleDbType.Int32, ParameterDirection.InputOutput);
-            praxeParam.Value = asistent.Praxe;
-
+            praxeParam.Value = data.GetProperty("praxe").GetInt32();
+            ZamestnanciController.UpsertZamestnanec(id, data);
             DatabaseController.Execute("pkg_ostatni.upsert_asistent", idParam, praxeParam);
         }
 

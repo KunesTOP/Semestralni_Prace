@@ -4,6 +4,7 @@ using Oracle.ManagedDataAccess.Client;
 using Semestralni_prace.Models.Classes;
 using System.Collections.Generic;
 using System.Data;
+using System.Text.Json;
 
 namespace Models.DatabaseControllers
 {
@@ -50,13 +51,13 @@ namespace Models.DatabaseControllers
             );
         }
 
-        public static void UpsertRasa(int idRasa, string jmenoRasa)
+        public static void UpsertRasa(int idRasa, JsonElement data)
         {
             OracleParameter idRasaParam = new OracleParameter("p_id_rasa", OracleDbType.Int32, ParameterDirection.InputOutput);
             idRasaParam.Value = idRasa;
 
             OracleParameter jmenoRasaParam = new OracleParameter("p_jmeno_rasa", OracleDbType.Varchar2, ParameterDirection.Input);
-            jmenoRasaParam.Value = jmenoRasa;
+            jmenoRasaParam.Value = data.GetProperty("jmenoRasa").GetString();
 
             DatabaseController.Execute("pkg_model_dml1.insert_rasa_zvirat", idRasaParam, jmenoRasaParam);
         }

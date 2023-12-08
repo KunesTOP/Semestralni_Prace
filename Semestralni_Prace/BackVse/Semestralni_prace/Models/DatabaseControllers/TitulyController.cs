@@ -4,6 +4,7 @@ using Oracle.ManagedDataAccess.Client;
 using Semestralni_prace.Models.Classes;
 using System.Collections.Generic;
 using System.Data;
+using System.Text.Json;
 
 namespace Models.DatabaseControllers
 {
@@ -99,6 +100,21 @@ namespace Models.DatabaseControllers
 
             return ids;
         }
+
+        public static void UpsertTitul(int id, JsonElement data)
+        {
+            OracleParameter idTitulParam = new OracleParameter("p_id", OracleDbType.Int32, ParameterDirection.InputOutput);
+            idTitulParam.Value = id;
+
+            OracleParameter zkratkaParam = new OracleParameter("p_zkratka", OracleDbType.Varchar2, ParameterDirection.Input);
+            zkratkaParam.Value = data.GetProperty("zkratkaTitul").GetString();
+
+            OracleParameter nazevParam = new OracleParameter("p_nazev", OracleDbType.Varchar2, ParameterDirection.Input);
+            nazevParam.Value = data.GetProperty("nazevTitul").GetString();
+
+            DatabaseController.Execute("pkg_model_dml1.upsert_tituly", idTitulParam, zkratkaParam,nazevParam);
+        }
+
         public static IEnumerable<Titul> GetAll()
         {
             DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");

@@ -5,6 +5,7 @@ using Oracle.ManagedDataAccess.Client;
 using Semestralni_prace.Models.Classes;
 using System.Collections.Generic;
 using System.Data;
+using System.Text.Json;
 
 namespace Models.DatabaseControllers
 {
@@ -25,13 +26,14 @@ namespace Models.DatabaseControllers
             );
         }
 
-        public static void UpsertLekar(Lekar lekar)
+        public static void UpsertLekar(int id, JsonElement data)
         {
             OracleParameter idParam = new OracleParameter("p_id_zamestnanec", OracleDbType.Int32, ParameterDirection.InputOutput);
-            idParam.Value = lekar.IdZamestnanec;
+            idParam.Value = id;
 
             OracleParameter akreditaceParam = new OracleParameter("p_akreditace", OracleDbType.Varchar2, ParameterDirection.Input);
-            akreditaceParam.Value = lekar.Akreditace;
+            akreditaceParam.Value = data.GetProperty("akreditace").GetString();
+            ZamestnanciController.UpsertZamestnanec(id, data);
 
             DatabaseController.Execute("pkg_model_dml1.upsert_lekar", idParam, akreditaceParam);
         }

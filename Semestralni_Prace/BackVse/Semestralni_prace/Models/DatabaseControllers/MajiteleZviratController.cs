@@ -4,6 +4,7 @@ using Oracle.ManagedDataAccess.Client;
 using Semestralni_prace.Models.Classes;
 using System.Collections.Generic;
 using System.Data;
+using System.Text.Json;
 
 namespace Models.DatabaseControllers
 {
@@ -52,29 +53,29 @@ namespace Models.DatabaseControllers
                 new OracleParameter("id", id)
             );
         }
-
-        public static void UpsertMajitel(Majitel majitel)
+        //TODO vyřešit tendle upsert
+        public static void UpsertMajitel(int id, JsonElement data)
         {
             OracleParameter pacientIdParam = new OracleParameter("p_pacient_id", OracleDbType.Int32, ParameterDirection.InputOutput);
-            pacientIdParam.Value = majitel.PacientId;
+            pacientIdParam.Value = id;
 
             OracleParameter mailParam = new OracleParameter("p_mail", OracleDbType.Varchar2, ParameterDirection.Input);
-            mailParam.Value = majitel.Mail;
+            mailParam.Value = data.GetProperty("mail").GetString();
 
             OracleParameter telefonParam = new OracleParameter("p_telefon", OracleDbType.Varchar2, ParameterDirection.Input);
-            telefonParam.Value = majitel.Telefon;
+            telefonParam.Value = data.GetProperty("telefon").GetString();
 
             OracleParameter jmenoParam = new OracleParameter("p_jmeno", OracleDbType.Varchar2, ParameterDirection.Input);
-            jmenoParam.Value = majitel.Jmeno;
+            jmenoParam.Value = data.GetProperty("jmeno").GetString();
 
             OracleParameter prijmeniParam = new OracleParameter("p_prijmeni", OracleDbType.Varchar2, ParameterDirection.Input);
-            prijmeniParam.Value = majitel.Prijmeni;
+            prijmeniParam.Value = data.GetProperty("prijmeni").GetString();
 
             OracleParameter vetKlinIdParam = new OracleParameter("p_vet_klin_id", OracleDbType.Int32, ParameterDirection.Input);
-            vetKlinIdParam.Value = majitel.VetKlinId;
+            vetKlinIdParam.Value = data.GetProperty("").GetInt32();
 
             OracleParameter idMajitelParam = new OracleParameter("p_id_majitel", OracleDbType.Int32, ParameterDirection.Input);
-            idMajitelParam.Value = majitel.IdMajitel;
+            idMajitelParam.Value = data.GetProperty("").GetInt32();
 
             DatabaseController.Execute("pkg_ostatni.upsert_majitel", pacientIdParam, mailParam, telefonParam, jmenoParam, prijmeniParam, vetKlinIdParam, idMajitelParam);
         }
