@@ -71,7 +71,7 @@ namespace Models.DatabaseControllers
             else
 
             {
-                RemoveTitul(titul.IdTitul);
+                DeleteTitul(titul.IdTitul);
                 DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({ID_TITUL_NAME}, {NAZEV_TITUL_NAME}, {ZKRATKA_TITUL_NAME}) " +
             $"VALUES (:idTitul, :nazevTitul, :zkratkaTitul)",
             new OracleParameter("idTitul", titul.IdTitul),
@@ -80,7 +80,7 @@ namespace Models.DatabaseControllers
             }
         }
 
-        public static void RemoveTitul(int idTitul)
+        public static void DeleteTitul(int idTitul)
         {
             DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {ID_TITUL_NAME} = :idTitul",
                 new OracleParameter("idTitul", idTitul)

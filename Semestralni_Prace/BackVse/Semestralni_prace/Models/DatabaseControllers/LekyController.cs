@@ -4,6 +4,7 @@ using Oracle.ManagedDataAccess.Client;
 using Semestralni_prace.Models.Classes;
 using System.Collections.Generic;
 using System.Data;
+using System.Text.Json;
 
 namespace Models.DatabaseControllers
 {
@@ -44,14 +45,14 @@ namespace Models.DatabaseControllers
             );
         }
 
-        public static void UpsertLek(Lek lek)
+        public static void UpsertLek(int id, JsonElement data)
         {
             OracleParameter idParam = new OracleParameter("p_id_leky", OracleDbType.Int32, ParameterDirection.InputOutput);
-            idParam.Value = lek.Id;
+            idParam.Value = id;
 
             OracleParameter nazevParam = new OracleParameter("p_nazev", OracleDbType.Varchar2, ParameterDirection.Input);
-            nazevParam.Value = lek.Nazev;
-
+            nazevParam.Value = data.GetProperty("nazev").GetString();
+            var debugg = data.GetProperty("nazev").GetString();
             DatabaseController.Execute("pkg_ostatni.upsert_lek", idParam, nazevParam);
         }
 

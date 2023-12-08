@@ -34,8 +34,9 @@
             width: 45%; /* Adjust the width as needed */
             margin-right: 70px; /* Adjust the space between left and right containers */
         }
-        form{
-            display:flex;
+
+        form {
+            display: flex;
         }
 
         .right-container {
@@ -61,28 +62,69 @@
 <body>
     <div>
         <div class="container">
-            <form method="post" action="/Profil/UpdateProfile">
-                <div class="left-container">
-                    <div>
-                        <label style="margin-right: 5px;">Jméno:</label>
-                        <span name="name" style="vertical-align: middle;">Ondřej</span>
-                    </div>
-                    <div>
-                        <label style="margin-right: 5px;">Příjmení:</label>
-                        <span name="surname" style="vertical-align: middle;">Neustadt</span>
-                    </div>
-                    <div>
-                        <label style="margin-right: 5px;">Email:</label>
-                        <span name="profesion" style="vertical-align: middle;">Lekar</span>
-                    </div>
+            <div class="left-container">
+                <div>
+                    <label style="margin-right: 5px;">Jméno:</label>
+                    <span name="name" style="vertical-align: middle;">Ondřej</span>
                 </div>
-                <div class="right-container">
-                    <img name="picture" src="https://www.stargate-project.de/storage/app/media/charakterguide/stargate-atlantis-charakterguide-rodney-mckay-david-hewlett.jpg" />
-                    <button name="pictureChange">Změnit obrázek</button>
-                    <input type="submit" value="Uložit změny" style="display:none;" name="saveChanges" />
+                <div>
+                    <label style="margin-right: 5px;">Příjmení:</label>
+                    <span name="surname" style="vertical-align: middle;">Neustadt</span>
                 </div>
-            </form>
+                <div>
+                    <label style="margin-right: 5px;">Email:</label>
+                    <span name="profesion" style="vertical-align: middle;">Lekar</span>
+                </div>
+            </div>
+            <div class="right-container">
+                <img name="picture" src="https://www.stargate-project.de/storage/app/media/charakterguide/stargate-atlantis-charakterguide-rodney-mckay-david-hewlett.jpg" />
+                <button id="pictureChange">Změnit obrázek</button>
+                <input type="file" id="jeToJedno" />
+            </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $('#pictureChange').on('click', function () {
+            pictureChange();
+        });
+
+        function pictureChange() {
+            console.log("Jsem v pictureChange");
+            var soubor = document.getElementById("jeToJedno").files[0];
+
+            console.log(soubor);
+            var reader = new FileReader();
+            reader.readAsDataURL(soubor);
+            reader.onload = function () {
+                let encoded = reader.result.toString().replace(/^data:(.*,)?/, '');
+                if ((encoded.length % 4) > 0) {
+                    encoded += '='.repeat(4 - (encoded.length % 4));
+                }
+                fetch('@Url.Action("PictureChange", "Profil")', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ nazev: soubor.name, typ: soubor.type, data: encoded }),
+                })
+                    .then(response => {
+                        if (response.ok) {
+
+                            // Handle success
+                            // You may not need to do anything if the response doesn't contain a body
+                        } else {
+                            // Handle error
+                        }
+                    })
+                    .catch(error => {
+                        console.log("Jejda, něco se stalo při přidávání obrázku/dokumentu!!");
+                    });
+            }
+            reader.onerror = function (error) {
+                console.log('Error: ', error);
+            }
+        }
+    </script>
 </body>
 </html>

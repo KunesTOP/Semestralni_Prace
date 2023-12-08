@@ -41,7 +41,7 @@ app.UseSession();
 
 app.MapControllerRoute(
     name: "pacient",
-    pattern: "{controller=Pacient}/{action=PacientProfile}/{id?}"
+    pattern: "{controller=Home}/{action=Login}/{id?}"
     );
 
 

@@ -1,5 +1,6 @@
 ﻿using Back.databaze;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Packaging.Signing;
 using Oracle.ManagedDataAccess.Client;
 using Semestralni_prace.Models.Classes;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Data;
 
 namespace Models.DatabaseControllers
 {
-    public class LekariController 
+    public class LekariController
     {
         public const string TABLE_NAME = "LEKARI";
         public const string ID_NAME = "id_zamestnanec";
@@ -51,7 +52,7 @@ namespace Models.DatabaseControllers
             };
         }
 
-      
+
         private static IEnumerable<int> GetIds(string tableName, string idColumnName)
         {
             List<int> ids = new List<int>();
@@ -64,6 +65,31 @@ namespace Models.DatabaseControllers
             }
 
             return ids;
+        }
+        public static IEnumerable<Lekar> GetAll()
+        {
+            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
+            if (query.Rows.Count == 0)
+            {
+
+                return null;
+            }
+            List<Lekar> listLekaru = new List<Lekar>();
+            List<Zamestnanec> listZamestnancu = ZamestnanciController.GetAll();
+            foreach (DataRow dr in query.Rows)
+            {
+                Zamestnanec zamestnanec = listZamestnancu.FirstOrDefault(z => z.IdZamestnanec == int.Parse(dr[ID_NAME].ToString()));
+                listLekaru.Add(new Lekar
+                {
+                    IdZamestnanec = int.Parse(dr[ID_NAME].ToString()),
+                    Jmeno = zamestnanec.Jmeno,
+                    Prijmeni = zamestnanec.Prijmeni,
+                    Profese = zamestnanec.Profese,
+                    VeterKlinId = zamestnanec.VeterKlinId,
+                    Akreditace = dr[AKREDITACE_NAME].ToString()
+                });
+            }
+            return listLekaru;
         }
     }
 }

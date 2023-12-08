@@ -7,7 +7,7 @@ using System.Data;
 
 namespace Models.DatabaseControllers
 {
-    public class AsistentiController 
+    public class AsistentiController
     {
         public const string TABLE_NAME = "ASISTENTI";
         public const string ID_NAME = "id_zamestnanec";
@@ -77,8 +77,8 @@ namespace Models.DatabaseControllers
         public static List<Asistent> GetAll()
         {
             DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
-            List<Asistent> asistent = new List<Asistent>();
-
+            List<Asistent> listAsistentu = new List<Asistent>();
+            List<Zamestnanec> listZamestnancu = ZamestnanciController.GetAll();
             if (query.Rows.Count == 0)
             {
                 return null;
@@ -87,18 +87,27 @@ namespace Models.DatabaseControllers
             {
                 foreach (DataRow dr in query.Rows)
                 {
-                    asistent.Add(new Asistent()
+                    Zamestnanec zamestnanec = listZamestnancu.FirstOrDefault(z => z.IdZamestnanec == int.Parse(dr[ID_NAME].ToString()));
+
+                    if (zamestnanec != null)
                     {
-                        IdZamestnanec = int.Parse(dr[ID_NAME].ToString()),
-                        Praxe = int.Parse(dr[PRAXE_NAME].ToString())
-                    });
+                        listAsistentu.Add(new Asistent()
+                        {
+                            IdZamestnanec = int.Parse(dr[ID_NAME].ToString()),
+                            Jmeno = zamestnanec.Jmeno,
+                            Prijmeni = zamestnanec.Prijmeni,
+                            VeterKlinId = zamestnanec.VeterKlinId,
+                            Profese = zamestnanec.Profese,
+                            Praxe = int.Parse(dr[PRAXE_NAME].ToString())
+                        });
+                    }
                 }
             }
             catch (Exception ex)
             {
 
             }
-            return asistent;
+            return listAsistentu;
         }
     }
 }

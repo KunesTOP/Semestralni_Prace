@@ -7,6 +7,8 @@ using Models.DatabaseControllers;
 using Back.Auth;
 using Semestralni_prace.Models.DatabaseControllers;
 using Microsoft.CodeAnalysis;
+using Newtonsoft.Json.Linq;
+using System.Text.Json;
 
 namespace Semestralni_Prace.Controllers
 {
@@ -58,7 +60,7 @@ namespace Semestralni_Prace.Controllers
 
         private List<string> GetNazvyTabulekAdmin()
         {
-            return new List<string> {"ADRESY", "ANAMNEZA", "ASISTENT","DOKUMENTY", "LEKY", "MAJITEL","PRUKAZ", "RASA", "TITUL","UCTY", "VAKCINA", "VETERINARNI_KLINIKA",
+            return new List<string> {"ADRESY", "ANAMNEZA", "ASISTENT","DOKUMENTY", "LEKARI" ,"LEKY", "MAJITEL","PRUKAZ", "RASA", "TITUL","UCTY", "VAKCINA", "VETERINARNI_KLINIKA",
                 "VYSLEDEK_KREV","ZAMESTNANCI","ZVIRE"};
         }
         private List<string> GetNazvyTabulekLekar()
@@ -86,13 +88,15 @@ namespace Semestralni_Prace.Controllers
                 case "ADRESY":
                     return new List<object> { AdresyController.GetAll() };
                 case "ANAMNEZA":
-                    return new List<object> { /*AnamnezyController.GetAll2()*/ };
+                    return new List<object> { AnamnezyController.GetAll() };
                 case "ASISTENT":
                     return new List<object> { AsistentiController.GetAll() };
                 case "DOKUMENTY":
                     return new List<object> { DokumentController.GetAll() };
                 case "LEKY":
                     return new List<object> { LekyController.GetAll() };
+                case "LEKARI":
+                    return new List<object> { LekariController.GetAll() };
                 case "MAJITEL":
                     return new List<object> { MajiteleZviratController.GetAll() };
                 case "PRUKAZ":
@@ -144,5 +148,134 @@ namespace Semestralni_Prace.Controllers
             return RedirectToAction("Home", "Login");
         }
 
+        [HttpPost]
+        public void SaveEditedRow([FromBody] JsonElement input)
+        {
+            var tabulka = input.GetProperty("selectedValue").GetString();
+            var id = input.GetProperty("rowId").GetInt32();
+            var data = input.GetProperty("entries");
+
+            GetSpravnyUpsert(tabulka, id, data);
+        }
+
+        [HttpDelete]
+        public void DeleteRow([FromBody] JsonElement input)
+        {
+            var tabulka = input.GetProperty("selectedValue").GetString();
+            var id = input.GetProperty("rowId").GetInt32();
+            GetSpravnyRemove(tabulka, id);
+        }
+        //Jak tady ty udaje dostaaaaaat AAAAAAAAAAAAAAAAAAAAAAAAA
+        private void GetSpravnyUpsert(string selectedValue, int id, JsonElement data)
+        {
+            switch (selectedValue)
+            {
+                case "ADRESY":
+                    //Adresy nova = new Adresy { City = prvek., }
+                    //AdresyController.Upsert(prvek) ;
+                    break;
+                case "ANAMNEZA":
+                     // nezapomenout, jsou tam i vysledkyKrev!
+                     /*AnamnezyController.GetAll2()*/
+                    break;
+                case "ASISTENT":
+                     //AsistentiController.UpsertAsistent(prvek);
+                    break;
+                case "DOKUMENTY":
+                    //DokumentController.Upsert(prvek) ;
+                    break;
+                case "LEKARI":
+                    //TODO DODELAT
+                    break;
+                case "LEKY":
+                    LekyController.UpsertLek(id,data);
+                    break;
+                case "MAJITEL":
+                    //MajiteleZviratController.UpsertMajitel(prvek);
+                    break;
+                case "PRUKAZ":
+                    //PrukazyController.UpsertPrukaz(prvek);
+                    break;
+                case "RASA":
+                    //RasaZviratController.UpsertRasa(prvek);
+                    break;
+                case "TITUL":
+                    //TitulyController.InsertTitul(prvek);
+                    break;
+                case "UCTY":
+                    //UctyController.UpsertUcty(prvek);
+                    break;
+                case "VAKCINA":
+                    //VakcinyTableController.UpsertVakcina(prvek);
+                    break;
+                case "VETERINARNI_KLINIKA":
+                    //VeterinarniKlinikaController.UpsertKlinika(prvek);
+                    break;
+                case "VYSLEDEK_KREV":
+                    //VysledkyKrevController.UpsertVysledekKrev(prvek);
+                    break;
+                case "ZAMESTNANCI":
+                    //ZamestnanciController.UpsertZamestnanec(prvek);
+                    break;
+                case "ZVIRE":
+                    //ZvirataController.InsertZvire(prvek);
+                    break;
+            }
+        }
+        private void GetSpravnyRemove(string selectedValue, int id)
+        {
+            switch (selectedValue)
+            {
+                case "ADRESY":
+                    AdresyController.Delete(id) ;
+                    break;
+                case "ANAMNEZA":
+                    //TODO, todle upravit, protože bude třeba řešit i vysledkyKrev
+                    AnamnezyController.DeleteZaznamAnamnezy(id);
+                    break;
+                case "ASISTENT":
+                    AsistentiController.DeleteAsistent(id);
+                    break;
+                case "DOKUMENTY":
+                    DokumentController.Delete(id);
+                    break;
+                case "LEKARI":
+                    LekariController.DeleteLekar(id);
+                    break;
+                case "LEKY":
+                    LekyController.DeleteLek(id);
+                    break;
+                case "MAJITEL":
+                    MajiteleZviratController.DeleteMajitel(id);
+                    break;
+                case "PRUKAZ":
+                    PrukazyController.DeletePrukaz(id);
+                    break;
+                case "RASA":
+                    RasaZviratController.DeleteRasa(id);
+                    break;
+                case "TITUL":
+                    TitulyController.DeleteTitul(id);
+                    break;
+                case "UCTY":
+                    UctyController.DeleteUcty(id);
+                    break;
+                case "VAKCINA":
+                    VakcinyTableController.DeleteVakcina(id);
+                    break;
+                case "VETERINARNI_KLINIKA":
+                    VeterinarniKlinikaController.DeleteKlinika(id);
+                    break;
+                case "VYSLEDEK_KREV":
+                    VysledkyKrevController.DeleteVysledekKrev(id);
+                    break;
+                case "ZAMESTNANCI":
+                    ZamestnanciController.DeleteZamestnanec(id);
+                    break;
+                case "ZVIRE":
+                    ZvirataController.DeleteZvire(id);
+                    break;
+            }
+        }
     }
 }

@@ -137,8 +137,8 @@
                         newRow += "<td><button onclick='saveEditedRow(" + row.id + ")'>Uložit změny</button><button class='btn-delete' onclick='deleteRow(" + row.id + ")'>Smazat</button></td></tr>";
                         tableBody.append(newRow);
                     });
-                    var newRow = "<tr id='new'>";
-                    var row = data.data[0][0]; 
+                    var newRow = "<tr id='-1'>";
+                    var row = data.data[0][0];
                     for (const [key, value] of Object.entries(row)) {
                         if (!key.toLowerCase().includes("id")) {
                             newRow += "<td data-name='" + key + "' ondblclick='replaceCell(this)'></td>";
@@ -152,8 +152,8 @@
                 }
             });
         }
-        function addRow(){
-            saveEditedRow("new");
+        function addRow() {
+            saveEditedRow(-1);
             window.location.reload();
         }
 
@@ -168,31 +168,63 @@
         function hideContextMenu() {
             $('#context-menu').css('display', 'none');
         }
-
-        function editRow() {
-            // Výběr označeného řádku
-            //var selectedRow = $('#data-table tr.context-selected');
-
-            //if (selectedRow.length > 0) {
-            // Umožnění editace
-
-            //}
-
-            hideContextMenu();
-        }
         function deleteRow(rowId) {
-            /* smaž záznam z databáze, něco jako DELETE FROM tabulka WHERE id = $(rowId) */
+            var selectedValue = document.getElementById("tableName").value;
+            console.log(selectedValue);
+            console.log(JSON.stringify({ selectedValue: selectedValue, rowId: rowId }));
+            fetch('@Url.Action("DeleteRow", "Home")', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ selectedValue: selectedValue, rowId:rowId }),
+            })
+                .then(response => {
+                    if (response.ok) {
+                        
+                        // Handle success
+                        // You may not need to do anything if the response doesn't contain a body
+                    } else {
+                        // Handle error
+                    }
+                })
+                .catch(error => {
+                    console.log("Jejda, něco se stalo při odstraňování prvku!");
+                });
             document.getElementById(rowId).remove();
+
         }
 
         function saveEditedRow(rowId) {
             const row = document.getElementById(rowId);
-            const entries = new Array();
+            const entries = {};
+            var selectedValue = document.getElementById("tableName").value;
             [...row.children].forEach((child) => {
                 if (child.dataset.name) {
-                    entries.push([child.dataset.name, child.innerText || null]);
+                    entries[child.dataset.name] = child.innerText || null;
                 }
             })
+            console.log(entries);
+            fetch('@Url.Action("SaveEditedRow", "Home")', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    selectedValue: selectedValue,
+                    rowId: rowId,
+                    entries: entries
+                })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // Handle success
+                        // You may not need to do anything if the response doesn't contain a body
+                    } else {
+                        console.log("Hupsík dupsík, něco se pokazilo při funkci saveEditedRow! toto obsahuje ukládaný řádek: ");
+                        console.log(row);
+                    }
+                })
             /* update záznamu v databázi, něco ve stylu UPDATE tabulka SET $(entries[i][0]) = $(entries[i][1]) WHERE id = $(rowId) */
         }
         function replaceCell(cell) {
@@ -204,7 +236,6 @@
         function turnBack(input) {
             input.replaceWith(input.value);
         }
-
 
     </script>
 </body>

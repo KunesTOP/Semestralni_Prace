@@ -93,7 +93,7 @@ namespace Back.databaze
             {
                 cmd.Parameters.Add(op);
             }
-           // cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.ExecuteNonQuery();
         }
 

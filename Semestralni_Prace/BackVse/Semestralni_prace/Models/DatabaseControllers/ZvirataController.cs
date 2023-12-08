@@ -8,7 +8,7 @@ using System.Data;
 
 namespace Models.DatabaseControllers
 {
-    public class ZvirataController 
+    public class ZvirataController
     {
         public const string TABLE_NAME = "ZVIRATA";
         public const string JMENO_ZVIRE_NAME = "jmeno_zvire";
@@ -47,13 +47,13 @@ namespace Models.DatabaseControllers
         }
 
         public static int InsertZvire(
-     string jmeno,
-     string pohlavi,
-     DateTime datumNarozeni,
-     DateTime? datumUmrti,
-     int majitelId,
-     int idZvire,
-     int rasaId)
+            string jmeno,
+            string pohlavi,
+            DateTime datumNarozeni,
+            DateTime? datumUmrti,
+            int majitelId,
+            int idZvire,
+            int rasaId)
         {
             OracleParameter jmenoParam = new OracleParameter("p_jmeno", OracleDbType.Varchar2, jmeno, ParameterDirection.Input);
             OracleParameter pohlaviParam = new OracleParameter("p_pohlavi", OracleDbType.Varchar2, pohlavi, ParameterDirection.Input);
@@ -111,17 +111,25 @@ namespace Models.DatabaseControllers
 
             foreach (DataRow row in query.Rows)
             {
-                Zvire zvire = new Zvire {
-                JmenoZvire = row[JMENO_ZVIRE_NAME].ToString(),
-                Pohlavi = row[POHLAVI_NAME].ToString(),
-                DatumNarozeni = DateTime.Parse(row[DATUM_NAROZENI_NAME].ToString()),
-                DatumUmrti = row[DATUM_UMRTI_NAME] == DBNull.Value ? null : (DateTime?)DateTime.Parse(row[DATUM_UMRTI_NAME].ToString()),
-                MajitelZvireIdPacient = int.Parse(row[MAJITEL_ZVIRE_ID_PACIENT_NAME].ToString()),
-                IdZvire = int.Parse(row[ID_ZVIRE_NAME].ToString()),
-                RasaZviratIdRasa = int.Parse(row[RASA_ZVIRAT_ID_RASA_NAME].ToString())};
-            Zvirata.Add(zvire);
+                Zvire zvire = new Zvire
+                {
+                    JmenoZvire = row[JMENO_ZVIRE_NAME].ToString(),
+                    Pohlavi = row[POHLAVI_NAME].ToString(),
+                    DatumNarozeni = DateTime.Parse(row[DATUM_NAROZENI_NAME].ToString()),
+                    DatumUmrti = row[DATUM_UMRTI_NAME] == DBNull.Value ? null : (DateTime?)DateTime.Parse(row[DATUM_UMRTI_NAME].ToString()),
+                    MajitelZvireIdPacient = int.Parse(row[MAJITEL_ZVIRE_ID_PACIENT_NAME].ToString()),
+                    IdZvire = int.Parse(row[ID_ZVIRE_NAME].ToString()),
+                    RasaZviratIdRasa = int.Parse(row[RASA_ZVIRAT_ID_RASA_NAME].ToString())
+                };
+                Zvirata.Add(zvire);
             };
             return Zvirata;
+        }
+        public static void DeleteZvire(int id)
+        {
+            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {ID_ZVIRE_NAME} = :id",
+                new OracleParameter("id", id)
+            );
         }
     }
 }

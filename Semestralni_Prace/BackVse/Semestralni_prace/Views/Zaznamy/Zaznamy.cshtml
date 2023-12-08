@@ -1,5 +1,5 @@
 ﻿@page
-@model Semestralni_prace.Controllers.ZaznamyController
+<!-- model Semestralni_prace.Controllers.ZaznamyController-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,20 +48,17 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var record in Model.ZaznamyList)
-            {
                 <tr>
-                    <td>@record.Jmeno</td>
-                    <td>@record.Pohlavi</td>
-                    <td>@record.Narozeni.ToString("dd/MM/yyyy")</td>
-                    <td>@(record.Umrti.HasValue ? record.Umrti.Value.ToString("dd/MM/yyyy") : "")</td>
-                    <td>@record.JmenoVlastnika</td>
-                    <td>@record.NazevPlemene</td>
-                    <td>@record.MnozstviBilychKrvinek</td>
-                    <td>@record.MnozstviCervenychKrvinek</td>
-                    <td>@record.NazevLeku</td>
+                    <td>Jmeno</td>
+                    <td>Pohlavi</td>
+                    <td>Narozeni.ToString("dd/MM/yyyy")</td>
+                    <td>Umrti.HasValue ? record.Umrti.Value.ToString("dd/MM/yyyy") : "")</td>
+                    <td>JmenoVlastnika</td>
+                    <td>NazevPlemene</td>
+                    <td>MnozstviBilychKrvinek</td>
+                    <td>MnozstviCervenychKrvinek</td>
+                    <td>NazevLeku</td>
                 </tr>
-            }
         </tbody>
     </table>
 </body>

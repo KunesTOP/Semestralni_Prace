@@ -5,8 +5,6 @@ namespace Semestralni_prace.Controllers
 {
     public class ZaznamyController : Controller
     {
-        public List<ZaznamAnamnez>? ZaznamyList { get; set; }
-
         public IActionResult Zaznamy()
         {
             return View();

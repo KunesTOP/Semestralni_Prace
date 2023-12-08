@@ -36,10 +36,11 @@ namespace Models.DatabaseControllers
             };
         }
 
-        public static List<Anamneza> GetAll()
+        public static IEnumerable<ZaznamAnamnez> GetAll()
         {
             DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
-            List<Anamneza> zaznamy = new List<Anamneza>();
+            List<ZaznamAnamnez> zaznamy = new List<ZaznamAnamnez>();
+            List<VysledekKrev> listVysledku = (List<VysledekKrev>)VysledkyKrevController.GetAll();
 
             if (query.Rows.Count == 0)
             {
@@ -48,11 +49,18 @@ namespace Models.DatabaseControllers
 
             foreach (DataRow dr in query.Rows)
             {
-                zaznamy.Add(new Anamneza
+                VysledekKrev vysledek = listVysledku.FirstOrDefault(z => z.AnamnezaId == int.Parse(dr[ID_NAME].ToString()));
+                if (vysledek != null)
                 {
-                    Id = int.Parse(dr[ID_NAME].ToString()),
-                    Datum = DateTime.Parse(dr[DATUM_NAME].ToString())
-                });
+                    zaznamy.Add(new ZaznamAnamnez
+                    {
+                        AnamnezaId = int.Parse(dr[ID_NAME].ToString()),
+                        VysledekKrveId = vysledek.IdVysledek,
+                        MnozstviBilychKrvinek = vysledek.MnozstviProtilatky,
+                        MnozstviCervenychKrvinek = vysledek.MnozstviCervKrv,
+                        Datum = DateTime.Parse(dr[DATUM_NAME].ToString())
+                    });
+                }
             }
 
             return zaznamy;
