@@ -4,7 +4,7 @@ using System.Data;
 
 namespace Semestralni_prace.Models.DatabaseControllers
 {
-    public class hiearchickyController
+    public class HiearchickyController
     {
         public static void GetAnimalsForOwnerExplicit(int pOwnerId)
         {
@@ -170,5 +170,12 @@ namespace Semestralni_prace.Models.DatabaseControllers
         {
             DatabaseController.Execute("pkg_zbytek.HierarchicalQueryProcedure");
         }
+        public static void GetNames()
+        {
+            
+            DatabaseController.Execute("pck_zbytekinfo.get_names('zamestnanci')");
+        }
+
+
     }
 }
