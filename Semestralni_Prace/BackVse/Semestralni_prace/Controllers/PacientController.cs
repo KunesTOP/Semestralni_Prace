@@ -3,6 +3,7 @@ using Semestralni_prace.Models.Classes;
 using Semestralni_prace.Models;
 using Models.DatabaseControllers;
 using Back.Auth;
+using System.Text.Json;
 
 namespace Semestralni_prace.Controllers
 {
@@ -10,11 +11,11 @@ namespace Semestralni_prace.Controllers
     {
         public IActionResult ListPacientu()
         {
-            var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno") });
+            /*var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno") });
             if (level == AuthLevel.NONE) { return RedirectToAction("AutorizaceFailed", "Home"); }
             bool isAdmin = level == AuthLevel.ADMIN;
             var ktereJmenoPouzivat = (isAdmin) ? HttpContext.Session.GetString("emulovaneJmeno") : HttpContext.Session.GetString("jmeno");
-            if (isAdmin && ktereJmenoPouzivat != HttpContext.Session.GetString("jmeno")) level = AuthController.GetLevel(ktereJmenoPouzivat);
+            if (isAdmin && ktereJmenoPouzivat != HttpContext.Session.GetString("jmeno")) level = AuthController.GetLevel(ktereJmenoPouzivat);*/
             List<Pacient> PacientList = GetListPacientu();
 
             return View(PacientList);
@@ -54,10 +55,29 @@ namespace Semestralni_prace.Controllers
             }
             return PacientList;
         }
-        //TODO: Udělat tlačítko na přidání a následně to tady vyřešit
         public IActionResult PacientAdd()
         {
-            return View();
+            List<Rasa> listRas = (List<Rasa>)RasaZviratController.GetAll();
+            List<Adresy> listAdres = (List<Adresy>)AdresyController.GetAll();
+
+            var tuple = new Tuple<List<Rasa>, List<Adresy>>(listRas, listAdres);
+
+            return View(tuple);
+        }
+
+        [HttpPost]
+        public IActionResult BtnAdd([FromBody] JsonElement data)
+        {
+            int idKliniky = AdresyController.GetIdByCity(data.GetProperty("klinikaMesto").GetString());
+            int majitelId = MajiteleZviratController.UpsertMajitelPacient(idKliniky,data);
+            int zvireId = ZvirataController.UpsertZvirePacient(majitelId,data);
+            Prukaz prukaz = new Prukaz { IdPrukaz = -1,
+                ZvireId = zvireId,
+                CisloChip = int.Parse(data.GetProperty("cisloChip").GetString()),
+                CisloPrukaz = int.Parse(data.GetProperty("cisloPrukaz").GetString())
+            };
+            PrukazyController.InsertPrukaz(prukaz);
+            return RedirectToAction("Pacient", "ListPacientu");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Tuple<List<Semestralni_prace.Models.Classes.Rasa>, List<Semestralni_prace.Models.Classes.Adresy>>
+@{
     Layout = null;
 }
 
@@ -65,50 +66,113 @@
                         <div style="display: flex; flex-direction: column; height: 407px; width: 297px;">
                             <div style="display: flex; flex-direction: row; align-items: center;">
                                 <label style="margin-right: 5px;">Jméno:</label>
-                                <input type="text" name="jmeno" style="vertical-align: middle;" value="Rex" />
+                                <input type="text" id="jmeno" style="vertical-align: middle;" value="Rex" />
                             </div>
                             <div style="display: flex; flex-direction: row; align-items: center;">
                                 <label style="margin-right: 5px;">Datum narození:</label>
-                                <input type="text" name="date" style="vertical-align: middle;" value="13.05.2018" />
+                                <input type="text" id="datumN" style="vertical-align: middle;" value="13.05.2018" />
+                            </div>
+                            <div style="display: flex; flex-direction: row; align-items: center;">
+                                <label style="margin-right: 5px;">Datum Umrtí:</label>
+                                <input type="text" id="datumU" style="vertical-align: middle;" value="20.07.2023" />
                             </div>
                             <div style="display: flex; flex-direction: row; align-items: center;">
                                 <label style="margin-right: 5px;">Pohlaví:</label>
-                                <select name="pohlavi" style="vertical-align: middle; width: 100px;">
-                                    <option>Fenka</option>
+                                <select id="pohlavi" style="vertical-align: middle; width: 100px;">
+                                    <option>Fena</option>
+                                    <option>Samec</option>
                                 </select>
                             </div>
                             <div style="display: flex; flex-direction: row; align-items: center;">
                                 <label style="margin-right: 5px;">Rasa:</label>
-                                <select name="rasa" style="vertical-align: middle; width: 150px;">
-                                    <option>Border Kolie</option>
+                                <select id="rasa" style="vertical-align: middle; width: 150px;">
+
+                                    @foreach (var record in Model.Item1)
+                                    {
+                                        <option>@record.JmenoRasa</option>
+                                    }
                                 </select>
                             </div>
                             <div style="display: flex; flex-direction: row; align-items: center;">
-                                <label style="margin-right: 5px;">Vlastník:</label>
-                                <input type="text" name="vlastnik" style="vertical-align: middle;" value="Ondřej Neustadt" />
+                                <label style="margin-right: 5px;">Vlastník křestní:</label>
+                                <input type="text" id="krestni" style="vertical-align: middle;" value="Ondřej" />
                             </div>
                             <div style="display: flex; flex-direction: row; align-items: center;">
-                                <label style="margin-right: 5px;">Město:</label>
-                                <input type="text" name="adresa" style="vertical-align: middle;" value="Insomnia" />
+                                <label style="margin-right: 5px;">Vlastník příjmení:</label>
+                                <input type="text" id="prijmeni" style="vertical-align: middle;" value="Neustadt" />
                             </div>
                             <div style="display: flex; flex-direction: row; align-items: center;">
-                                <label style="margin-right: 5px;">Ulice:</label>
-                                <input type="text" name="adresa" style="vertical-align: middle;" value="Regis" />
+                                <label style="margin-right: 5px;">E-mail:</label>
+                                <input type="text" id="email" style="vertical-align: middle;" value="format@upce.cz" />
                             </div>
                             <div style="display: flex; flex-direction: row; align-items: center;">
-                                <label style="margin-right: 5px;">Číslo popisné:</label>
-                                <input type="text" name="adresa" style="vertical-align: middle;" value="420" />
+                                <label style="margin-right: 5px;">Telefonní číslo:</label>
+                                <input type="text" id="telefon" style="vertical-align: middle;" value="792 865 335" />
                             </div>
                             <div style="display: flex; flex-direction: row; align-items: center;">
                                 <label style="margin-right: 5px;">Číslo průkazu:</label>
-                                <input type="text" name="cisloPrukaz" style="vertical-align: middle;" value="000001" />
+                                <input type="text" id="cisloPrukaz" style="vertical-align: middle;" value="000001" />
                             </div>
-                            <button name="add" style="margin-top: 20px;">Přidat záznam</button>
+                            <div style="display: flex; flex-direction: row; align-items: center;">
+                                <label style="margin-right: 5px;">Číslo Chipu:</label>
+                                <input type="text" id="cisloChip" style="vertical-align: middle;" value="000001" />
+                            </div>
+                            <div style="display: flex; flex-direction: row; align-items: center;">
+                                <label style="margin-right: 5px;">Klinika:</label>
+                                <select id="klinika" style="vertical-align: middle; width: 150px;">
+                                    @foreach (var record in Model.Item2)
+                                    {
+                                        <option>@record.City</option>
+                                    }
+                                </select>
+                            </div>
+                            <button id="btnAdd" style="margin-top: 20px;">Přidat záznam</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $('#btnAdd').on('click', function () {
+            Add();
+        });
+        function Add() {
+            console.log("jsem v metodě!")
+            console.log($('#jmeno').val())
+            console.log($('#datumN').val())
+            fetch('@Url.Action("BtnAdd", "Pacient")', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    jmenoZvire: $('#jmeno').val(),
+                    datumN: $('#datumN').val(),
+                    datumU: $('#datumU').val(),
+                    pohlavi: $('#pohlavi').val(),
+                    rasa: $('#rasa').val(),
+                    krestni: $('#krestni').val(),
+                    prijmeni: $('#prijmeni').val(),
+                    email: $('#email').val(),
+                    telefon: $('#telefon').val(),
+                    cisloPrukaz: $('#cisloPrukaz').val(),
+                    cisloChip: $('#cisloChip').val(),
+                    klinikaMesto: $('#klinika').val()
+                })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // Handle success
+                        // You may not need to do anything if the response doesn't contain a body
+                    } else {
+                        console.log("Hupsík dupsík, něco se pokazilo při funkci přidávání pacient: ");
+                    }
+                })
+            /* update záznamu v databázi, něco ve stylu UPDATE tabulka SET $(entries[i][0]) = $(entries[i][1]) WHERE id = $(rowId) */
+        }
+
+    </script>
 </body>
 </html>

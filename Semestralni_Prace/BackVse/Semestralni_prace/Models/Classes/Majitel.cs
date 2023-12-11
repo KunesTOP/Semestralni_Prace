@@ -8,14 +8,13 @@ namespace Semestralni_prace.Models.Classes
 {
     public class Majitel
     {
-
-        public int PacientId { get; internal set; }
-        public string? Mail { get; internal set; }
-        public string? Telefon { get; internal set; }
-        public string? Jmeno { get; internal set; }
-        public string? Prijmeni { get; internal set; }
-        public int VetKlinId { get; internal set; }
-        public int IdMajitel { get; internal set; }
+        public int PacientId { get; set; }
+        public string? Mail { get; set; }
+        public string? Telefon { get; set; }
+        public string? Jmeno { get; set; }
+        public string? Prijmeni { get; set; }
+        public int VetKlinId { get; set; }
+        public int IdMajitel { get; set; }
 
 
         public string CeleJmeno()

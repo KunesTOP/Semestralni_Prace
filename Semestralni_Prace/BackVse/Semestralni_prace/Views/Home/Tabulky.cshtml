@@ -73,12 +73,6 @@
         <!-- Table content will be dynamically generated here -->
     </table>
 
-    <!-- Context menu for right-click actions -->
-    <div id="context-menu" class="context-menu">
-        <div class="context-menu-item" onclick="editRow()">Edit Row</div>
-        <div class="context-menu-item" onclick="deleteRow()">Delete Row</div>
-    </div>
-
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         const select = document.getElementById("tableName");
@@ -93,18 +87,6 @@
             urlParams.set("selected", select.value);
             history.pushState({}, null, "?" + urlParams.toString());
         })
-
-        $(document).ready(function () {
-            // Attach context menu to the data table
-            $('#data-table').on('contextmenu', 'tr', function (e) {
-                e.preventDefault();
-                showContextMenu(e.pageX, e.pageY);
-            });
-
-            // Hide context menu on document click
-            $(document).on('click', function () {
-                hideContextMenu();
-            });
 
             // Load table on button click
             $('#btnLoadTable').on('click', function () {

@@ -59,6 +59,9 @@ namespace Models.DatabaseControllers
 
         public static void UpsertPrukaz(int id, JsonElement data)
         {
+            Prukaz aktualni = PrukazyController.GetByCisloPrukaz(data.GetProperty("cisloPrukaz").GetInt32());
+            if(aktualni.Equals(null)) { aktualni.ZvireId = null; }
+
             OracleParameter cisloPrukazParam = new OracleParameter("p_cislo_prukaz", OracleDbType.Int32, ParameterDirection.InputOutput);
             cisloPrukazParam.Value = data.GetProperty("cisloPrukaz").GetInt32();
 
@@ -69,7 +72,7 @@ namespace Models.DatabaseControllers
             idPrukazParam.Value = id;
 
             OracleParameter zvireIdParam = new OracleParameter("p_zvire_id", OracleDbType.Int32, ParameterDirection.Input);
-            zvireIdParam.Value = -1;/*?? (object)DBNull.Value;*/
+            zvireIdParam.Value = aktualni.ZvireId ?? (object)DBNull.Value;
 
             DatabaseController.Execute("pkg_ostatni.upsert_prukazy", cisloPrukazParam, cisloChipParam, idPrukazParam, zvireIdParam);
         }

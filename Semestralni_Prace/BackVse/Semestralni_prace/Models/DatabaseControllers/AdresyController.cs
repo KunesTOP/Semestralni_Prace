@@ -56,13 +56,22 @@ namespace Models.DatabaseControllers
 
             return list;
         }
+        public static int GetIdByCity(string city)
+        {
+            DataTable query = DatabaseController.Query($"SELECT {ID_NAME} FROM {TABLE_NAME} WHERE {MESTO_NAME} = :city",
+                new OracleParameter("city", city));
+            if(query.Rows.Count != 1) { return 0; }
 
-        private AuthLevel GetAuthLevel()
+
+            return int.Parse(query.Rows[0][ID_NAME].ToString());
+        }
+
+        private static AuthLevel GetAuthLevel()
         {
             throw new NotImplementedException();
         }
 
-        public Adresy Get(int id)
+        public static Adresy Get(int id)
         {
             DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME} WHERE {ID_NAME} = :id", new OracleParameter("id", id));
 

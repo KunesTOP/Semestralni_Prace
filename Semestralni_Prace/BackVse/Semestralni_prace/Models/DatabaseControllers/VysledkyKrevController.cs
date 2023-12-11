@@ -40,13 +40,15 @@ namespace Models.DatabaseControllers
             };
         }
 
-        //TODO opravit anamnezaID nikde nemam
         public static void UpsertVysledekKrev(int id, JsonElement data)
         {
+            VysledekKrev aktualni = VysledkyKrevController.Get(id);
+            if (aktualni.Equals(null)) { aktualni.AnamnezaId = 1; }
+
             OracleParameter idVysledekParam = new OracleParameter("idVysledek", OracleDbType.Int32, id, ParameterDirection.Input);
             OracleParameter mnozstviProtilatkyParam = new OracleParameter("mnozstviProtilatky", OracleDbType.Int32, data.GetProperty("mnnozstviProtilatky").GetString(), ParameterDirection.Input);
             OracleParameter mnozstviCervKrvParam = new OracleParameter("mnozstviCervKrv", OracleDbType.Int32, data.GetProperty("mnozstviCervKrv").GetString(), ParameterDirection.Input);
-            OracleParameter anamnezaIdParam = new OracleParameter("anamnezaId", OracleDbType.Int32, -1/*vysledekKrev.AnamnezaId ?? (object)DBNull.Value*/, ParameterDirection.Input);
+            OracleParameter anamnezaIdParam = new OracleParameter("anamnezaId", OracleDbType.Int32, aktualni.AnamnezaId ?? (object)DBNull.Value, ParameterDirection.Input);
 
             DatabaseController.Execute(
                 $"pkg_ostatni.upsert_vysledek_krev(:{ID_VYSLEDEK_NAME}, :{MNOZSTVI_PROTILATKY_NAME}, :{MNOZSTVI_CERV_KRV_NAME}, :{ANAMNEZA_ID_NAME})",

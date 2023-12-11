@@ -58,13 +58,15 @@ namespace Models.DatabaseControllers
 
             return ids;
         }
-        //TODO Upravit veterKlinId, protože  já ho nikde nemám :/ tak bude přidáván vždy do první kliniky... což NENÍ DOBRÝ
         public static void UpsertZamestnanec(int id, JsonElement data)
         {
+            Zamestnanec aktualni = ZamestnanciController.Get(id);
+            if (aktualni.Equals(null)) { aktualni.VeterKlinId = 1; }
+
             OracleParameter idZamestnanecParam = new OracleParameter("idZamestnanec", OracleDbType.Int32, id, ParameterDirection.Input);
             OracleParameter jmenoParam = new OracleParameter("jmeno", OracleDbType.Varchar2, data.GetProperty("jmeno").GetString(), ParameterDirection.Input);
             OracleParameter prijmeniParam = new OracleParameter("prijmeni", OracleDbType.Varchar2, data.GetProperty("prijmeni").GetString(), ParameterDirection.Input);
-            OracleParameter veterKlinIdParam = new OracleParameter("veterKlinId", OracleDbType.Int32, 1, ParameterDirection.Input);
+            OracleParameter veterKlinIdParam = new OracleParameter("veterKlinId", OracleDbType.Int32, aktualni.VeterKlinId, ParameterDirection.Input);
             OracleParameter profeseParam = new OracleParameter("profese", OracleDbType.Varchar2, data.GetProperty("profese").GetString(), ParameterDirection.Input);
 
             DatabaseController.Execute(

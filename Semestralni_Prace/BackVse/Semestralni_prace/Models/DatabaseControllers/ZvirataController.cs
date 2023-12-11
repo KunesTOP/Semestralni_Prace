@@ -80,9 +80,11 @@ namespace Models.DatabaseControllers
 
             return int.Parse(resultParam.Value.ToString());
         }
-        //TODO: Dořešit ID vlastnika a rasy
         public static void UpsertZvire(int id, JsonElement data)
         {
+            Zvire aktualni = ZvirataController.Get(id);
+            if (aktualni.Equals(null)) { aktualni.MajitelZvireIdPacient = 1; aktualni.RasaZviratIdRasa = 1; }
+
             OracleParameter zvireIdParam = new OracleParameter("p_id", OracleDbType.Int32, ParameterDirection.InputOutput);
             zvireIdParam.Value = id;
 
@@ -95,17 +97,45 @@ namespace Models.DatabaseControllers
             OracleParameter narozeniParam = new OracleParameter("p_datum_narozeni", OracleDbType.Date, ParameterDirection.Input);
             narozeniParam.Value = data.GetProperty("datumNarozeni").GetString();
 
-            //TODO: Tady asi kontrolovat jestli je to null nebo ne :/
             OracleParameter umrtiParam = new OracleParameter("p_datum_umrti", OracleDbType.Date, ParameterDirection.Input);
-            umrtiParam.Value = data.GetProperty("datumUmrti").GetString();
-            
+            umrtiParam.Value = data.GetProperty("datumUmrti").GetString() ?? (object)DBNull.Value;
+
             OracleParameter majitelZvireteIdParam = new OracleParameter("p_majitel_zvire_id_pacient", OracleDbType.Int32, ParameterDirection.Input);
-            majitelZvireteIdParam.Value = data.GetProperty("").GetInt32();
+            majitelZvireteIdParam.Value = aktualni.MajitelZvireIdPacient;
 
             OracleParameter rasaIdParam = new OracleParameter("p_rasa_zvirat_id_rasa", OracleDbType.Int32, ParameterDirection.Input);
-            rasaIdParam.Value = data.GetProperty("").GetInt32();
+            rasaIdParam.Value = aktualni.RasaZviratIdRasa;
 
             DatabaseController.Execute("pkg_ostatni.upsert_majitel", zvireIdParam, jmenoParam, pohlaviParam, narozeniParam, umrtiParam, majitelZvireteIdParam, rasaIdParam);
+        }
+        public static int UpsertZvirePacient(int IdMajitel, JsonElement data)
+        {
+            Rasa aktualni = RasaZviratController.GetByJmenoRasa(data.GetProperty("rasa").GetString());
+            if (aktualni.IdRasa.Equals(null)) { aktualni.JmenoRasa = data.GetProperty("rasa").GetString(); aktualni.IdRasa = -1; RasaZviratController.InsertRasa(aktualni); }
+
+            OracleParameter zvireIdParam = new OracleParameter("p_id", OracleDbType.Int32, ParameterDirection.InputOutput);
+            zvireIdParam.Value = -1;
+
+            OracleParameter jmenoParam = new OracleParameter("p_jmeno", OracleDbType.Varchar2, ParameterDirection.Input);
+            jmenoParam.Value = data.GetProperty("jmenoZvire").GetString();
+
+            OracleParameter pohlaviParam = new OracleParameter("p_pohlavi", OracleDbType.Varchar2, ParameterDirection.Input);
+            pohlaviParam.Value = data.GetProperty("pohlavi").GetString();
+
+            OracleParameter narozeniParam = new OracleParameter("p_datum_narozeni", OracleDbType.Date, ParameterDirection.Input);
+            narozeniParam.Value = data.GetProperty("datumN").GetString();
+
+            OracleParameter umrtiParam = new OracleParameter("p_datum_umrti", OracleDbType.Date, ParameterDirection.Input);
+            umrtiParam.Value = data.GetProperty("datumU").GetString() ?? (object)DBNull.Value;
+
+            OracleParameter majitelZvireteIdParam = new OracleParameter("p_majitel_zvire_id_pacient", OracleDbType.Int32, ParameterDirection.Input);
+            majitelZvireteIdParam.Value = IdMajitel;
+
+            OracleParameter rasaIdParam = new OracleParameter("p_rasa_zvirat_id_rasa", OracleDbType.Int32, ParameterDirection.Input);
+            rasaIdParam.Value = aktualni.IdRasa;
+
+            DatabaseController.Execute("pkg_ostatni.upsert_majitel", zvireIdParam, jmenoParam, pohlaviParam, narozeniParam, umrtiParam, majitelZvireteIdParam, rasaIdParam);
+            return int.Parse((zvireIdParam.Value).ToString());
         }
 
         public static void DeleteMapping(int zvireId)

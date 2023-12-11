@@ -36,16 +36,16 @@ namespace Semestralni_Prace.Controllers
         }
         public IActionResult Tabulky()
         {
-             var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno") });
-             if (level == AuthLevel.NONE) { return RedirectToAction("AutorizaceFailed", "Home"); }
-             bool isAdmin = level == AuthLevel.ADMIN;
-             var ktereJmenoPouzivat = (isAdmin) ? HttpContext.Session.GetString("emulovaneJmeno") : HttpContext.Session.GetString("jmeno");
-             if (isAdmin && ktereJmenoPouzivat != HttpContext.Session.GetString("jmeno")) level = AuthController.GetLevel(ktereJmenoPouzivat);
-             if (level == AuthLevel.OUTER) { return RedirectToAction("AutorizaceFailed", "Home"); }
-             List<string> tableNames;
-             tableNames = (level == AuthLevel.ADMIN) ? GetNazvyTabulekAdmin() :  GetNazvyTabulekLekar();
+            var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno") });
+            if (level == AuthLevel.NONE) { return RedirectToAction("AutorizaceFailed", "Home"); }
+            bool isAdmin = level == AuthLevel.ADMIN;
+            var ktereJmenoPouzivat = (isAdmin) ? HttpContext.Session.GetString("emulovaneJmeno") : HttpContext.Session.GetString("jmeno");
+            if (isAdmin && ktereJmenoPouzivat != HttpContext.Session.GetString("jmeno")) level = AuthController.GetLevel(ktereJmenoPouzivat);
+            if (level == AuthLevel.OUTER) { return RedirectToAction("AutorizaceFailed", "Home"); }
+            List<string> tableNames;
+            tableNames = (level == AuthLevel.ADMIN) ? GetNazvyTabulekAdmin() : GetNazvyTabulekLekar();
             /* List<string> tableNames = GetNazvyTabulekAdmin();*/
-            
+
 
             ViewBag.TableNames = tableNames;
 
@@ -171,14 +171,13 @@ namespace Semestralni_Prace.Controllers
             switch (selectedValue)
             {
                 case "ADRESY":
-                    AdresyController.Upsert(id,data) ;
+                    AdresyController.Upsert(id, data);
                     break;
                 case "ANAMNEZA":
                     //AnamnezyController.UpdateZaznamAnamnezy(id, data);
                     break;
                 case "ASISTENT":
-                    //TODO rozbije zamestnance
-                     AsistentiController.UpsertAsistent(id,data);
+                    AsistentiController.UpsertAsistent(id, data);
                     break;
                 case "DOKUMENTY":
                     var nazev = data.GetProperty("nazev").GetString();
@@ -194,22 +193,19 @@ namespace Semestralni_Prace.Controllers
                     DokumentController.UpsertDokument(doc);
                     break;
                 case "LEKARI":
-                    //TODO Rozbije to tabulku zaměstnanci, přesněji upsert nejde
                     LekariController.UpsertLekar(id, data);
                     break;
                 case "LEKY":
-                    LekyController.UpsertLek(id,data);
+                    LekyController.UpsertLek(id, data);
                     break;
                 case "MAJITEL":
-                    //TODO vyřešit chybějící ID
                     MajiteleZviratController.UpsertMajitel(id, data);
                     break;
                 case "PRUKAZ":
-                    //TODO opravit IdZvire
                     PrukazyController.UpsertPrukaz(id, data);
                     break;
                 case "RASA":
-                    RasaZviratController.UpsertRasa(id,data);
+                    RasaZviratController.UpsertRasa(id, data);
                     break;
                 case "TITUL":
                     TitulyController.UpsertTitul(id, data);
@@ -221,19 +217,15 @@ namespace Semestralni_Prace.Controllers
                     VakcinyTableController.UpsertVakcina(id, data);
                     break;
                 case "VETERINARNI_KLINIKA":
-                    //TODO opravit id adresy!
                     VeterinarniKlinikaController.UpsertKlinika(id, data);
                     break;
                 case "VYSLEDEK_KREV":
-                    //TODO upravit upsert, je tam chyba
                     VysledkyKrevController.UpsertVysledekKrev(id, data);
                     break;
                 case "ZAMESTNANCI":
-                    //TODO: Opravit tudle metodu!
-                    ZamestnanciController.UpsertZamestnanec(id,data);
+                    ZamestnanciController.UpsertZamestnanec(id, data);
                     break;
                 case "ZVIRE":
-                    //TODO opravit idčka
                     ZvirataController.UpsertZvire(id, data);
                     break;
             }
@@ -243,7 +235,7 @@ namespace Semestralni_Prace.Controllers
             switch (selectedValue)
             {
                 case "ADRESY":
-                    AdresyController.Delete(id) ;
+                    AdresyController.Delete(id);
                     break;
                 case "ANAMNEZA":
                     //TODO, todle upravit, protože bude třeba řešit i vysledkyKrev
