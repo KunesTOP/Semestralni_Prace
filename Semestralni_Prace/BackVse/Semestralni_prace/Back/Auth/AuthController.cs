@@ -23,10 +23,10 @@ namespace Back.Auth
     internal class AuthController
 
     {
-
+        public const string TABLE_NAME = "UCTY";
         //Na todle nešahej, funguje to! Pokud si todle čte někdo jiný, než Jindra... o> jak je?
         private static readonly ObjectCache cachedTokens = System.Runtime.Caching.MemoryCache.Default;
-        private static AuthLevel CheckInDatabase(AuthToken authToken)
+        public static AuthLevel CheckInDatabase(AuthToken authToken)
         {
             DataTable query = DatabaseController.Query(
                 $"SELECT heslo_hash FROM UCTY WHERE jmeno = :jmeno",
@@ -36,19 +36,20 @@ namespace Back.Auth
             if (query.Rows.Count == 1)
             {
                 string dbHash = query.Rows[0]["heslo_hash"].ToString();
-
+                Console.WriteLine(authToken.Hash + dbHash);
                 // Porovnejte hash z databáze s hashem z AuthToken
                 if (VerifyPassword(authToken.Hash, dbHash))
                 {
                     DataTable authLevelQuery = DatabaseController.Query(
-                        $"SELECT PKG_HESLA.ZJISTI_UROVEN(:jmeno, :hash) AS level FROM DUAL",
-                        new OracleParameter("jmeno", authToken.PrihlasovaciJmeno),
-                        new OracleParameter("hash", dbHash)
+                         $"SELECT uroven_autorizace FROM {TABLE_NAME} WHERE jmeno = :jmeno",
+                        new OracleParameter("jmeno", authToken.PrihlasovaciJmeno)
+                        
                     );
 
-                    if (authLevelQuery.Rows.Count > 0 && Enum.TryParse(authLevelQuery.Rows[0]["level"].ToString(), out AuthLevel result))
+                    if (authLevelQuery.Rows.Count > 0 && Enum.TryParse(authLevelQuery.Rows[0]["Uroven_Autorizace"].ToString(), out AuthLevel result))
                     {
                         return result;
+
                     }
                 }
             }
@@ -63,7 +64,7 @@ namespace Back.Auth
             // Použijte například HMACSHA256 pro ověření hesla
 
             // Příklad:
-            using (var hmac = new HMACSHA256(Encoding.UTF8.GetBytes("Vaší_tajný_klíč")))
+            using (var hmac = new HMACSHA256(Encoding.UTF8.GetBytes(inputPassword)))
             {
                 byte[] computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(inputPassword));
 
@@ -77,7 +78,7 @@ namespace Back.Auth
 
         public static AuthLevel Check(AuthToken? authToken)
         {
-            if (authToken.HasValue)
+            if (!authToken.HasValue)
             {
                 return AuthLevel.NONE;
             }

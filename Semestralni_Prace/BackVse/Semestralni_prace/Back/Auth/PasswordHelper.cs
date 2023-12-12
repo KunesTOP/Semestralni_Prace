@@ -5,10 +5,12 @@ public static class PasswordHelper
 {
     public static string HashPassword(string password)
     {
-        using (SHA256 sha256 = SHA256.Create())
+        string secretKey = password;
+        using (var hmac = new HMACSHA256(Encoding.UTF8.GetBytes(secretKey)))
         {
-            byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+            byte[] hashedBytes = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
             return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
         }
     }
+
 }
