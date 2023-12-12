@@ -106,7 +106,7 @@ namespace Semestralni_Prace.Controllers
                 case "TITUL":
                     return new List<object> { TitulyController.GetAll() };
                 case "UCTY":
-                    return new List<object> { UctyController.GetAll() };
+                    return new List<object> { UctyController.GetAllUcty() };
                 case "VAKCINA":
                     return new List<object> { VakcinyTableController.GetAll() };
                 case "VETERINARNI_KLINIKA":
@@ -211,7 +211,7 @@ namespace Semestralni_Prace.Controllers
                     TitulyController.UpsertTitul(id, data);
                     break;
                 case "UCTY":
-                    UctyController.UpsertUcty(id, data);
+                    UctyController.UpdateUcty(id, data);
                     break;
                 case "VAKCINA":
                     VakcinyTableController.UpsertVakcina(id, data);

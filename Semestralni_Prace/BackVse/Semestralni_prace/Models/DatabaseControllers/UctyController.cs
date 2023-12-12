@@ -9,99 +9,86 @@ namespace Semestralni_prace.Models.DatabaseControllers
     public class UctyController
     {
         public const string TABLE_NAME = "UCTY";
-        public const string ID_NAME = "id_clovek";
-        public const string JMENO_NAME = "jmeno";
-        public const string SALT_NAME = "salt";
-        public const string HASH_NAME = "hash";
-        public const string UROVEN_NAME = "uroven";
+        public const string ID_COLUMN_NAME = "id";
+        public const string JMENO_COLUMN_NAME = "jmeno";
+        public const string HESLO_HASH_COLUMN_NAME = "heslo_hash";
+        public const string UROVEN_AUTORIZACE_COLUMN_NAME = "uroven_autorizace";
 
+
+        public static void CreateUcty(Ucty ucty)
+        {
+            ucty.Hash = PasswordHelper.HashPassword(ucty.Hash);
+            DatabaseController.Execute(
+                $"INSERT INTO {TABLE_NAME} (jmeno, heslo_hash, uroven_autorizace) VALUES (:jmeno, :heslo_hash, :uroven_autorizace)",
+                new OracleParameter("jmeno", ucty.Jmeno),
+                new OracleParameter("heslo_hash", ucty.Hash),
+                new OracleParameter("uroven_autorizace", ucty.Uroven));
+        }
+
+
+        // Read an account by ID
         public static Ucty GetUctyById(int id)
         {
-            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME} WHERE {ID_NAME} = :id",
+            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME} WHERE id = :id",
                 new OracleParameter("id", id));
-
             if (query.Rows.Count > 0)
             {
                 DataRow dr = query.Rows[0];
                 return new Ucty
                 {
-                    IdClovek = Convert.ToInt32(dr[ID_NAME]),
-                    Jmeno = dr[JMENO_NAME].ToString(),
-                    Salt = dr[SALT_NAME].ToString(),
-                    Hash = dr[HASH_NAME].ToString(),
-                    Uroven = Convert.ToInt32(dr[UROVEN_NAME])
+                    Id = Convert.ToInt32(dr["id"]),
+                    Jmeno = dr["jmeno"].ToString(),
+                    Hash = dr["heslo_hash"].ToString(),
+                    Uroven = Convert.ToInt32(dr["uroven_autorizace"])
                 };
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
 
-        public static Ucty GetUctyByJmeno(string jmeno)
+        // Update an existing account
+        public static void UpdateUcty(int id, JsonElement data)
         {
-            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME} WHERE {JMENO_NAME} = :jmeno",
-                new OracleParameter("jmeno", jmeno));
+            string hesloHash = PasswordHelper.HashPassword(data.GetProperty("heslo_hash").GetString());
+            string jmeno = data.GetProperty("jmeno").GetString();
 
-            if (query.Rows.Count > 0)
-            {
-                DataRow dr = query.Rows[0];
-                return new Ucty
-                {
-                    IdClovek = Convert.ToInt32(dr[ID_NAME]),
-                    Jmeno = dr[JMENO_NAME].ToString(),
-                    Salt = dr[SALT_NAME].ToString(),
-                    Hash = dr[HASH_NAME].ToString(),
-                    Uroven = Convert.ToInt32(dr[UROVEN_NAME])
-                };
-            }
-            else
-            {
-                return null;
-            }
+            int urovenAutorizace = data.GetProperty("uroven_autorizace").GetInt32();
+
+            DatabaseController.Execute(
+                $"UPDATE ucty SET jmeno = :jmeno, heslo_hash = :heslo_hash, uroven_autorizace = :uroven_autorizace WHERE id = :id",
+                new OracleParameter("id", id),
+                new OracleParameter("jmeno", jmeno),
+                new OracleParameter("heslo_hash", hesloHash),
+                new OracleParameter("uroven_autorizace", urovenAutorizace));
         }
 
-        public static void UpsertUcty(int id, JsonElement data)
-        {
-            OracleParameter jmeno = new OracleParameter("jmeno", OracleDbType.Varchar2, ParameterDirection.InputOutput);
-            jmeno.Value = data.GetProperty("jmeno").GetString();
 
-            OracleParameter hash = new OracleParameter("hash", OracleDbType.Varchar2, ParameterDirection.InputOutput);
-            hash.Value = data.GetProperty("hash").GetString();
 
-            OracleParameter uroven = new OracleParameter("uroven", OracleDbType.Int32, ParameterDirection.InputOutput);
-            uroven.Value = data.GetProperty("uroven").GetString();
 
-            DatabaseController.Execute("pkg_hesla.nastav_ucet", jmeno, hash, uroven);
-        }
 
+        // Delete an account
         public static void DeleteUcty(int id)
         {
-            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {ID_NAME} = :id",
+            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE id = :id",
                 new OracleParameter("id", id));
         }
-        public static IEnumerable<Ucty> GetAll()
-        {
-            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
-            if(query.Rows.Count== 0)
-            {
-                return null;
-            }
-            List<Ucty> listUctu = new List<Ucty>();
 
-            foreach(DataRow dr in query.Rows)
+        // Get all accounts
+        public static List<Ucty> GetAllUcty()
+        {
+            List<Ucty> uctyList = new List<Ucty>();
+            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
+            foreach (DataRow dr in query.Rows)
             {
-                listUctu.Add(new Ucty
+                uctyList.Add(new Ucty
                 {
-                    IdClovek = int.Parse(dr[ID_NAME].ToString()),
-                    Jmeno = dr[JMENO_NAME].ToString(),
-                    Salt = dr[SALT_NAME].ToString(),
-                    Hash = dr[HASH_NAME].ToString(),
-                    Uroven = int.Parse(dr[UROVEN_NAME].ToString())
+                    Id = Convert.ToInt32(dr["id"]),
+                    Jmeno = dr["jmeno"].ToString(),
+                    Hash = dr["heslo_hash"].ToString(),
+                    Uroven = Convert.ToInt32(dr["uroven_autorizace"])
                 });
             }
-            return listUctu;
-          
+            return uctyList;
         }
     }
 }
+

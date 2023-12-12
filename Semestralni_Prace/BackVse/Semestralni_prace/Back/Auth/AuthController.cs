@@ -1,10 +1,10 @@
 ﻿using Back.databaze;
-using Microsoft.Extensions.Caching.Memory;
 using Oracle.ManagedDataAccess.Client;
-using Semestralni_prace.Models.Classes;
 using System.Data;
-using System.Net.Http.Headers;
 using System.Runtime.Caching;
+using System.Text;
+using System.Security.Cryptography;
+
 
 namespace Back.Auth
 
@@ -19,20 +19,61 @@ namespace Back.Auth
     {
         NONE = -1, OUTER = 2, INNER = 1, ADMIN = 0
     }
+
     internal class AuthController
 
     {
+
         //Na todle nešahej, funguje to! Pokud si todle čte někdo jiný, než Jindra... o> jak je?
         private static readonly ObjectCache cachedTokens = System.Runtime.Caching.MemoryCache.Default;
         private static AuthLevel CheckInDatabase(AuthToken authToken)
         {
             DataTable query = DatabaseController.Query(
-                $"SELECT PKG_HESLA.ZJISTI_UROVEN(:jmeno, :hash) \"level\" FROM DUAL",
-                new OracleParameter("jmeno", authToken.PrihlasovaciJmeno),
-                new OracleParameter("hash", authToken.Hash)
+                $"SELECT heslo_hash FROM UCTY WHERE jmeno = :jmeno",
+                new OracleParameter("jmeno", authToken.PrihlasovaciJmeno)
             );
-            return query.Rows.Count > 0 && Enum.TryParse((query.Rows[0])["level"].ToString(), out AuthLevel result) ? result : AuthLevel.NONE;
+
+            if (query.Rows.Count == 1)
+            {
+                string dbHash = query.Rows[0]["heslo_hash"].ToString();
+
+                // Porovnejte hash z databáze s hashem z AuthToken
+                if (VerifyPassword(authToken.Hash, dbHash))
+                {
+                    DataTable authLevelQuery = DatabaseController.Query(
+                        $"SELECT PKG_HESLA.ZJISTI_UROVEN(:jmeno, :hash) AS level FROM DUAL",
+                        new OracleParameter("jmeno", authToken.PrihlasovaciJmeno),
+                        new OracleParameter("hash", dbHash)
+                    );
+
+                    if (authLevelQuery.Rows.Count > 0 && Enum.TryParse(authLevelQuery.Rows[0]["level"].ToString(), out AuthLevel result))
+                    {
+                        return result;
+                    }
+                }
+            }
+
+            return AuthLevel.NONE;
         }
+
+        // Metoda pro ověření hesla pomocí hashů
+        private static bool VerifyPassword(string inputPassword, string hashedPasswordFromDatabase)
+        {
+            // Zde byste měli implementovat logiku pro porovnání hashů hesel
+            // Použijte například HMACSHA256 pro ověření hesla
+
+            // Příklad:
+            using (var hmac = new HMACSHA256(Encoding.UTF8.GetBytes("Vaší_tajný_klíč")))
+            {
+                byte[] computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(inputPassword));
+
+                string computedHashString = BitConverter.ToString(computedHash).Replace("-", "").ToLower();
+
+                return computedHashString == hashedPasswordFromDatabase;
+            }
+        }
+
+
 
         public static AuthLevel Check(AuthToken? authToken)
         {
@@ -72,6 +113,7 @@ namespace Back.Auth
             }
             return Enum.TryParse((query.Rows[0])["UROVEN"].ToString(), out AuthLevel result) ? result : AuthLevel.NONE;
         }
+
 
     }
 }
