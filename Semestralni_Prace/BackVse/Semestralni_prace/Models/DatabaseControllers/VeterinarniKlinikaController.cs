@@ -40,6 +40,30 @@ namespace Models.DatabaseControllers//TODO KNIHOVNY
                 AdresyIdAdresa = int.Parse(query.Rows[0][ADRESY_ID_ADRESA_NAME].ToString())
             };
         }
+        public static int? GetKlinikaIdByAdresa(string mesto, string ulice, int cisloPopisne)
+        {
+            try
+            {
+                string sqlQuery = $"SELECT vk.{VETER_KLIN_ID_NAME} FROM {TABLE_NAME} vk JOIN adresy a ON vk.{ADRESY_ID_ADRESA_NAME} = a.id_adresa WHERE a.mesto = :mesto AND a.ulice = :ulice AND a.cislo_popisne = :cisloPopisne";
+
+                DataTable query = DatabaseController.Query(sqlQuery,
+                    new OracleParameter("mesto", mesto),
+                    new OracleParameter("ulice", ulice),
+                    new OracleParameter("cisloPopisne", cisloPopisne));
+
+                if (query.Rows.Count == 0)
+                {
+                    return null;
+                }
+                return int.Parse(query.Rows[0][VETER_KLIN_ID_NAME].ToString());
+            }
+            catch (OracleException ex)
+            {
+                // Handle the exception (e.g., log it or rethrow with a custom message)
+                Console.WriteLine("Oracle Exception: " + ex.Message);
+                return null;
+            }
+        }
 
         //TODO upravit aby to fungovalo - problém id adresy
         public static void UpsertKlinika(int id, JsonElement data)
