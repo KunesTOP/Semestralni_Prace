@@ -36,7 +36,7 @@ namespace Semestralni_Prace.Controllers
         }
         public IActionResult Tabulky()
         {
-            var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno") });
+            var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno"), Hash = HttpContext.Session.GetString("heslo") });
             if (level == AuthLevel.NONE) { return RedirectToAction("AutorizaceFailed", "Home"); }
             bool isAdmin = level == AuthLevel.ADMIN;
             var ktereJmenoPouzivat = (isAdmin) ? HttpContext.Session.GetString("emulovaneJmeno") : HttpContext.Session.GetString("jmeno");
