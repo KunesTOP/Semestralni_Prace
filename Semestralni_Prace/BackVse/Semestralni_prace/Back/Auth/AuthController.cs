@@ -29,6 +29,13 @@ namespace Back.Auth
         public static AuthLevel CheckInDatabase(AuthToken authToken)
         {
             DataTable query = DatabaseController.Query(
+<<<<<<< HEAD
+                $"SELECT PKG_HESLA.zjisti_uroven(:jmeno, :hash) \"uroven\" FROM DUAL",
+                new OracleParameter("jmeno", authToken.PrihlasovaciJmeno),
+                new OracleParameter("hash", authToken.Hash)
+            );
+            return query.Rows.Count > 0 && Enum.TryParse((query.Rows[0])["uroven"].ToString(), out AuthLevel result) ? result : AuthLevel.NONE;
+=======
                 $"SELECT heslo_hash FROM UCTY WHERE jmeno = :jmeno",
                 new OracleParameter("jmeno", authToken.PrihlasovaciJmeno)
             );
@@ -55,6 +62,7 @@ namespace Back.Auth
             }
 
             return AuthLevel.NONE;
+>>>>>>> 502eec74e4cc00e712b7899f1be6618e4d92fb7d
         }
 
         // Metoda pro ověření hesla pomocí hashů
