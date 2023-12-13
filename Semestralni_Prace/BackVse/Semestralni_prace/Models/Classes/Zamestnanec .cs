@@ -13,5 +13,9 @@ namespace Semestralni_prace.Models.Classes
         public string? Prijmeni { get; set; }
         public int VeterKlinId { get; set; }
         public string? Profese { get; set; }
+        public override string ToString()
+        {
+            return $"IdZamestnanec: {IdZamestnanec}, Jmeno: {Jmeno}, Prijmeni: {Prijmeni}, VeterKlinId: {VeterKlinId}, Profese: {Profese}";
+        }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using Back.databaze;
+using ConsoleApp1.Models.Classes;
 using Microsoft.AspNetCore.Mvc;
 using Oracle.ManagedDataAccess.Client;
 using System.Collections.Generic;
 using System.Data;
+using System.Xml;
 
 namespace Models.DatabaseControllers
 {
@@ -59,5 +61,25 @@ namespace Models.DatabaseControllers
 
             return ids;
         }
+
+        public static List<ZvireMaNemoc> GetAll()
+        {
+            List<ZvireMaNemoc> mappings = new List<ZvireMaNemoc>();
+
+            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
+
+            foreach (DataRow dr in query.Rows)
+            {
+                ZvireMaNemoc mapping = new ZvireMaNemoc
+                {
+                    NemocNemocId = int.Parse(dr[NEMOC_NEMOC_ID_NAME].ToString()),
+                    ZvireIdZvire = int.Parse(dr[ZVIRE_ID_ZVIRE_NAME].ToString())
+                };
+                mappings.Add(mapping);
+            }
+
+            return mappings;
+        }
+
     }
 }
