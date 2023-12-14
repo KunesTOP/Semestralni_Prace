@@ -36,7 +36,7 @@ namespace Models.DatabaseControllers//TODO KNIHOVNY
             {
                 JmenoMajitel = query.Rows[0][JMENO_MAJITEL_NAME].ToString(),
                 PrijmeniMajitel = query.Rows[0][PRIJMENI_MAJITEL_NAME].ToString(),
-                VeterKlinId = int.Parse(query.Rows[0][VETER_KLIN_ID_NAME].ToString()),
+                Id = int.Parse(query.Rows[0][VETER_KLIN_ID_NAME].ToString()),
                 AdresyIdAdresa = int.Parse(query.Rows[0][ADRESY_ID_ADRESA_NAME].ToString())
             };
         }
@@ -126,7 +126,7 @@ namespace Models.DatabaseControllers//TODO KNIHOVNY
                 {
                     JmenoMajitel = dr[JMENO_MAJITEL_NAME].ToString(),
                     PrijmeniMajitel = dr[PRIJMENI_MAJITEL_NAME].ToString(),
-                    VeterKlinId = int.Parse(dr[VETER_KLIN_ID_NAME].ToString()),
+                    Id = int.Parse(dr[VETER_KLIN_ID_NAME].ToString()),
                     AdresyIdAdresa = int.Parse(dr[ADRESY_ID_ADRESA_NAME].ToString())
                 });
             }

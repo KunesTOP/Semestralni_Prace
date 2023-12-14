@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ConsoleApp1.Models.DatabaseControllers;
+using Microsoft.AspNetCore.Mvc;
 using Semestralni_prace.Models.Classes;
 
 namespace Semestralni_prace.Controllers
@@ -7,12 +8,13 @@ namespace Semestralni_prace.Controllers
     {
         public IActionResult Index()
         {
+            //TODO hodit sem restrikce jen pro admina
             return View();
         }
         public IActionResult RegisterList()
         {
             //TODO tady zavolat všechny prvky
-            List<Registrovany> listRegistrovanych = new List<Registrovany>();
+            List<Registrovany> listRegistrovanych = RegisterDBController.GetAllRegisterEntries();
             return View(listRegistrovanych);
         }
 

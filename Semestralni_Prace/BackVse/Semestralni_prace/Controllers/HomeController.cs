@@ -295,5 +295,62 @@ namespace Semestralni_Prace.Controllers
                     break;
             }
         }
+        private int GetSpravneId(string tableName, int id)
+        {
+            // Todle je z důvodu přidávání... tak defaultně je to ID nastavené na asi -1, tak snad to mám dobře
+            if (id <= 0) return -1;    
+            switch (tableName)
+            {
+                case "ADRESY":
+                    Adresy adresa = list.OfType<Adresy>().ToList()[id];
+                    return adresa.Id;
+                case "ANAMNEZA":
+                    Anamneza anamneza = list.OfType<Anamneza>().ToList()[id];
+                    return anamneza.Id;
+                case "ASISTENT":
+                    Asistent asistent = list.OfType<Asistent>().ToList()[id];
+                    return asistent.Id;
+                case "DOKUMENTY":
+                    Dokument dokument = list.OfType<Dokument>().ToList()[id];
+                    return dokument.Id;
+                case "LEKY":
+                    Lek lek = list.OfType<Lek>().ToList()[id];
+                    return lek.Id;
+                case "LEKARI":
+                    Lekar lekar = list.OfType<Lekar>().ToList()[id];
+                    return lekar.Id;
+                case "MAJITEL":
+                    Majitel majitel = list.OfType<Majitel>().ToList()[id];
+                    return majitel.Id;
+                case "PRUKAZ":
+                    Prukaz prukaz = list.OfType<Prukaz>().ToList()[id];
+                    return prukaz.Id;
+                case "RASA":
+                    Rasa rasa = list.OfType<Rasa>().ToList()[id];
+                    return rasa.Id;
+                case "TITUL":
+                    Titul titul = list.OfType<Titul>().ToList()[id];
+                    return titul.Id;
+                case "UCTY":
+                    Ucty ucty = list.OfType<Ucty>().ToList()[id];
+                    return ucty.Id;
+                case "VAKCINA":
+                    Vakcina vakcina = list.OfType<Vakcina>().ToList()[id];
+                    return vakcina.Id;
+                case "VETERINARNI_KLINIKA":
+                    VeterinarniKlinika klinika = list.OfType<VeterinarniKlinika>().ToList()[id];
+                    return klinika.Id;
+                case "VYSLEDEK_KREV":
+                    VysledekKrev krev = list.OfType<VysledekKrev>().ToList()[id];
+                    return krev.Id;
+                case "ZAMESTNANCI":
+                    Zamestnanec zamestnanec = list.OfType<Zamestnanec>().ToList()[id];
+                    return zamestnanec.Id;
+                case "ZVIRE":
+                    Zvire zvire = list.OfType<Zvire>().ToList()[id];
+                    return zvire.Id;
+            }
+            return 0;
+        }
     }
 }

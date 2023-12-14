@@ -1,4 +1,5 @@
 ﻿
+using Back.databaze;
 using Oracle.ManagedDataAccess.Client;
 using Semestralni_prace.Models.Classes;
 using System;
@@ -10,8 +11,18 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Models.DatabaseControllers
 {
-    public class RegisterController
+    public class RegisterDBController
     {
+        public const string TABLE_NAME = "REGISTER";
+        public const string JMENA_REGISTER_NAME = "JMENA";
+        public const string PRIJMENI_REGISTER_NAME = "PRIJMENI";
+        public const string EMAIL_REGISTER_NAME = "EMAIL";
+        public const string MESTO_REGISTER_NAME = "MESTO";
+        public const string ULICE_REGISTER_NAME = "ULICE";
+        public const string CISLOPOPIS_REGISTER_NAME = "CISLO_POPISNE";
+        public const string LOGIN_REGISTER_NAME = "PRIHLASOVACI_JMENO";
+        public const string PSWRD_REGISTER_NAME = "PRIHLASOVACI_HESLO";
+
         private const string ConnectionString = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=fei-sql3.upceucebny.cz)(PORT=1521)))(CONNECT_DATA=(SID=BDAS)));" +
             "user id=ST67057;password=abcde;" +
             "Connection Timeout=120;Validate connection=true;Min Pool Size=4;"; // Replace with your connection string
@@ -103,35 +114,33 @@ namespace ConsoleApp1.Models.DatabaseControllers
             }
         }
 
-        public static List<Dictionary<string, object>> GetAllRegisterEntries()
+        public static List<Registrovany> GetAllRegisterEntries()
         {
-            var list = new List<Dictionary<string, object>>();
+            List<Registrovany> listRegistrovanych = new List<Registrovany>();
 
-            using (var connection = new OracleConnection(ConnectionString))
+            DataTable query = DatabaseController.Query($"SELECT * FROM {TABLE_NAME}");
+
+            if (query.Rows.Count == 0)
             {
-                var command = new OracleCommand
-                {
-                    Connection = connection,
-                    CommandText = @"SELECT * FROM Register",
-                };
-
-                var adapter = new OracleDataAdapter(command);
-                var dataTable = new DataTable();
-                connection.Open();
-                adapter.Fill(dataTable);
-
-                foreach (DataRow row in dataTable.Rows)
-                {
-                    var dict = new Dictionary<string, object>();
-                    foreach (DataColumn column in dataTable.Columns)
-                    {
-                        dict[column.ColumnName] = row[column];
-                    }
-                    list.Add(dict);
-                }
+                return null;
             }
 
-            return list; // Return a list of dictionaries, each representing a row in the Register table
+            foreach (DataRow dr in query.Rows)
+            {
+                listRegistrovanych.Add(new Registrovany
+                {
+                    Jmeno = dr[JMENA_REGISTER_NAME].ToString(),
+                    Prijmeni = dr[PRIJMENI_REGISTER_NAME].ToString(),
+                    Email = dr[EMAIL_REGISTER_NAME].ToString(),
+                    City = dr[MESTO_REGISTER_NAME].ToString(),
+                    Street = dr[ULICE_REGISTER_NAME].ToString(),
+                    HouseNumber = int.Parse(dr[CISLOPOPIS_REGISTER_NAME].ToString()),
+                    UserName = dr[LOGIN_REGISTER_NAME].ToString(),
+                    Password = dr[PSWRD_REGISTER_NAME].ToString()
+                });
+            }
+
+            return listRegistrovanych;
         }
     }
 }

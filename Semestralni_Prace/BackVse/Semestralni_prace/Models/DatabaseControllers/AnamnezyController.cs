@@ -66,21 +66,13 @@ namespace Models.DatabaseControllers
             return zaznamy;
         }
 
-        public static void UpdateZaznamAnamnezy(Anamneza anamneza)
+        public static void UpdateZaznamAnamnezy(Anamneza zaznam)
         {
-            OracleParameter idParam = new OracleParameter("p_id_anamneza", OracleDbType.Int32, ParameterDirection.InputOutput);
-            idParam.Value = anamneza.Id;
-
-            OracleParameter datumParam = new OracleParameter("p_datum_anamneza", OracleDbType.Date);
-            datumParam.Value = anamneza.Datum;
-
-            DatabaseController.Execute1("pkg_ostatni.upsert_anamnezy", idParam, datumParam);
-
-            // Aktualizujte ID anamnezy, pokud byla vytvořena nová
-            if (anamneza.Id == 0)
-            {
-                anamneza.Id = (int)idParam.Value;
-            }
+            var datumUnix = new DateTimeOffset(zaznam.Datum).ToUnixTimeSeconds();
+            DatabaseController.Execute($"UPDATE {TABLE_NAME} SET {DATUM_NAME} = :datum WHERE {ID_NAME} = :id",
+                new OracleParameter("id", zaznam.Id),
+                new OracleParameter("datum", datumUnix)
+            );
         }
 
 

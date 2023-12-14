@@ -19,16 +19,19 @@ namespace Semestralni_prace.Controllers
             bool isAdmin = level == AuthLevel.ADMIN;
             var ktereJmenoPouzivat = (isAdmin) ? HttpContext.Session.GetString("emulovaneJmeno") : HttpContext.Session.GetString("jmeno");
             if (isAdmin && ktereJmenoPouzivat != HttpContext.Session.GetString("jmeno")) level = AuthController.GetLevel(ktereJmenoPouzivat);
+            /*TODO 
+             * 1. Vytáhnout zamestnance z prihlaseneho uctu a zobrazit jeho data.
+               2. Nahrát obrázek co má zaměstnanec uložený u sebe
+
+
+            */
             return View();
         }
 
         [HttpPost]
         public IActionResult UpdateProfile(string name, int age, string address, string email, IFormFile picture)
         {
-            // Update the user profile with the provided data
-            // You can save the updated information to a database or perform any necessary logic here
-
-            // Redirect back to the profile page or wherever you want after the update
+            //TODO todle asi vymazat
             return RedirectToAction("Profil");
         }
         [HttpPost]
