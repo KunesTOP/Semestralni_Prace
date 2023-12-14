@@ -175,8 +175,15 @@ namespace Semestralni_Prace.Controllers
                     AdresyController.Upsert(id, data);
                     break;
                 case "ANAMNEZA":
-                    //AnamnezyController.UpdateZaznamAnamnezy(id, data);
+                    DateTime datumAnamnezy = DateTime.Parse(data.GetProperty("datum").GetString());
+                    Anamneza zaznamAnamnezy = new Anamneza()
+                    {
+                        Id = id,
+                        Datum = datumAnamnezy
+                    };
+                    AnamnezyController.UpdateZaznamAnamnezy(zaznamAnamnezy);
                     break;
+                    
                 case "ASISTENT":
                     AsistentiController.UpsertAsistent(id, data);
                     break;

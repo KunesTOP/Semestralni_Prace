@@ -68,11 +68,13 @@ namespace Models.DatabaseControllers
 
         public static void UpdateZaznamAnamnezy(Anamneza zaznam)
         {
+            var datumUnix = new DateTimeOffset(zaznam.Datum).ToUnixTimeSeconds();
             DatabaseController.Execute($"UPDATE {TABLE_NAME} SET {DATUM_NAME} = :datum WHERE {ID_NAME} = :id",
                 new OracleParameter("id", zaznam.Id),
-                new OracleParameter("datum", zaznam.Datum)
+                new OracleParameter("datum", datumUnix)
             );
         }
+
 
         public static void DeleteZaznamAnamnezy(int id)
         {
