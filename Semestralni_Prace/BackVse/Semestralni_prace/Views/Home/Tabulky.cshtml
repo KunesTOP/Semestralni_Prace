@@ -203,7 +203,8 @@
                         // You may not need to do anything if the response doesn't contain a body
                     } else {
                         console.log("Hupsík dupsík, něco se pokazilo při funkci saveEditedRow! toto obsahuje ukládaný řádek: ");
-                        console.log(row);
+                        console.log(rowId);
+                        console.log(entries);
                     }
                 })
             /* update záznamu v databázi, něco ve stylu UPDATE tabulka SET $(entries[i][0]) = $(entries[i][1]) WHERE id = $(rowId) */

@@ -1,43 +1,24 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-<<<<<<< HEAD
     "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\Semestralni_prace.csproj": {}
-=======
-    "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\Semestralni_prace.csproj": {}
->>>>>>> 3af13e7cba27fb85bf67a6a0e07834ecfff755a7
-=======
-    "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\Semestralni_prace.csproj": {}
->>>>>>> 3af13e7cba27fb85bf67a6a0e07834ecfff755a7
   },
   "projects": {
-    "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\Semestralni_prace.csproj": {
+    "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\Semestralni_prace.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\Semestralni_prace.csproj",
+        "projectUniqueName": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\Semestralni_prace.csproj",
         "projectName": "Semestralni_prace",
-<<<<<<< HEAD
-<<<<<<< HEAD
         "projectPath": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\Semestralni_prace.csproj",
         "packagesPath": "C:\\Users\\Ondra\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\obj\\",
-=======
-        "projectPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\Semestralni_prace.csproj",
-        "packagesPath": "C:\\Users\\jindra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\obj\\",
->>>>>>> 3af13e7cba27fb85bf67a6a0e07834ecfff755a7
-=======
-        "projectPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\Semestralni_prace.csproj",
-        "packagesPath": "C:\\Users\\jindra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\obj\\",
->>>>>>> 3af13e7cba27fb85bf67a6a0e07834ecfff755a7
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\jindra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Ondra\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -113,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -96,8 +96,9 @@ namespace Models.DatabaseControllers
             OracleParameter uliceParam = new OracleParameter("p_ulice", OracleDbType.Varchar2, ParameterDirection.InputOutput);
             uliceParam.Value = data.GetProperty("street").GetString();
 
+            int cisloPopisne = int.Parse(data.GetProperty("houseNumber").GetString());
             OracleParameter cisloPopisneParam = new OracleParameter("p_cislo_popisne", OracleDbType.Int32, ParameterDirection.InputOutput);
-            cisloPopisneParam.Value = data.GetProperty("houseNumber").GetInt32();
+            cisloPopisneParam.Value = cisloPopisne;
 
             DatabaseController.Execute("pkg_model_dml1.insert_adresa", idParam, mestoParam, uliceParam, cisloPopisneParam);
         }

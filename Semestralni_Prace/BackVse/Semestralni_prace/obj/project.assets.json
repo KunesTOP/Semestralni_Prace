@@ -10140,23 +10140,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jindra\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Ondra\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\Semestralni_prace.csproj",
+      "projectUniqueName": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\Semestralni_prace.csproj",
       "projectName": "Semestralni_prace",
-      "projectPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\Semestralni_prace.csproj",
-      "packagesPath": "C:\\Users\\jindra\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\obj\\",
+      "projectPath": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\Semestralni_prace.csproj",
+      "packagesPath": "C:\\Users\\Ondra\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\jindra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ondra\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -10232,7 +10234,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -10241,7 +10243,7 @@
       "code": "Undefined",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Při čtení souboru mezipaměti C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\obj\\project.nuget.cache došlo k problému: Invalid property identifier character: <. Path 'version', line 3, position 0."
+      "message": "Problem reading the cache file C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'success', line 5, position 0."
     }
   ]
 }

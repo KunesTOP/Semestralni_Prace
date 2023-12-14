@@ -583,23 +583,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jindra\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Ondra\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj",
+      "projectUniqueName": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj",
       "projectName": "SemPrace.Frontend",
-      "projectPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj",
-      "packagesPath": "C:\\Users\\jindra\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Semestralni_Prace\\Frontend\\obj\\",
+      "projectPath": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Semestralni_Prace\\Frontend\\SemPrace.Frontend.csproj",
+      "packagesPath": "C:\\Users\\Ondra\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Semestralni_Prace\\Frontend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\jindra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ondra\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -651,7 +653,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

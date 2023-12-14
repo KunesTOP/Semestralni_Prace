@@ -1,36 +1,14 @@
 {
   "version": 2,
-<<<<<<< HEAD
-<<<<<<< HEAD
   "dgSpecHash": "50O8qSwEZvMhNSDJizP2mnyXFLSjZzgvaACHqZPEt0z/NkJs8VomQNNRS+380QYtdP1VcaPGJMoLtOh+Y6iVHA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Spoustec\\Spoustec\\Spoustec.csproj",
-=======
-  "dgSpecHash": "AP+SjOdr/4vxCjmxiARMK5qYpeKT3fbN616i50glnJAuLMGca6W1h4QjMclBsuIPDa8JZ63+abBsSvf0wz3pig==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Spoustec\\Spoustec\\Spoustec.csproj",
->>>>>>> 3af13e7cba27fb85bf67a6a0e07834ecfff755a7
-=======
-  "dgSpecHash": "AP+SjOdr/4vxCjmxiARMK5qYpeKT3fbN616i50glnJAuLMGca6W1h4QjMclBsuIPDa8JZ63+abBsSvf0wz3pig==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Spoustec\\Spoustec\\Spoustec.csproj",
->>>>>>> 3af13e7cba27fb85bf67a6a0e07834ecfff755a7
   "expectedPackageFiles": [
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\microsoft.net.native.compiler\\2.2.12-rel-31116-00\\microsoft.net.native.compiler.2.2.12-rel-31116-00.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\microsoft.net.uwpcoreruntimesdk\\2.2.14\\microsoft.net.uwpcoreruntimesdk.2.2.14.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\microsoft.netcore.platforms\\2.1.0\\microsoft.netcore.platforms.2.1.0.nupkg.sha512",
-<<<<<<< HEAD
-<<<<<<< HEAD
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\microsoft.netcore.universalwindowsplatform\\6.2.14\\microsoft.netcore.universalwindowsplatform.6.2.14.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
-=======
-    "C:\\Users\\jindra\\.nuget\\packages\\microsoft.netcore.universalwindowsplatform\\6.2.14\\microsoft.netcore.universalwindowsplatform.6.2.14.nupkg.sha512",
-    "C:\\Users\\jindra\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
->>>>>>> 3af13e7cba27fb85bf67a6a0e07834ecfff755a7
-=======
-    "C:\\Users\\jindra\\.nuget\\packages\\microsoft.netcore.universalwindowsplatform\\6.2.14\\microsoft.netcore.universalwindowsplatform.6.2.14.nupkg.sha512",
-    "C:\\Users\\jindra\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
->>>>>>> 3af13e7cba27fb85bf67a6a0e07834ecfff755a7
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\runtime.win10-arm-aot.microsoft.netcore.universalwindowsplatform\\6.2.14\\runtime.win10-arm-aot.microsoft.netcore.universalwindowsplatform.6.2.14.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\runtime.win10-arm.microsoft.net.native.compiler\\2.2.12-rel-31116-00\\runtime.win10-arm.microsoft.net.native.compiler.2.2.12-rel-31116-00.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\runtime.win10-arm.microsoft.net.native.sharedlibrary\\2.2.8-rel-31116-00\\runtime.win10-arm.microsoft.net.native.sharedlibrary.2.2.8-rel-31116-00.nupkg.sha512",
@@ -50,5 +28,12 @@
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\\2.2.14\\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk.2.2.14.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\\6.2.14\\runtime.win10-x86.microsoft.netcore.universalwindowsplatform.6.2.14.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Spoustec\\Spoustec\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
