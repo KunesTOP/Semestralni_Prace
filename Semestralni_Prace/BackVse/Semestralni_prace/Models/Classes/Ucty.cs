@@ -2,7 +2,6 @@
 {
     public class Ucty
     {
-        public int IdClovek { get; set; }
         public string Jmeno { get; set; }
         public string Salt { get; set; }
         public string Hash { get; set; }

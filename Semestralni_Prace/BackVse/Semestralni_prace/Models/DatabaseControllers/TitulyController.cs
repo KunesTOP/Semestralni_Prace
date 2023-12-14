@@ -32,7 +32,7 @@ namespace Models.DatabaseControllers
 
             return new Titul()
             {
-                IdTitul = int.Parse(query.Rows[0][ID_TITUL_NAME].ToString()),
+                Id = int.Parse(query.Rows[0][ID_TITUL_NAME].ToString()),
                 ZkratkaTitul = query.Rows[0][ZKRATKA_TITUL_NAME].ToString(),
                 NazevTitul = query.Rows[0][NAZEV_TITUL_NAME].ToString()
             };
@@ -49,7 +49,7 @@ namespace Models.DatabaseControllers
 
             return new Titul()
             {
-                IdTitul = int.Parse(query.Rows[0][ID_TITUL_NAME].ToString()),
+                Id = int.Parse(query.Rows[0][ID_TITUL_NAME].ToString()),
                 ZkratkaTitul = query.Rows[0][ZKRATKA_TITUL_NAME].ToString(),
                 NazevTitul = query.Rows[0][NAZEV_TITUL_NAME].ToString()
             };
@@ -57,14 +57,14 @@ namespace Models.DatabaseControllers
 
         public static void InsertTitul(Titul titul)
         {
-            Titul existingTitul = GetByTitulId(titul.IdTitul);
+            Titul existingTitul = GetByTitulId(titul.Id);
 
             if (existingTitul == null)
             {
 
                 DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({ID_TITUL_NAME}, {NAZEV_TITUL_NAME}, {ZKRATKA_TITUL_NAME}) " +
                     $"VALUES (:idTitul, :nazevTitul, :zkratkaTitul)",
-                    new OracleParameter("idTitul", titul.IdTitul),
+                    new OracleParameter("idTitul", titul.Id),
                     new OracleParameter("nazevTitul", titul.NazevTitul),
                     new OracleParameter("zkratkaTitul", titul.ZkratkaTitul)
                 );
@@ -72,10 +72,10 @@ namespace Models.DatabaseControllers
             else
 
             {
-                DeleteTitul(titul.IdTitul);
+                DeleteTitul(titul.Id);
                 DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({ID_TITUL_NAME}, {NAZEV_TITUL_NAME}, {ZKRATKA_TITUL_NAME}) " +
             $"VALUES (:idTitul, :nazevTitul, :zkratkaTitul)",
-            new OracleParameter("idTitul", titul.IdTitul),
+            new OracleParameter("idTitul", titul.Id),
             new OracleParameter("nazevTitul", titul.NazevTitul),
             new OracleParameter("zkratkaTitul", titul.ZkratkaTitul));
             }
@@ -112,7 +112,7 @@ namespace Models.DatabaseControllers
             OracleParameter nazevParam = new OracleParameter("p_nazev", OracleDbType.Varchar2, ParameterDirection.Input);
             nazevParam.Value = data.GetProperty("nazevTitul").GetString();
 
-            DatabaseController.Execute1("pkg_model_dml1.upsert_tituly", idTitulParam, zkratkaParam,nazevParam);
+            DatabaseController.Execute("pkg_model_dml1.upsert_tituly", idTitulParam, zkratkaParam,nazevParam);
         }
 
         public static IEnumerable<Titul> GetAll()
@@ -128,7 +128,7 @@ namespace Models.DatabaseControllers
             {
                 listTituly.Add(new Titul()
                 {
-                    IdTitul = int.Parse(dr[ID_TITUL_NAME].ToString()),
+                    Id = int.Parse(dr[ID_TITUL_NAME].ToString()),
                     ZkratkaTitul = dr[ZKRATKA_TITUL_NAME].ToString(),
                     NazevTitul = dr[NAZEV_TITUL_NAME].ToString()
                 });

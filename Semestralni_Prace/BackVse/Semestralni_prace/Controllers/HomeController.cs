@@ -14,6 +14,8 @@ namespace Semestralni_Prace.Controllers
 {
     public class HomeController : Controller
     {
+        private List<object> list;
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -86,37 +88,37 @@ namespace Semestralni_Prace.Controllers
             switch (tableName)
             {
                 case "ADRESY":
-                    return new List<object> { AdresyController.GetAll() };
+                    return list = new List<object> { AdresyController.GetAll() };
                 case "ANAMNEZA":
-                    return new List<object> { AnamnezyController.GetAll() };
+                    return list = new List<object> { AnamnezyController.GetAll() };
                 case "ASISTENT":
-                    return new List<object> { AsistentiController.GetAll() };
+                    return list = new List<object> { AsistentiController.GetAll() };
                 case "DOKUMENTY":
-                    return new List<object> { DokumentController.GetAll() };
+                    return list = new List<object> { DokumentController.GetAll() };
                 case "LEKY":
-                    return new List<object> { LekyController.GetAll() };
+                    return list = new List<object> { LekyController.GetAll() };
                 case "LEKARI":
-                    return new List<object> { LekariController.GetAll() };
+                    return list = new List<object> { LekariController.GetAll() };
                 case "MAJITEL":
-                    return new List<object> { MajiteleZviratController.GetAll() };
+                    return list = new List<object> { MajiteleZviratController.GetAll() };
                 case "PRUKAZ":
-                    return new List<object> { PrukazyController.GetAll() };
+                    return list = new List<object> { PrukazyController.GetAll() };
                 case "RASA":
-                    return new List<object> { RasaZviratController.GetAll() };
+                    return list = new List<object> { RasaZviratController.GetAll() };
                 case "TITUL":
-                    return new List<object> { TitulyController.GetAll() };
+                    return list = new List<object> { TitulyController.GetAll() };
                 case "UCTY":
-                    return new List<object> { UctyController.GetAllUcty() };
+                    return list = new List<object> { UctyController.GetAllUcty() };
                 case "VAKCINA":
-                    return new List<object> { VakcinyTableController.GetAll() };
+                    return list = new List<object> { VakcinyTableController.GetAll() };
                 case "VETERINARNI_KLINIKA":
-                    return new List<object> { VeterinarniKlinikaController.GetAll() };
+                    return list = new List<object> { VeterinarniKlinikaController.GetAll() };
                 case "VYSLEDEK_KREV":
-                    return new List<object> { VysledkyKrevController.GetAll() };
+                    return list = new List<object> { VysledkyKrevController.GetAll() };
                 case "ZAMESTNANCI":
-                    return new List<object> { ZamestnanciController.GetAll() };
+                    return list = new List<object> { ZamestnanciController.GetAll() };
                 case "ZVIRE":
-                    return new List<object> { ZvirataController.GetAll() };
+                    return list = new List<object> { ZvirataController.GetAll() };
             }
             return null;
         }
@@ -163,8 +165,7 @@ namespace Semestralni_Prace.Controllers
         {
             var tabulka = input.GetProperty("selectedValue").GetString();
             var id = input.GetProperty("rowId").GetInt32();
-            
-            GetSpravnyRemove(tabulka, id );
+            GetSpravnyRemove(tabulka, id);
         }
 
         private void GetSpravnyUpsert(string selectedValue, int id, JsonElement data)
@@ -196,7 +197,7 @@ namespace Semestralni_Prace.Controllers
                         DokumentNazev = nazev,
                         Pripona = Path.GetExtension(nazev),
                         Data = obsah,
-                        IdDokument = id
+                        Id = id
                     };
                     DokumentController.UpsertDokument(doc);
                     break;
@@ -243,7 +244,7 @@ namespace Semestralni_Prace.Controllers
             switch (selectedValue)
             {
                 case "ADRESY":
-                    AdresyController.Delete(id );
+                    AdresyController.Delete(id);
                     break;
                 case "ANAMNEZA":
                     //TODO, todle upravit, protože bude třeba řešit i vysledkyKrev

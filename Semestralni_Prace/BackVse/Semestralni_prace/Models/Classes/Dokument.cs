@@ -5,7 +5,7 @@ namespace Semestralni_prace.Models.Classes
 {
     public class Dokument
     {
-        public int IdDokument { get; set; }
+        public int Id { get; set; }
         public string? Pripona { get; set; }
         public string? Data { get; set; }
         public string DokumentNazev { get; set; }

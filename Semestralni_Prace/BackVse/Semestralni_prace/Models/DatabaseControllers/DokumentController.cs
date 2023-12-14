@@ -30,7 +30,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
 
             return new Dokument()
             {
-                IdDokument = int.Parse(query.Rows[0][ID_DOKUMENTY_NAME].ToString()),
+                Id = int.Parse(query.Rows[0][ID_DOKUMENTY_NAME].ToString()),
                 Pripona = query.Rows[0][PRIPOMA_DOKUMENTY_NAME].ToString(),
                 Data = query.Rows[0][DATA_DOKUMENT_NAME].ToString(),
                 DokumentNazev = query.Rows[0][DOKUMENT_NAME].ToString()
@@ -50,7 +50,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
             OracleParameter nazevParam = new OracleParameter("p_dokument_nazev", OracleDbType.Varchar2, ParameterDirection.InputOutput);
             nazevParam.Value = data.GetProperty("dokumentNazev").GetInt32();
 
-            DatabaseController.Execute1("pkg_dokumenty.upsert_dokumenty", idParam, priponaParam, dataParam, nazevParam);
+            DatabaseController.Execute("pkg_dokumenty.upsert_dokumenty", idParam, priponaParam, dataParam, nazevParam);
         }
         public static void Delete(int id)
         {
@@ -71,10 +71,10 @@ namespace Semestralni_prace.Models.DatabaseControllers
             {
                 listDokumentu.Add(new Dokument()
                 {
-                    IdDokument = int.Parse(query.Rows[0][ID_DOKUMENTY_NAME].ToString()),
-                    Pripona = query.Rows[0][PRIPOMA_DOKUMENTY_NAME].ToString(),
-                    Data = query.Rows[0][DATA_DOKUMENT_NAME].ToString(),
-                    DokumentNazev = query.Rows[0][DOKUMENT_NAME].ToString()
+                    Id = int.Parse(row[ID_DOKUMENTY_NAME].ToString()),
+                    Pripona = row[PRIPOMA_DOKUMENTY_NAME].ToString(),
+                    Data = row[DATA_DOKUMENT_NAME].ToString(),
+                    DokumentNazev = row[DOKUMENT_NAME].ToString()
                 });
             }
             return listDokumentu;
@@ -83,7 +83,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
         public static void UpsertDokument(Dokument doc)
         {
             OracleParameter idParam = new OracleParameter("p_ID_dokument", OracleDbType.Int32, ParameterDirection.InputOutput);
-            idParam.Value = doc.IdDokument;
+            idParam.Value = doc.Id;
 
             OracleParameter nazevParam = new OracleParameter("p_Nazev_souboru", OracleDbType.Varchar2, ParameterDirection.Input);
             nazevParam.Value = doc.DokumentNazev;
@@ -96,7 +96,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
                 Value = doc.GetBytes()
             };
 
-            DatabaseController.Execute1("pkg_dokumenty.upsert_dokumenty", idParam, pripParam,nazevParam,dataParam);
+            DatabaseController.Execute("pkg_dokumenty.upsert_dokumenty", idParam, pripParam,nazevParam,dataParam);
         }
     }
 }

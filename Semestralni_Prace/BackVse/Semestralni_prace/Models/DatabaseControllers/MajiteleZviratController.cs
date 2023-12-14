@@ -36,7 +36,7 @@ namespace Models.DatabaseControllers
 
             return new Majitel()
             {
-                PacientId = int.Parse(query.Rows[0][PACIENT_ID_NAME].ToString()),
+                Id = int.Parse(query.Rows[0][PACIENT_ID_NAME].ToString()),
                 Mail = query.Rows[0][MAIL_NAME].ToString(),
                 Telefon = query.Rows[0][TELEFON_NAME].ToString(),
                 Jmeno = query.Rows[0][JMENO_NAME].ToString(),
@@ -84,7 +84,7 @@ namespace Models.DatabaseControllers
             OracleParameter idMajitelParam = new OracleParameter("p_id_majitel", OracleDbType.Int32, ParameterDirection.Input);
             idMajitelParam.Value = aktualni.IdMajitel;
 
-            DatabaseController.Execute1("pkg_model_dml1.upsert_majitel", pacientIdParam, mailParam, telefonParam, jmenoParam, prijmeniParam, vetKlinIdParam);
+            DatabaseController.Execute("pkg_model_dml1.upsert_majitel", pacientIdParam, mailParam, telefonParam, jmenoParam, prijmeniParam, vetKlinIdParam);
         }
         public static int UpsertMajitelPacient(int idKlinika,JsonElement data)
         {
@@ -109,7 +109,7 @@ namespace Models.DatabaseControllers
             OracleParameter idMajitelParam = new OracleParameter("p_id_majitel", OracleDbType.Int32, ParameterDirection.Input);
             idMajitelParam.Value = idKlinika;
 
-            DatabaseController.Execute1("pkg_model_dml1.upsert_majitel", pacientIdParam, mailParam, telefonParam, jmenoParam, prijmeniParam, vetKlinIdParam);
+            DatabaseController.Execute("pkg_model_dml1.upsert_majitel", pacientIdParam, mailParam, telefonParam, jmenoParam, prijmeniParam, vetKlinIdParam);
             return int.Parse((pacientIdParam.Value).ToString());
         }
 
@@ -140,7 +140,7 @@ namespace Models.DatabaseControllers
             foreach (DataRow dr in query.Rows)
                 majitele.Add(new Majitel()
                 {
-                    PacientId = int.Parse(dr[PACIENT_ID_NAME].ToString()),
+                    Id = int.Parse(dr[PACIENT_ID_NAME].ToString()),
                     Mail = dr[MAIL_NAME].ToString(),
                     Telefon = dr[TELEFON_NAME].ToString(),
                     Jmeno = dr[JMENO_NAME].ToString(),

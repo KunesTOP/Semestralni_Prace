@@ -8,12 +8,12 @@ namespace Semestralni_prace.Models.DatabaseControllers
     {
         public static void GetAnimalsForOwnerExplicit(int pOwnerId)
         {
-            DatabaseController.Execute1("pkg_zbytek.get_animals_for_owner_explicit", new OracleParameter("p_owner_id", pOwnerId));
+            DatabaseController.Execute("pkg_zbytek.get_animals_for_owner_explicit", new OracleParameter("p_owner_id", pOwnerId));
         }
 
         public static void GetAnimalsForOwner(int pOwnerId)
         {
-            DatabaseController.Execute1("pkg_zbytek.get_animals_for_owner", new OracleParameter("p_owner_id", pOwnerId));
+            DatabaseController.Execute("pkg_zbytek.get_animals_for_owner", new OracleParameter("p_owner_id", pOwnerId));
         }
 
         public static int CalculateAge(DateTime birthDate)
@@ -21,7 +21,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
             OracleParameter ageParam = new OracleParameter("p_birth_date", OracleDbType.Date, ParameterDirection.InputOutput);
             ageParam.Value = birthDate;
 
-            DatabaseController.Execute1("pkg_zbytek.calculate_age", ageParam);
+            DatabaseController.Execute("pkg_zbytek.calculate_age", ageParam);
 
             return Convert.ToInt32(ageParam.Value);
         }
@@ -31,7 +31,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
             OracleParameter titleParam = new OracleParameter("p_vet_id", OracleDbType.Int32, ParameterDirection.InputOutput);
             titleParam.Value = vetId;
 
-            DatabaseController.Execute1("pkg_zbytek.get_vet_title", titleParam);
+            DatabaseController.Execute("pkg_zbytek.get_vet_title", titleParam);
 
             return titleParam.Value.ToString();
         }
@@ -41,7 +41,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
             OracleParameter statusParam = new OracleParameter("p_animal_id", OracleDbType.Int32, ParameterDirection.InputOutput);
             statusParam.Value = animalId;
 
-            DatabaseController.Execute1("pkg_zbytek.check_vaccine_status", statusParam);
+            DatabaseController.Execute("pkg_zbytek.check_vaccine_status", statusParam);
 
             return statusParam.Value.ToString();
         }
@@ -63,7 +63,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
             OracleParameter rasaIdParam = new OracleParameter("p_rasa_id", OracleDbType.Int32, ParameterDirection.InputOutput);
             rasaIdParam.Value = rasaId;
 
-            DatabaseController.Execute1("pkg_zbytek.add_new_animal", nameParam, genderParam, birthDateParam, ownerIdParam, rasaIdParam);
+            DatabaseController.Execute("pkg_zbytek.add_new_animal", nameParam, genderParam, birthDateParam, ownerIdParam, rasaIdParam);
         }
 
         public static void UpdateVetProfese(int vetId, string newProfese)
@@ -74,7 +74,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
             OracleParameter profeseParam = new OracleParameter("p_new_profese", OracleDbType.Varchar2, ParameterDirection.InputOutput);
             profeseParam.Value = newProfese;
 
-            DatabaseController.Execute1("pkg_zbytek.update_vet_profese", vetIdParam, profeseParam);
+            DatabaseController.Execute("pkg_zbytek.update_vet_profese", vetIdParam, profeseParam);
         }
 
         public static void CreateNewOwnerWithCard(string name, string surname, string email, string phone, int addressId, int cardNumber, int chipNumber)
@@ -100,7 +100,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
             OracleParameter chipNumberParam = new OracleParameter("p_chip_number", OracleDbType.Int32, ParameterDirection.InputOutput);
             chipNumberParam.Value = chipNumber;
 
-            DatabaseController.Execute1("pkg_zbytek.create_new_owner_with_card", nameParam, surnameParam, emailParam, phoneParam, addressIdParam, cardNumberParam, chipNumberParam);
+            DatabaseController.Execute("pkg_zbytek.create_new_owner_with_card", nameParam, surnameParam, emailParam, phoneParam, addressIdParam, cardNumberParam, chipNumberParam);
         }
 
       
@@ -112,7 +112,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
             OracleParameter newAddressIdParam = new OracleParameter("p_new_address_id", OracleDbType.Int32, ParameterDirection.InputOutput);
             newAddressIdParam.Value = newAddressId;
 
-            DatabaseController.Execute1("pkg_zbytek.update_owner_address", ownerIdParam, newAddressIdParam);
+            DatabaseController.Execute("pkg_zbytek.update_owner_address", ownerIdParam, newAddressIdParam);
         }
         public static void GetTableColumns()
         {
@@ -168,7 +168,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
         }
         public static void HierarchicalQueryProcedure()
         {
-            DatabaseController.Execute1("pkg_zbytek.HierarchicalQueryProcedure");
+            DatabaseController.Execute("pkg_zbytek.HierarchicalQueryProcedure");
         }
         public static void GetNames()
         {

@@ -39,7 +39,7 @@ namespace Models.DatabaseControllers
             OracleParameter anamnIdParam = new OracleParameter("p_anamn_id_anamn", OracleDbType.Int32, ParameterDirection.InputOutput);
             anamnIdParam.Value = anamnId;
 
-            DatabaseController.Execute1("pkg_ostatni.upsert_leciva_na_diagnozu", lekyIdParam, anamnIdParam);
+            DatabaseController.Execute("pkg_ostatni.upsert_leciva_na_diagnozu", lekyIdParam, anamnIdParam);
         }
 
 

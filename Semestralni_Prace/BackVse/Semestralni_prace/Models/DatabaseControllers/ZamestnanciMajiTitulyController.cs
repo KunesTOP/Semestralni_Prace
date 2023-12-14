@@ -40,7 +40,7 @@ namespace Models.DatabaseControllers
             OracleParameter zamesIdParam = new OracleParameter("zamesId", OracleDbType.Int32, zamesId, ParameterDirection.Input);
             OracleParameter titulIdParam = new OracleParameter("titulId", OracleDbType.Int32, titulId, ParameterDirection.Input);
 
-            DatabaseController.Execute1(
+            DatabaseController.Execute(
                 $"pkg_ostatni.upsert_zamestnanec_titul(:{ZAMES_ID_ZAMES_NAME}, :{TITUL_ID_TITUL_NAME})",
                 zamesIdParam,
                 titulIdParam

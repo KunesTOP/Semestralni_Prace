@@ -8,7 +8,7 @@ namespace Semestralni_prace.Models.Classes
 {
     public class Titul
     {
-        public int IdTitul { get; internal set; }
+        public int Id { get; internal set; }
         public string? ZkratkaTitul { get; internal set; }
         public string? NazevTitul { get; internal set; }
     }

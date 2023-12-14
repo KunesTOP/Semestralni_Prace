@@ -34,7 +34,7 @@ namespace Models.DatabaseControllers
 
             return new Zamestnanec()
             {
-                IdZamestnanec = int.Parse(query.Rows[0][ID_ZAMESTNANEC_NAME].ToString()),
+                Id = int.Parse(query.Rows[0][ID_ZAMESTNANEC_NAME].ToString()),
                 Jmeno = query.Rows[0][JMENO_NAME].ToString(),
                 Prijmeni = query.Rows[0][PRIJMENI_NAME].ToString(),
                 VeterKlinId = int.Parse(query.Rows[0][VETER_KLIN_ID_NAME].ToString()),
@@ -69,7 +69,7 @@ namespace Models.DatabaseControllers
             OracleParameter veterKlinIdParam = new OracleParameter("veterKlinId", OracleDbType.Int32, aktualni.VeterKlinId, ParameterDirection.Input);
             OracleParameter profeseParam = new OracleParameter("profese", OracleDbType.Varchar2, data.GetProperty("profese").GetString(), ParameterDirection.Input);
 
-            DatabaseController.Execute1(
+            DatabaseController.Execute(
                 $"pkg_ostatni.upsert_zamestnanec(:{ID_ZAMESTNANEC_NAME}, :{JMENO_NAME}, :{PRIJMENI_NAME}, :{VETER_KLIN_ID_NAME}, :{PROFES_NAME})",
                 idZamestnanecParam,
                 jmenoParam,
@@ -82,7 +82,7 @@ namespace Models.DatabaseControllers
         {
             OracleParameter idZamestnanecParam = new OracleParameter("idZamestnanec", OracleDbType.Int32, idZamestnanec, ParameterDirection.Input);
 
-            DatabaseController.Execute1(
+            DatabaseController.Execute(
                 $"pkg_delete.delete_zamestnanec(:{ID_ZAMESTNANEC_NAME})",
                 idZamestnanecParam
             );
@@ -100,7 +100,7 @@ namespace Models.DatabaseControllers
             {
                 listZamestnanci.Add(new Zamestnanec()
                 {
-                    IdZamestnanec = int.Parse(dr[ID_ZAMESTNANEC_NAME].ToString()),
+                    Id = int.Parse(dr[ID_ZAMESTNANEC_NAME].ToString()),
                     Jmeno = dr[JMENO_NAME].ToString(),
                     Prijmeni = dr[PRIJMENI_NAME].ToString(),
                     VeterKlinId = int.Parse(dr[VETER_KLIN_ID_NAME].ToString()),

@@ -8,7 +8,7 @@ namespace Semestralni_prace.Models.Classes
 {
     public class Vakcina
     {
-        public int IdVakcina { get; internal set; }
+        public int Id { get; internal set; }
         public string? NazevVakcina { get; internal set; }
         //TODO: tady mám asi chybu v modelu, že je prodává Asistent... takže to bych s tebou probral ještě.
         //Jestli přidáme datum podání vakcíny a potom sem přidáme AsistentId, který jí administroval

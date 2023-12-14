@@ -32,7 +32,7 @@ namespace Models.DatabaseControllers
 
             return new Vakcina()
             {
-                IdVakcina = int.Parse(query.Rows[0][ID_VAKCINA].ToString()),
+                Id = int.Parse(query.Rows[0][ID_VAKCINA].ToString()),
                 NazevVakcina = query.Rows[0][NAZEV_VAKCINA_NAME].ToString()
             };
         }
@@ -43,7 +43,7 @@ namespace Models.DatabaseControllers
             OracleParameter idVakcinaParam = new OracleParameter("idVakcina", OracleDbType.Int32, id, ParameterDirection.Input);
             OracleParameter nazevVakcinaParam = new OracleParameter("nazevVakcina", OracleDbType.Varchar2, data.GetProperty("nazevVakcina").GetString(), ParameterDirection.Input);
 
-            DatabaseController.Execute1(
+            DatabaseController.Execute(
                "pkg_ostatni.upsert_vakciny",
                 idVakcinaParam,
                 nazevVakcinaParam
@@ -53,7 +53,7 @@ namespace Models.DatabaseControllers
         {
             OracleParameter idVakcinaParam = new OracleParameter("idVakcina", OracleDbType.Int32, idVakcina, ParameterDirection.Input);
 
-            DatabaseController.Execute1(
+            DatabaseController.Execute(
                "pkg_ostatni.delete_vakcina",
                 idVakcinaParam
             );
@@ -89,7 +89,7 @@ namespace Models.DatabaseControllers
                 {
                     listVakcin.Add(new Vakcina()
                     {
-                        IdVakcina = int.Parse(dr[ID_VAKCINA].ToString()),
+                        Id = int.Parse(dr[ID_VAKCINA].ToString()),
                         NazevVakcina = dr[NAZEV_VAKCINA_NAME].ToString()
                     });
                 }
