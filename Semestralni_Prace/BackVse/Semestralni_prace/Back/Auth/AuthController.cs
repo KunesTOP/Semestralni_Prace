@@ -93,11 +93,11 @@ namespace Back.Auth
 
             AuthToken token = authToken.Value;
 
-            AuthLevel? cachedLevel = cachedTokens[token.PrihlasovaciJmeno] as AuthLevel?;
+            /*AuthLevel? cachedLevel = cachedTokens[token.PrihlasovaciJmeno] as AuthLevel?;
             if (cachedLevel != null)
             {
                 return cachedLevel.Value;
-            }
+            }*/
 
             AuthLevel level = CheckInDatabase(token);
             cachedTokens.Add(token.PrihlasovaciJmeno + token.Hash, level, DateTimeOffset.Now.AddMinutes(15));

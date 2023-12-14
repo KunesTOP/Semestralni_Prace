@@ -2,7 +2,16 @@
   "version": 2,
   "dgSpecHash": "+iCtVOvewvch0I9TeA9ITRwFmkF1p3PkR8kE17plm46+/nDOJZTHd9cLdHS3O2//V7mrPUXfngvH6NNyiGCuFg==",
   "success": true,
+<<<<<<< HEAD
+  "projectFilePath": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\Semestralni_prace.csproj",
+=======
+  "dgSpecHash": "+iCtVOvewvch0I9TeA9ITRwFmkF1p3PkR8kE17plm46+/nDOJZTHd9cLdHS3O2//V7mrPUXfngvH6NNyiGCuFg==",
+  "success": true,
   "projectFilePath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\Semestralni_prace.csproj",
+>>>>>>> 3af13e7cba27fb85bf67a6a0e07834ecfff755a7
+=======
+  "projectFilePath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Semestralni_Prace\\BackVse\\Semestralni_Prace\\Semestralni_prace.csproj",
+>>>>>>> 3af13e7cba27fb85bf67a6a0e07834ecfff755a7
   "expectedPackageFiles": [
     "C:\\Users\\jindra\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\jindra\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

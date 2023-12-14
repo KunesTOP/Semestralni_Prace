@@ -36,7 +36,15 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUYWJ1bGt5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+<<<<<<< HEAD
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Kliniky/ZamestnanciList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2xpbmlreVxaYW1lc3RuYW5jaUxpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Logger/Index.cshtml]
+=======
 [C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Logger/Index.cshtml]
+>>>>>>> 3af13e7cba27fb85bf67a6a0e07834ecfff755a7
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9nZ2VyXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
