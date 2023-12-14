@@ -33,7 +33,7 @@ namespace Models.DatabaseControllers
 
             return new VysledekKrev()
             {
-                IdVysledek = int.Parse(query.Rows[0][ID_VYSLEDEK_NAME].ToString()),
+                Id = int.Parse(query.Rows[0][ID_VYSLEDEK_NAME].ToString()),
                 MnozstviProtilatky = int.Parse(query.Rows[0][MNOZSTVI_PROTILATKY_NAME].ToString()),
                 MnozstviCervKrv = int.Parse(query.Rows[0][MNOZSTVI_CERV_KRV_NAME].ToString()),
                 AnamnezaId = query.Rows[0][ANAMNEZA_ID_NAME] == DBNull.Value ? null : (int?)int.Parse(query.Rows[0][ANAMNEZA_ID_NAME].ToString())
@@ -50,7 +50,7 @@ namespace Models.DatabaseControllers
             OracleParameter mnozstviCervKrvParam = new OracleParameter("mnozstviCervKrv", OracleDbType.Int32, data.GetProperty("mnozstviCervKrv").GetString(), ParameterDirection.Input);
             OracleParameter anamnezaIdParam = new OracleParameter("anamnezaId", OracleDbType.Int32, aktualni.AnamnezaId ?? (object)DBNull.Value, ParameterDirection.Input);
 
-            DatabaseController.Execute1(
+            DatabaseController.Execute(
                 $"pkg_ostatni.upsert_vysledek_krev(:{ID_VYSLEDEK_NAME}, :{MNOZSTVI_PROTILATKY_NAME}, :{MNOZSTVI_CERV_KRV_NAME}, :{ANAMNEZA_ID_NAME})",
                 idVysledekParam,
                 mnozstviProtilatkyParam,
@@ -62,7 +62,7 @@ namespace Models.DatabaseControllers
         {
             OracleParameter idVysledekParam = new OracleParameter("idVysledek", OracleDbType.Int32, idVysledek, ParameterDirection.Input);
 
-            DatabaseController.Execute1(
+            DatabaseController.Execute(
                 $"pkg_delete.delete_vysledek_krev(:{ID_VYSLEDEK_NAME})",
                 idVysledekParam
             );
@@ -94,7 +94,7 @@ namespace Models.DatabaseControllers
             {
                 listVysledku.Add(new VysledekKrev()
                 {
-                    IdVysledek = int.Parse(dr[ID_VYSLEDEK_NAME].ToString()),
+                    Id = int.Parse(dr[ID_VYSLEDEK_NAME].ToString()),
                     MnozstviProtilatky = int.Parse(dr[MNOZSTVI_PROTILATKY_NAME].ToString()),
                     MnozstviCervKrv = int.Parse(dr[MNOZSTVI_CERV_KRV_NAME].ToString()),
                     AnamnezaId = dr[ANAMNEZA_ID_NAME] == DBNull.Value ? null : (int?)int.Parse(dr[ANAMNEZA_ID_NAME].ToString())

@@ -10,6 +10,6 @@ namespace Semestralni_prace.Models.Classes
     public class Rasa
     {
         public string JmenoRasa { get; internal set; }
-        public int IdRasa { get; internal set; }
+        public int Id { get; internal set; }
     }
 }

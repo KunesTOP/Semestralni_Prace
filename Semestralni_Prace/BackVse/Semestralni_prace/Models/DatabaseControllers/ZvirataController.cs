@@ -42,7 +42,7 @@ namespace Models.DatabaseControllers
                 DatumNarozeni = DateTime.Parse(query.Rows[0][DATUM_NAROZENI_NAME].ToString()),
                 DatumUmrti = query.Rows[0][DATUM_UMRTI_NAME] == DBNull.Value ? null : (DateTime?)DateTime.Parse(query.Rows[0][DATUM_UMRTI_NAME].ToString()),
                 MajitelZvireIdPacient = int.Parse(query.Rows[0][MAJITEL_ZVIRE_ID_PACIENT_NAME].ToString()),
-                IdZvire = int.Parse(query.Rows[0][ID_ZVIRE_NAME].ToString()),
+                Id = int.Parse(query.Rows[0][ID_ZVIRE_NAME].ToString()),
                 RasaZviratIdRasa = int.Parse(query.Rows[0][RASA_ZVIRAT_ID_RASA_NAME].ToString())
             };
         }
@@ -106,12 +106,12 @@ namespace Models.DatabaseControllers
             OracleParameter rasaIdParam = new OracleParameter("p_rasa_zvirat_id_rasa", OracleDbType.Int32, ParameterDirection.Input);
             rasaIdParam.Value = aktualni.RasaZviratIdRasa;
 
-            DatabaseController.Execute1("pkg_ostatni.upsert_majitel", zvireIdParam, jmenoParam, pohlaviParam, narozeniParam, umrtiParam, majitelZvireteIdParam, rasaIdParam);
+            DatabaseController.Execute("pkg_ostatni.upsert_majitel", zvireIdParam, jmenoParam, pohlaviParam, narozeniParam, umrtiParam, majitelZvireteIdParam, rasaIdParam);
         }
         public static int UpsertZvirePacient(int IdMajitel, JsonElement data)
         {
             Rasa aktualni = RasaZviratController.GetByJmenoRasa(data.GetProperty("rasa").GetString());
-            if (aktualni.IdRasa.Equals(null)) { aktualni.JmenoRasa = data.GetProperty("rasa").GetString(); aktualni.IdRasa = -1; RasaZviratController.InsertRasa(aktualni); }
+            if (aktualni.Id.Equals(null)) { aktualni.JmenoRasa = data.GetProperty("rasa").GetString(); aktualni.Id = -1; RasaZviratController.InsertRasa(aktualni); }
 
             OracleParameter zvireIdParam = new OracleParameter("p_id", OracleDbType.Int32, ParameterDirection.InputOutput);
             zvireIdParam.Value = -1;
@@ -132,15 +132,15 @@ namespace Models.DatabaseControllers
             majitelZvireteIdParam.Value = IdMajitel;
 
             OracleParameter rasaIdParam = new OracleParameter("p_rasa_zvirat_id_rasa", OracleDbType.Int32, ParameterDirection.Input);
-            rasaIdParam.Value = aktualni.IdRasa;
+            rasaIdParam.Value = aktualni.Id;
 
-            DatabaseController.Execute1("pkg_ostatni.upsert_majitel", zvireIdParam, jmenoParam, pohlaviParam, narozeniParam, umrtiParam, majitelZvireteIdParam, rasaIdParam);
+            DatabaseController.Execute("pkg_ostatni.upsert_majitel", zvireIdParam, jmenoParam, pohlaviParam, narozeniParam, umrtiParam, majitelZvireteIdParam, rasaIdParam);
             return int.Parse((zvireIdParam.Value).ToString());
         }
 
         public static void DeleteMapping(int zvireId)
         {
-            DatabaseController.Execute1("pkg_delete.delete_zvire_ma_nemoc_by_animal_name",
+            DatabaseController.Execute("pkg_delete.delete_zvire_ma_nemoc_by_animal_name",
                 new OracleParameter("p_jmeno_zvire", zvireId)
             );
         }
@@ -177,7 +177,7 @@ namespace Models.DatabaseControllers
                     DatumNarozeni = DateTime.Parse(row[DATUM_NAROZENI_NAME].ToString()),
                     DatumUmrti = row[DATUM_UMRTI_NAME] == DBNull.Value ? null : (DateTime?)DateTime.Parse(row[DATUM_UMRTI_NAME].ToString()),
                     MajitelZvireIdPacient = int.Parse(row[MAJITEL_ZVIRE_ID_PACIENT_NAME].ToString()),
-                    IdZvire = int.Parse(row[ID_ZVIRE_NAME].ToString()),
+                    Id = int.Parse(row[ID_ZVIRE_NAME].ToString()),
                     RasaZviratIdRasa = int.Parse(row[RASA_ZVIRAT_ID_RASA_NAME].ToString())
                 };
                 Zvirata.Add(zvire);

@@ -31,8 +31,8 @@ namespace Semestralni_prace.Controllers
             {
                 try
                 {
-                    Zvire zvire = zvireList.FirstOrDefault(item => item.IdZvire == prukaz.ZvireId);
-                    Majitel majitel = majiteleList.FirstOrDefault(item => item.PacientId == zvire.MajitelZvireIdPacient);
+                    Zvire zvire = zvireList.FirstOrDefault(item => item.Id == prukaz.ZvireId);
+                    Majitel majitel = majiteleList.FirstOrDefault(item => item.Id == zvire.MajitelZvireIdPacient);
                     PacientList.Add(new Pacient
                     {
 
@@ -71,7 +71,7 @@ namespace Semestralni_prace.Controllers
             int idKliniky = AdresyController.GetIdByCity(data.GetProperty("klinikaMesto").GetString());
             int majitelId = MajiteleZviratController.UpsertMajitelPacient(idKliniky,data);
             int zvireId = ZvirataController.UpsertZvirePacient(majitelId,data);
-            Prukaz prukaz = new Prukaz { IdPrukaz = -1,
+            Prukaz prukaz = new Prukaz { Id = -1,
                 ZvireId = zvireId,
                 CisloChip = int.Parse(data.GetProperty("cisloChip").GetString()),
                 CisloPrukaz = int.Parse(data.GetProperty("cisloPrukaz").GetString())

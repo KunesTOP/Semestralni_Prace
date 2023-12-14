@@ -31,7 +31,7 @@ namespace Models.DatabaseControllers
 
             return new Asistent()
             {
-                IdZamestnanec = int.Parse(query.Rows[0][ID_NAME].ToString()),
+                Id = int.Parse(query.Rows[0][ID_NAME].ToString()),
                 Praxe = int.Parse(query.Rows[0][PRAXE_NAME].ToString())
             };
         }
@@ -56,12 +56,10 @@ namespace Models.DatabaseControllers
             idParam.Value = id;
 
             OracleParameter praxeParam = new OracleParameter("p_praxe", OracleDbType.Int32, ParameterDirection.InputOutput);
-            string praxeStr = data.GetProperty("praxe").GetString();
-            int praxe = int.Parse(praxeStr);
-            praxeParam.Value = praxe;
+            praxeParam.Value = data.GetProperty("praxe").GetInt32();
             ZamestnanciController.UpsertZamestnanec(id, data);
-            DatabaseController.Execute1("pkg_ostatni.upsert_asistent", idParam, praxeParam);
-        } 
+            DatabaseController.Execute("pkg_ostatni.upsert_asistent", idParam, praxeParam);
+        }
 
         private static IEnumerable<int> GetIds(string tableName, string idColumnName)
         {
@@ -90,13 +88,13 @@ namespace Models.DatabaseControllers
             {
                 foreach (DataRow dr in query.Rows)
                 {
-                    Zamestnanec zamestnanec = listZamestnancu.FirstOrDefault(z => z.IdZamestnanec == int.Parse(dr[ID_NAME].ToString()));
+                    Zamestnanec zamestnanec = listZamestnancu.FirstOrDefault(z => z.Id == int.Parse(dr[ID_NAME].ToString()));
 
                     if (zamestnanec != null)
                     {
                         listAsistentu.Add(new Asistent()
                         {
-                            IdZamestnanec = int.Parse(dr[ID_NAME].ToString()),
+                            Id = int.Parse(dr[ID_NAME].ToString()),
                             Jmeno = zamestnanec.Jmeno,
                             Prijmeni = zamestnanec.Prijmeni,
                             VeterKlinId = zamestnanec.VeterKlinId,

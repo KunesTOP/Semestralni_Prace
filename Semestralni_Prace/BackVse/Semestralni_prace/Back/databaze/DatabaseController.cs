@@ -1,6 +1,5 @@
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
-using System.Transactions;
 
 namespace Back.databaze
 {
@@ -94,17 +93,6 @@ namespace Back.databaze
             {
                 cmd.Parameters.Add(op);
             }
-            cmd.CommandType = CommandType.Text;
-            cmd.ExecuteNonQuery();
-        }
-        public static void Execute1(string sql, params OracleParameter[] parameters)
-        {
-            OpenDb();
-            OracleCommand cmd = new OracleCommand(sql, _databaseController.con);
-            foreach (OracleParameter op in parameters)
-            {
-                cmd.Parameters.Add(op);
-            }
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.ExecuteNonQuery();
         }
@@ -151,21 +139,6 @@ namespace Back.databaze
             }
         }
 
-        public static void Execute1(string sql, OracleTransaction transaction, params OracleParameter[] parameters)
-        {
-            OpenDb();
-            OracleCommand cmd = new OracleCommand(sql, _databaseController.con);
-            if (transaction != null)
-            {
-                cmd.Transaction = transaction;
-            }
-            foreach (OracleParameter op in parameters)
-            {
-                cmd.Parameters.Add(op);
-            }
-            cmd.CommandType = CommandType.Text;
-            cmd.ExecuteNonQuery();
-        }
 
         ~DatabaseController()
         {

@@ -8,7 +8,7 @@ namespace Semestralni_prace.Models.Classes
 {
     public class Majitel
     {
-        public int PacientId { get; set; }
+        public int Id { get; set; }
         public string? Mail { get; set; }
         public string? Telefon { get; set; }
         public string? Jmeno { get; set; }

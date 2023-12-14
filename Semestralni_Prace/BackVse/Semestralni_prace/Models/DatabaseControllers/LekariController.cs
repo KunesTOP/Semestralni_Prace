@@ -35,7 +35,7 @@ namespace Models.DatabaseControllers
             akreditaceParam.Value = data.GetProperty("akreditace").GetString();
             ZamestnanciController.UpsertZamestnanec(id, data);
 
-            DatabaseController.Execute1("pkg_model_dml1.upsert_lekar", idParam, akreditaceParam);
+            DatabaseController.Execute("pkg_model_dml1.upsert_lekar", idParam, akreditaceParam);
         }
         public static Lekar Get(int id)
         {
@@ -49,7 +49,7 @@ namespace Models.DatabaseControllers
 
             return new Lekar()
             {
-                IdZamestnanec = int.Parse(query.Rows[0][ID_NAME].ToString()),
+                Id = int.Parse(query.Rows[0][ID_NAME].ToString()),
                 Akreditace = query.Rows[0][AKREDITACE_NAME].ToString()
             };
         }
@@ -80,10 +80,10 @@ namespace Models.DatabaseControllers
             List<Zamestnanec> listZamestnancu = ZamestnanciController.GetAll();
             foreach (DataRow dr in query.Rows)
             {
-                Zamestnanec zamestnanec = listZamestnancu.FirstOrDefault(z => z.IdZamestnanec == int.Parse(dr[ID_NAME].ToString()));
+                Zamestnanec zamestnanec = listZamestnancu.FirstOrDefault(z => z.Id == int.Parse(dr[ID_NAME].ToString()));
                 listLekaru.Add(new Lekar
                 {
-                    IdZamestnanec = int.Parse(dr[ID_NAME].ToString()),
+                    Id = int.Parse(dr[ID_NAME].ToString()),
                     Jmeno = zamestnanec.Jmeno,
                     Prijmeni = zamestnanec.Prijmeni,
                     Profese = zamestnanec.Profese,

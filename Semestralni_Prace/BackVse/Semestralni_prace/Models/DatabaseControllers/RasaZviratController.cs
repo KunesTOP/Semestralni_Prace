@@ -32,7 +32,7 @@ namespace Models.DatabaseControllers
             return new Rasa()
             {
                 JmenoRasa = query.Rows[0][JMENO_RASA_NAME].ToString(),
-                IdRasa = int.Parse(query.Rows[0][ID_RASA_NAME].ToString())
+                Id = int.Parse(query.Rows[0][ID_RASA_NAME].ToString())
             };
         }
 
@@ -41,7 +41,7 @@ namespace Models.DatabaseControllers
             DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({JMENO_RASA_NAME}, {ID_RASA_NAME}) " +
                 $"VALUES (:jmenoRasa, :idRasa)",
                 new OracleParameter("jmenoRasa", rasa.JmenoRasa),
-                new OracleParameter("idRasa", rasa.IdRasa)
+                new OracleParameter("idRasa", rasa.Id)
             );
         }
         public static void DeleteRasa(int idRasa)
@@ -59,7 +59,7 @@ namespace Models.DatabaseControllers
             OracleParameter jmenoRasaParam = new OracleParameter("p_jmeno_rasa", OracleDbType.Varchar2, ParameterDirection.Input);
             jmenoRasaParam.Value = data.GetProperty("jmenoRasa").GetString();
 
-            DatabaseController.Execute1("pkg_model_dml1.insert_rasa_zvirat", idRasaParam, jmenoRasaParam);
+            DatabaseController.Execute("pkg_model_dml1.insert_rasa_zvirat", idRasaParam, jmenoRasaParam);
         }
 
         private static IEnumerable<int> GetIds(string tableName, string idColumnName)
@@ -89,7 +89,7 @@ namespace Models.DatabaseControllers
             return new Rasa()
             {
                 JmenoRasa = query.Rows[0][JMENO_RASA_NAME].ToString(),
-                IdRasa = int.Parse(query.Rows[0][ID_RASA_NAME].ToString())
+                Id = int.Parse(query.Rows[0][ID_RASA_NAME].ToString())
             };
         }
         public static IEnumerable<Rasa> GetAll()
@@ -102,7 +102,7 @@ namespace Models.DatabaseControllers
             {
                 listRas.Add(new Rasa
                 {
-                    IdRasa = int.Parse(dr[ID_RASA_NAME].ToString()),
+                    Id = int.Parse(dr[ID_RASA_NAME].ToString()),
                     JmenoRasa = dr[JMENO_RASA_NAME].ToString()
                 });
             }

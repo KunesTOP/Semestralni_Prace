@@ -54,8 +54,8 @@ namespace Models.DatabaseControllers
                 {
                     zaznamy.Add(new ZaznamAnamnez
                     {
-                        AnamnezaId = int.Parse(dr[ID_NAME].ToString()),
-                        VysledekKrveId = vysledek.IdVysledek,
+                        Id = int.Parse(dr[ID_NAME].ToString()),
+                        VysledekKrveId = vysledek.Id,
                         MnozstviBilychKrvinek = vysledek.MnozstviProtilatky,
                         MnozstviCervenychKrvinek = vysledek.MnozstviCervKrv,
                         Datum = DateTime.Parse(dr[DATUM_NAME].ToString())

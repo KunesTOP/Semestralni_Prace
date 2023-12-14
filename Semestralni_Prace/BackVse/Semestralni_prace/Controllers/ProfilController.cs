@@ -41,7 +41,7 @@ namespace Semestralni_prace.Controllers
             DokumentNazev = nazev,
             Pripona = Path.GetExtension(nazev),
             Data = data,
-            IdDokument = -1
+            Id = -1
             };
             DokumentController.UpsertDokument(doc);
         }

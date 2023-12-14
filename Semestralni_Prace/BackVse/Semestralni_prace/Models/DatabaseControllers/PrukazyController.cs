@@ -35,7 +35,7 @@ namespace Models.DatabaseControllers
             {
                 CisloPrukaz = int.Parse(query.Rows[0][CISLO_PRUKAZ_NAME].ToString()),
                 CisloChip = int.Parse(query.Rows[0][CISLO_CHIP_NAME].ToString()),
-                IdPrukaz = int.Parse(query.Rows[0][ID_PRUKAZ_NAME].ToString()),
+                Id = int.Parse(query.Rows[0][ID_PRUKAZ_NAME].ToString()),
                 ZvireId = query.Rows[0][ZVIRE_ID_NAME] == DBNull.Value ? null : (int?)int.Parse(query.Rows[0][ZVIRE_ID_NAME].ToString())
             };
         }
@@ -46,7 +46,7 @@ namespace Models.DatabaseControllers
                 $"VALUES (:cisloPrukaz, :cisloChip, :idPrukaz, :zvireId)",
                 new OracleParameter("cisloPrukaz", prukaz.CisloPrukaz),
                 new OracleParameter("cisloChip", prukaz.CisloChip),
-                new OracleParameter("idPrukaz", prukaz.IdPrukaz),
+                new OracleParameter("idPrukaz", prukaz.Id),
                 new OracleParameter("zvireId", prukaz.ZvireId ?? (object)DBNull.Value)
             );
         }
@@ -74,7 +74,7 @@ namespace Models.DatabaseControllers
             OracleParameter zvireIdParam = new OracleParameter("p_zvire_id", OracleDbType.Int32, ParameterDirection.Input);
             zvireIdParam.Value = aktualni.ZvireId ?? (object)DBNull.Value;
 
-            DatabaseController.Execute1("pkg_ostatni.upsert_prukazy", cisloPrukazParam, cisloChipParam, idPrukazParam, zvireIdParam);
+            DatabaseController.Execute("pkg_ostatni.upsert_prukazy", cisloPrukazParam, cisloChipParam, idPrukazParam, zvireIdParam);
         }
 
         private static IEnumerable<int> GetIds(string tableName, string idColumnName)
@@ -106,7 +106,7 @@ namespace Models.DatabaseControllers
                 {
                     CisloPrukaz = int.Parse(dr[CISLO_PRUKAZ_NAME].ToString()),
                     CisloChip = int.Parse(dr[CISLO_CHIP_NAME].ToString()),
-                    IdPrukaz = int.Parse(dr[ID_PRUKAZ_NAME].ToString()),
+                    Id = int.Parse(dr[ID_PRUKAZ_NAME].ToString()),
                     ZvireId = dr[ZVIRE_ID_NAME] == DBNull.Value ? null : (int?)int.Parse(dr[ZVIRE_ID_NAME].ToString())
                 });
             }

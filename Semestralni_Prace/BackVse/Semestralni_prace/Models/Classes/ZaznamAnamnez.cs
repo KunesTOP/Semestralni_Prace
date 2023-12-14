@@ -8,6 +8,6 @@ namespace Semestralni_prace.Models.Classes
         public int MnozstviBilychKrvinek { get; set; }
         public int MnozstviCervenychKrvinek { get; set; }
         public DateTime Datum { get; set; }
-        public int AnamnezaId { get; set; }
+        public int Id { get; set; }
     }
 }

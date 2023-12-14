@@ -76,7 +76,7 @@ namespace Models.DatabaseControllers//TODO KNIHOVNY
             OracleParameter veterKlinIdParam = new OracleParameter("veterKlinId", OracleDbType.Int32, id, ParameterDirection.Input);
             OracleParameter adresyIdAdresaParam = new OracleParameter("adresyIdAdresa", OracleDbType.Int32, aktualni.Id, ParameterDirection.Input);
 
-            DatabaseController.Execute1(
+            DatabaseController.Execute(
                 $"pkg_ostatni.upsert_veterinarni_klinika(:{JMENO_MAJITEL_NAME}, :{PRIJMENI_MAJITEL_NAME}, :{VETER_KLIN_ID_NAME}, :{ADRESY_ID_ADRESA_NAME})",
                 jmenoMajitelParam,
                 prijmeniMajitelParam,
@@ -88,7 +88,7 @@ namespace Models.DatabaseControllers//TODO KNIHOVNY
         {
             OracleParameter veterKlinIdParam = new OracleParameter("veterKlinId", OracleDbType.Int32, veterKlinId, ParameterDirection.Input);
 
-            DatabaseController.Execute1(
+            DatabaseController.Execute(
                 $"pkg_delete.upsert_veterinarni_klinika(:{VETER_KLIN_ID_NAME})",
                 veterKlinIdParam
             );
