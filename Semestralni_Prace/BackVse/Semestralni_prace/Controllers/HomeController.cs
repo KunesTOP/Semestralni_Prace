@@ -247,6 +247,7 @@ namespace Semestralni_Prace.Controllers
                     AdresyController.Delete(id);
                     break;
                 case "ANAMNEZA":
+
                     //TODO, todle upravit, protože bude třeba řešit i vysledkyKrev
                     AnamnezyController.DeleteZaznamAnamnezy(id);
                     break;
