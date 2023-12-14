@@ -50,7 +50,7 @@ namespace Models.DatabaseControllers
             OracleParameter mnozstviCervKrvParam = new OracleParameter("mnozstviCervKrv", OracleDbType.Int32, data.GetProperty("mnozstviCervKrv").GetString(), ParameterDirection.Input);
             OracleParameter anamnezaIdParam = new OracleParameter("anamnezaId", OracleDbType.Int32, aktualni.AnamnezaId ?? (object)DBNull.Value, ParameterDirection.Input);
 
-            DatabaseController.Execute(
+            DatabaseController.Execute1(
                 $"pkg_ostatni.upsert_vysledek_krev(:{ID_VYSLEDEK_NAME}, :{MNOZSTVI_PROTILATKY_NAME}, :{MNOZSTVI_CERV_KRV_NAME}, :{ANAMNEZA_ID_NAME})",
                 idVysledekParam,
                 mnozstviProtilatkyParam,
@@ -62,7 +62,7 @@ namespace Models.DatabaseControllers
         {
             OracleParameter idVysledekParam = new OracleParameter("idVysledek", OracleDbType.Int32, idVysledek, ParameterDirection.Input);
 
-            DatabaseController.Execute(
+            DatabaseController.Execute1(
                 $"pkg_delete.delete_vysledek_krev(:{ID_VYSLEDEK_NAME})",
                 idVysledekParam
             );

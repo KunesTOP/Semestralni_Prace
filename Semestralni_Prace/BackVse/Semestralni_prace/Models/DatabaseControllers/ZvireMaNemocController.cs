@@ -33,7 +33,7 @@ namespace Models.DatabaseControllers
             OracleParameter zvireIdParam = new OracleParameter("p_zvire_id_zvire", OracleDbType.Int32, ParameterDirection.InputOutput);
             zvireIdParam.Value = zvireId;
 
-            DatabaseController.Execute("pkg_ostatni.upsert_zvire_ma_nemoc", nemocIdParam, zvireIdParam);
+            DatabaseController.Execute1("pkg_ostatni.upsert_zvire_ma_nemoc", nemocIdParam, zvireIdParam);
         }
 
         public static void DeleteMapping(int nemocId, int zvireId)
@@ -43,7 +43,7 @@ namespace Models.DatabaseControllers
 
             OracleParameter zvireIdParam = new OracleParameter("p_zvire_id_zvire", OracleDbType.Int32, ParameterDirection.InputOutput);
             zvireIdParam.Value = zvireId;
-            DatabaseController.Execute("pkg_ostatni.delete_zvire_ma_nemoc", nemocIdParam, zvireIdParam
+            DatabaseController.Execute1("pkg_ostatni.delete_zvire_ma_nemoc", nemocIdParam, zvireIdParam
             );
         }
 

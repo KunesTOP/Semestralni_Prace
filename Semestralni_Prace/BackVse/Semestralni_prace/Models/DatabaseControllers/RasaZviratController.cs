@@ -59,7 +59,7 @@ namespace Models.DatabaseControllers
             OracleParameter jmenoRasaParam = new OracleParameter("p_jmeno_rasa", OracleDbType.Varchar2, ParameterDirection.Input);
             jmenoRasaParam.Value = data.GetProperty("jmenoRasa").GetString();
 
-            DatabaseController.Execute("pkg_model_dml1.insert_rasa_zvirat", idRasaParam, jmenoRasaParam);
+            DatabaseController.Execute1("pkg_model_dml1.insert_rasa_zvirat", idRasaParam, jmenoRasaParam);
         }
 
         private static IEnumerable<int> GetIds(string tableName, string idColumnName)

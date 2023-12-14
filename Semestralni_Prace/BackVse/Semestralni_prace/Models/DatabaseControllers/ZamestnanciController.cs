@@ -69,7 +69,7 @@ namespace Models.DatabaseControllers
             OracleParameter veterKlinIdParam = new OracleParameter("veterKlinId", OracleDbType.Int32, aktualni.VeterKlinId, ParameterDirection.Input);
             OracleParameter profeseParam = new OracleParameter("profese", OracleDbType.Varchar2, data.GetProperty("profese").GetString(), ParameterDirection.Input);
 
-            DatabaseController.Execute(
+            DatabaseController.Execute1(
                 $"pkg_ostatni.upsert_zamestnanec(:{ID_ZAMESTNANEC_NAME}, :{JMENO_NAME}, :{PRIJMENI_NAME}, :{VETER_KLIN_ID_NAME}, :{PROFES_NAME})",
                 idZamestnanecParam,
                 jmenoParam,
@@ -82,7 +82,7 @@ namespace Models.DatabaseControllers
         {
             OracleParameter idZamestnanecParam = new OracleParameter("idZamestnanec", OracleDbType.Int32, idZamestnanec, ParameterDirection.Input);
 
-            DatabaseController.Execute(
+            DatabaseController.Execute1(
                 $"pkg_delete.delete_zamestnanec(:{ID_ZAMESTNANEC_NAME})",
                 idZamestnanecParam
             );

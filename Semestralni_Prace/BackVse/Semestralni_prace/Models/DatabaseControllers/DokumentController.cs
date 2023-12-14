@@ -50,7 +50,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
             OracleParameter nazevParam = new OracleParameter("p_dokument_nazev", OracleDbType.Varchar2, ParameterDirection.InputOutput);
             nazevParam.Value = data.GetProperty("dokumentNazev").GetInt32();
 
-            DatabaseController.Execute("pkg_dokumenty.upsert_dokumenty", idParam, priponaParam, dataParam, nazevParam);
+            DatabaseController.Execute1("pkg_dokumenty.upsert_dokumenty", idParam, priponaParam, dataParam, nazevParam);
         }
         public static void Delete(int id)
         {
@@ -96,7 +96,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
                 Value = doc.GetBytes()
             };
 
-            DatabaseController.Execute("pkg_dokumenty.upsert_dokumenty", idParam, pripParam,nazevParam,dataParam);
+            DatabaseController.Execute1("pkg_dokumenty.upsert_dokumenty", idParam, pripParam,nazevParam,dataParam);
         }
     }
 }

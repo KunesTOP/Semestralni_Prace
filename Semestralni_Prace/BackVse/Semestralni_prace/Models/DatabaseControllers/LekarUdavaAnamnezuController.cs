@@ -39,7 +39,7 @@ namespace Models.DatabaseControllers
             OracleParameter anamnezaIdParam = new OracleParameter("p_anamneza_id_anamneza", OracleDbType.Int32, ParameterDirection.InputOutput);
             anamnezaIdParam.Value = anamnezaId;
 
-            DatabaseController.Execute("pkg_ostatni.upsert_lekar_udava_anamnezu", lekarIdParam, anamnezaIdParam);
+            DatabaseController.Execute1("pkg_ostatni.upsert_lekar_udava_anamnezu", lekarIdParam, anamnezaIdParam);
         }
 
         private static IEnumerable<int> GetIds(string tableName, string idColumnName, string conditionColumnName, int conditionValue)

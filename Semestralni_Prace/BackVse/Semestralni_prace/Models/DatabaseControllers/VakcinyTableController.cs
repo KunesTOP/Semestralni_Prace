@@ -43,7 +43,7 @@ namespace Models.DatabaseControllers
             OracleParameter idVakcinaParam = new OracleParameter("idVakcina", OracleDbType.Int32, id, ParameterDirection.Input);
             OracleParameter nazevVakcinaParam = new OracleParameter("nazevVakcina", OracleDbType.Varchar2, data.GetProperty("nazevVakcina").GetString(), ParameterDirection.Input);
 
-            DatabaseController.Execute(
+            DatabaseController.Execute1(
                "pkg_ostatni.upsert_vakciny",
                 idVakcinaParam,
                 nazevVakcinaParam
@@ -53,7 +53,7 @@ namespace Models.DatabaseControllers
         {
             OracleParameter idVakcinaParam = new OracleParameter("idVakcina", OracleDbType.Int32, idVakcina, ParameterDirection.Input);
 
-            DatabaseController.Execute(
+            DatabaseController.Execute1(
                "pkg_ostatni.delete_vakcina",
                 idVakcinaParam
             );

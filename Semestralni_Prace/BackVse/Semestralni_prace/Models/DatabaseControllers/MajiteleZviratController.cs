@@ -84,7 +84,7 @@ namespace Models.DatabaseControllers
             OracleParameter idMajitelParam = new OracleParameter("p_id_majitel", OracleDbType.Int32, ParameterDirection.Input);
             idMajitelParam.Value = aktualni.IdMajitel;
 
-            DatabaseController.Execute("pkg_model_dml1.upsert_majitel", pacientIdParam, mailParam, telefonParam, jmenoParam, prijmeniParam, vetKlinIdParam);
+            DatabaseController.Execute1("pkg_model_dml1.upsert_majitel", pacientIdParam, mailParam, telefonParam, jmenoParam, prijmeniParam, vetKlinIdParam);
         }
         public static int UpsertMajitelPacient(int idKlinika,JsonElement data)
         {
@@ -109,7 +109,7 @@ namespace Models.DatabaseControllers
             OracleParameter idMajitelParam = new OracleParameter("p_id_majitel", OracleDbType.Int32, ParameterDirection.Input);
             idMajitelParam.Value = idKlinika;
 
-            DatabaseController.Execute("pkg_model_dml1.upsert_majitel", pacientIdParam, mailParam, telefonParam, jmenoParam, prijmeniParam, vetKlinIdParam);
+            DatabaseController.Execute1("pkg_model_dml1.upsert_majitel", pacientIdParam, mailParam, telefonParam, jmenoParam, prijmeniParam, vetKlinIdParam);
             return int.Parse((pacientIdParam.Value).ToString());
         }
 

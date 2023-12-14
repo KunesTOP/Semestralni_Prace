@@ -35,7 +35,7 @@ namespace Models.DatabaseControllers
             akreditaceParam.Value = data.GetProperty("akreditace").GetString();
             ZamestnanciController.UpsertZamestnanec(id, data);
 
-            DatabaseController.Execute("pkg_model_dml1.upsert_lekar", idParam, akreditaceParam);
+            DatabaseController.Execute1("pkg_model_dml1.upsert_lekar", idParam, akreditaceParam);
         }
         public static Lekar Get(int id)
         {

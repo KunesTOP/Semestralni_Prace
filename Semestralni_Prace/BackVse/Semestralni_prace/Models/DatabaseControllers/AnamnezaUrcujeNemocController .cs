@@ -32,7 +32,7 @@ namespace Models.DatabaseControllers
             anamnezaIdParam.Value = anamnezaId;
 
             // Volání stored procedury pro upsert
-            DatabaseController.Execute("pkg_ostatni.upsert_anamneza_urcuje_nemoc", nemocIdParam, anamnezaIdParam);
+            DatabaseController.Execute1("pkg_ostatni.upsert_anamneza_urcuje_nemoc", nemocIdParam, anamnezaIdParam);
         }
 
         public static void DeleteMapping(int nemocId, int anamnezaId)

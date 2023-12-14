@@ -112,7 +112,7 @@ namespace Models.DatabaseControllers
             OracleParameter nazevParam = new OracleParameter("p_nazev", OracleDbType.Varchar2, ParameterDirection.Input);
             nazevParam.Value = data.GetProperty("nazevTitul").GetString();
 
-            DatabaseController.Execute("pkg_model_dml1.upsert_tituly", idTitulParam, zkratkaParam,nazevParam);
+            DatabaseController.Execute1("pkg_model_dml1.upsert_tituly", idTitulParam, zkratkaParam,nazevParam);
         }
 
         public static IEnumerable<Titul> GetAll()

@@ -45,7 +45,7 @@ namespace Models.DatabaseControllers
             OracleParameter vakcinaIdParam = new OracleParameter("p_vakcina_id_vakcina", OracleDbType.Int32, ParameterDirection.InputOutput);
             vakcinaIdParam.Value = vakcinaId;
 
-            DatabaseController.Execute("pkg_ostatni.upsert_asistent_poda_vakcinu", asistentIdParam, vakcinaIdParam);
+            DatabaseController.Execute1("pkg_ostatni.upsert_asistent_poda_vakcinu", asistentIdParam, vakcinaIdParam);
         }
 
         private static IEnumerable<int> GetIds(string tableName, string idColumnName, string conditionColumnName, int conditionValue)

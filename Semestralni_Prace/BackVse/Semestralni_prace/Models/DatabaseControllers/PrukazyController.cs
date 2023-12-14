@@ -74,7 +74,7 @@ namespace Models.DatabaseControllers
             OracleParameter zvireIdParam = new OracleParameter("p_zvire_id", OracleDbType.Int32, ParameterDirection.Input);
             zvireIdParam.Value = aktualni.ZvireId ?? (object)DBNull.Value;
 
-            DatabaseController.Execute("pkg_ostatni.upsert_prukazy", cisloPrukazParam, cisloChipParam, idPrukazParam, zvireIdParam);
+            DatabaseController.Execute1("pkg_ostatni.upsert_prukazy", cisloPrukazParam, cisloChipParam, idPrukazParam, zvireIdParam);
         }
 
         private static IEnumerable<int> GetIds(string tableName, string idColumnName)

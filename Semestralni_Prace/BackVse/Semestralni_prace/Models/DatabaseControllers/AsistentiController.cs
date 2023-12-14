@@ -56,10 +56,12 @@ namespace Models.DatabaseControllers
             idParam.Value = id;
 
             OracleParameter praxeParam = new OracleParameter("p_praxe", OracleDbType.Int32, ParameterDirection.InputOutput);
-            praxeParam.Value = data.GetProperty("praxe").GetInt32();
+            string praxeStr = data.GetProperty("praxe").GetString();
+            int praxe = int.Parse(praxeStr);
+            praxeParam.Value = praxe;
             ZamestnanciController.UpsertZamestnanec(id, data);
-            DatabaseController.Execute("pkg_ostatni.upsert_asistent", idParam, praxeParam);
-        }
+            DatabaseController.Execute1("pkg_ostatni.upsert_asistent", idParam, praxeParam);
+        } 
 
         private static IEnumerable<int> GetIds(string tableName, string idColumnName)
         {

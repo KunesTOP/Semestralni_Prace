@@ -39,7 +39,7 @@ namespace Models.DatabaseControllers
             OracleParameter prukazIdParam = new OracleParameter("p_prukaz_id", OracleDbType.Int32, ParameterDirection.Input);
             prukazIdParam.Value = prukazId;
 
-            DatabaseController.Execute("pkg_ostatni.upsert_majitel_vlastni_prukaz", majitelIdParam, prukazIdParam);
+            DatabaseController.Execute1("pkg_ostatni.upsert_majitel_vlastni_prukaz", majitelIdParam, prukazIdParam);
         }
 
         private static IEnumerable<int> GetIds(string tableName, string idColumnName, string conditionColumnName, int conditionValue)

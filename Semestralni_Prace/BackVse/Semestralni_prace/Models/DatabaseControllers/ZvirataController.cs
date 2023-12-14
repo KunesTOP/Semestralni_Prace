@@ -106,7 +106,7 @@ namespace Models.DatabaseControllers
             OracleParameter rasaIdParam = new OracleParameter("p_rasa_zvirat_id_rasa", OracleDbType.Int32, ParameterDirection.Input);
             rasaIdParam.Value = aktualni.RasaZviratIdRasa;
 
-            DatabaseController.Execute("pkg_ostatni.upsert_majitel", zvireIdParam, jmenoParam, pohlaviParam, narozeniParam, umrtiParam, majitelZvireteIdParam, rasaIdParam);
+            DatabaseController.Execute1("pkg_ostatni.upsert_majitel", zvireIdParam, jmenoParam, pohlaviParam, narozeniParam, umrtiParam, majitelZvireteIdParam, rasaIdParam);
         }
         public static int UpsertZvirePacient(int IdMajitel, JsonElement data)
         {
@@ -134,13 +134,13 @@ namespace Models.DatabaseControllers
             OracleParameter rasaIdParam = new OracleParameter("p_rasa_zvirat_id_rasa", OracleDbType.Int32, ParameterDirection.Input);
             rasaIdParam.Value = aktualni.IdRasa;
 
-            DatabaseController.Execute("pkg_ostatni.upsert_majitel", zvireIdParam, jmenoParam, pohlaviParam, narozeniParam, umrtiParam, majitelZvireteIdParam, rasaIdParam);
+            DatabaseController.Execute1("pkg_ostatni.upsert_majitel", zvireIdParam, jmenoParam, pohlaviParam, narozeniParam, umrtiParam, majitelZvireteIdParam, rasaIdParam);
             return int.Parse((zvireIdParam.Value).ToString());
         }
 
         public static void DeleteMapping(int zvireId)
         {
-            DatabaseController.Execute("pkg_delete.delete_zvire_ma_nemoc_by_animal_name",
+            DatabaseController.Execute1("pkg_delete.delete_zvire_ma_nemoc_by_animal_name",
                 new OracleParameter("p_jmeno_zvire", zvireId)
             );
         }

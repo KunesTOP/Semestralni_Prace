@@ -163,7 +163,8 @@ namespace Semestralni_Prace.Controllers
         {
             var tabulka = input.GetProperty("selectedValue").GetString();
             var id = input.GetProperty("rowId").GetInt32();
-            GetSpravnyRemove(tabulka, id);
+            
+            GetSpravnyRemove(tabulka, id );
         }
 
         private void GetSpravnyUpsert(string selectedValue, int id, JsonElement data)
@@ -235,7 +236,7 @@ namespace Semestralni_Prace.Controllers
             switch (selectedValue)
             {
                 case "ADRESY":
-                    AdresyController.Delete(id);
+                    AdresyController.Delete(id );
                     break;
                 case "ANAMNEZA":
                     //TODO, todle upravit, protože bude třeba řešit i vysledkyKrev

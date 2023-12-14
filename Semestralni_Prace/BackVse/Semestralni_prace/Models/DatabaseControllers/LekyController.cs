@@ -53,7 +53,7 @@ namespace Models.DatabaseControllers
             OracleParameter nazevParam = new OracleParameter("p_nazev", OracleDbType.Varchar2, ParameterDirection.Input);
             nazevParam.Value = data.GetProperty("nazev").GetString();
             var debugg = data.GetProperty("nazev").GetString();
-            DatabaseController.Execute("pkg_ostatni.upsert_lek", idParam, nazevParam);
+            DatabaseController.Execute1("pkg_ostatni.upsert_lek", idParam, nazevParam);
         }
 
         private static IEnumerable<int> GetIds(string tableName, string idColumnName)
