@@ -275,17 +275,20 @@ namespace Semestralni_prace.Models.DatabaseControllers
                 jmeno = string.Empty;
             }
         }
-<<<<<<< HEAD
+
         public static List<Zamestnanec> NajdiZamestnancePodleKliniky(int? veterKlinId)
-=======
-        public static void NajdiZamestnancePodleKliniky(int veterKlinId)
->>>>>>> 320a50b926b92eb7b297eaae55b4f9a0cfadcc46
+
+        
+
         {
+
+            string sql = @" SELECT id_zamestnanec, jmeno, prijmeni, veter_klin_id, profese
+        FROM zamestnanci
+        WHERE veter_klin_id = p_veter_klin_id;";
             OracleParameter p_veter_klin_id = new OracleParameter("p_veter_klin_id", OracleDbType.Int32, veterKlinId, ParameterDirection.Input);
             OracleParameter o_zamestnanci = new OracleParameter("o_zamestnanci", OracleDbType.RefCursor, ParameterDirection.Output);
 
-<<<<<<< HEAD
-            DataTable table = DatabaseController.Query("najdi_zamestnance_podle_kliniky", p_veter_klin_id, o_zamestnanci);
+            DataTable table = DatabaseController.Query(sql, p_veter_klin_id, o_zamestnanci);
             List<Zamestnanec> listZamestnancu = new List<Zamestnanec>();
             foreach (DataRow row in table.Rows)
             {
@@ -300,9 +303,9 @@ namespace Semestralni_prace.Models.DatabaseControllers
             }
             return listZamestnancu;
 
-=======
+
             DatabaseController.Execute("najdi_zamestnance_podle_kliniky", p_veter_klin_id, o_zamestnanci);
->>>>>>> 320a50b926b92eb7b297eaae55b4f9a0cfadcc46
+
         }
 
     }

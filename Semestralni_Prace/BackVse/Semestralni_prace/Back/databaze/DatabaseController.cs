@@ -35,6 +35,17 @@ namespace Back.databaze
             oda.Fill(dataTable);
             return dataTable;
         }
+        public static void Query1(string sql, params OracleParameter[] parameters)
+        {
+            OpenDb();
+            OracleCommand cmd = new OracleCommand(sql, _databaseController.con);
+            foreach (OracleParameter op in parameters)
+            {
+                cmd.Parameters.Add(op);
+            }
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+        }
 
         public static DataTable Query(string sql, OracleTransaction transaction, params OracleParameter[] parameters)
         {
