@@ -274,6 +274,13 @@ namespace Semestralni_prace.Models.DatabaseControllers
                 jmeno = string.Empty;
             }
         }
+        public static DataTable NajdiZamestnancePodleKliniky(int veterKlinId)
+        {
+            OracleParameter p_veter_klin_id = new OracleParameter("p_veter_klin_id", OracleDbType.Int32, veterKlinId, ParameterDirection.Input);
+            OracleParameter o_zamestnanci = new OracleParameter("o_zamestnanci", OracleDbType.RefCursor, ParameterDirection.Output);
+
+            return DatabaseController.Query("najdi_zamestnance_podle_kliniky", p_veter_klin_id, o_zamestnanci);
+        }
 
     }
 }
