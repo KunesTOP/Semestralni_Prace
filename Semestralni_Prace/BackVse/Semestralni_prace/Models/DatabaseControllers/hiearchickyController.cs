@@ -161,6 +161,40 @@ namespace Semestralni_prace.Models.DatabaseControllers
             DatabaseController.Execute("pkg_zbytek.pridat_dokument_zamestnanci", p_id_zamestnanec, p_id_dokument);
         }
 
+        public static void NajdiPodrobnostiZamestnance(string jmenoUctu, out string jmeno, out string prijmeni, out string profese, out string nazevDokumentu, out byte[] dokumentBlobs, out string jmenoMajitel, out string prijmeniMajitel, out int adresaKlinika)
+        {
+            // Nastavení vstupního parametru
+            OracleParameter p_jmeno_uctu = new OracleParameter("p_jmeno_uctu", OracleDbType.Varchar2, jmenoUctu, ParameterDirection.Input);
+
+            // Nastavení výstupních parametrů
+            OracleParameter o_jmeno = new OracleParameter("o_jmeno", OracleDbType.Varchar2, ParameterDirection.Output);
+            o_jmeno.Size = 32; // Velikost odpovídající sloupci v databázi
+            OracleParameter o_prijmeni = new OracleParameter("o_prijmeni", OracleDbType.Varchar2, ParameterDirection.Output);
+            o_prijmeni.Size = 64;
+            OracleParameter o_profese = new OracleParameter("o_profese", OracleDbType.Varchar2, ParameterDirection.Output);
+            o_profese.Size = 32;
+            OracleParameter o_nazev_dokumentu = new OracleParameter("o_nazev_dokumentu", OracleDbType.Varchar2, ParameterDirection.Output);
+            o_nazev_dokumentu.Size = 30;
+            OracleParameter o_dokument_blobs = new OracleParameter("o_dokument_blobs", OracleDbType.Blob, ParameterDirection.Output);
+            OracleParameter o_jmeno_majitel = new OracleParameter("o_jmeno_majitel", OracleDbType.Varchar2, ParameterDirection.Output);
+            o_jmeno_majitel.Size = 32;
+            OracleParameter o_prijmeni_majitel = new OracleParameter("o_prijmeni_majitel", OracleDbType.Varchar2, ParameterDirection.Output);
+            o_prijmeni_majitel.Size = 64;
+            OracleParameter o_adresa_klinika = new OracleParameter("o_adresa_klinika", OracleDbType.Int32, ParameterDirection.Output);
+
+            // Volání procedury
+            DatabaseController.Execute("pkg_zbytek.najdi_podrobnosti_zamestnance", p_jmeno_uctu, o_jmeno, o_prijmeni, o_profese, o_nazev_dokumentu, o_dokument_blobs, o_jmeno_majitel, o_prijmeni_majitel, o_adresa_klinika);
+
+            // Získání výsledků z výstupních parametrů
+            jmeno = o_jmeno.Value.ToString();
+            prijmeni = o_prijmeni.Value.ToString();
+            profese = o_profese.Value.ToString();
+            nazevDokumentu = o_nazev_dokumentu.Value.ToString();
+            dokumentBlobs = o_dokument_blobs.Value as byte[]; // Přetypování na byte[] pro práci s BLOB daty
+            jmenoMajitel = o_jmeno_majitel.Value.ToString();
+            prijmeniMajitel = o_prijmeni_majitel.Value.ToString();
+            adresaKlinika = Convert.ToInt32(o_adresa_klinika.Value);
+        }
 
     }
 }
