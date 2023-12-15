@@ -9,97 +9,97 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Semestralni_prace
 build_property.RootNamespace = Semestralni_prace
-build_property.ProjectDir = C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\BackVse\Semestralni_Prace\
+build_property.ProjectDir = C:\Users\Ondra\source\repos\Semestralni_Prace5\Semestralni_Prace\BackVse\Semestralni_Prace\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = true
-build_property.MSBuildProjectDirectory = C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\BackVse\Semestralni_Prace
+build_property.MSBuildProjectDirectory = C:\Users\Ondra\source\repos\Semestralni_Prace5\Semestralni_Prace\BackVse\Semestralni_Prace
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Hierarchical/hierarchicky.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Hierarchical/hierarchicky.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGllcmFyY2hpY2FsXGhpZXJhcmNoaWNreS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Home/AutorizaceFailed.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Home/AutorizaceFailed.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBdXRvcml6YWNlRmFpbGVkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Home/Index.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Home/Login.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Home/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Home/Privacy.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Home/Tabulky.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Home/Tabulky.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUYWJ1bGt5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Kliniky/ZamestnanciList.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Kliniky/ZamestnanciList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2xpbmlreVxaYW1lc3RuYW5jaUxpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Logger/Index.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Logger/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9nZ2VyXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Pacient/ListPacientu.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Pacient/ListPacientu.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFjaWVudFxMaXN0UGFjaWVudHUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Pacient/PacientAdd.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Pacient/PacientAdd.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFjaWVudFxQYWNpZW50QWRkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Pacient/PacientProfile.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Pacient/PacientProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFjaWVudFxQYWNpZW50UHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Profil/Profil.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Profil/Profil.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsXFByb2ZpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Register/Index.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Register/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0ZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Register/RegisterList.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Register/RegisterList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0ZXJcUmVnaXN0ZXJMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Shared/Error.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Vakciny/ListVakcin.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Vakciny/ListVakcin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmFrY2lueVxMaXN0VmFrY2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Zaznamy/ZaznamPridat.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Zaznamy/ZaznamPridat.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWmF6bmFteVxaYXpuYW1QcmlkYXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Zaznamy/Zaznamy.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Zaznamy/Zaznamy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWmF6bmFteVxaYXpuYW15LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/_ViewImports.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/_ViewStart.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Shared/_Layout.cshtml]
+[C:/Users/Ondra/source/repos/Semestralni_Prace5/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-nb5mw9a7uw

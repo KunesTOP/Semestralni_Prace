@@ -65,7 +65,6 @@ namespace Models.DatabaseControllers//TODO KNIHOVNY
             }
         }
 
-        //TODO upravit aby to fungovalo - problém id adresy
         public static void UpsertKlinika(int id, JsonElement data)
         {
             Adresy aktualni = AdresyController.Get(id);
