@@ -12,17 +12,17 @@ namespace Semestralni_prace.Controllers
     {
         public IActionResult Index()
         {
+            
+            return View();
+        }
+        public IActionResult RegisterList()
+        {
             var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno"), Hash = HttpContext.Session.GetString("heslo") });
             if (level == AuthLevel.NONE) { return RedirectToAction("AutorizaceFailed", "Home"); }
             bool isAdmin = level == AuthLevel.ADMIN;
             var ktereJmenoPouzivat = (isAdmin) ? HttpContext.Session.GetString("emulovaneJmeno") : HttpContext.Session.GetString("jmeno");
             if (isAdmin && ktereJmenoPouzivat != HttpContext.Session.GetString("jmeno")) level = AuthController.GetLevel(ktereJmenoPouzivat);
             if (level == AuthLevel.OUTER) { return RedirectToAction("AutorizaceFailed", "Home"); }
-            //TODO hodit sem restrikce jen pro admina
-            return View();
-        }
-        public IActionResult RegisterList()
-        {
             //TODO tady zavolat všechny prvky
             List<Registrovany> listRegistrovanych = RegisterDBController.GetAllRegisterEntries();
             return View(listRegistrovanych);
@@ -32,7 +32,7 @@ namespace Semestralni_prace.Controllers
         {
             if (!ModelState.IsValid)
             {
-                //TODO tady by měl být error, ale to nevím jak se momentálně dělá
+                //TODO tady by měl být error message, ale to nevím jak se momentálně dělá
                 return Index();
             }
             RegisterDBController.CreateRegisterEntry(data.Jmeno, data.Prijmeni, data.Email, data.City, data.Street,
