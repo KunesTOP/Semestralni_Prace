@@ -176,6 +176,21 @@ namespace Semestralni_prace.Models.DatabaseControllers
             DatabaseController.Execute("pck_zbytekinfo.get_names('zamestnanci')");
         }
 
+        public static void SchvaleniUctu(string jmeno, string prijmeni, string email, string mesto, string ulice, string cisloPopisne, string prihlasovaciJmeno, string prihlasovaciHeslo, int urovenAutorizace)
+        {
+            // Parametry pro proceduru
+            OracleParameter p_jmeno = new OracleParameter("p_jmeno", OracleDbType.Varchar2, jmeno, ParameterDirection.Input);
+            OracleParameter p_prijmeni = new OracleParameter("p_prijmeni", OracleDbType.Varchar2, prijmeni, ParameterDirection.Input);
+            OracleParameter p_email = new OracleParameter("p_email", OracleDbType.Varchar2, email, ParameterDirection.Input);
+            OracleParameter p_mesto = new OracleParameter("p_mesto", OracleDbType.Varchar2, mesto, ParameterDirection.Input);
+            OracleParameter p_ulice = new OracleParameter("p_ulice", OracleDbType.Varchar2, ulice, ParameterDirection.Input);
+            OracleParameter p_cisloPopisne = new OracleParameter("p_cislo_popisne", OracleDbType.Varchar2, cisloPopisne, ParameterDirection.Input);
+            OracleParameter p_prihlasovaciJmeno = new OracleParameter("p_prihlasovaci_jmeno", OracleDbType.Varchar2, prihlasovaciJmeno, ParameterDirection.Input);
+            OracleParameter p_prihlasovaciHeslo = new OracleParameter("p_prihlasovaci_heslo", OracleDbType.Varchar2, prihlasovaciHeslo, ParameterDirection.Input);
+            OracleParameter p_urovenAutorizace = new OracleParameter("p_uroven_autorizace", OracleDbType.Int32, urovenAutorizace, ParameterDirection.Input);
 
+            // Volání procedury
+            DatabaseController.Execute1("pkg_zbytek.schvaleni_uctu", p_jmeno, p_prijmeni, p_email, p_mesto, p_ulice, p_cisloPopisne, p_prihlasovaciJmeno, p_prihlasovaciHeslo, p_urovenAutorizace);
+        }
     }
 }
