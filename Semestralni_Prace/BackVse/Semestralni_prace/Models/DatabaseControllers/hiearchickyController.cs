@@ -149,6 +149,16 @@ namespace Semestralni_prace.Models.DatabaseControllers
 
             // Volání procedury
             DatabaseController.Execute("pkg_zbytek.schvaleni_uctu", p_jmeno, p_prijmeni, p_email, p_mesto, p_ulice, p_cisloPopisne, p_prihlasovaciJmeno, p_prihlasovaciHeslo, p_urovenAutorizace);
+
         }
+        public static void PridatDokument(string pripojna, byte[] dokument, string nazevSouboru)
+        {
+            OracleParameter pPripojna = new OracleParameter("p_pripojna", OracleDbType.Varchar2, pripojna, ParameterDirection.Input);
+            OracleParameter pDokument = new OracleParameter("p_dokument", OracleDbType.Blob, dokument, ParameterDirection.Input);
+            OracleParameter pNazevSouboru = new OracleParameter("p_nazev_souboru", OracleDbType.Varchar2, nazevSouboru, ParameterDirection.Input);
+
+            DatabaseController.Execute("pridat_dokument", pPripojna, pDokument, pNazevSouboru);
+        }
+
     }
 }
