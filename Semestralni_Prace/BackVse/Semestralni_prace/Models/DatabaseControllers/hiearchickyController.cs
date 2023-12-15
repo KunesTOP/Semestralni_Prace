@@ -46,25 +46,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
             return statusParam.Value.ToString();
         }
 
-        public static void AddNewAnimal(string name, string gender, DateTime birthDate, int ownerId, int rasaId)
-        {
-            OracleParameter nameParam = new OracleParameter("p_name", OracleDbType.Varchar2, ParameterDirection.InputOutput);
-            nameParam.Value = name;
-
-            OracleParameter genderParam = new OracleParameter("p_gender", OracleDbType.Varchar2, ParameterDirection.InputOutput);
-            genderParam.Value = gender;
-
-            OracleParameter birthDateParam = new OracleParameter("p_birth_date", OracleDbType.Date, ParameterDirection.InputOutput);
-            birthDateParam.Value = birthDate;
-
-            OracleParameter ownerIdParam = new OracleParameter("p_owner_id", OracleDbType.Int32, ParameterDirection.InputOutput);
-            ownerIdParam.Value = ownerId;
-
-            OracleParameter rasaIdParam = new OracleParameter("p_rasa_id", OracleDbType.Int32, ParameterDirection.InputOutput);
-            rasaIdParam.Value = rasaId;
-
-            DatabaseController.Execute("pkg_zbytek.add_new_animal", nameParam, genderParam, birthDateParam, ownerIdParam, rasaIdParam);
-        }
+      
 
         public static void UpdateVetProfese(int vetId, string newProfese)
         {
@@ -77,31 +59,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
             DatabaseController.Execute("pkg_zbytek.update_vet_profese", vetIdParam, profeseParam);
         }
 
-        public static void CreateNewOwnerWithCard(string name, string surname, string email, string phone, int addressId, int cardNumber, int chipNumber)
-        {
-            OracleParameter nameParam = new OracleParameter("p_name", OracleDbType.Varchar2, ParameterDirection.InputOutput);
-            nameParam.Value = name;
-
-            OracleParameter surnameParam = new OracleParameter("p_surname", OracleDbType.Varchar2, ParameterDirection.InputOutput);
-            surnameParam.Value = surname;
-
-            OracleParameter emailParam = new OracleParameter("p_email", OracleDbType.Varchar2, ParameterDirection.InputOutput);
-            emailParam.Value = email;
-
-            OracleParameter phoneParam = new OracleParameter("p_phone", OracleDbType.Varchar2, ParameterDirection.InputOutput);
-            phoneParam.Value = phone;
-
-            OracleParameter addressIdParam = new OracleParameter("p_address_id", OracleDbType.Int32, ParameterDirection.InputOutput);
-            addressIdParam.Value = addressId;
-
-            OracleParameter cardNumberParam = new OracleParameter("p_card_number", OracleDbType.Int32, ParameterDirection.InputOutput);
-            cardNumberParam.Value = cardNumber;
-
-            OracleParameter chipNumberParam = new OracleParameter("p_chip_number", OracleDbType.Int32, ParameterDirection.InputOutput);
-            chipNumberParam.Value = chipNumber;
-
-            DatabaseController.Execute("pkg_zbytek.create_new_owner_with_card", nameParam, surnameParam, emailParam, phoneParam, addressIdParam, cardNumberParam, chipNumberParam);
-        }
+     
 
       
         public static void UpdateOwnerAddress(int ownerId, int newAddressId)

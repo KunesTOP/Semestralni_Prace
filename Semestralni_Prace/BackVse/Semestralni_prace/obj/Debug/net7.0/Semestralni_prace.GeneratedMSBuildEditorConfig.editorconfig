@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\BackVse\Semestralni_Prace
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Hierarchival/hiearchicky.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGllcmFyY2hpdmFsXGhpZWFyY2hpY2t5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Home/AutorizaceFailed.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBdXRvcml6YWNlRmFpbGVkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
