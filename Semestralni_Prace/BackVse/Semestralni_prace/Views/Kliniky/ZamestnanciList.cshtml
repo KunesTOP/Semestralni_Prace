@@ -62,24 +62,22 @@
         if (urlParams.get("selected")) {
             select.value = urlParams.get("selected");
             loadTable();
-        }
+        };
 
         select.addEventListener("change", function () {
             urlParams.set("selected", select.value);
             history.pushState({}, null, "?" + urlParams.toString());
-        })
+        });
 
         // Load table on button click
         $('#btnLoadTable').on('click', function () {
             loadTable();
         });
-                });
 
         function loadTable() {
             var tableName = $('#tableName').val();
-
             $.ajax({
-                url: `/Home/LoadTable?tableName=${tableName}`,
+                url: `/Kliniky/LoadTable?tableName=${tableName}`,
                 type: 'GET',
                 success: function (data) {
                     var tableBody = $('#data-table');

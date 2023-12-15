@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Back.Auth;
+using Microsoft.AspNetCore.Mvc;
 using Models.DatabaseControllers;
 using Semestralni_prace.Models.Classes;
+using Semestralni_prace.Models.DatabaseControllers;
 using System.Runtime.CompilerServices;
 
 namespace Semestralni_prace.Controllers
@@ -10,6 +12,12 @@ namespace Semestralni_prace.Controllers
         List<Adresy> tableNames = (List<Adresy>)AdresyController.GetAll();
         public IActionResult ZamestnanciList()
         {
+            var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno"), Hash = HttpContext.Session.GetString("heslo") });
+            if (level == AuthLevel.NONE) { return RedirectToAction("AutorizaceFailed", "Home"); }
+            bool isAdmin = level == AuthLevel.ADMIN;
+            var ktereJmenoPouzivat = (isAdmin) ? HttpContext.Session.GetString("emulovaneJmeno") : HttpContext.Session.GetString("jmeno");
+            if (isAdmin && ktereJmenoPouzivat != HttpContext.Session.GetString("jmeno")) level = AuthController.GetLevel(ktereJmenoPouzivat);
+
             List<string> listMest = new List<string>();
             foreach(Adresy ad in tableNames)
             {
@@ -18,14 +26,15 @@ namespace Semestralni_prace.Controllers
             ViewBag.TableNames = listMest;
             return View();
         }
-        //TODO přepsat návratový typ
+
+        [HttpGet]
         public IActionResult LoadTable(string tableName)
         {
             //TODO:Dopsat a zkontrolvoat tudle logiku: Vezmu si ID klinik. Podle toho si najdu adresy a budu vypisovat jen Mesta.
             Adresy spravnaAdresa = tableNames.FirstOrDefault(x => x.City == tableName);
             int? spravnaKlinika = VeterinarniKlinikaController.GetKlinikaIdByAdresa(spravnaAdresa.City,spravnaAdresa.Street,spravnaAdresa.HouseNumber);
 
-            List<Zamestnanec> result/* = GetSpravnouKliniku(spravnaKlinika)*/ = null;
+            List<Zamestnanec> result = HiearchickyController.NajdiZamestnancePodleKliniky(spravnaKlinika);
 
             if (result != null)
             {
