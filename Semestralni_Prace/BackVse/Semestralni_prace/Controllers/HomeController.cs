@@ -63,7 +63,7 @@ namespace Semestralni_Prace.Controllers
         private List<string> GetNazvyTabulekAdmin()
         {
             return new List<string> {"ADRESY", "ANAMNEZA", "ASISTENT","DOKUMENTY", "LEKARI" ,"LEKY", "MAJITEL","PRUKAZ", "RASA", "TITUL","UCTY", "VAKCINA", "VETERINARNI_KLINIKA",
-                "VYSLEDEK_KREV","ZAMESTNANCI","ZVIRE"};
+                "VYSLEDEK_KREV","ZAMESTNANCI","ZVIRE", "PROCEDURY"};
         }
         private List<string> GetNazvyTabulekLekar()
         {
@@ -119,6 +119,9 @@ namespace Semestralni_Prace.Controllers
                     return list = new List<object> { ZamestnanciController.GetAll() };
                 case "ZVIRE":
                     return list = new List<object> { ZvirataController.GetAll() };
+                case "PROCEDURY":
+                    HiearchickyController.GetProcedures();
+                    break;
             }
             return null;
         }

@@ -58,9 +58,6 @@ namespace Semestralni_prace.Models.DatabaseControllers
 
             DatabaseController.Execute("pkg_zbytek.update_vet_profese", vetIdParam, profeseParam);
         }
-
-     
-
       
         public static void UpdateOwnerAddress(int ownerId, int newAddressId)
         {

@@ -1,0 +1,20 @@
+﻿@model List<Semestralni_prace.Controllers.HierarchicalController.Zviratka>
+@{
+    ViewData["Title"] = "Database Viewer";
+}
+
+<h1>Zvířata majitelů</h1>
+
+@if (Model != null && Model.Any())
+{
+    <ul>
+        @foreach (var animal in Model)
+        {
+            <li>@animal.JmenoZvire (@animal.Vek let)</li>
+        }
+    </ul>
+}
+else
+{
+    <p>Žádná zvířata nebyla nalezena.</p>
+}

@@ -88,7 +88,6 @@
             history.pushState({}, null, "?" + urlParams.toString());
         })
 
-            // Load table on button click
             $('#btnLoadTable').on('click', function () {
                 loadTable();
             });
@@ -97,14 +96,10 @@
             console.log('HEJ FUNGUJU');
             var tableName = $('#tableName').val();
 
-            // Make an AJAX request to the LoadTable action in HomeController
             $.ajax({
                 url: `/Home/LoadTable?tableName=${tableName}`,
                 type: 'GET',
                 success: function (data) {
-                    //TODO tady je někde chyba a musím to vyřešit
-                    // Handle the data returned from the server
-                    // For demonstration purposes, updating the table body with the data
                     var tableBody = $('#data-table');
                     console.log(tableBody)
                     tableBody.empty();
@@ -205,15 +200,13 @@
             })
                 .then(response => {
                     if (response.ok) {
-                        // Handle success
-                        // You may not need to do anything if the response doesn't contain a body
+                        
                     } else {
                         console.log("Hupsík dupsík, něco se pokazilo při funkci saveEditedRow! toto obsahuje ukládaný řádek: ");
                         console.log(rowId);
                         console.log(entries);
                     }
                 })
-            /* update záznamu v databázi, něco ve stylu UPDATE tabulka SET $(entries[i][0]) = $(entries[i][1]) WHERE id = $(rowId) */
         }
         function replaceCell(cell) {
             console.log("JSEM V REPLACECELL")

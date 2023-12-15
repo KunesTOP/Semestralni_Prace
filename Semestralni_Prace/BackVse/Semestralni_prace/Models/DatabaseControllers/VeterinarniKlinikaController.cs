@@ -40,7 +40,7 @@ namespace Models.DatabaseControllers//TODO KNIHOVNY
                 AdresyIdAdresa = int.Parse(query.Rows[0][ADRESY_ID_ADRESA_NAME].ToString())
             };
         }
-        public static int? GetKlinikaIdByAdresa(string mesto, string ulice, int cisloPopisne)
+        public static int? GetKlinikaIdByAdresa(string mesto, string ulice, int? cisloPopisne)
         {
             try
             {
