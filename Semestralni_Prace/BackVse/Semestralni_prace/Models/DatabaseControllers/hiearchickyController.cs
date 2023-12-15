@@ -76,17 +76,27 @@ namespace Semestralni_prace.Models.DatabaseControllers
 
 
         public static string CheckVaccineStatus(int animalId)
+
+
         {
-            OracleParameter statusParam = new OracleParameter("p_animal_id", OracleDbType.Int32, ParameterDirection.InputOutput);
-            statusParam.Value = animalId;
+            string sql = @"SELECT CASE WHEN COUNT(*) > 0 THEN 'Complete' ELSE 'Incomplete' END 
+                   FROM vakcina_podavana_zvireti 
+                   WHERE zvire_id_zvire = :animalId";
 
-            DatabaseController.Execute("pkg_zbytek.check_vaccine_status", statusParam);
+            OracleParameter animalIdParam = new OracleParameter("animalId", OracleDbType.Int32, animalId, ParameterDirection.Input);
 
-            return statusParam.Value.ToString();
+            // Vykonání dotazu a získání výsledku
+            DataTable dataTable = DatabaseController.Query(sql, animalIdParam);
+            if (dataTable.Rows.Count > 0)
+            {
+                return dataTable.Rows[0][0].ToString(); // Vrací 'Complete' nebo 'Incomplete'
+            }
+
+            return "Data not found"; // V případě, že nebyly nalezeny žádné záznamy
         }
 
-      
 
+        //nepouzivej
         public static void UpdateVetProfese(int vetId, string newProfese)
         {
             OracleParameter vetIdParam = new OracleParameter("p_vet_id", OracleDbType.Int32, ParameterDirection.InputOutput);
@@ -97,7 +107,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
 
             DatabaseController.Execute("pkg_zbytek.update_vet_profese", vetIdParam, profeseParam);
         }
-      
+      //nepouzivej
         public static void UpdateOwnerAddress(int ownerId, int newAddressId)
         {
             OracleParameter ownerIdParam = new OracleParameter("p_owner_id", OracleDbType.Int32, ParameterDirection.InputOutput);
