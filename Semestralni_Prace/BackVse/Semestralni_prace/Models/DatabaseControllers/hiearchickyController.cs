@@ -1,5 +1,6 @@
 ﻿using Back.databaze;
 using Oracle.ManagedDataAccess.Client;
+using Semestralni_prace.Models.Classes;
 using System.Data;
 
 namespace Semestralni_prace.Models.DatabaseControllers
@@ -107,7 +108,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
 
             DatabaseController.Execute("pkg_zbytek.update_vet_profese", vetIdParam, profeseParam);
         }
-      //nepouzivej
+        //nepouzivej
         public static void UpdateOwnerAddress(int ownerId, int newAddressId)
         {
             OracleParameter ownerIdParam = new OracleParameter("p_owner_id", OracleDbType.Int32, ParameterDirection.InputOutput);
@@ -182,7 +183,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
         }
         public static void GetNames()
         {
-            
+
             DatabaseController.Execute("pck_zbytekinfo.get_names('zamestnanci')");
         }
 
@@ -274,12 +275,34 @@ namespace Semestralni_prace.Models.DatabaseControllers
                 jmeno = string.Empty;
             }
         }
+<<<<<<< HEAD
+        public static List<Zamestnanec> NajdiZamestnancePodleKliniky(int? veterKlinId)
+=======
         public static void NajdiZamestnancePodleKliniky(int veterKlinId)
+>>>>>>> 320a50b926b92eb7b297eaae55b4f9a0cfadcc46
         {
             OracleParameter p_veter_klin_id = new OracleParameter("p_veter_klin_id", OracleDbType.Int32, veterKlinId, ParameterDirection.Input);
             OracleParameter o_zamestnanci = new OracleParameter("o_zamestnanci", OracleDbType.RefCursor, ParameterDirection.Output);
 
+<<<<<<< HEAD
+            DataTable table = DatabaseController.Query("najdi_zamestnance_podle_kliniky", p_veter_klin_id, o_zamestnanci);
+            List<Zamestnanec> listZamestnancu = new List<Zamestnanec>();
+            foreach (DataRow row in table.Rows)
+            {
+                listZamestnancu.Add(new Zamestnanec
+                {
+                    Id = int.Parse(row["id_zamestnanec"].ToString()),
+                    Jmeno = row["jmeno"].ToString(),
+                    Prijmeni = row["prijmeni"].ToString(),
+                    VeterKlinId = int.Parse(row["veter_klin_id"].ToString()),
+                    Profese = row["profese"].ToString()
+                });
+            }
+            return listZamestnancu;
+
+=======
             DatabaseController.Execute("najdi_zamestnance_podle_kliniky", p_veter_klin_id, o_zamestnanci);
+>>>>>>> 320a50b926b92eb7b297eaae55b4f9a0cfadcc46
         }
 
     }
