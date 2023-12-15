@@ -62,7 +62,7 @@ namespace Models.DatabaseControllers
             if (existingTitul == null)
             {
 
-                DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({ID_TITUL_NAME}, {NAZEV_TITUL_NAME}, {ZKRATKA_TITUL_NAME}) " +
+                DatabaseController.Execute1($"INSERT INTO {TABLE_NAME} ({ID_TITUL_NAME}, {NAZEV_TITUL_NAME}, {ZKRATKA_TITUL_NAME}) " +
                     $"VALUES (:idTitul, :nazevTitul, :zkratkaTitul)",
                     new OracleParameter("idTitul", titul.Id),
                     new OracleParameter("nazevTitul", titul.NazevTitul),
@@ -73,7 +73,7 @@ namespace Models.DatabaseControllers
 
             {
                 DeleteTitul(titul.Id);
-                DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({ID_TITUL_NAME}, {NAZEV_TITUL_NAME}, {ZKRATKA_TITUL_NAME}) " +
+                DatabaseController.Execute1($"INSERT INTO {TABLE_NAME} ({ID_TITUL_NAME}, {NAZEV_TITUL_NAME}, {ZKRATKA_TITUL_NAME}) " +
             $"VALUES (:idTitul, :nazevTitul, :zkratkaTitul)",
             new OracleParameter("idTitul", titul.Id),
             new OracleParameter("nazevTitul", titul.NazevTitul),
@@ -83,7 +83,7 @@ namespace Models.DatabaseControllers
 
         public static void DeleteTitul(int idTitul)
         {
-            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {ID_TITUL_NAME} = :idTitul",
+            DatabaseController.Execute1($"DELETE FROM {TABLE_NAME} WHERE {ID_TITUL_NAME} = :idTitul",
                 new OracleParameter("idTitul", idTitul)
             );
         }

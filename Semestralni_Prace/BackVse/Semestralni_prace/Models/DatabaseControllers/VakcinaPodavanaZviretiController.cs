@@ -40,7 +40,7 @@ namespace Models.DatabaseControllers
             OracleParameter vakcinaIdParam = new OracleParameter("vakcinaId", OracleDbType.Int32, vakcinaId, ParameterDirection.Input);
             OracleParameter zvireIdParam = new OracleParameter("zvireId", OracleDbType.Int32, zvireId, ParameterDirection.Input);
 
-            DatabaseController.Execute(
+            DatabaseController.Execute1(
                 $"DELETE FROM {TABLE_NAME} WHERE {VAKCINA_ID_NAME} = :vakcinaId AND {ZVIRE_ID_NAME} = :zvireId",
                 vakcinaIdParam,
                 zvireIdParam

@@ -22,7 +22,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
         }
         public static void CreateUctyBezHashe(Ucty ucty)
         {
-            DatabaseController.Execute(
+            DatabaseController.Execute1(
                 $"INSERT INTO {TABLE_NAME} (jmeno, heslo_hash, uroven_autorizace) VALUES (:jmeno, :heslo_hash, :uroven_autorizace)",
                 new OracleParameter("jmeno", ucty.Jmeno),
                 new OracleParameter("heslo_hash", ucty.Hash),
@@ -57,7 +57,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
 
             int urovenAutorizace = data.GetProperty("uroven_autorizace").GetInt32();
 
-            DatabaseController.Execute(
+            DatabaseController.Execute1(
                 $"UPDATE ucty SET jmeno = :jmeno, heslo_hash = :heslo_hash, uroven_autorizace = :uroven_autorizace WHERE id = :id",
                 new OracleParameter("id", id),
                 new OracleParameter("jmeno", jmeno),
@@ -72,7 +72,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
         // Delete an account
         public static void DeleteUcty(int id)
         {
-            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE id = :id",
+            DatabaseController.Execute1($"DELETE FROM {TABLE_NAME} WHERE id = :id",
                 new OracleParameter("id", id));
         }
 

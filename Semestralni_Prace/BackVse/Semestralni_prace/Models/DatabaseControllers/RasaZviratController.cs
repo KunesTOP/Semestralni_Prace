@@ -38,7 +38,7 @@ namespace Models.DatabaseControllers
 
         public static void InsertRasa(Rasa rasa)
         {
-            DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({JMENO_RASA_NAME}, {ID_RASA_NAME}) " +
+            DatabaseController.Execute1($"INSERT INTO {TABLE_NAME} ({JMENO_RASA_NAME}, {ID_RASA_NAME}) " +
                 $"VALUES (:jmenoRasa, :idRasa)",
                 new OracleParameter("jmenoRasa", rasa.JmenoRasa),
                 new OracleParameter("idRasa", rasa.Id)
@@ -46,7 +46,7 @@ namespace Models.DatabaseControllers
         }
         public static void DeleteRasa(int idRasa)
         {
-            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {ID_RASA_NAME} = :idRasa",
+            DatabaseController.Execute1($"DELETE FROM {TABLE_NAME} WHERE {ID_RASA_NAME} = :idRasa",
                 new OracleParameter("idRasa", idRasa)
             );
         }

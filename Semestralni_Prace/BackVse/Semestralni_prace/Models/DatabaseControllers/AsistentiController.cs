@@ -38,14 +38,14 @@ namespace Models.DatabaseControllers
 
         //public static void InsertAsistent(Asistent asistent)
         //{
-        //    DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({ID_NAME}, {PRAXE_NAME}) VALUES (:id, :praxe)",
+        //    DatabaseController.Execute1($"INSERT INTO {TABLE_NAME} ({ID_NAME}, {PRAXE_NAME}) VALUES (:id, :praxe)",
         //        new OracleParameter("id", asistent.IdZamestnanec),
         //        new OracleParameter("praxe", asistent.Praxe)
         //    );
         //}
         public static void DeleteAsistent(int id)
         {
-            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {ID_NAME} = :id",
+            DatabaseController.Execute1($"DELETE FROM {TABLE_NAME} WHERE {ID_NAME} = :id",
                 new OracleParameter("id", id)
             );
         }

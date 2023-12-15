@@ -28,7 +28,7 @@ namespace Models.DatabaseControllers
             OracleParameter zamesIdParam = new OracleParameter("zamesId", OracleDbType.Int32, zamesId, ParameterDirection.Input);
             OracleParameter titulIdParam = new OracleParameter("titulId", OracleDbType.Int32, titulId, ParameterDirection.Input);
 
-            DatabaseController.Execute(
+            DatabaseController.Execute1(
                 $"DELETE FROM {TABLE_NAME} WHERE {ZAMES_ID_ZAMES_NAME} = :zamesId AND {TITUL_ID_TITUL_NAME} = :titulId",
                 zamesIdParam,
                 titulIdParam

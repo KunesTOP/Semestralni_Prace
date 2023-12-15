@@ -25,7 +25,7 @@ namespace Models.DatabaseControllers
       
         public static void DeleteLecivaNaDiagnozu(int lekyId, int anamnId)
         {
-            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {LEKY_ID_NAME} = :lekyId AND {ANAMN_ID_NAME} = :anamnId",
+            DatabaseController.Execute1($"DELETE FROM {TABLE_NAME} WHERE {LEKY_ID_NAME} = :lekyId AND {ANAMN_ID_NAME} = :anamnId",
                 new OracleParameter("lekyId", lekyId),
                 new OracleParameter("anamnId", anamnId)
             );

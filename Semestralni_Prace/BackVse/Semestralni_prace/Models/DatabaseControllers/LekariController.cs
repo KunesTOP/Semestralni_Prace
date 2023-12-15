@@ -21,7 +21,7 @@ namespace Models.DatabaseControllers
         }
         public static void DeleteLekar(int id)
         {
-            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {ID_NAME} = :id",
+            DatabaseController.Execute1($"DELETE FROM {TABLE_NAME} WHERE {ID_NAME} = :id",
                 new OracleParameter("id", id)
             );
         }

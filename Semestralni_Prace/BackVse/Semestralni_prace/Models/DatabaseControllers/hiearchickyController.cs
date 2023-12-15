@@ -190,7 +190,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
             OracleParameter p_urovenAutorizace = new OracleParameter("p_uroven_autorizace", OracleDbType.Int32, urovenAutorizace, ParameterDirection.Input);
 
             // Volání procedury
-            DatabaseController.Execute1("pkg_zbytek.schvaleni_uctu", p_jmeno, p_prijmeni, p_email, p_mesto, p_ulice, p_cisloPopisne, p_prihlasovaciJmeno, p_prihlasovaciHeslo, p_urovenAutorizace);
+            DatabaseController.Execute("pkg_zbytek.schvaleni_uctu", p_jmeno, p_prijmeni, p_email, p_mesto, p_ulice, p_cisloPopisne, p_prihlasovaciJmeno, p_prihlasovaciHeslo, p_urovenAutorizace);
         }
     }
 }

@@ -100,12 +100,12 @@ namespace Models.DatabaseControllers
             OracleParameter cisloPopisneParam = new OracleParameter("p_cislo_popisne", OracleDbType.Int32, ParameterDirection.InputOutput);
             cisloPopisneParam.Value = cisloPopisne;
 
-            DatabaseController.Execute("pkg_model_dml1.insert_adresa", idParam, mestoParam, uliceParam, cisloPopisneParam);
+            DatabaseController.Execute("pkg_model_dml1.upsert_adresa", idParam, mestoParam, uliceParam, cisloPopisneParam);
         }
 
         public static void Delete(int id)
         {
-            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {ID_NAME} = :id",
+            DatabaseController.Execute1($"DELETE FROM {TABLE_NAME} WHERE {ID_NAME} = :id",
                 new OracleParameter("id", id)
             );
         }

@@ -69,7 +69,7 @@ namespace Models.DatabaseControllers
         public static void UpdateZaznamAnamnezy(Anamneza zaznam)
         {
             var datumUnix = new DateTimeOffset(zaznam.Datum).ToUnixTimeSeconds();
-            DatabaseController.Execute($"UPDATE {TABLE_NAME} SET {DATUM_NAME} = :datum WHERE {ID_NAME} = :id",
+            DatabaseController.Execute1($"UPDATE {TABLE_NAME} SET {DATUM_NAME} = :datum WHERE {ID_NAME} = :id",
                 new OracleParameter("id", zaznam.Id),
                 new OracleParameter("datum", datumUnix)
             );
@@ -78,7 +78,7 @@ namespace Models.DatabaseControllers
 
         public static void DeleteZaznamAnamnezy(int id)
         {
-            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {ID_NAME} = :id",
+            DatabaseController.Execute1($"DELETE FROM {TABLE_NAME} WHERE {ID_NAME} = :id",
                 new OracleParameter("id", id)
             );
         }

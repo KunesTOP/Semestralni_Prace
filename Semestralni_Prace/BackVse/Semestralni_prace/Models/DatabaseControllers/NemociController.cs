@@ -18,7 +18,7 @@ namespace Models.DatabaseControllers
 
         public static void InsertNemoc(int nemocId)
         {
-            DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({NEMOC_ID_NAME}) VALUES (:nemocId)",
+            DatabaseController.Execute1($"INSERT INTO {TABLE_NAME} ({NEMOC_ID_NAME}) VALUES (:nemocId)",
                 new OracleParameter("nemocId", nemocId)
             );
         }

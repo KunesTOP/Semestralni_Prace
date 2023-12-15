@@ -49,7 +49,7 @@ namespace Models.DatabaseControllers
 
         public static void DeleteMajitel(int id)
         {
-            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {MAJITEL_ID_NAME} = :id",
+            DatabaseController.Execute1($"DELETE FROM {TABLE_NAME} WHERE {MAJITEL_ID_NAME} = :id",
                 new OracleParameter("id", id)
             );
         }

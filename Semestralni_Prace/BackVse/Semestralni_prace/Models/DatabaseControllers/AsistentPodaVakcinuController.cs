@@ -24,14 +24,14 @@ namespace Models.DatabaseControllers
 
         public static void InsertMapping(int asistentId, int vakcinaId)
         {
-            DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({ASISTENT_ID_NAME}, {VAKCINA_ID_NAME}) VALUES (:asistentId, :vakcinaId)",
+            DatabaseController.Execute1($"INSERT INTO {TABLE_NAME} ({ASISTENT_ID_NAME}, {VAKCINA_ID_NAME}) VALUES (:asistentId, :vakcinaId)",
                 new OracleParameter("asistentId", asistentId),
                 new OracleParameter("vakcinaId", vakcinaId)
             );
         }
         public static void DeleteAsistentPodaVakcinu(int asistentId, int vakcinaId)
         {
-            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {ASISTENT_ID_NAME} = :asistentId AND {VAKCINA_ID_NAME} = :vakcinaId",
+            DatabaseController.Execute1($"DELETE FROM {TABLE_NAME} WHERE {ASISTENT_ID_NAME} = :asistentId AND {VAKCINA_ID_NAME} = :vakcinaId",
                 new OracleParameter("asistentId", asistentId),
                 new OracleParameter("vakcinaId", vakcinaId)
             );

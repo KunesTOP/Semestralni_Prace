@@ -54,7 +54,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
         }
         public static void Delete(int id)
         {
-            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {ID_DOKUMENTY_NAME} = :id",
+            DatabaseController.Execute1($"DELETE FROM {TABLE_NAME} WHERE {ID_DOKUMENTY_NAME} = :id",
                 new OracleParameter("id", id)
             );
         }

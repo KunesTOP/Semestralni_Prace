@@ -42,7 +42,7 @@ namespace Models.DatabaseControllers
 
         public static void InsertPrukaz(Prukaz prukaz)
         {
-            DatabaseController.Execute($"INSERT INTO {TABLE_NAME} ({CISLO_PRUKAZ_NAME}, {CISLO_CHIP_NAME}, {ID_PRUKAZ_NAME}, {ZVIRE_ID_NAME}) " +
+            DatabaseController.Execute1($"INSERT INTO {TABLE_NAME} ({CISLO_PRUKAZ_NAME}, {CISLO_CHIP_NAME}, {ID_PRUKAZ_NAME}, {ZVIRE_ID_NAME}) " +
                 $"VALUES (:cisloPrukaz, :cisloChip, :idPrukaz, :zvireId)",
                 new OracleParameter("cisloPrukaz", prukaz.CisloPrukaz),
                 new OracleParameter("cisloChip", prukaz.CisloChip),
@@ -52,7 +52,7 @@ namespace Models.DatabaseControllers
         }
         public static void DeletePrukaz(int cisloPrukaz)
         {
-            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {CISLO_PRUKAZ_NAME} = :cisloPrukaz",
+            DatabaseController.Execute1($"DELETE FROM {TABLE_NAME} WHERE {CISLO_PRUKAZ_NAME} = :cisloPrukaz",
                 new OracleParameter("cisloPrukaz", cisloPrukaz)
             );
         }

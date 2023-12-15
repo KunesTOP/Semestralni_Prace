@@ -37,7 +37,7 @@ namespace Models.DatabaseControllers
 
         public static void DeleteMapping(int nemocId, int anamnezaId)
         {
-            DatabaseController.Execute($"DELETE FROM {TABLE_NAME} WHERE {NEMOC_ID_NAME} = :nemocId AND {ANAMNEZA_ID_NAME} = :anamnezaId",
+            DatabaseController.Execute1($"DELETE FROM {TABLE_NAME} WHERE {NEMOC_ID_NAME} = :nemocId AND {ANAMNEZA_ID_NAME} = :anamnezaId",
                 new OracleParameter("nemocId", nemocId),
                 new OracleParameter("anamnezaId", anamnezaId)
             );
