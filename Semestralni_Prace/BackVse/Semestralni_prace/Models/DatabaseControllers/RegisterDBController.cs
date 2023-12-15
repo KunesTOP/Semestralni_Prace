@@ -97,17 +97,17 @@ namespace ConsoleApp1.Models.DatabaseControllers
             }
         }
 
-        public static void DeleteRegisterEntry(int id)
+        public static void DeleteRegisterEntry(string loginName)
         {
             using (var connection = new OracleConnection(ConnectionString))
             {
                 var command = new OracleCommand
                 {
                     Connection = connection,
-                    CommandText = @"DELETE FROM Register WHERE id = :id",
+                    CommandText = @"DELETE FROM Register WHERE PRIHLASOVACI_JMENO = :LoginName",
                 };
 
-                command.Parameters.Add(new OracleParameter("id", id));
+                command.Parameters.Add(new OracleParameter("loginName", loginName));
 
                 connection.Open();
                 command.ExecuteNonQuery();

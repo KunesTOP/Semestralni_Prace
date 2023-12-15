@@ -18,7 +18,7 @@ namespace Semestralni_prace.Models.Classes
         public string Street { get; set; }
 
         [Required(ErrorMessage = "Vyplňte prosím Číslo popisné")]
-        public int? HouseNumber { get; set; }
+        public int HouseNumber { get; set; }
 
         [Required(ErrorMessage = "Vyplňte prosím Město")]
         public string City { get; set; }

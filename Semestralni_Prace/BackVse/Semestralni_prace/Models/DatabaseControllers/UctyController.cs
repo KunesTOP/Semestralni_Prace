@@ -18,6 +18,10 @@ namespace Semestralni_prace.Models.DatabaseControllers
         public static void CreateUcty(Ucty ucty)
         {
             ucty.Hash = PasswordHelper.HashPassword(ucty.Hash);
+            CreateUctyBezHashe(ucty);
+        }
+        public static void CreateUctyBezHashe(Ucty ucty)
+        {
             DatabaseController.Execute(
                 $"INSERT INTO {TABLE_NAME} (jmeno, heslo_hash, uroven_autorizace) VALUES (:jmeno, :heslo_hash, :uroven_autorizace)",
                 new OracleParameter("jmeno", ucty.Jmeno),

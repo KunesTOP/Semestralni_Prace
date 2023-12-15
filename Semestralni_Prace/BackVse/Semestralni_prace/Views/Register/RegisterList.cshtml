@@ -64,8 +64,8 @@
                 @Html.DisplayFor(modelItem => item.Password)
             </td>
             <td>
-                @Html.ActionLink("Accept", "Accept", new { /*Možná přepsat na button: dopsat potvrzení pro přidání - přidání uživatele a učtu */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /*Možná přepsat na button: dopsat zamítnutí pro přidání - odebrání  */ })
+                @Html.ActionLink("AddRegister", "Register", new {registr = item})
+                @Html.ActionLink("DeleteRegister", "Register", new {registr = item})
             </td>
         </tr>
 }

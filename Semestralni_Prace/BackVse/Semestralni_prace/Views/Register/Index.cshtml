@@ -1,7 +1,7 @@
 ﻿@model Semestralni_prace.Models.Classes.Registrovany
 
 @{
-    
+
     ViewData["Title"] = "Index";
 }
 
@@ -75,20 +75,17 @@
         console.log(jsonData)
         $.ajax({
             type: 'POST',
-            url: '/Register/PridatRegistraci', // Update the URL with the correct route
+            url: '/Register/PridatRegistraci',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(jsonData),
             success: function (response) {
-                // Handle success response
                 console.log(response);
             },
             error: function (error) {
-                // Handle error
                 console.log(error);
             }
         });
     }
-
 
 </script>
 <div>

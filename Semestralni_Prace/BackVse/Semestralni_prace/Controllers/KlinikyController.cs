@@ -11,8 +11,8 @@ namespace Semestralni_prace.Controllers
         //TODO přepsat návratový typ
         public void LoadTable(string tableName)
         {
-            //TODO:Dopsat a zkontrolvoat tudle logiku: naplnění selectu městy adres a podle toho vybrání pobočky 
-          /*  List<object> result = GetSpravnouKliniku(tableName);
+            //TODO:Dopsat a zkontrolvoat tudle logiku: Vezmu si ID klinik. Podle toho si najdu adresy a budu vypisovat jen Mesta.
+            /*List<object> result = GetSpravnouKliniku(tableName);
 
             if (result != null)
             {
