@@ -124,9 +124,15 @@ namespace Semestralni_prace.Models.DatabaseControllers
         {
             DatabaseController.Execute("pck_zbytekinfo.get_created");
         }
-        public static void HierarchicalQueryProcedure()
+        public static void HierarchicalQueryProcedure(int startId)
         {
-            DatabaseController.Execute("pkg_zbytek.HierarchicalQueryProcedure");
+            // Nastavení vstupního parametru
+            OracleParameter p_start_id = new OracleParameter("p_start_id", OracleDbType.Int32, startId, ParameterDirection.Input);
+
+            // Volání procedury
+            DatabaseController.Execute("pkg_zbytek.HierarchicalQueryProcedure", p_start_id);
+
+            // Další logika, pokud je potřeba...
         }
         public static void GetNames()
         {
