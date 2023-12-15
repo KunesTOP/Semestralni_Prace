@@ -5,7 +5,7 @@ namespace Back.databaze
 {
     class DatabaseController
     {
-        private static string CONSTR =
+        public static string CONSTR =
             "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=fei-sql3.upceucebny.cz)(PORT=1521)))(CONNECT_DATA=(SID=BDAS)));" +
             "user id=ST67057;password=abcde;" +
             "Connection Timeout=120;Validate connection=true;Min Pool Size=4;";

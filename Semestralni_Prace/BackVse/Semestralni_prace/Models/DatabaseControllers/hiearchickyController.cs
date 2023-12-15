@@ -18,23 +18,62 @@ namespace Semestralni_prace.Models.DatabaseControllers
 
         public static int CalculateAge(DateTime birthDate)
         {
-            OracleParameter ageParam = new OracleParameter("p_birth_date", OracleDbType.Date, ParameterDirection.InputOutput);
-            ageParam.Value = birthDate;
+            string sql = "SELECT FLOOR(MONTHS_BETWEEN(SYSDATE, :birthDate) / 12) AS age FROM DUAL";
 
-            DatabaseController.Execute("pkg_zbytek.calculate_age", ageParam);
+            using (OracleConnection conn = new OracleConnection(DatabaseController.CONSTR))
+            {
+                conn.Open();
 
-            return Convert.ToInt32(ageParam.Value);
+                using (OracleCommand cmd = new OracleCommand(sql, conn))
+                {
+                    // Přidání parametru pro datum narození
+                    cmd.Parameters.Add(new OracleParameter("birthDate", OracleDbType.Date) { Value = birthDate });
+
+                    // Spuštění dotazu a čtení výsledku
+                    using (OracleDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Přečtení výsledku a jeho konverze na integer
+                            return Convert.ToInt32(reader["age"]);
+                        }
+                        else
+                        {
+                            throw new Exception("Nepodařilo se získat věk.");
+                        }
+                    }
+                }
+            }
         }
 
         public static string GetVetTitle(int vetId)
+
         {
-            OracleParameter titleParam = new OracleParameter("p_vet_id", OracleDbType.Int32, ParameterDirection.InputOutput);
-            titleParam.Value = vetId;
+            string sql = @"SELECT t.nazev_titul
+                   FROM zamestnanci_maji_tituly mt
+                   JOIN tituly t ON mt.titul_id_titul = t.id_titul
+                   WHERE mt.zames_id_zames = :vetId
+                   AND ROWNUM = 1";
 
-            DatabaseController.Execute("pkg_zbytek.get_vet_title", titleParam);
+            // Nastavení parametru vetId
+            OracleParameter vetIdParam = new OracleParameter("vetId", OracleDbType.Int32, vetId, ParameterDirection.Input);
 
-            return titleParam.Value.ToString();
+            // Volání metody Query
+            DataTable dt = DatabaseController.Query(sql, vetIdParam);
+
+            // Kontrola, zda byl nějaký řádek vrácen
+            if (dt.Rows.Count > 0)
+            {
+                // Vrácení názvu titulu
+                return dt.Rows[0]["nazev_titul"].ToString();
+            }
+            else
+            {
+                // V případě, že nebyl nalezen žádný titul
+                return "Titul nenalezen";
+            }
         }
+
 
         public static string CheckVaccineStatus(int animalId)
         {
