@@ -133,12 +133,6 @@ namespace Semestralni_prace.Models.DatabaseControllers
             return DatabaseController.Query(sql);
         }
 
-
-
-
-
-
-
         public static DataTable GetTables()
         {
             string sql = "SELECT table_name FROM all_tables"; // nebo "SELECT table_name FROM all_tables" pro všechny tabulky
@@ -218,22 +212,41 @@ namespace Semestralni_prace.Models.DatabaseControllers
             return DatabaseController.Query(sql);
         }
 
-
         public static DataTable GetCreated()
         {
             string sql = "SELECT OBJECT_NAME, CREATED FROM USER_OBJECTS WHERE OBJECT_TYPE = 'TABLE'"; // Můžete filtrovat podle typu objektu
             return DatabaseController.Query(sql);
         }
-        public static void HierarchicalQueryProcedure(int startId)
+
+        public static DataTable HierarchicalQueryProcedure(int startId)
         {
             // Nastavení vstupního parametru
             OracleParameter p_start_id = new OracleParameter("p_start_id", OracleDbType.Int32, startId, ParameterDirection.Input);
 
-            // Volání procedury
-            DatabaseController.Execute("pkg_zbytek.HierarchicalQueryProcedure", p_start_id);
-
-            
+           return DatabaseController.Query("pkg_zbytek.HierarchicalQueryProcedure", p_start_id);
         }
+        public List<Zamestnanec> GetAllPodrizeni(DataTable table)
+        {
+            if (table.Rows.Count == 0)
+            {
+                return null;
+            }
+            List<Zamestnanec> listZamestnancu = new List<Zamestnanec>();
+            foreach (DataRow dr in table.Rows)
+            {
+                listZamestnancu.Add(new Zamestnanec
+                {
+                    Id = int.Parse(dr[0].ToString()),
+                    Jmeno = dr[0].ToString(),
+                    Prijmeni = dr[0].ToString(),
+                    Profese = dr[0].ToString(),
+                    VeterKlinId = int.Parse(dr[0].ToString())
+                });
+            }
+
+            return listZamestnancu;
+        }
+
         public static DataTable GetNames()
         {
             string sql = "SELECT jmeno, prijmeni FROM zamestnanci"; // Předpokládám, že jmeno a prijmeni jsou sloupce v tabulce zamestnanci
@@ -330,18 +343,10 @@ namespace Semestralni_prace.Models.DatabaseControllers
         }
 
         public static List<Zamestnanec> NajdiZamestnancePodleKliniky(int? veterKlinId)
-
-        
-
         {
+            DataTable table = DatabaseController.Query($" SELECT id_zamestnanec, jmeno, prijmeni, veter_klin_id, profese FROM zamestnanci WHERE veter_klin_id = :p_veter_klin_id",
+            new OracleParameter("p_veter_klin_id", veterKlinId));
 
-            string sql = @" SELECT id_zamestnanec, jmeno, prijmeni, veter_klin_id, profese
-        FROM zamestnanci
-        WHERE veter_klin_id = p_veter_klin_id;";
-            OracleParameter p_veter_klin_id = new OracleParameter("p_veter_klin_id", OracleDbType.Int32, veterKlinId, ParameterDirection.Input);
-            OracleParameter o_zamestnanci = new OracleParameter("o_zamestnanci", OracleDbType.RefCursor, ParameterDirection.Output);
-
-            DataTable table = DatabaseController.Query(sql, p_veter_klin_id, o_zamestnanci);
             List<Zamestnanec> listZamestnancu = new List<Zamestnanec>();
             foreach (DataRow row in table.Rows)
             {
@@ -355,10 +360,6 @@ namespace Semestralni_prace.Models.DatabaseControllers
                 });
             }
             return listZamestnancu;
-
-
-            DatabaseController.Execute("najdi_zamestnance_podle_kliniky", p_veter_klin_id, o_zamestnanci);
-
         }
 
     }

@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "Database Viewer";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            background-color: Azure;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        select, button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>@ViewData["Title"]</h2>
+
+    <label for="tableName">Vyberte výpis:</label>
+    <select id="tableName">
+        @foreach (var tableName in ViewBag.TableNames)
+        {
+            <option value="@tableName">@tableName</option>
+        }
+
+    </select>
+
+    <button id="btnLoadTable">Load Table</button>
+
+    <table id="data-table">
+        <!-- Table content will be dynamically generated here -->
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        const select = document.getElementById("tableName");
+        const urlParams = new URLSearchParams(window.location.search);
+
+        if (urlParams.get("selected")) {
+            select.value = urlParams.get("selected");
+            loadTable();
+        };
+
+        select.addEventListener("change", function () {
+            urlParams.set("selected", select.value);
+            history.pushState({}, null, "?" + urlParams.toString());
+        });
+
+        // Load table on button click
+        $('#btnLoadTable').on('click', function () {
+            loadTable();
+        });
+
+        function loadTable() {
+            var tableName = $('#tableName').val();
+            $.ajax({
+                url: `/Kliniky/LoadTableNadrizeni?tableName=${tableName}`,
+                type: 'GET',
+                success: function (data) {
+                    var tableBody = $('#data-table');
+                    tableBody.empty();
+                    console.log(data)
+                    data = Object.values(data);
+                    console.log($.isArray(data));
+                    console.log(data);
+
+                    data[0].forEach((row) => {
+                        var newRow = "<tr id='" + row.id + "'>";
+                        for (const [key, value] of Object.entries(row)) {
+                            if (!key.toLowerCase().includes("id")) {
+                                newRow += "<td data-name='" + key + "' ondblclick='replaceCell(this)'>" + (value || "") + "</td>";
+                            }
+                        }
+                        tableBody.append(newRow);
+                    });
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
+
+        function replaceCell(cell) {
+            console.log("JSEM V REPLACECELL")
+            cell.innerHTML = "<input type='text' value='" + cell.innerText + "' onfocusout='turnBack(this)'>";
+            console.log(cell.innerHTML)
+        }
+
+        function turnBack(input) {
+            input.replaceWith(input.value);
+        }
+
+    </script>
+</body>
+</html>

@@ -81,23 +81,21 @@
                 type: 'GET',
                 success: function (data) {
                     var tableBody = $('#data-table');
-                    console.log(tableBody)
                     tableBody.empty();
-                    data.data[0].forEach((row) => {
+                    console.log(data)
+                    data = Object.values(data);
+                    console.log($.isArray(data));
+                    console.log(data);
+
+                    data[0].forEach((row) => {
                         var newRow = "<tr id='" + row.id + "'>";
                         for (const [key, value] of Object.entries(row)) {
                             if (!key.toLowerCase().includes("id")) {
                                 newRow += "<td data-name='" + key + "' ondblclick='replaceCell(this)'>" + (value || "") + "</td>";
                             }
                         }
+                        tableBody.append(newRow);
                     });
-                    var newRow = "<tr id='-1'>";
-                    var row = data.data[0][0];
-                    for (const [key, value] of Object.entries(row)) {
-                        if (!key.toLowerCase().includes("id")) {
-                            newRow += "<td data-name='" + key + "' ondblclick='replaceCell(this)'></td>";
-                        }
-                    }
                 },
                 error: function (error) {
                     console.error(error);

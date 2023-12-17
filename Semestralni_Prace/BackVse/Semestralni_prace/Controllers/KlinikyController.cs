@@ -10,13 +10,15 @@ namespace Semestralni_prace.Controllers
     public class KlinikyController : Controller
     {
         List<Adresy> tableNames = (List<Adresy>)AdresyController.GetAll();
+        List<Zamestnanec> listZamestnancu = ZamestnanciController.GetAll();
+
         public IActionResult ZamestnanciList()
         {
-            var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno"), Hash = HttpContext.Session.GetString("heslo") });
+            /*var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno"), Hash = HttpContext.Session.GetString("heslo") });
             if (level == AuthLevel.NONE) { return RedirectToAction("AutorizaceFailed", "Home"); }
             bool isAdmin = level == AuthLevel.ADMIN;
             var ktereJmenoPouzivat = (isAdmin) ? HttpContext.Session.GetString("emulovaneJmeno") : HttpContext.Session.GetString("jmeno");
-            if (isAdmin && ktereJmenoPouzivat != HttpContext.Session.GetString("jmeno")) level = AuthController.GetLevel(ktereJmenoPouzivat);
+            if (isAdmin && ktereJmenoPouzivat != HttpContext.Session.GetString("jmeno")) level = AuthController.GetLevel(ktereJmenoPouzivat);*/
 
             List<string> listMest = new List<string>();
             foreach(Adresy ad in tableNames)
@@ -35,6 +37,34 @@ namespace Semestralni_prace.Controllers
             int? spravnaKlinika = VeterinarniKlinikaController.GetKlinikaIdByAdresa(spravnaAdresa.City,spravnaAdresa.Street,spravnaAdresa.HouseNumber);
 
             List<Zamestnanec> result = HiearchickyController.NajdiZamestnancePodleKliniky(spravnaKlinika);
+
+            if (result != null)
+            {
+                return Ok(new { data = result });
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+        public IActionResult ZamestnanciNadrizeni()
+        {
+            List<string> listNadrizenychPrijmeni = new List<string>();
+            List<Zamestnanec> listZamestnancu = ZamestnanciController.GetAll();
+            listZamestnancu = listZamestnancu.FindAll(x => x.Profese == "Lekar");
+
+            foreach (Zamestnanec zam in listZamestnancu)
+            {
+                listNadrizenychPrijmeni.Add(zam.Prijmeni);
+            }
+            ViewBag.TableNames = listNadrizenychPrijmeni;
+
+            return View();
+        }
+        public IActionResult LoadTableNadrizeni(string tableName)
+        {
+            Zamestnanec vybranyNadrizeny = listZamestnancu.FirstOrDefault(x => x.Prijmeni == tableName);
+            List<Zamestnanec> result = (List<Zamestnanec>)HiearchickyController.HierarchicalQueryProcedure(vybranyNadrizeny.Id);
 
             if (result != null)
             {
