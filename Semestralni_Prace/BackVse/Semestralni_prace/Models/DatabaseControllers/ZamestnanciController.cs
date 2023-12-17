@@ -60,17 +60,27 @@ namespace Models.DatabaseControllers
         }
         public static void UpsertZamestnanec(int id, JsonElement data)
         {
-            Zamestnanec aktualni = ZamestnanciController.Get(id);
-            if (aktualni.Equals(null)) { aktualni.VeterKlinId = 1; }
+            OracleParameter idZamestnanecParam = new OracleParameter("p_id_zamestnanec", OracleDbType.Int32, ParameterDirection.InputOutput);
+            idZamestnanecParam.Value = id;
 
-            OracleParameter idZamestnanecParam = new OracleParameter("idZamestnanec", OracleDbType.Int32, id, ParameterDirection.Input);
-            OracleParameter jmenoParam = new OracleParameter("jmeno", OracleDbType.Varchar2, data.GetProperty("jmeno").GetString(), ParameterDirection.Input);
-            OracleParameter prijmeniParam = new OracleParameter("prijmeni", OracleDbType.Varchar2, data.GetProperty("prijmeni").GetString(), ParameterDirection.Input);
-            OracleParameter veterKlinIdParam = new OracleParameter("veterKlinId", OracleDbType.Int32, aktualni.VeterKlinId, ParameterDirection.Input);
-            OracleParameter profeseParam = new OracleParameter("profese", OracleDbType.Varchar2, data.GetProperty("profese").GetString(), ParameterDirection.Input);
+            OracleParameter jmenoParam = new OracleParameter("p_jmeno", OracleDbType.Varchar2, data.GetProperty("Jmeno").GetString(), ParameterDirection.Input);
+            OracleParameter prijmeniParam = new OracleParameter("p_prijmeni", OracleDbType.Varchar2, data.GetProperty("Prijmeni").GetString(), ParameterDirection.Input);
+
+            OracleParameter veterKlinIdParam;
+            if (data.TryGetProperty("VeterKlinId", out JsonElement veterKlinIdElement) && veterKlinIdElement.TryGetInt32(out int veterKlinId))
+            {
+                veterKlinIdParam = new OracleParameter("p_veter_klin_id", OracleDbType.Int32, veterKlinId, ParameterDirection.Input);
+            }
+            else
+            {
+                // Nastavte výchozí hodnotu nebo nechte pole prázdné, pokud je VeterKlinId nepovinné
+                veterKlinIdParam = new OracleParameter("p_veter_klin_id", OracleDbType.Int32, DBNull.Value, ParameterDirection.Input);
+            }
+
+            OracleParameter profeseParam = new OracleParameter("p_profese", OracleDbType.Varchar2, data.GetProperty("Profese").GetString(), ParameterDirection.Input);
 
             DatabaseController.Execute(
-                $"pkg_ostatni.upsert_zamestnanec(:{ID_ZAMESTNANEC_NAME}, :{JMENO_NAME}, :{PRIJMENI_NAME}, :{VETER_KLIN_ID_NAME}, :{PROFES_NAME})",
+                "pkg_ostatni.upsert_zamestnanci",
                 idZamestnanecParam,
                 jmenoParam,
                 prijmeniParam,
@@ -78,6 +88,9 @@ namespace Models.DatabaseControllers
                 profeseParam
             );
         }
+
+
+
         public static void DeleteZamestnanec(int idZamestnanec)
         {
             OracleParameter idZamestnanecParam = new OracleParameter("idZamestnanec", OracleDbType.Int32, idZamestnanec, ParameterDirection.Input);

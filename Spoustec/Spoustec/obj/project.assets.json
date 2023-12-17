@@ -5903,7 +5903,7 @@
       ]
     },
     "Microsoft.NETCore.UniversalWindowsPlatform/6.2.14": {
-      "sha512": "20T91+/vQhL8c//GFU9qkNnys2BVdzAr9smULuP4p9csXwYjuoqxwAjNxLH0FvApGdB3s0sGhHkSeLg3IQBdMw==",
+      "sha512": "7Mi4cS8JQ7gqm+W+SRCq13c2Rr0yZTuczC9EbV6gRigE2ZhQalnLHyat0ZshT5HDMSkFDxTyjwZymUgFuv3+eg==",
       "type": "package",
       "path": "microsoft.netcore.universalwindowsplatform/6.2.14",
       "files": [
@@ -6194,7 +6194,7 @@
       ]
     },
     "NETStandard.Library/2.0.3": {
-      "sha512": "548M6mnBSJWxsIlkQHfbzoYxpiYFXZZSL00p4GHYv8PkiqFBnnT68mW5mGEsA/ch9fDO9GkPgkFQpWiXZN7mAQ==",
+      "sha512": "st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
       "type": "package",
       "path": "netstandard.library/2.0.3",
       "files": [
@@ -10255,18 +10255,18 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Ondra\\.nuget\\packages\\": {},
+    "C:\\Users\\jindra\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Spoustec\\Spoustec\\Spoustec.csproj",
+      "projectUniqueName": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Spoustec\\Spoustec\\Spoustec.csproj",
       "projectName": "Spuštěč",
-      "projectPath": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Spoustec\\Spoustec\\Spoustec.csproj",
-      "packagesPath": "C:\\Users\\Ondra\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Spoustec\\Spoustec\\obj\\",
+      "projectPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Spoustec\\Spoustec\\Spoustec.csproj",
+      "packagesPath": "C:\\Users\\jindra\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Spoustec\\Spoustec\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -10274,7 +10274,7 @@
         "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Ondra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jindra\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

@@ -56,10 +56,32 @@ namespace Models.DatabaseControllers
             idParam.Value = id;
 
             OracleParameter praxeParam = new OracleParameter("p_praxe", OracleDbType.Int32, ParameterDirection.InputOutput);
-            praxeParam.Value = data.GetProperty("praxe").GetInt32();
+
+            // Kontrola a převod hodnoty praxe
+            if (data.TryGetProperty("praxe", out JsonElement praxeElement))
+            {
+                if (praxeElement.ValueKind == JsonValueKind.Number && praxeElement.TryGetInt32(out int praxe))
+                {
+                    praxeParam.Value = praxe;
+                }
+                else if (praxeElement.ValueKind == JsonValueKind.String && int.TryParse(praxeElement.GetString(), out praxe))
+                {
+                    praxeParam.Value = praxe;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Nepodařilo se přečíst hodnotu praxe jako celé číslo.");
+                }
+            }
+            else
+            {
+                throw new InvalidOperationException("Element praxe nebyl nalezen v JSON data.");
+            }
+
             ZamestnanciController.UpsertZamestnanec(id, data);
             DatabaseController.Execute("pkg_ostatni.upsert_asistent", idParam, praxeParam);
         }
+
 
         private static IEnumerable<int> GetIds(string tableName, string idColumnName)
         {
