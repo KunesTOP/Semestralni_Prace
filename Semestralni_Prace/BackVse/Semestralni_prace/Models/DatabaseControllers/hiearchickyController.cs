@@ -119,57 +119,110 @@ namespace Semestralni_prace.Models.DatabaseControllers
 
             DatabaseController.Execute("pkg_zbytek.update_owner_address", ownerIdParam, newAddressIdParam);
         }
-        public static void GetTableColumns()
+        public static DataTable GetTableColumns()
         {
-            DatabaseController.Execute("pck_zbytekinfo.get_table_columns");
-        }
-        static void GetTables()
-        {
-            DatabaseController.Execute("pck_zbytekinfo.get_tables");
-        }
-        public static void GetViews()
-        {
-            DatabaseController.Execute("pck_zbytekinfo.get_views");
+            // SQL dotaz pro získání informací o sloupcích všech tabulek
+            string sql = @"
+        SELECT 
+            TABLE_NAME, 
+            COLUMN_NAME, 
+            DATA_TYPE, 
+            DATA_LENGTH 
+        FROM USER_TAB_COLUMNS"; // Nebo ALL_TAB_COLUMNS, DBA_TAB_COLUMNS podle oprávnění
+
+            return DatabaseController.Query(sql);
         }
 
-        public static void GetProcedures()
+
+
+
+
+
+
+        public static DataTable GetTables()
         {
-            DatabaseController.Execute("pck_zbytekinfo.get_procedures");
+            string sql = "SELECT table_name FROM all_tables"; // nebo "SELECT table_name FROM all_tables" pro všechny tabulky
+            return DatabaseController.Query(sql);
+
         }
 
-        public static void GetFunctions()
+        public static async Task<DataTable> GetViews()
         {
-            DatabaseController.Execute("pck_zbytekinfo.get_functions");
+            string connectionString = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=fei-sql3.upceucebny.cz)(PORT=1521)))(CONNECT_DATA=(SID=BDAS)));" +
+            "user id=ST67057;password=abcde;" +
+            "Connection Timeout=120;Validate connection=true;Min Pool Size=4;";
+
+            using (var connection = new OracleConnection(connectionString))
+            {
+                await connection.OpenAsync();
+                DataTable dataTable = new DataTable();
+
+                using (OracleCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT view_name FROM all_views"; // Získání názvů všech pohledů
+                    OracleDataAdapter dataAdapter = new OracleDataAdapter(command);
+                    dataAdapter.Fill(dataTable);
+                }
+
+                return dataTable;
+            }
         }
 
-        public static void GetTriggers()
+
+
+        public static DataTable GetProcedures()
         {
-            DatabaseController.Execute("pck_zbytekinfo.get_triggers");
+            string sql = "SELECT OBJECT_NAME FROM USER_PROCEDURES";
+            return DatabaseController.Query(sql);
         }
 
-        public static void GetIndexes()
+
+        public static DataTable GetFunctions()
         {
-            DatabaseController.Execute("pck_zbytekinfo.get_indexes");
+            string sql = "SELECT OBJECT_NAME FROM USER_FUNCTIONS"; // Nebo ALL_FUNCTIONS, DBA_FUNCTIONS podle oprávnění
+            return DatabaseController.Query(sql);
         }
 
-        public static void GetSequences()
+
+        public static DataTable GetTriggers()
         {
-            DatabaseController.Execute("pck_zbytekinfo.get_sequences");
+            string sql = "SELECT TRIGGER_NAME FROM USER_TRIGGERS"; // Nebo ALL_TRIGGERS, DBA_TRIGGERS podle oprávnění
+            return DatabaseController.Query(sql);
         }
 
-        public static void GetConstraints()
+
+        public static DataTable GetIndexes()
         {
-            DatabaseController.Execute("pck_zbytekinfo.get_constraints");
+            string sql = "SELECT INDEX_NAME FROM USER_INDEXES"; // Nebo ALL_INDEXES, DBA_INDEXES podle oprávnění
+            return DatabaseController.Query(sql);
         }
 
-        public static void GetSynonyms()
+
+        public static DataTable GetSequences()
         {
-            DatabaseController.Execute("pck_zbytekinfo.get_synonyms");
+            string sql = "SELECT SEQUENCE_NAME FROM USER_SEQUENCES"; // Nebo ALL_SEQUENCES, DBA_SEQUENCES podle oprávnění
+            return DatabaseController.Query(sql);
         }
 
-        public static void GetCreated()
+
+        public static DataTable GetConstraints()
         {
-            DatabaseController.Execute("pck_zbytekinfo.get_created");
+            string sql = "SELECT CONSTRAINT_NAME FROM USER_CONSTRAINTS"; // Nebo ALL_CONSTRAINTS, DBA_CONSTRAINTS podle oprávnění
+            return DatabaseController.Query(sql);
+        }
+
+
+        public static DataTable GetSynonyms()
+        {
+            string sql = "SELECT SYNONYM_NAME FROM USER_SYNONYMS"; // Nebo ALL_SYNONYMS, DBA_SYNONYMS podle oprávnění
+            return DatabaseController.Query(sql);
+        }
+
+
+        public static DataTable GetCreated()
+        {
+            string sql = "SELECT OBJECT_NAME, CREATED FROM USER_OBJECTS WHERE OBJECT_TYPE = 'TABLE'"; // Můžete filtrovat podle typu objektu
+            return DatabaseController.Query(sql);
         }
         public static void HierarchicalQueryProcedure(int startId)
         {
@@ -179,12 +232,12 @@ namespace Semestralni_prace.Models.DatabaseControllers
             // Volání procedury
             DatabaseController.Execute("pkg_zbytek.HierarchicalQueryProcedure", p_start_id);
 
-            // Další logika, pokud je potřeba...
+            
         }
-        public static void GetNames()
+        public static DataTable GetNames()
         {
-
-            DatabaseController.Execute("pck_zbytekinfo.get_names('zamestnanci')");
+            string sql = "SELECT jmeno, prijmeni FROM zamestnanci"; // Předpokládám, že jmeno a prijmeni jsou sloupce v tabulce zamestnanci
+            return DatabaseController.Query(sql);
         }
 
         public static void SchvaleniUctu(string jmeno, string prijmeni, string email, string mesto, string ulice, string cisloPopisne, string prihlasovaciJmeno, string prihlasovaciHeslo, int urovenAutorizace)
