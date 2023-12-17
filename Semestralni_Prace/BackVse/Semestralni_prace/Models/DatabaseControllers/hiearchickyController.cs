@@ -178,6 +178,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
         }
 
 
+
         public static DataTable GetTriggers()
         {
             string sql = "SELECT TRIGGER_NAME FROM USER_TRIGGERS"; // Nebo ALL_TRIGGERS, DBA_TRIGGERS podle oprávnění

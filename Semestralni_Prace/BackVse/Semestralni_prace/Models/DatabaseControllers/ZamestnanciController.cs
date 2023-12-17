@@ -63,8 +63,8 @@ namespace Models.DatabaseControllers
             OracleParameter idZamestnanecParam = new OracleParameter("p_id_zamestnanec", OracleDbType.Int32, ParameterDirection.InputOutput);
             idZamestnanecParam.Value = id;
 
-            OracleParameter jmenoParam = new OracleParameter("p_jmeno", OracleDbType.Varchar2, data.GetProperty("Jmeno").GetString(), ParameterDirection.Input);
-            OracleParameter prijmeniParam = new OracleParameter("p_prijmeni", OracleDbType.Varchar2, data.GetProperty("Prijmeni").GetString(), ParameterDirection.Input);
+            OracleParameter jmenoParam = new OracleParameter("p_jmeno", OracleDbType.Varchar2, data.GetProperty("jmeno").GetString(), ParameterDirection.Input);
+            OracleParameter prijmeniParam = new OracleParameter("p_prijmeni", OracleDbType.Varchar2, data.GetProperty("prijmeni").GetString(), ParameterDirection.Input);
 
             OracleParameter veterKlinIdParam;
             if (data.TryGetProperty("VeterKlinId", out JsonElement veterKlinIdElement) && veterKlinIdElement.TryGetInt32(out int veterKlinId))
@@ -73,11 +73,10 @@ namespace Models.DatabaseControllers
             }
             else
             {
-                // Nastavte výchozí hodnotu nebo nechte pole prázdné, pokud je VeterKlinId nepovinné
-                veterKlinIdParam = new OracleParameter("p_veter_klin_id", OracleDbType.Int32, DBNull.Value, ParameterDirection.Input);
+                // Nastavte výchozí hodnotu na 1, pokud je VeterKlinId nepovinné
+                veterKlinIdParam = new OracleParameter("p_veter_klin_id", OracleDbType.Int32, 1, ParameterDirection.Input);
             }
-
-            OracleParameter profeseParam = new OracleParameter("p_profese", OracleDbType.Varchar2, data.GetProperty("Profese").GetString(), ParameterDirection.Input);
+            OracleParameter profeseParam = new OracleParameter("p_profese", OracleDbType.Varchar2, data.GetProperty("profese").GetString(), ParameterDirection.Input);
 
             DatabaseController.Execute(
                 "pkg_ostatni.upsert_zamestnanci",
