@@ -250,8 +250,9 @@ namespace Semestralni_prace.Models.DatabaseControllers
 
             return dataTable;
         }
-        public List<Zamestnanec> GetAllPodrizeni(DataTable table)
+        public static List<Zamestnanec> GetAllPodrizeni(int id)
         {
+            DataTable table = HierarchicalQueryProcedure(id);
             if (table.Rows.Count == 0)
             {
                 return null;

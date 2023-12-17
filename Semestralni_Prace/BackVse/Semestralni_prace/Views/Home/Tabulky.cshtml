@@ -101,11 +101,10 @@
                 type: 'GET',
                 success: function (data) {
                     var tableBody = $('#data-table');
-                    console.log(tableBody)
                     tableBody.empty();
+                    console.log(data);
+                    console.log(data.data[0]);
                     data.data[0].forEach((row) => {
-                        console.log("Todle je proměnná row: ");
-                        console.log(row);
                         var newRow = "<tr id='" + row.id + "'>";
                         for (const [key, value] of Object.entries(row)) {
                             if (!key.toLowerCase().includes("id")) {
@@ -113,7 +112,6 @@
                             }
                         }
                         newRow += "<td><button onclick='saveEditedRow(" + row.id + ")'>Uložit změny</button><button class='btn-delete' onclick='deleteRow(" + row.id + ")'>Smazat</button></td></tr>";
-                        console.log(row.id);
                         tableBody.append(newRow);
                     });
                     var newRow = "<tr id='-1'>";
