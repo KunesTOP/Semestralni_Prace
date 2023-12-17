@@ -131,7 +131,7 @@ namespace Semestralni_Prace.Controllers
                     }
                     return list = new List<object> { listProcedury };
                 case "FUNKCE":
-                    table = HiearchickyController.GetProcedures();
+                    table = HiearchickyController.GetFunctions();
                     if (table.Rows.Count == 0) { return null; }
                     List<object> listFunkce = new List<object>();
                     foreach (DataRow row in table.Rows)
@@ -140,7 +140,7 @@ namespace Semestralni_Prace.Controllers
                     }
                     return list = new List<object> { listFunkce };
                 case "TRIGGERY":
-                    table = HiearchickyController.GetProcedures();
+                    table = HiearchickyController.GetTriggers();
                     if (table.Rows.Count == 0) { return null; }
                     List<object> listTrigger = new List<object>();
                     foreach (DataRow row in table.Rows)
@@ -149,7 +149,7 @@ namespace Semestralni_Prace.Controllers
                     }
                     return list = new List<object> { listTrigger };
                 case "INDEXY":
-                    table = HiearchickyController.GetProcedures();
+                    table = HiearchickyController.GetIndexes();
                     if (table.Rows.Count == 0) { return null; }
                     List<object> listIndex = new List<object>();
                     foreach (DataRow row in table.Rows)
@@ -158,7 +158,7 @@ namespace Semestralni_Prace.Controllers
                     }
                     return list = new List<object> { listIndex };
                 case "SEQUENCE":
-                    table = HiearchickyController.GetProcedures();
+                    table = HiearchickyController.GetSequences();
                     if (table.Rows.Count == 0) { return null; }
                     List<object> listSequence = new List<object>();
                     foreach (DataRow row in table.Rows)
@@ -167,7 +167,7 @@ namespace Semestralni_Prace.Controllers
                     }
                     return list = new List<object> { listSequence };
                 case "CONSTRAINTS":
-                    table = HiearchickyController.GetProcedures();
+                    table = HiearchickyController.GetConstraints();
                     if (table.Rows.Count == 0) { return null; }
                     List<object> listConstrains = new List<object>();
                     foreach (DataRow row in table.Rows)
@@ -176,7 +176,7 @@ namespace Semestralni_Prace.Controllers
                     }
                     return list = new List<object> { listConstrains };
                 case "SYNONYMS":
-                    table = HiearchickyController.GetProcedures();
+                    table = HiearchickyController.GetSynonyms();
                     if (table.Rows.Count == 0) { return null; }
                     List<object> listSynonyms = new List<object>();
                     foreach (DataRow row in table.Rows)
@@ -185,7 +185,7 @@ namespace Semestralni_Prace.Controllers
                     }
                     return list = new List<object> { listSynonyms };
                 case "TABLES":
-                    table = HiearchickyController.GetProcedures();
+                    table = HiearchickyController.GetTables();
                     if (table.Rows.Count == 0) { return null; }
                     List<object> listTables = new List<object>();
                     foreach (DataRow row in table.Rows)

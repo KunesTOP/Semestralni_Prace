@@ -173,7 +173,7 @@ namespace Semestralni_prace.Models.DatabaseControllers
 
         public static DataTable GetFunctions()
         {
-            string sql = "SELECT OBJECT_NAME FROM USER_FUNCTIONS"; // Nebo ALL_FUNCTIONS, DBA_FUNCTIONS podle oprávnění
+            string sql = "SELECT OBJECT_NAME FROM ALL_OBJECTS WHERE OBJECT_TYPE = 'FUNCTION'"; // Upravený dotaz
             return DatabaseController.Query(sql);
         }
 
@@ -250,23 +250,20 @@ namespace Semestralni_prace.Models.DatabaseControllers
 
             return dataTable;
         }
-        public static List<Zamestnanec> GetAllPodrizeni(int id)
+        public static List<HiearchieZamestnancu> GetAllPodrizeni(int id)
         {
             DataTable table = HierarchicalQueryProcedure(id);
             if (table.Rows.Count == 0)
             {
                 return null;
             }
-            List<Zamestnanec> listZamestnancu = new List<Zamestnanec>();
-            foreach (DataRow dr in table.Rows)
+            List<HiearchieZamestnancu> listZamestnancu = new List<HiearchieZamestnancu>();
+            foreach (DataRow row in table.Rows)
             {
-                listZamestnancu.Add(new Zamestnanec
+                listZamestnancu.Add(new HiearchieZamestnancu
                 {
-                    Id = int.Parse(dr[0].ToString()),
-                    Jmeno = dr[0].ToString(),
-                    Prijmeni = dr[0].ToString(),
-                    Profese = dr[0].ToString(),
-                    VeterKlinId = int.Parse(dr[0].ToString())
+                    CeleJmeno = row[0].ToString(),
+                    CeleJmenoVedouciho = row[1].ToString() 
                 });
             }
 
