@@ -220,13 +220,39 @@ namespace Semestralni_prace.Models.DatabaseControllers
 
         public static DataTable HierarchicalQueryProcedure(int startId)
         {
-            // Nastavení vstupního parametru
             OracleParameter p_start_id = new OracleParameter("p_start_id", OracleDbType.Int32, startId, ParameterDirection.Input);
+            OracleParameter p_cursor = new OracleParameter();
+            p_cursor.OracleDbType = OracleDbType.RefCursor;
+            p_cursor.Direction = ParameterDirection.Output;
 
-           return DatabaseController.Query("pkg_zbytek.HierarchicalQueryProcedure", p_start_id);
+            DataTable dataTable = new DataTable();
+
+            using (OracleConnection con = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=fei-sql3.upceucebny.cz)(PORT=1521)))(CONNECT_DATA=(SID=BDAS)));" +
+            "user id=ST67057;password=abcde;" +
+            "Connection Timeout=120;Validate connection=true;Min Pool Size=4;"))
+            {
+                con.Open();
+
+                using (OracleCommand cmd = new OracleCommand("pkg_zbytek.HierarchicalQueryProcedure", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(p_start_id);
+                    cmd.Parameters.Add(p_cursor);
+
+                    using (OracleDataReader reader = cmd.ExecuteReader())
+                    {
+                        dataTable.Load(reader);
+                    }
+                }
+
+                con.Close();
+            }
+
+            return dataTable;
         }
-        public List<Zamestnanec> GetAllPodrizeni(DataTable table)
+        public static List<Zamestnanec> GetAllPodrizeni(int id)
         {
+            DataTable table = HierarchicalQueryProcedure(id);
             if (table.Rows.Count == 0)
             {
                 return null;

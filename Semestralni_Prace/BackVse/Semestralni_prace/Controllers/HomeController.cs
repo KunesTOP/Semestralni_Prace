@@ -9,6 +9,7 @@ using Semestralni_prace.Models.DatabaseControllers;
 using Microsoft.CodeAnalysis;
 using Newtonsoft.Json.Linq;
 using System.Text.Json;
+using System.Data;
 
 namespace Semestralni_Prace.Controllers
 {
@@ -63,7 +64,7 @@ namespace Semestralni_Prace.Controllers
         private List<string> GetNazvyTabulekAdmin()
         {
             return new List<string> {"ADRESY", "ANAMNEZA", "ASISTENT","DOKUMENTY", "LEKARI" ,"LEKY", "MAJITEL","PRUKAZ", "RASA", "TITUL","UCTY", "VAKCINA", "VETERINARNI_KLINIKA",
-                "VYSLEDEK_KREV","ZAMESTNANCI","ZVIRE", "PROCEDURY"};
+                "VYSLEDEK_KREV","ZAMESTNANCI","ZVIRE", "PROCEDURY", "FUNKCE", "TRIGGERY", "INDEXY", "SEQUENCE", "CONSTRAINTS", "SYNONYMS","TABLES"};
         }
         private List<string> GetNazvyTabulekLekar()
         {
@@ -85,6 +86,7 @@ namespace Semestralni_Prace.Controllers
 
         private List<object> GetSpravnouTabulku(string tableName)
         {
+            DataTable table;
             switch (tableName)
             {
                 case "ADRESY":
@@ -120,8 +122,77 @@ namespace Semestralni_Prace.Controllers
                 case "ZVIRE":
                     return list = new List<object> { ZvirataController.GetAll() };
                 case "PROCEDURY":
-                    HiearchickyController.GetProcedures();
-                    break;
+                    table = HiearchickyController.GetProcedures();
+                    if(table.Rows.Count == 0) { return null; }
+                    List<object>listProcedury = new List<object>();
+                    foreach(DataRow row in table.Rows)
+                    {
+                        listProcedury.Add(row[0].ToString());
+                    }
+                    return list = new List<object> { listProcedury };
+                case "FUNKCE":
+                    table = HiearchickyController.GetProcedures();
+                    if (table.Rows.Count == 0) { return null; }
+                    List<object> listFunkce = new List<object>();
+                    foreach (DataRow row in table.Rows)
+                    {
+                        listFunkce.Add(row[0].ToString());
+                    }
+                    return list = new List<object> { listFunkce };
+                case "TRIGGERY":
+                    table = HiearchickyController.GetProcedures();
+                    if (table.Rows.Count == 0) { return null; }
+                    List<object> listTrigger = new List<object>();
+                    foreach (DataRow row in table.Rows)
+                    {
+                        listTrigger.Add(row[0].ToString());
+                    }
+                    return list = new List<object> { listTrigger };
+                case "INDEXY":
+                    table = HiearchickyController.GetProcedures();
+                    if (table.Rows.Count == 0) { return null; }
+                    List<object> listIndex = new List<object>();
+                    foreach (DataRow row in table.Rows)
+                    {
+                        listIndex.Add(row[0].ToString());
+                    }
+                    return list = new List<object> { listIndex };
+                case "SEQUENCE":
+                    table = HiearchickyController.GetProcedures();
+                    if (table.Rows.Count == 0) { return null; }
+                    List<object> listSequence = new List<object>();
+                    foreach (DataRow row in table.Rows)
+                    {
+                        listSequence.Add(row[0].ToString());
+                    }
+                    return list = new List<object> { listSequence };
+                case "CONSTRAINTS":
+                    table = HiearchickyController.GetProcedures();
+                    if (table.Rows.Count == 0) { return null; }
+                    List<object> listConstrains = new List<object>();
+                    foreach (DataRow row in table.Rows)
+                    {
+                        listConstrains.Add(row[0].ToString());
+                    }
+                    return list = new List<object> { listConstrains };
+                case "SYNONYMS":
+                    table = HiearchickyController.GetProcedures();
+                    if (table.Rows.Count == 0) { return null; }
+                    List<object> listSynonyms = new List<object>();
+                    foreach (DataRow row in table.Rows)
+                    {
+                        listSynonyms.Add(row[0].ToString());
+                    }
+                    return list = new List<object> { listSynonyms };
+                case "TABLES":
+                    table = HiearchickyController.GetProcedures();
+                    if (table.Rows.Count == 0) { return null; }
+                    List<object> listTables = new List<object>();
+                    foreach (DataRow row in table.Rows)
+                    {
+                        listTables.Add(row[0].ToString());
+                    }
+                    return list = new List<object> { listTables };
             }
             return null;
         }
