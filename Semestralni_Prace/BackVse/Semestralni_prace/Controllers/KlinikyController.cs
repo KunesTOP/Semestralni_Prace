@@ -64,7 +64,6 @@ namespace Semestralni_prace.Controllers
         public IActionResult LoadTableNadrizeni(string tableName)
         {
             Zamestnanec vybranyNadrizeny = listZamestnancu.FirstOrDefault(x => x.Prijmeni == tableName);
-<<<<<<< HEAD
             List<HiearchieZamestnancu> result = HiearchickyController.GetAllPodrizeni(vybranyNadrizeny.Id);
 
             if (result != null)
@@ -75,12 +74,6 @@ namespace Semestralni_prace.Controllers
             {
                 return NotFound();
             }
-=======
-
-            List<HiearchieZamestnancu> result = HiearchickyController.GetAllPodrizeni(vybranyNadrizeny.Id);
-
->>>>>>> 64234142891101cc9d42208dee099aef1d3c849d
-            return Ok(new { vybranyNadrizeny });
         }
     }
 }
