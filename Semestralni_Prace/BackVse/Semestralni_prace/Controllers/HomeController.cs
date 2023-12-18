@@ -39,16 +39,15 @@ namespace Semestralni_Prace.Controllers
         }
         public IActionResult Tabulky()
         {
-           /* var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno"), Hash = HttpContext.Session.GetString("heslo") });
+            var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno"), Hash = HttpContext.Session.GetString("heslo") });
             if (level == AuthLevel.NONE) { return RedirectToAction("AutorizaceFailed", "Home"); }
             bool isAdmin = level == AuthLevel.ADMIN;
             var ktereJmenoPouzivat = (isAdmin) ? HttpContext.Session.GetString("emulovaneJmeno") : HttpContext.Session.GetString("jmeno");
             if (isAdmin && ktereJmenoPouzivat != HttpContext.Session.GetString("jmeno")) level = AuthController.GetLevel(ktereJmenoPouzivat);
             if (level == AuthLevel.OUTER) { return RedirectToAction("AutorizaceFailed", "Home"); }
             List<string> tableNames;
-            tableNames = (level == AuthLevel.ADMIN) ? GetNazvyTabulekAdmin() : GetNazvyTabulekLekar();*/
-            List<string> tableNames = GetNazvyTabulekAdmin();
-
+            tableNames = (level == AuthLevel.ADMIN) ? GetNazvyTabulekAdmin() : GetNazvyTabulekLekar();
+            //List<string> tableNames = GetNazvyTabulekAdmin();
 
             ViewBag.TableNames = tableNames;
 

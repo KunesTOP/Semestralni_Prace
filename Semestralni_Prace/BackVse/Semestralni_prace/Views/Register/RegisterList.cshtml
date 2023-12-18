@@ -37,37 +37,117 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Jmeno)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Prijmeni)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Street)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HouseNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.ActionLink("AddRegister", "Register", new {registr = item})
-                @Html.ActionLink("DeleteRegister", "Register", new {registr = item})
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td id="jmeno">
+                    @Html.DisplayFor(modelItem => item.Jmeno)
+                </td>
+                <td id="prijmeni">
+                    @Html.DisplayFor(modelItem => item.Prijmeni)
+                </td>
+                <td id="email">
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td id="street">
+                    @Html.DisplayFor(modelItem => item.Street)
+                </td>
+                <td id="houseNumber">
+                    @Html.DisplayFor(modelItem => item.HouseNumber)
+                </td>
+                <td id="city">
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td id="userName">
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td id="password">
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    <button class="add-row-button" data-row="@item.UserName" type="button">Přidat</button>
+                    <button class="delete-row-button" data-row-id="@item.UserName" type="button">Odebrat</button>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.delete-row-button').click(function () {
+            var data = $(this).data('row-id');
+            console.log(data);
+            $.ajax({
+                url: `/Register/DeleteRegister`,
+                type: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                data: JSON.stringify({ data: data }),
+                success: function (result) {
+                    console.log('Row deleted successfully');
+                },
+                error: function (error) {
+                    // Handle the error (if needed)
+                    console.error('Error deleting row:', error);
+                }
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $('.add-row-button').click(function () {
+            var userName = $(this).data('row');
+            var jmeno = $(this).closest('tr').find('td:eq(0)').text().trim();
+            var prijmeni = $(this).closest('tr').find('td:eq(1)').text().trim();
+            var email = $(this).closest('tr').find('td:eq(2)').text().trim();
+            var city = $(this).closest('tr').find('td:eq(5)').text().trim();
+            var street = $(this).closest('tr').find('td:eq(3)').text().trim();
+            var houseNumber = $(this).closest('tr').find('td:eq(4)').text().trim();
+            var password = $(this).closest('tr').find('td:eq(7)').text().trim();
+
+            userName = userName.replace(/(\r\n|\n|\r)/gm, "");
+            jmeno = jmeno.replace(/(\r\n|\n|\r)/gm, "");
+            prijmeni = prijmeni.replace(/(\r\n|\n|\r)/gm, "");
+            email = email.replace(/(\r\n|\n|\r)/gm, "");
+            city = city.replace(/(\r\n|\n|\r)/gm, "");
+            street = street.replace(/(\r\n|\n|\r)/gm, "");
+            houseNumber = houseNumber.replace(/(\r\n|\n|\r)/gm, "");
+            password = password.replace(/(\r\n|\n|\r)/gm, "");
+
+            console.log(userName);
+            console.log(jmeno);
+            console.log(prijmeni);
+            console.log(email);
+            console.log(city);
+            console.log(street);
+            console.log(houseNumber);
+            console.log(password);
+            $.ajax({
+                url: '/Register/AddRegister',
+                type: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                data: JSON.stringify({
+                    userName: userName,
+                    jmeno: jmeno,
+                    prijmeni: prijmeni,
+                    email: email,
+                    city: city,
+                    street: street,
+                    houseNumber: houseNumber,
+                    password: password
+                }),
+                success: function (result) {
+                    console.log('Row added successfully');
+                },
+                error: function (error) {
+                    console.error('Error adding row:', error);
+                }
+            });
+        });
+    });
+
+</script>
