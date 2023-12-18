@@ -14,11 +14,11 @@ namespace Semestralni_prace.Controllers
 
         public IActionResult ZamestnanciList()
         {
-            /*var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno"), Hash = HttpContext.Session.GetString("heslo") });
+            var level = AuthController.Check(new AuthToken { PrihlasovaciJmeno = HttpContext.Session.GetString("jmeno"), Hash = HttpContext.Session.GetString("heslo") });
             if (level == AuthLevel.NONE) { return RedirectToAction("AutorizaceFailed", "Home"); }
             bool isAdmin = level == AuthLevel.ADMIN;
             var ktereJmenoPouzivat = (isAdmin) ? HttpContext.Session.GetString("emulovaneJmeno") : HttpContext.Session.GetString("jmeno");
-            if (isAdmin && ktereJmenoPouzivat != HttpContext.Session.GetString("jmeno")) level = AuthController.GetLevel(ktereJmenoPouzivat);*/
+            if (isAdmin && ktereJmenoPouzivat != HttpContext.Session.GetString("jmeno")) level = AuthController.GetLevel(ktereJmenoPouzivat);
 
             List<string> listMest = new List<string>();
             foreach(Adresy ad in tableNames)
@@ -64,10 +64,16 @@ namespace Semestralni_prace.Controllers
         public IActionResult LoadTableNadrizeni(string tableName)
         {
             Zamestnanec vybranyNadrizeny = listZamestnancu.FirstOrDefault(x => x.Prijmeni == tableName);
-
             List<HiearchieZamestnancu> result = HiearchickyController.GetAllPodrizeni(vybranyNadrizeny.Id);
 
-            return Ok(new { vybranyNadrizeny });
+            if (result != null)
+            {
+                return Ok(new { data = result });
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }
