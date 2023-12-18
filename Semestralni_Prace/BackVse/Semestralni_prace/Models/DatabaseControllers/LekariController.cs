@@ -33,9 +33,10 @@ namespace Models.DatabaseControllers
 
             OracleParameter akreditaceParam = new OracleParameter("p_akreditace", OracleDbType.Varchar2, ParameterDirection.Input);
             akreditaceParam.Value = data.GetProperty("akreditace").GetString();
-            ZamestnanciController.UpsertZamestnanec(id, data);
 
+            ZamestnanciController.UpsertZamestnanec(id, data);
             DatabaseController.Execute("pkg_model_dml1.upsert_lekar", idParam, akreditaceParam);
+           
         }
         public static Lekar Get(int id)
         {

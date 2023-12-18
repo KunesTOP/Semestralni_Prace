@@ -1,6 +1,7 @@
 ﻿using Back.databaze;
 using Microsoft.AspNetCore.Mvc;
 using Oracle.ManagedDataAccess.Client;
+using Oracle.ManagedDataAccess.Types;
 using Semestralni_prace.Models.Classes;
 using System.Collections.Generic;
 using System.Data;
@@ -86,6 +87,7 @@ namespace Models.DatabaseControllers
                 veterKlinIdParam,
                 profeseParam
             );
+          
         }
 
 

@@ -80,6 +80,7 @@ namespace Models.DatabaseControllers
 
             ZamestnanciController.UpsertZamestnanec(id, data);
             DatabaseController.Execute("pkg_ostatni.upsert_asistent", idParam, praxeParam);
+          
         }
 
 

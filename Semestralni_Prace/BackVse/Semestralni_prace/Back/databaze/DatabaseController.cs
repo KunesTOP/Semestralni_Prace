@@ -107,6 +107,21 @@ namespace Back.databaze
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.ExecuteNonQuery();
         }
+        public static OracleParameter Executevratny(string sql, params OracleParameter[] parameters)
+        {
+            OpenDb();
+            OracleCommand cmd = new OracleCommand(sql, _databaseController.con);
+            foreach (OracleParameter op in parameters)
+            {
+                cmd.Parameters.Add(op);
+            }
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+
+            // Assuming you know the name of the parameter you're interested in
+            return cmd.Parameters["p_id_zamestnanec"] as OracleParameter;
+        }
+
         public static void Execute1(string sql, params OracleParameter[] parameters)
         {
             OpenDb();
