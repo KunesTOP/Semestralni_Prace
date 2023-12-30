@@ -9,11 +9,11 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Semestralni_prace
 build_property.RootNamespace = Semestralni_prace
-build_property.ProjectDir = C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\BackVse\Semestralni_Prace\
+build_property.ProjectDir = C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\BackVse\Semestralni_prace\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = true
-build_property.MSBuildProjectDirectory = C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\BackVse\Semestralni_Prace
+build_property.MSBuildProjectDirectory = C:\Users\jindra\Desktop\Git\Semestralni_Prace\Semestralni_Prace\BackVse\Semestralni_prace
 build_property._RazorSourceGeneratorDebug = 
 
 [C:/Users/jindra/Desktop/Git/Semestralni_Prace/Semestralni_Prace/BackVse/Semestralni_Prace/Views/Hierarchical/hierarchicky.cshtml]

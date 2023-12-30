@@ -20,8 +20,10 @@ namespace Semestralni_prace.Models.DatabaseControllers
         public static int CalculateAge(DateTime birthDate)
         {
             string sql = "SELECT FLOOR(MONTHS_BETWEEN(SYSDATE, :birthDate) / 12) AS age FROM DUAL";
-
-            using (OracleConnection conn = new OracleConnection(DatabaseController.CONSTR))
+            string connectionString = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=fei-sql3.upceucebny.cz)(PORT=1521)))(CONNECT_DATA=(SID=BDAS)));" +
+           "user id=ST67057;password=abcde;" +
+           "Connection Timeout=120;Validate connection=true;Min Pool Size=4;";
+            using (var conn = new OracleConnection(connectionString))
             {
                 conn.Open();
 
