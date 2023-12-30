@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Spoustec\\Spoustec\\Spoustec.csproj": {}
+    "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Spoustec\\Spoustec\\Spoustec.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Spoustec\\Spoustec\\Spoustec.csproj": {
+    "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Spoustec\\Spoustec\\Spoustec.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Spoustec\\Spoustec\\Spoustec.csproj",
+        "projectUniqueName": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Spoustec\\Spoustec\\Spoustec.csproj",
         "projectName": "Spuštěč",
-        "projectPath": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Spoustec\\Spoustec\\Spoustec.csproj",
-        "packagesPath": "C:\\Users\\Ondra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ondra\\source\\repos\\Semestralni_Prace5\\Spoustec\\Spoustec\\obj\\",
+        "projectPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Spoustec\\Spoustec\\Spoustec.csproj",
+        "packagesPath": "C:\\Users\\jindra\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jindra\\Desktop\\Git\\Semestralni_Prace\\Spoustec\\Spoustec\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -19,7 +19,7 @@
           "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Ondra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jindra\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
