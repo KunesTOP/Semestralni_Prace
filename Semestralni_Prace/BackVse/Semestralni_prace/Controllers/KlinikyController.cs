@@ -32,7 +32,6 @@ namespace Semestralni_prace.Controllers
         [HttpGet]
         public IActionResult LoadTable(string tableName)
         {
-            //TODO:Dopsat a zkontrolvoat tudle logiku: Vezmu si ID klinik. Podle toho si najdu adresy a budu vypisovat jen Mesta.
             Adresy spravnaAdresa = tableNames.FirstOrDefault(x => x.City == tableName);
             int? spravnaKlinika = VeterinarniKlinikaController.GetKlinikaIdByAdresa(spravnaAdresa.City,spravnaAdresa.Street,spravnaAdresa.HouseNumber);
 

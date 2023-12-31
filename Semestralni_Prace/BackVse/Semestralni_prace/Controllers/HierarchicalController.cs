@@ -23,14 +23,12 @@ namespace Semestralni_prace.Controllers
 
             return View(VratListSVekem());
         }
-        //TODO Todle absolutně netuším k čemu má být... just saying
         public IActionResult GetAnimalsForOwner(int ownerId)
         {
             try
             {
                 HiearchickyController.GetAnimalsForOwner(ownerId);
-                // Zde můžete přidat logiku pro zpracování výsledků
-                return View("Success"); // Nebo přesměrování na jiné view
+                return View("Success");
             }
             catch (Exception ex)
             {

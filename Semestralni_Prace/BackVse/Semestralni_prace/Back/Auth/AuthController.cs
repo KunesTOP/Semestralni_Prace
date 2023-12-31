@@ -62,7 +62,6 @@ namespace Back.Auth
             }
 
             return AuthLevel.NONE;
-        // 502eec74e4cc00e712b7899f1be6618e4d92fb7d
         }
 
         // Metoda pro ověření hesla pomocí hashů

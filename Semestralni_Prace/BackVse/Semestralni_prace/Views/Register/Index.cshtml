@@ -59,6 +59,8 @@
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}}
 <script>
     $('#btnAdd').on('click', function () {
         loadTable();
@@ -80,15 +82,12 @@
             data: JSON.stringify(jsonData),
             success: function (response) {
                 console.log(response);
-            },
-            error: function (error) {
-                console.log(error);
             }
         });
     }
 
 </script>
 <div>
-    <a asp-controller="Home" asp-action="Login">Back to List</a>
+    <a asp-controller="Home" asp-action="Login">Login</a>
 </div>
 

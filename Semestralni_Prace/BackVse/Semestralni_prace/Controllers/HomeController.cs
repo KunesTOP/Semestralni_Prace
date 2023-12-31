@@ -10,6 +10,10 @@ using Microsoft.CodeAnalysis;
 using Newtonsoft.Json.Linq;
 using System.Text.Json;
 using System.Data;
+/*Přihlašovací údaje:
+ * name: ondra
+ * password: neustad 
+ */
 
 namespace Semestralni_Prace.Controllers
 {

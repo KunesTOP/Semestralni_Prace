@@ -31,8 +31,8 @@ namespace Semestralni_prace.Controllers
             {
                 try
                 {
-                    Zvire zvire = zvireList.FirstOrDefault(item => item.Id == prukaz.ZvireId);
-                    Majitel majitel = majiteleList.FirstOrDefault(item => item.Id == zvire.MajitelZvireIdPacient);
+                    Zvire? zvire = zvireList.FirstOrDefault(item => item.Id == prukaz.ZvireId);
+                    Majitel? majitel = majiteleList.FirstOrDefault(item => item.Id == zvire.MajitelZvireIdPacient);
                     PacientList.Add(new Pacient
                     {
 
